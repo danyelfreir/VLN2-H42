@@ -24,10 +24,10 @@ Precondition: User already exists
 Postcondition: User is logged in
 Trigger: User wants to make a bid, review a bid or put a new item up for auction
 Main success scenario: User successfully logs in with a username and a password
-Extensions: User cannot log in due to having the wrong username or password. The user has to apply for a new password
+Extensions: User cannot log in due to having the wrong username or password. The user has to apply for a new password for the existing user
 
 3. 
-Name:
+Name: See user profile 
 Number:
 Description:
 Priority:
