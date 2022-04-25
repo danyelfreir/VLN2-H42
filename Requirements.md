@@ -19,13 +19,13 @@
     a. As a user, I would like to be able to change the image on my user profile so that people will trust me as a seller.
 
   7. Search by the name of the item
-    a. As a user, I would like to be able to search by the name of the item so that I can review items that previously caught my eye. 
+    a. As a user, I would like to be able to search by the name of the item so that I can review items that previously caught my eye.
 
   8. Order items by price or by name
-    a. As a user, I would like to be able to order items by price or by name to better see what items are awailable at each given time. 
+    a. As a user, I would like to be able to order items by price or by name to better see what items are available at each given time.
 
   9. Click individual items to see details
-    a. As a user, I would like to be able to see detailed information on each item so that I can better decide if I want to make a bid on the item. 
+    a. As a user, I would like to be able to see detailed information on each item so that I can better decide if I want to make a bid on the item.
 
   10. Create a new item for sale
     a. As a user, I would like to be able to create a new item so that others can bid on my item and I can make some profit.
@@ -42,16 +42,20 @@
     - Long description
     - Current highest offer
     - List of similar items
-    - A button to place a bid 
+    - A button to place a bid
 
-        a. As a user making a bid, i would like to be able to make a bid by simply pressing a single button while signed in. So that I easily make a bid without any unnessesary and complex steps.
+        a. As a user making a bid, i would like to be able to make a bid by simply pressing a single button while signed in. So that I easily make a bid without any unnecessary and complex steps.
 
 
 
   13. All items can receive an offer
       a. As a seller, I would like to have an overview of bids for every item I have listed so I can better monitor my sales.
 
+<<<<<<< HEAD
+      b. As a user making a bid, I would like to be able to easily make a bid on every item that I want to purchase.
+=======
       b. As user making a bid, i would like to be able to easily make a bid on every item that I want to purchase. 
+>>>>>>> 897c16ced8b16ef27ab1dd5485470cf37abfb8cf
 
   14. Users can send multiple offers
       a. As a user making a bid, I would like to be able to make a bid on the same item multiple times so that I further increase my chance of possessing the items that I long for.
@@ -59,9 +63,14 @@
   15. Users should be notified when an offer has been accepted or declined
       a. As a user making a bid, I would like to be notified if my offer has been accepted or declined so that I can either make a new bid or move my focus onto other bids.
 
+<<<<<<< HEAD
+  16. Users with accepted offers must check out to finalise the sale
+      As a user making a bid, I would like to be able to finalise the the sale by inserting my payment information with..... veit ekki hvernig ég á að orða þetta
+=======
   16. Users with accepted offers must check out to finalize the sale
       a. As a user making a bid, I would like to be able to finalize the the sale by inserting my payment information and correct shipping information so there wont be any complications with delivery. 
 
+>>>>>>> 897c16ced8b16ef27ab1dd5485470cf37abfb8cf
   17. Four stages:
     1. Contact info
       - Full name
@@ -79,7 +88,7 @@
         a. As a user with an accepted offer, I would like to be able to rate the seller so that I can let him know if I am happy with the purchase or if there is something wanting regarding the bid.
     4. Review
       - Contact info and payment info
-      a. As a user finalizing an accepted offer, I would like to be able to review my contact and payment info so that I can make sure that all the information is correct and the transaction will therefor be accepted. 
+      a. As a user finalizing an accepted offer, I would like to be able to review my contact and payment info so that I can make sure that all the information is correct and the transaction will therefor be accepted.
       - Confirm
     - Users should be able to navigate easily between steps
           As a user finalizing an accepted offer, I would like to be able to navigate easily between steps when making a bid so that I can make sure all the information is correct.
