@@ -51,11 +51,7 @@
   13. All items can receive an offer
       a. As a seller, I would like to have an overview of bids for every item I have listed so I can better monitor my sales.
 
-<<<<<<< HEAD
       b. As a user making a bid, I would like to be able to easily make a bid on every item that I want to purchase.
-=======
-      b. As user making a bid, i would like to be able to easily make a bid on every item that I want to purchase. 
->>>>>>> 897c16ced8b16ef27ab1dd5485470cf37abfb8cf
 
   14. Users can send multiple offers
       a. As a user making a bid, I would like to be able to make a bid on the same item multiple times so that I further increase my chance of possessing the items that I long for.
@@ -63,14 +59,9 @@
   15. Users should be notified when an offer has been accepted or declined
       a. As a user making a bid, I would like to be notified if my offer has been accepted or declined so that I can either make a new bid or move my focus onto other bids.
 
-<<<<<<< HEAD
-  16. Users with accepted offers must check out to finalise the sale
-      As a user making a bid, I would like to be able to finalise the the sale by inserting my payment information with..... veit ekki hvernig ég á að orða þetta
-=======
   16. Users with accepted offers must check out to finalize the sale
       a. As a user making a bid, I would like to be able to finalize the the sale by inserting my payment information and correct shipping information so there wont be any complications with delivery. 
 
->>>>>>> 897c16ced8b16ef27ab1dd5485470cf37abfb8cf
   17. Four stages:
     1. Contact info
       - Full name
