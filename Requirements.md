@@ -78,7 +78,7 @@
         a. As a user with an accepted offer, I would like to be able to rate the seller so that I can let him know if I am happy with the purchase or if there is something wanting regarding the bid.
     4. Review
       - Contact info and payment info
-      a. As a user finalizing an accepted offer, I would like to be able to review my contact and payment info so that I can make sure that all the information is correct and I can 
+      a. As a user finalizing an accepted offer, I would like to be able to review my contact and payment info so that I can make sure that all the information is correct and the transaction will therefor be accepted. 
       - Confirm
     - Users should be able to navigate easily between steps
           As a user finalizing an accepted offer, I would like to be able to navigate easily between steps when making a bid so that I can make sure all the information is correct.
