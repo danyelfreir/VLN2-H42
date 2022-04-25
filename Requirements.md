@@ -9,6 +9,7 @@
 
   3. See the users profile image and average rating on the navigation bar
     a. As a user, I would like to see my profile image and my average rating in the navigation bar to be up to date on my progress.
+    b. As a prominent buyer, I would like to see the rating of the seller I intend to buy from so that I can assess seller reliability.
 
   4. Log out
     a.As a user, I would like to be able to log out due to safety reasons.
