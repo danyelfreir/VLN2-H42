@@ -256,13 +256,13 @@ Author: Gissur Már
 Source: Nr 13 in requirements
 Actors: Seller
 Precondition: An item must be listed for auction (Not already sold)
-Postcondition: The seller can decide if he wants to accept or decline after receiving an offer
+Postcondition: Offer is either accepted or declined
 Trigger: A buyer makes a bid for a listed item
 Main success scenario: 
     1. The seller receives notification regarding a new bid on a listed item of his
     2. The seller reviewes the bid and can accept or decline the offer
 Extensions:
-    None 
+    None at this stage in the progress
 
 
 Name: Reviewing a bid
@@ -270,7 +270,7 @@ Number: 16
 Description: 14
 Priority: High 
 Author: Gissur Már
-Source: Nr 15 in requirements
+Source: Nr 21 in requirements
 Actors: Seller
 Precondition: The potential buyer has made a valid bid on an item.
 Postcondition: The buyer can proceed to checkout to finalize the sale
@@ -280,22 +280,23 @@ Main success scenario:
     2. The seller proceeds to review the bid
     3. The seller either accepts or declines the bid
 Extensions:
+    None at this stage in the process
 
 
 Name: Finalizing a sale
 Number: 17
-Description: A prospective buyer with an accepted offer finalizes the offer by entering his payment and contact information
+Description: A prospective buyer with an accepted offer finalizes the offer by entering his payment and contact information with ease
 Priority: High
 Author: Gissur Már
-Source: nr 16 - 17 in requirements
+Source: nr 22, 23 and 24 in requirements
 Actors: Buyer
 Precondition: an offer is accepted by a seller
-Postcondition: The delivery information for the item is sent to the seller
+Postcondition: The delivery information for the item is sent to the seller and payment is made
 Trigger: The offer from a prospective buyer is reviewed and then accepted by the seller
 Main success scenario:
     1. The buyer receives notification that his offer has been accepted
     2. The buyer proceeds to checkout
-    3. The buyer fills out a form with the delivery information and 
+    3. The buyer fills out a form with the delivery information or user can use the default delivery information
     4. The buyer fills out a form with payment information and makes a payment
     5. the buyer reviews the the filled out form for delivery and sends the form if satisfied
 Extensions:
@@ -303,43 +304,90 @@ Extensions:
     5.a. User decides to change some delivery information. 
 
 
-Name:
-Number:
-Description:
-Priority:
-Author:
-Source:
-Actors:
-Precondition:
-Postcondition:
-Trigger:
+Name: Make multiple offers
+Number: 18
+Description: User makes multiple offers on the same item
+Priority: High
+Author: Gissur Már
+Source: Nr 19 in requirements
+Actors: Buyer
+Precondition: Item does not already have an accepted offer
+Postcondition: Offer is up for review by the seller
+Trigger: Buyer wishes to up his offer on an item or make a new offer after being declined
 Main success scenario:
+    1. User makes a new bid see use case nr 14
 Extensions:
+    1.a. A buyer receives an accepted offer befora he can make a new bid
+    1.b. An offer from another potential buyer is accepted by the seller
 
-17. 
-Name:
-Number:
-Description:
-Priority:
-Author:
-Source:
-Actors:
-Precondition:
-Postcondition:
-Trigger:
+
+Name: Browsing similar items
+Number: 19
+Description: User can browse similar items of interest
+Priority: Medium
+Author: Gissur Már 
+Source: Nr 25 in requirements
+Actors: All users
+Precondition: Similar items are awailable within the same category
+Postcondition: No postcondition
+Trigger: User is browsing for items of interest and clicks on an item
 Main success scenario:
+    1. User clicks on an item of interest
+    2. User scrolls through similar items 
 Extensions:
+    2.a. Item has no similar items within the same category or of same type
 
 18. 
-Name:
-Number:
-Description:
-Priority:
-Author:
-Source:
-Actors:
-Precondition:
-Postcondition:
-Trigger:
+Name: Filter by category
+Number: 20 
+Description: User filters items by category
+Priority: High
+Author: Gissur Már Jónsson
+Source: Nr 26 in requirements
+Actors: All users
+Precondition: Category has some items awailable (is not empty)
+Postcondition: User can browse through a list of items in the chosen category
+Trigger: User wishes to find items in a certain category
 Main success scenario:
+    1. User clicks on the preferred category name in the list of categories
 Extensions:
+    1. Category has no item listed for sale
+
+
+Name: Save payment information
+Number: 21
+Description: User saves his payment information for a quicker checkout
+Priority: Medium
+Author: Gissur Már
+Source: Nr 27 in requirements
+Actors: Buyer
+Precondition: User is logged in 
+Postcondition: Payment is saved for an easier and faster checkout
+Trigger: buyer wants to make a faster checkout when his bid is accepted
+Main success scenario:
+    1. User clicks on his profile image
+    2. User chooses to update the payment information
+    3. user enters new payment information
+    4. user submits new payment information
+Extension:
+    1.a. User is not logged in see use case 2
+    4.a. User enters invalid payment information repeat step 3 - 4
+ 
+Name: Save delivery information
+Number: 22
+Description: User saves his delivery information for a quicker checkout
+Priority: Medium
+Author: Gissur Már 
+Source: Nr 28 in requirements
+Actors: Buyer
+Precondition: User is logged in
+Postcondition: Delivery information is saved for an easier and faster checkout
+Trigger: buyer wants to make a faster checkout when his bid is accepted
+Main success scenario:
+    1. User clicks on his profile image
+    2. User chooses to update the delivery information
+    3. user enters new delivery information
+    4. user submits new delivery information
+Extension:
+    1.a. User is not logged in see use case 2
+    4.a. User enters wrong delivery information repeat step 3 - 4

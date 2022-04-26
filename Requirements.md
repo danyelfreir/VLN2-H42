@@ -13,7 +13,7 @@
 4. As a prominent buyer, I would like to see the rating of the seller I intend to buy from so that I can assess seller reliability.
 
 -log out
-5. As a user, I would like to be able to log out due to safety reasons when I finish my session
+5. As a user, I would like to be able to log out due to safety reasons when I finish my session.
 
 - Edit the name and bio on the users profile
 6. As a user, I would like to edit my name and biography on the user profile so that information about me is correct at all times.
@@ -39,7 +39,7 @@
 - The item has a name, an image, condition and a long description
 13. As a seller, I would like to have a name, an image, condition and a long description for my items so that I can increase  the likelihood of a good bid for my items.
 
-14. As a potential buyer, I would like to see detatailed information for the item listed so that I can be assured of the quality of the purchase
+14. As a potential buyer, I would like to see detatailed information for the item listed so that I can be assured of the quality of the purchase.
 
 
 15. As a user making a bid, I would like to see the name, image, condition and long description and the current highest offer for said item so that I can easily decide if I want to make a bid on the item.
@@ -90,20 +90,21 @@
         
     4. Review
       - Contact info and payment info
-      a. As a user finalizing an accepted offer, I would like to be able to review my contact and payment info so that I can make sure that all the information is correct and the transaction will therefor be accepted.
+      
+23. As a user finalizing an accepted offer, I would like to be able to review my contact and payment info so that I can make sure that all the information is correct to reduce the chance of something going wrong in the delivery process.
       - Confirm
 
   - Users should be able to navigate easily between steps
-  23. As a user finalizing an accepted offer, I would like to be able to navigate easily between steps when making a bid so that I can make sure all the information is correct.
+  24. As a user finalizing an accepted offer, I would like to be able to navigate easily between steps when making a bid so that I can make sure all the information is correct.
 
 
-  24. As a user I would like to see a list of items similar to the item I am currently viewing so that I wont miss out on unique items
+  25. As a user I would like to see a list of items similar to the item I am currently viewing so that I wont miss out on unique items.
 
-  25. As a user, I would like to be able to filter by a category so that I can easily browse for the items that I am looking for
+  26. As a user, I would like to be able to filter by a category so that I can easily browse for the items that I am looking for
 
-  26. As a user, I would like to be able to save my payment information for a faster and simpler checkout
+  27. As a user, I would like to be able to save my payment information for a faster and simpler checkout
 
-  27. As a user, I would like to be able to save my delivery information for a faster and simpler checkout
+  28. As a user, I would like to be able to save my delivery information for a faster and simpler checkout
 
 
 
