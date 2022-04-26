@@ -9,8 +9,7 @@
   - Ef já:
     1. Hefur þú keypt notaðar vörur á netinu?
       - Ef já:
-        1. Hvernig vörur hefurðu keypt?
-        2. Á hvaða sölusíðum keyptirðu vörurnar?
+        1. Hvernig vörur hefurðu keypt? 2. Á hvaða sölusíðum keyptirðu vörurnar?
         3. Hvernig var reynslan?
         4. Hvernig myndirðu lýsa ferlinu með tilliti til einfaldleika, öryggis o.þ.h.?
       - Ef nei:
