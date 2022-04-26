@@ -45,3 +45,5 @@
 
 7. Hér hef ég grófhönnunarfrumgerð af vefsíðu sem við erum að hanna og mig langar að fá þig til að leysa eitt verkefni. Þú mátt gjarnan segja upphátt hvert skref sem þú tekur ásamt þinni skoðun á viðmótinu
   - Veldu auglýsingu og settu bindandi tilboð í vöruna.
+
+
