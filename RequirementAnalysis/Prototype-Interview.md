@@ -1,65 +1,58 @@
 # Spurningalisti
 
-1. Takk fyrir að setjast niður með mér að svara þessum spurningalista. Byrjum á einföldum bakgrunnsspurningum.
+- Takk fyrir að setjast niður með mér að svara þessum spurningalista. Við erum erum í Verklegu Námskeiði 2 og erum að vinna í að hanna sölusíðu. Byrjum á einföldum bakgrunnsspurningum.
   - Kyn
   - Aldur
+  - Menntun
   - Tölvufærni
 
-2. Hefur þú keypt notaðar vörur?
+- Hefur þú notað sölusíður á netinu á borð við Bland og þess háttar?
+  - Hvaða fítusar viltu að séu til staðar á slíkum síðum?
+  - Hvað finnst þér jákvætt við viðmótið á þeim síðum?
+  - Hvað finnst þér neikvætt við viðmótið á þeim síðum?
+
+- Hvað finnst þér um eftirfarandi virkni á sölusíðum:
+  - Að gefa seljendum einkunnir.
+  - Að gefa kaupendum einkunnir.
+  - Að geta borgað fyrir að hafa sínar auglýsingar efst á listum.
+
+- Hefur þú keypt notaðar vörur?
   - Ef já:
-    1. Hefur þú keypt notaðar vörur á netinu?
+    - Hefur þú keypt notaðar vörur á netinu?
       - Ef já:
         1. Hvernig vörur hefurðu keypt? 2. Á hvaða sölusíðum keyptirðu vörurnar?
-        3. Hvernig var reynslan?
-        4. Hvernig myndirðu lýsa ferlinu með tilliti til einfaldleika, öryggis o.þ.h.?
+        2. Hvernig var reynslan?
+        3. Hvernig myndirðu lýsa ferlinu með tilliti til einfaldleika, öryggis o.þ.h.?
       - Ef nei:
-        1. Er einhver sérstök ástæða fyrir því?
+        - Er einhver sérstök ástæða fyrir því?
   - Ef nei:
-    1. Er einhver sérstök ástæða fyrir því?
+    - Er einhver sérstök ástæða fyrir því?
 
-3. Hefur þú selt notaðar vörur?
+- Hefur þú selt notaðar vörur?
   - Ef já:
-    1. Hefur þú selt notaðar vörur á netinu?
+    - Hefur þú selt notaðar vörur á netinu?
       - Ef já:
         1. Hvernig vörur hefurðu selt?
         2. Á hvaða sölusíðum seldirðu vörurnar?
         3. Hvernig var reynslan?
         4. Hvernig myndirðu lýsa ferlinu með tilliti til einfaldleika, öryggis o.þ.h.?
       - Ef nei:
-        1. Er einhver sérstök ástæða fyrir því?
+        - Er einhver sérstök ástæða fyrir því?
   - Ef nei:
-    1. Er einhver sérstök ástæða fyrir því?
+    - Er einhver sérstök ástæða fyrir því?
 
-4. Þekkir þú einhvern sem hefur slæma reynslu af því að kaupa notaðar vörur á netinu?
+- Þekkir þú einhvern sem hefur óvenjulega góða eða slæma reynslu af því að kaupa notaðar vörur á netinu?
   - Ef já:
-    1. Segðu mér meir.
+    - Segðu mér meir.
 
-5. Þekkir þú einhvern sem hefur slæma reynslu af því að selja notaðar vörur á netinu?
+- Þekkir þú einhvern sem hefur óvenjulega góða eða slæma reynslu af því að selja notaðar vörur á netinu?
   - Ef já:
-    1. Segðu mér meir
+    - Segðu mér meir
 
-6. Ef þú gætir séð einkunn hjá seljanda eða kaupanda, hversu mikil áhrif myndi það hafa á viðskipti þín við viðkomandi?
-  1. Hefur þú gefið seljanda eða kaupanda einkunn að viðskiptum loknum?
+- Ef þú gætir séð einkunn hjá seljanda eða kaupanda, hversu mikil áhrif myndi það hafa á viðskipti þín við viðkomandi?
+  - Hefur þú gefið seljanda eða kaupanda einkunn að viðskiptum loknum?
     - Var það vegna þess að reynslan var góð eða slæm?
 
-7. Hér hef ég grófhönnunarfrumgerð af vefsíðu sem við erum að hanna og mig langar að fá þig til að leysa eitt verkefni. Þú mátt gjarnan segja upphátt hvert skref sem þú tekur ásamt þinni skoðun á viðmótinu
+- Hér hef ég grófhönnunarfrumgerð af vefsíðunni sem við erum að hanna og mig langar að fá þig til að leysa tvö verkefni. Þú mátt gjarnan segja upphátt hvert skref sem þú tekur ásamt þinni skoðun á viðmótinu.
   - Veldu auglýsingu og settu bindandi tilboð í vöruna.
-
-
-Muna að greina notanda í notendahóp
-Group Name:
-Background:
-Age:
-Gender:
-Education:
-Ability/Disability:
-Computer skills:
-Number of users:
-Why:
-Wich platform:
-Where:
-When:
-How often:
-How long:
-User capability:
-User group Importance:
+  - Breyttu persónuupplýsingunum á aðganginum þínum.
