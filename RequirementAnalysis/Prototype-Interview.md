@@ -1,6 +1,6 @@
 # Spurningalisti
 
-- Takk fyrir að setjast niður með mér að svara þessum spurningalista. Við erum erum í Verklegu Námskeiði 2 í Tölvunarfræði og erum að vinna í að hanna sölusíðu, svipað og Bland og Craigslist í bandaríkjunum. Byrjum á einföldum bakgrunnsspurningum.
+- Takk fyrir að setjast niður með mér að svara þessum spurningalista. Við erum erum í Verklegu Námskeiði 2 og erum að vinna í að hanna sölusíðu. Byrjum á einföldum bakgrunnsspurningum.
   - Kyn
   - Aldur
   - Menntun
