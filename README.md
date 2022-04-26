@@ -15,3 +15,5 @@ Repository for our 3-week practical course in web programming
 | ❌ | 2% | Statistics |
 | ⚠️ | 2% | Usability Goals |
 | ❌ | 2% | Big Picture Map |
+
+

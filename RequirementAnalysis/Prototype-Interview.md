@@ -46,3 +46,20 @@
   - Veldu auglýsingu og settu bindandi tilboð í vöruna.
 
 
+Muna að greina notanda í notendahóp
+Group Name:
+Background:
+Age:
+Gender:
+Education:
+Ability/Disability:
+Computer skills:
+Number of users:
+Why:
+Wich platform:
+Where:
+When:
+How often:
+How long:
+User capability:
+User group Importance:

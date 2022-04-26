@@ -173,7 +173,7 @@ Precondition: No precondition
 Postcondition: Items are ordered by price or highest current bid
 Trigger: The user wishes to order items by name to have better or different overview of the items listed
 Main success scenario:
-    1. The user orders the items available in ascending or descending order by clicking the order by name option
+    1. The user orders the items available in ascending or descending order by clicking the order by price option
 Extensions: None
 
 
@@ -186,7 +186,7 @@ Source: Nr 11 in requirements
 Actors: All users
 Precondition: No precondition
 Postcondition: Further information about the item is previewed
-Trigger:
+Trigger: A user wishes see the detailed description of an item
 Main success scenario:
     1. User clicks the item of interest to open the detailed information for said item
 Extensions: None
@@ -262,12 +262,12 @@ Main success scenario:
     1. The seller receives notification regarding a new bid on a listed item of his
     2. The seller reviewes the bid and can accept or decline the offer
 Extensions:
-    None at this stage in the progress
+    None
 
 
 Name: Reviewing a bid
 Number: 16
-Description: 14
+Description: Seller reviews a bid for an item.
 Priority: High 
 Author: Gissur Már
 Source: Nr 21 in requirements
@@ -328,7 +328,7 @@ Priority: Medium
 Author: Gissur Már 
 Source: Nr 25 in requirements
 Actors: All users
-Precondition: Similar items are awailable within the same category
+Precondition: Similar items are available within the same category
 Postcondition: No postcondition
 Trigger: User is browsing for items of interest and clicks on an item
 Main success scenario:
@@ -337,12 +337,12 @@ Main success scenario:
 Extensions:
     2.a. Item has no similar items within the same category or of same type
 
-18. 
+
 Name: Filter by category
 Number: 20 
 Description: User filters items by category
 Priority: High
-Author: Gissur Már Jónsson
+Author: Gissur Már
 Source: Nr 26 in requirements
 Actors: All users
 Precondition: Category has some items awailable (is not empty)
@@ -351,7 +351,7 @@ Trigger: User wishes to find items in a certain category
 Main success scenario:
     1. User clicks on the preferred category name in the list of categories
 Extensions:
-    1. Category has no item listed for sale
+    1.a. Category has no item listed for sale
 
 
 Name: Save payment information
@@ -375,13 +375,13 @@ Extension:
  
 Name: Save delivery information
 Number: 22
-Description: User saves his delivery information for a quicker checkout
+Description: User saves his delivery information for a quicker. checkout
 Priority: Medium
 Author: Gissur Már 
 Source: Nr 28 in requirements
 Actors: Buyer
 Precondition: User is logged in
-Postcondition: Delivery information is saved for an easier and faster checkout
+Postcondition: Delivery information is saved for an easier and faster checkout.
 Trigger: buyer wants to make a faster checkout when his bid is accepted
 Main success scenario:
     1. User clicks on his profile image
