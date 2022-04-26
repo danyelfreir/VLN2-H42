@@ -64,7 +64,7 @@
       b. as a seller receiving a proper offer on an item I would like to be able to accept or decline the offer quickly and easily so that the buyer can take the measures needed to either finalize the offer or make a new offer. 
 
   16. Users with accepted offers must check out to finalize the sale
-      a. As a user with an accepted offer, I would like to be able to finalize the sale by inserting my payment information and correct shipping information so there wont be any complications with delivery. 
+      a. As a user making a bid, I would like to be able to finalize the the sale by inserting my payment information and correct shipping information so there wont be any complications with delivery.
 
   17. Four stages:
     1. Contact info
