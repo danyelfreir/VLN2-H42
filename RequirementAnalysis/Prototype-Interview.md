@@ -53,5 +53,6 @@
   - Hefur þú gefið seljanda eða kaupanda einkunn að viðskiptum loknum?
     - Var það vegna þess að reynslan var góð eða slæm?
 
-- Hér hef ég grófhönnunarfrumgerð af vefsíðunni sem við erum að hanna og mig langar að fá þig til að leysa eitt verkefni. Þú mátt gjarnan segja upphátt hvert skref sem þú tekur ásamt þinni skoðun á viðmótinu.
+- Hér hef ég grófhönnunarfrumgerð af vefsíðunni sem við erum að hanna og mig langar að fá þig til að leysa tvö verkefni. Þú mátt gjarnan segja upphátt hvert skref sem þú tekur ásamt þinni skoðun á viðmótinu.
   - Veldu auglýsingu og settu bindandi tilboð í vöruna.
+  - Breyttu persónuupplýsingunum á aðganginum þínum.
