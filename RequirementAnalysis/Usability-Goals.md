@@ -1,4 +1,6 @@
 # USABILITY GOALS
+## Designed for busy people
+We understand that young parents and other busy people do not have the time to type on their phone all day or wait for people to reply. That's why our system automates the most tedious parts of online selling and lets the person confirm sales or purchases when they see fit.
 ## Buy and sell quickly and securely
 We want our users to sell or purchase used items with as few clicks as possible, while maintaining quality and secure transactions.
 ## Simple UI
