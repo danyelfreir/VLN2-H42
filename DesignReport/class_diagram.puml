@@ -1,0 +1,27 @@
+@startuml FyreSale
+
+class User {
+-name:str
+-email:str
+-date_signed:date
+-birthdate:date
++id:int
+~method1()
++method2()
+}
+
+class Item {
+    +name:str
+    +long_descr: str
+    -user_id:int
+    +curr_bid:int
+    +date_added:date
+    +image:str
+    +condition: str
+    +cat_id:int
+    +sub_cat_id:int
+    ~method1()
+    ~method()
+}
+@enduml
+
