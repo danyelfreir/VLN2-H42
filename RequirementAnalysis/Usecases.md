@@ -391,3 +391,21 @@ Main success scenario:
 Extension:
     1.a. User is not logged in see use case 2
     4.a. User enters wrong delivery information repeat step 3 - 4
+
+
+Name: Mark as Favourite
+Number: 23
+Description: User marks an item as a favourite to easily locate later if hew wants to make a bid.
+Priority: low
+Author: Gissur Már
+Source: No. 29 in requirements
+Actors: Buyer 
+Precondition: User is logged in and is browsing.
+Postcondition: User can easily locate his favourite items to start bidding.
+Trigger: Buyer is browsing and and shows interest in an item but is not sure if he wants to make a bid right away.
+Main success scenario:
+    1. User click on the image of an item to see detailed information about the item
+    2. User clicks the favourite icon for the item.
+    3. The item has been marked as a favourite
+Extension:
+    2.a. The user is not logged in see use case 2

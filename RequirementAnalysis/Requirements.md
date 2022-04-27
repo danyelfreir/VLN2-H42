@@ -106,5 +106,7 @@
 
   28. As a user, I would like to be able to save my delivery information for a faster and simpler checkout
 
+  29. As a user, I would like to be able to mark an item as a favorite when browsing so that I can review it later if I want to make a bid.
+
 
 
