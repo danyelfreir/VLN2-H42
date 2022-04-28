@@ -1,0 +1,80 @@
+@startuml
+
+namespace MVT-Class-Diagram {
+
+    class URLs {
+        ---
+        + get_all_items()
+        + get_searched_items()
+        + get_filtered_items()
+        + get_user()
+        + post_item()
+        + post_user()
+        + delete_item()
+        + delete_user()
+        + patch_item()
+        + patch_user()
+    }
+
+    class Items_view {
+        + Items:\t\tlist
+        ---
+        + search()
+        + filter()
+        + update()
+    }
+
+    class Account_view {
+        ---
+        + update_info()
+    }
+
+    class Model
+    class User_Model {
+        + User_id:\t\t\tint
+        + Name:\t\t\tstr
+        + Email:\t\t\tstr
+        + Date_created:\tdate
+        + Birthdate:\t\tdate
+        ---
+        + get_attrs()
+    }
+
+    class Item_Model {
+        + Item_id:\t\t\tint
+        + Name:\t\t\tstr
+        + Image:\t\t\tstr
+        + Category:\t\tstr
+        + Sub_category:\tstr
+        + Condition:\t\tstr
+        + Date_added:\t\tdate
+        + Minimum_bid:\tint
+        ---
+        + get_attrs()
+    }
+
+    class Bid_Model {
+        + Item_id:\t\t\tint
+        + Bidder_id:\t\tint
+        + Time_of_bid:\t\ttime
+        ---
+        + get_attrs()
+    }
+
+    class ModelAPI
+
+
+    Items_view -|> Item_Model
+    Account_view -|> User_Model
+    URLs -left- Items_view
+    URLs -right- Account_view
+    Model <|-right- User_Model
+    Model <|-left- Item_Model
+    Model <|-down- Bid_Model
+    Item_Model -down[hidden]- Bid_Model
+    Model --up- URLs
+    Model ---down- ModelAPI
+
+}
+
+@enduml
