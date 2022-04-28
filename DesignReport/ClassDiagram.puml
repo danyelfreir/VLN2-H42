@@ -1,80 +1,119 @@
 @startuml
 
-namespace MVT-Class-Diagram {
+package MVT-Class-Diagram {
+    ' left to right direction
+    package Models {
+        class User_Model {
+            + User_id:\t\t\tint
+            + Name:\t\t\tstr
+            - Password:\t\tstr
+            + Profile_img:\t\tstr
+            + Bio:\t\t\t\tstr
+            - Email:\t\t\tstr
+            + Date_created:\tdate
+            - Birthdate:\t\tdate
+        ' Shipping information
+            - Streetname\t\tstr
+            - House number:\tstr
+            - Zip:\t\t\t\tstr
+            - City:\t\t\tstr
+            - Country:\t\t\tstr
+        ' Billing information
+            - Card_num:\t\tint
+            - Exp_date:\t\tdate
+            - CVC:\t\t\tstr
+            ---
+            + get_attrs()
+        }
 
-    class URLs {
-        ---
-        + get_all_items()
-        + get_searched_items()
-        + get_filtered_items()
-        + get_user()
-        + post_item()
-        + post_user()
-        + delete_item()
-        + delete_user()
-        + patch_item()
-        + patch_user()
+        class Item_Model {
+            + Item_id:\t\t\tint
+            + Name:\t\t\tstr
+            + Long_desc:\t\tstr
+            + Image:\t\t\tstr
+            + Category:\t\tstr
+            + Sub_category:\tstr
+            + Condition:\t\tstr
+            + Date_added:\t\tdate
+            + Minimum_bid:\tint
+            + Highest_bid:\t\tint
+            ---
+            + get_attrs()
+        }
+
+        class Bid_Model {
+            + Item_id:\t\t\tint
+            + Bidder_id:\t\tint
+            + Time_of_bid:\t\ttime
+            ---
+            + get_attrs()
+        }
+
+        class Category_Model {
+            + Cat_name:\t\tstr
+            - Cat_id:\t\t\tint
+        }
+
+        class Sub_cat_Model {
+            + Cat_name:\t\tstr
+            - Subcat_id:\t\tstr
+        }
+
+        User_Model -right[hidden]- Item_Model
+        Item_Model -right[hidden]- Bid_Model
+        Bid_Model -right[hidden]- Category_Model
+        Category_Model -right[hidden]- Sub_cat_Model
     }
 
-    class Items_view {
-        + Items:\t\tlist
-        ---
-        + search()
-        + filter()
-        + update()
+    package Services {
+        class URLs {
+            + get_all_items()
+            + get_searched_items()
+            + get_filtered_items()
+            + get_user()
+            + post_item()
+            + post_user()
+            + delete_item()
+            + delete_user()
+            + patch_item()
+            + patch_user()
+        }
+
+        class System {
+            send_notification()
+            send_email()
+            create_user()
+            ban_user()
+        }
+
+        class Admin {
+            ---
+            delete_user()
+            ban_user()
+            delete_item()
+        }
+        URLs -right[hidden]- Admin
+        Admin -right[hidden]- System
     }
 
-    class Account_view {
-        ---
-        + update_info()
+    package Views {
+        class Items_view {
+            + Items:\t\tlist
+            ---
+            + place_bid()
+            + search()
+            + filter()
+            + update()
+        }
+
+        class Account_view {
+            ---
+            + update_info()
+        }
+        Items_view -right[hidden]- Account_view
     }
-
-    class Model
-    class User_Model {
-        + User_id:\t\t\tint
-        + Name:\t\t\tstr
-        + Email:\t\t\tstr
-        + Date_created:\tdate
-        + Birthdate:\t\tdate
-        ---
-        + get_attrs()
-    }
-
-    class Item_Model {
-        + Item_id:\t\t\tint
-        + Name:\t\t\tstr
-        + Image:\t\t\tstr
-        + Category:\t\tstr
-        + Sub_category:\tstr
-        + Condition:\t\tstr
-        + Date_added:\t\tdate
-        + Minimum_bid:\tint
-        ---
-        + get_attrs()
-    }
-
-    class Bid_Model {
-        + Item_id:\t\t\tint
-        + Bidder_id:\t\tint
-        + Time_of_bid:\t\ttime
-        ---
-        + get_attrs()
-    }
-
-    class ModelAPI
-
-
-    Items_view -|> Item_Model
-    Account_view -|> User_Model
-    URLs -left- Items_view
-    URLs -right- Account_view
-    Model <|-right- User_Model
-    Model <|-left- Item_Model
-    Model <|-down- Bid_Model
-    Item_Model -down[hidden]- Bid_Model
-    Model --up- URLs
-    Model ---down- ModelAPI
-
+    Models -down- Services
+    Services -down- Views
 }
 
 @enduml
