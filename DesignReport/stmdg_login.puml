@@ -1,0 +1,13 @@
+@startuml login
+hide empty description
+[*] --> LoggedOff
+' LoggedOff --> [*]
+state c <<choice>>
+LoggedOff --> c
+c --> LoggingIn: User exists
+c --> SigningUp: User ! exist
+LoggingIn --> LoggedIn: Submitted[Valid login]/User logged in
+SigningUp --> LoggingIn: Submitted[Valid signup]/User created
+' SigningUp --> 
+LoggedIn --> [*]
+@enduml

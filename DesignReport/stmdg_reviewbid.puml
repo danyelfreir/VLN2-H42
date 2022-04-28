@@ -1,0 +1,27 @@
+
+
+@startuml Reviewing bid and checking out
+    state c <<choice>>
+    [*] --> BidMade
+    ReviewingBid: Do/review bid
+    BidMade --> ReviewingBid
+
+    ReviewingBid --> c
+
+    BidDeclined: Do/notify bidder
+
+    BidAccepted: Do/notify bidder
+
+    c --> BidDeclined: Review[Bid lower than current bid]\n/notify bidder
+    c --> BidAccepted: Review[Bid valid]\n/ notify seller
+
+    ReviewBySeller:
+    BidAccepted --> ReviewBySeller: Accepts[Bid valid]\n/Seller notified
+    ReviewBySeller --> BuyerCheckingOut: notify[bid accepted]\n/bidder notified,
+    ReviewBySeller --> [*]: Notify[Bid declined]\n/Bidder notified
+    BuyerCheckingOut: Do/send delivery info to seller
+    ' BidAccepted --> BuyerCheckingOut:Notify[Bid accepted]/Bidder notified
+    BuyerCheckingOut --> [*]:Send delivery info[Delivery info valid]\n/Seller notified
+    BidDeclined --> [*]:Notify[Bid declined]\n/Bidder notified
+
+@enduml

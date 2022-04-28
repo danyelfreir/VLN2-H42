@@ -1,0 +1,109 @@
+# Spurningalisti
+
+- Takk fyrir að setjast niður með mér að svara þessum spurningalista. Við erum erum í Verklegu Námskeiði 2 og erum að vinna í að hanna sölusíðu. Byrjum á einföldum bakgrunnsspurningum.
+  - Kyn
+	KVK
+  - Aldur
+	35 ára
+  - Menntun
+	Háskólamenntun
+  - Tölvufærni
+	Mjög góð
+
+- Hefur þú notað sölusíður á netinu á borð við Bland og þess háttar? Já en fyrir löngu síðan
+  - Hvaða fítusar viltu að séu til staðar á slíkum síðum? 
+	Góðar myndir og að geta bætt hlutum í favorites
+  - Hvað finnst þér jákvætt við viðmótið á þeim síðum? 
+	Í raun ekkert jákvætt við viðmótið fannst mér 
+  - Hvað finnst þér neikvætt við viðmótið á þeim síðum? 
+	Það var svo crowded, yfirfull af vörum og litlar upplýsingar og allt frekar óvandað og óspennandi.
+
+- Hvað finnst þér um eftirfarandi virkni á sölusíðum:
+  - Að gefa seljendum einkunnir. 
+	Jákvætt, eykur traust á seljanda
+  - Að gefa kaupendum einkunnir. 
+	Finnst það einhvernveginn skipta neinu. 
+	Fer kannski eftir því hvað maður er að selja. 
+	Td ef maður væri að selja dýr úr ræktun þá vill maður kannski ekki selja hverjum sem er.
+  - Að geta borgað fyrir að hafa sínar auglýsingar efst á listum? 
+	Fyndist það geta skapað ójafnvægi á milli seljenda.
+	Þeir sem eiga mestann peninginn græða þá alltaf mest
+
+- Hefur þú keypt notaðar vörur?
+  - Ef já:
+    - Hefur þú keypt notaðar vörur á netinu?
+      - Ef já:
+        1. Hvernig vörur hefurðu keypt? 
+		Barnavörur 
+	3. Á hvaða sölusíðum keyptirðu vörurnar? 
+		Facebook hópum og á bland fyrir 100 árum..
+        4. Hvernig var reynslan? 
+		Allt í lagi, hefur alltaf sloppið nokkuð vel og aldrei verið neitt vesen
+        5. Hvernig myndirðu lýsa ferlinu með tilliti til einfaldleika, öryggis o.þ.h.? 
+		Einfalt já kannski, en það er lítið öryggi. 
+		Maður er oft hræddur um að vera svikinn um vöruna.
+      - Ef nei:
+        - Er einhver sérstök ástæða fyrir því?
+ - Ef nei:
+   - Er einhver sérstök ástæða fyrir því?
+
+- Hefur þú selt notaðar vörur?
+  - Ef já: Já 
+    - Hefur þú selt notaðar vörur á netinu? 
+	Já 
+      - Ef já:
+        1. Hvernig vörur hefurðu selt? 
+		Barnavörur
+        2. Á hvaða sölusíðum seldirðu vörurnar? 
+		Facebook
+        3. Hvernig var reynslan? 
+		Bara svona sæmileg
+        4. Hvernig myndirðu lýsa ferlinu með tilliti til einfaldleika, öryggis o.þ.h.? 
+		Ekkert voðalega einfalt, fólk vill náttúrulega oft fá að skoða vörurnar. 
+		Fólk hættir oft við á síðustu stundu. Reynir að prútta um verð. 
+		Það er ekkert sérstaklega skemmtilegt að standa í þessu og það er hellings vinna á bakvið það að selja vörur á netinu
+      - Ef nei:
+        - Er einhver sérstök ástæða fyrir því?
+  - Ef nei:
+    - Er einhver sérstök ástæða fyrir því?
+
+- Þekkir þú einhvern sem hefur óvenjulega góða eða slæma reynslu af því að kaupa notaðar vörur á netinu?
+  - Ef já: 
+    - Segðu mér meir.
+	 Ekki notaðar vörur nei en lenti í slæmri reynslu við að kaupa nýja skó á erlendri síðu. Endaði á að ég fékk aldrei vöruna. 
+
+- Þekkir þú einhvern sem hefur óvenjulega góða eða slæma reynslu af því að selja notaðar vörur á netinu?
+  - Ef já:
+    - Segðu mér meir
+	Maður hefur alveg heyrt af því að fólk hafi selt eða látið fólki í hendur vöru og ekki rukkað strax fyrir vöruna og endað svo á að fá aldrei borgað.
+
+- Ef þú gætir séð einkunn hjá seljanda eða kaupanda, hversu mikil áhrif myndi það hafa á viðskipti þín við viðkomandi?
+	Mikil, væri líklegri til að kaupa af honum ef um góða einkunn er að ræða heldur en ef einkunn væri slæm
+  - Hefur þú gefið seljanda eða kaupanda einkunn að viðskiptum loknum?
+	Já gaf skóbúðinni falleinkun því ég fékk aldrei skóna mína. En það var náttla ekki síða með notaðar vörur. 
+    - Var það vegna þess að reynslan var góð eða slæm?
+	Mjög slæm
+
+- Hér hef ég grófhönnunarfrumgerð af vefsíðunni sem við erum að hanna og mig langar að fá þig til að leysa tvö verkefni. Þú mátt gjarnan segja upphátt hvert skref sem þú tekur ásamt þinni skoðun á viðmótinu.
+  - Veldu auglýsingu og settu bindandi tilboð í vöruna.
+	Viðkomandi fannst ferlið mjög skýrt og átti ekki í neinum vandræðum með að fikra sig áfram í gegnum ferlið. Gerði engar athugasemdir við framsetingu eða viðmót
+  - Breyttu persónuupplýsingunum á aðganginum þínum.
+	Viðkomandi fannst þetta mjög skýrt framsett. Var ekki viss hvort hún átti að ýta á profile eða settings í fellilista en áttaði sig þegar ég endurtók hvert verkefni notanda var.
+	
+**Nokkrar spurningar í lokin:**
+- Af hverju myndir þú nota þessa síðu?
+	Ég er ekkert svo viss um að ég myndi nota þessa síðu
+- Á hvaða platformi myndir þú nota hana (í tölvu, síma, etc)
+	Mjög líklega síma ef ég myndi nota hana
+- Hvar myndir þú nota hana?
+	Bara hvar sem er ef ég get notað hana í síma
+- Hvenær myndir þú nota hana?
+	Misjafnt. Ég vinn á nóttunni svo ég væri líklega stundum
+	að skoða hana þá og stundum á kvöldin
+- Hversu oft myndir þú nota hana?
+	Mjög sjaldan, færi kannski eftir því hvort það væri eitthvað varið í vörurnar
+- Í hversu langan tíma í senn myndir þú nota hana?
+	Stuttan tíma held ég nokkrar mínútur í senn
+
+**Einhverjar pælingar áður en við hættum?**
+	Ekkert sem mér dettur í hug
