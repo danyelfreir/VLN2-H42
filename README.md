@@ -6,7 +6,7 @@ Repository for our 3-week practical course in web programming
 |  :---:   |  :---:  |  --- |
 | ✅ | 10% | Introduction |
 | ✅ | 15% | Prototypes |
-| ⚠️ | 15% | User testing |
+| ✅ | 15% | User testing |
 | ✅ | 20% | Class Diagram |
 | ✅ | 10% | Navigation diagram |
 | ✅ | 10% | Programming rules |
