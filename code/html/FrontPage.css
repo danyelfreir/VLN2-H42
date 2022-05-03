@@ -1,1 +1,153 @@
-font-family: 'Lato', sans-serif;
+
+/* the main body  */
+body{
+    padding:1%;
+    min-width:715px;
+    color:white;
+
+}
+header {
+    width:100%;
+    height:70px;
+    background-color: #303C6C;
+}
+#logo{
+    float:left;
+    width:230px;
+    height:70px;
+    display: inline;
+}
+#sign_in{
+    float:right;
+    display: block;
+    text-align: center;
+    padding: 17px 50px;
+    text-decoration: none;
+}
+#sign_in:hover{
+    color:#F4976C;
+}
+li:hover {
+    cursor: pointer;
+}
+a:hover {
+    color:#F4976C;
+}
+li {
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+    color:white;
+
+}
+
+.category_container {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    order: 4;
+    padding: 20px;
+}
+.ad_picture {
+    width:300px;
+    height:200px;
+}
+
+.search_container {
+    padding:10%;
+    color:white;
+    align-content: center;
+}
+
+.footer_list{
+    display:flex;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: 0px 10px 0px 10px
+
+}
+
+.footer_item {
+    padding: 0px 50px;
+}
+
+a {
+    color:white;
+    text-decoration: none;
+}
+
+footer {
+    width:100%;
+    height:100px;
+    background-color: #303C6C;
+}
+
+.submit_btn {
+    background-color: #303C6C ;
+    color:white;
+}
+
+.submit_btn:active {
+    background-color: #394780;
+}
+.submit_btn:hover {
+    background-color: #394780;
+    color:#F4976C;
+}
+/* Work in progress */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 30%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.modalbtn {
+    background-color: #303C6C;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.modalbtn:hover,
+.modalbtn:focus {
+  color: #F4976C;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+label.loginform{
+    color:black;
+}
+
+h4.loginform{
+    color:black;
+    margin: 5% 42%;
+}
+
+input.loginform{
+    width:100%;
+}
