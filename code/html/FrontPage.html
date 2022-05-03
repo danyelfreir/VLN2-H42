@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <link rel="stylesheet" href="FrontPage.css">
+<body>
+    <div>
+        <form onsubmit="event.preventDefault();" role="search">
+        <label for="search">Search for stuff</label>
+        <input id="search" type="search" placeholder="Search..." autofocus required />
+        <button type="submit">Go</button>
+</form>
+    </div>
+    <div id="categories">
+        <div id="cat_header"></div>
+        <div id="popular_cats"></div>
+    </div>
+    <div id="new_ads">
+        <div id="new_ads_header"></div>
+        <div id="ad_listing"></div>
+    </div>
+<script src="frontPage.js"></script>
+</body>
+</html>
