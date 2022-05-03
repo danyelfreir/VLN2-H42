@@ -1,6 +1,6 @@
 // Get the modal
 var modal = document.getElementById("login_Modal");
-
+var sidenav = document.getElementById("mySidenav")
 //Buttons
 var btn = document.getElementById("login");
 var btncl = document.getElementById("cancel");
@@ -25,7 +25,6 @@ btnsignup.onclick = function() {
   modal.style.display = "none";
 }
 
-
 //close the login window
 btncl.onclick = function() {
   modal.style.display = "none";
@@ -35,5 +34,21 @@ btncl.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  }
+}
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+
+window.onclick = function(event) {
+  if (event.target == sidenav) {
+    sidenav.style.display = "none";
   }
 }
