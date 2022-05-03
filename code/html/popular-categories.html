@@ -6,20 +6,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
+    body {
+        width: 75%;
+        margin: auto;
+        font-family: 'Lato', sans-serif;
+    }
+
+    .category_container {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-rows:50% 50%;
+        background-color: #fff;
+        color: #444;
+    }
+    .cat1_img, .cat1_overlay, .cat1_text {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    .cat2_img, .cat2_overlay, .cat2_text {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    .cat3_img, .cat3_overlay, .cat3_text {
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+    }
+    .cat4_img, .cat4_overlay, .cat4_text {
+        grid-column: 4 / 5;
+        grid-row: 1 / 2;
+    }
+    .cat5_img, .cat5_overlay, .cat5_text {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+    .cat6_img, .cat6_overlay, .cat6_text {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+    .cat7_img, .cat7_overlay, .cat7_text {
+        grid-column: 3 / 4;
+        grid-row: 2 / 3;
+    }
+    .cat8_img, .cat8_overlay, .cat8_text {
+        grid-column: 4 / 5;
+        grid-row: 2 / 3;
+    }
+    .cat_img, .cat_img_over, .cat_img1 {
+        width:100%
+    }
+    .cat1_img_overlay:hover .cat_img1{
+        transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    } 
+    .cat_text {
+        margin: 10px;
+        color: black;
+        width: 60%;
+    }
+
+    
     </style>
 </head>
 <body>
-    <div id="category_container">
-        <div id="cat1"></div>
-        <div id="cat2"></div>
-        <div id="cat3"></div>
-        <div id="cat4"></div>
-        <div id="cat5"></div>
-        <div id="cat6"></div>
-        <div id="cat7"></div>
-        <div id="cat8"></div>
+    <div class="category_container">
+        <div class="cat1_img"><img class="cat_img1" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
+        <div class="cat1_overlay overlay"><img class="cat_img_over" src="../../Image-overlay/beach.png" alt="category"></div>
+        <h1 class="cat1_text cat_text">Ehv texti</h1>
+
+        <div class="cat2_img"><img class="cat_img" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
+        <div class="cat2_overlay overlay"><img class="cat_img_over" src="../../Image-overlay/terracotta.png" alt="category"></div>
+        <h1 class="cat2_text cat_text">Ehv texti</h1>
+
+
+        <div class="cat3_img"><img class="cat_img" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
+        <div class="cat3_overlay overlay"><img class="cat_img_over" src="../../Image-overlay/sunshine.png" alt="category"></div>
+        <h1 class="cat3_text cat_text">Ehv texti</h1>
+
+
+        <div class="cat4_img"><img class="cat_img" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
+        <div class="cat4_overlay overlay"><img class="cat_img_over" src="../../Image-overlay/mint.png" alt="category"></div>
+        <h1 class="cat4_text cat_text">Ehv texti</h1>
+
+
+        <div class="cat5_img"><img class="cat_img" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
+        <div class="cat5_overlay overlay"><img class="cat_img_over" src="../../Image-overlay/mountain.png" alt="category"></div>
+        <h1 class="cat5_text cat_text">Ehv texti</h1>
+
+
+        <div class="cat6_img"><img class="cat_img" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
+        <div class="cat6_overlay overlay"><img class="cat_img_over" src="../../Image-overlay/navy.png" alt="category"></div>
+        <h1 class="cat6_text cat_text">Ehv texti</h1>
+
+
+        <div class="cat7_img"><img class="cat_img" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
+        <div class="cat7_overlay overlay"><img class="cat_img_over" src="../../Image-overlay/lilac.png" alt="category"></div>
+        <h1 class="cat7_text cat_text">Ehv texti</h1>
+
+
+        <div class="cat8_img"><img class="cat_img" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
+        <div class="cat8_overlay overlay"><img class="cat_img_over" src="../../Image-overlay/blush.png" alt="category"></div>
+        <h1 class="cat8_text cat_text">Sport & healddsfsdfsth</h1>
+
     </div>
-    
 </body>
 </html>
