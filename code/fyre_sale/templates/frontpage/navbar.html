@@ -1,0 +1,37 @@
+{% load static %}
+
+<div class="header-container">
+  <a href="#">
+    <img id="logo" src="{% static 'img/Logo.png' %}" alt="Fyre sale logo">
+  </a>
+  <div id="search-container">
+    <form id="search-form">
+      <input id="search-form-input" type="search" placeholder="Search" aria-label="Search">
+      <button id="search-form-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <!-- <button id="search-form-button" type="submit"><div class="magnifying-glass">
+        &#9906;
+      </div></button> -->
+    </form>
+  </div>
+  <div class="right-side">
+    <div id="search-button">Search</div>
+    <a href="#" id="login">Sign In</a>
+    <!-- <div class="magnifying-glass">
+      &#9906;
+    </div> -->
+  </div>
+</div>
+<div id="modal">
+  <div id="login-modal">
+    <form class="loginform" action="">
+      <h4 class="loginform">Login</h4><br>
+      <label class="loginform" for="email">Email</label><br>
+      <input class="loginform" type="text" id="email" name="email" placeholder="Email"><br>
+      <label class="loginform" for="passw">Email</label><br>
+      <input class="loginform" type="text" id="passw" name="passw" placeholder="Password"><br><br>
+    </form>
+    <button class="modalbtn" id="submit" type="submit" value="Submit">Submit</button><br>
+    <button class="modalbtn" id="cancel">Cancel</button><br>
+    <button class="modalbtn" id="signup">Signup</button>
+  </div>
+</div>
