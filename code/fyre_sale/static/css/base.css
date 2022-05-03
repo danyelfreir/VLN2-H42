@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  min-width: 715px;
+  margin: 0;
+  padding: 0;
+}
