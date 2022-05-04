@@ -3,9 +3,9 @@ const modal = document.getElementById("modal");
 const search = document.getElementById("search-dropdown");
 //Buttons
 const btn = document.getElementById("login");
-const btncl = document.getElementById("cancel");
+// const btncl = document.getElementById("cancel");
 const btnsubm = document.getElementById("submit");
-const btnsignup = document.getElementById("signup");
+const btnsignup = document.getElementById("form-signup");
 
 const btnsearch = document.getElementById("search-button");
 const searchForm = document.getElementById("search-form");
@@ -34,9 +34,9 @@ btnsignup.onclick = function() {
 
 
 //close the login window
-btncl.onclick = function() {
-  modal.style.display = "none";
-}
+// btncl.onclick = function() {
+//   modal.style.display = "none";
+// }
 
 //Click outside of window to close
 window.onclick = function(event) {
