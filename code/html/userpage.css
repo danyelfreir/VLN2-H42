@@ -1,11 +1,5 @@
 
-/* the main body  */
-body{
-    padding:1%;
-    min-width:715px;
-    color:white;
 
-}
 header {
     width:100%;
     height:70px;
@@ -59,7 +53,7 @@ ul {
 .item {
     order: 4;
     padding: 20px;
-}.
+}
 .ad_container {
     display:flex;
     flex-wrap: wrap;
@@ -94,13 +88,15 @@ ul {
 }
 
 .footer_item {
-    padding: 0px 25px;
 }
 
 footer {
     width:100%;
     height:70px;
     background-color: #303C6C;
+    position: fixed;
+    left: 0;
+    bottom: 0;
 }
 
 .submit_btn {
@@ -125,7 +121,6 @@ footer {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
@@ -168,10 +163,6 @@ input.loginform{
     border:0;
     border-bottom: solid thin;
 }
-.fas fa-cloud{
-    width:50px;
-    height:50px;
-}
 
 .login_footer {
     background-color: lavender;
@@ -189,5 +180,85 @@ button.signup_btn {
     font-size: 17px;
     font-weight: bold;
     float:right
+}
 
+/* Off canvas */
+/*body {
+  font-family: "Lato", sans-serif;
+}
+*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 15%;
+    left: 0;
+    background-color: #303C6C;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #F4976C;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.item_container {
+    display:flex;
+    width:100%;
+    height:500px;
+    background-color: #F4976C30;
+}
+.image_container {
+    padding:20px;
+    width:300px;
+    display:block;
+}
+.ad_picture {
+    height:300px;
+    width:300px;
+    border:solid thin;
+}
+
+.description_container {
+    display:flex;
+    flex-direction:column;
+    padding:0px;
+    width:80%;
+    order:1;
+    max-height:500px
+}
+
+.bid_container {
+    bottom: 8px;
+    left: 16px;
+    font-size: 18px;
 }
