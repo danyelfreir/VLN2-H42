@@ -16,4 +16,12 @@ body {
 .content {
   margin: auto;
   width: 70%;
+  margin-bottom: -65px;
+  overflow-y: hidden;
+  
+}
+.content:after {
+  content: "";
+  display: block;
+  height: 65px; 
 }
