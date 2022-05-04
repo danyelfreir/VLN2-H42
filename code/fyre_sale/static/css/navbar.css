@@ -13,8 +13,15 @@
   display: inline;
 }
 
-#search-container {
+#search-dropdown {
   display: none;
+  justify-content: space-around;
+  align-items: center;
+  animation: growDown 200ms ease-in-out forwards;
+}
+
+#search-container {
+  border: 1px solid red;
   width: 25em;
   height: 40px;
   margin-right: 10%;
@@ -70,9 +77,15 @@
   font-weight: 600;
 }
 
-.magnifying-glass {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    80% {
+        transform: scaleY(1.1)
+    }
+    100% {
+        transform: scaleY(1)
+    }
 }

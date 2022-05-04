@@ -1,6 +1,6 @@
 // Get the modal
 const modal = document.getElementById("modal");
-const search = document.getElementById("search-container");
+const search = document.getElementById("search-dropdown");
 //Buttons
 const btn = document.getElementById("login");
 const btncl = document.getElementById("cancel");
@@ -50,15 +50,13 @@ window.onclick = function(event) {
         && event.target != document.getElementById("search-form-button")
         && searchForm[0].value === '') {
     search.style.display = 'none';
-    btnsearch.style.display = 'block';
     searchOpen = false;
   }
 }
 
 btnsearch.addEventListener('click', () => {
   if (!searchOpen) {
-    search.style.display = 'block';
-    btnsearch.style.display = 'none';
+    search.style.display = 'flex';
     searchOpen = true;
   }
 })
