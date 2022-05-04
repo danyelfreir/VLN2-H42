@@ -1,0 +1,65 @@
+.category_container {
+  width: 95%;
+    margin: 10px 10%;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows:50% 50%;
+    justify-content: space-evenly;
+    background-color: #fff;
+    color: #444;
+}
+
+.cat1_img, .cat1_overlay, .cat1_text {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.cat2_img, .cat2_overlay, .cat2_text {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.cat3_img, .cat3_overlay, .cat3_text {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+}
+
+.cat4_img, .cat4_overlay, .cat4_text {
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+}
+
+.cat5_img, .cat5_overlay, .cat5_text {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.cat6_img, .cat6_overlay, .cat6_text {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.cat7_img, .cat7_overlay, .cat7_text {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+.cat8_img, .cat8_overlay, .cat8_text {
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
+}
+
+.cat_img, .cat_img_over, .cat_img1 {
+    width:100%
+}
+
+.cat_img_over:hover .cat_img1 {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.cat_text {
+    margin: 10px;
+    color: black;
+    width: 60%;
+}

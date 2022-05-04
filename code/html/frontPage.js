@@ -1,12 +1,13 @@
 // Get the modal
-var modal = document.getElementById("login_Modal");
-var sidenav = document.getElementById("mySidenav")
+const modal = document.getElementById("login_Modal");
+// Get the sidenav
+const sidenav = document.getElementById("mySidenav");
+//
 //Buttons
-var btn = document.getElementById("login");
-var btncl = document.getElementById("cancel");
-var btnsubm = document.getElementById("submit");
-var btnsignup = document.getElementById("signup");
-
+const btn = document.getElementById("login");
+const btncl = document.getElementById("cancel");
+const btnsubm = document.getElementById("submit");
+const btnsignup = document.getElementById("signup");
 
 //display the login window
 btn.onclick = function() {
@@ -31,24 +32,28 @@ btncl.onclick = function() {
 }
 
 //Click outside of window to close
+//Does not work at the moment
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
 
+//Open sidenav
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
 }
-
+//Close the sidenav
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("main").style.marginLeft= "0";
 }
-
+// This should close the sidenav if clicked outside of it
+//Does not work at the moment
 window.onclick = function(event) {
   if (event.target == sidenav) {
     sidenav.style.display = "none";
   }
 }
+
