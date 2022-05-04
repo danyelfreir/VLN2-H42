@@ -5,6 +5,7 @@ from users.models import User
 class Category(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
+    image = models.TextField(default=None, max_length=9999)
 
     def __str__(self):
         return self.name

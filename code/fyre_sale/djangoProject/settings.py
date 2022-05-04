@@ -86,13 +86,17 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 # psql -h 192.168.1.50 -p 5432 -d testdb -U testuser -W
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'fyresale-db',
+    #     'USER': 'fyresale-db-user',
+    #     'PASSWORD': 'fyresale',
+    #     'HOST': '34.142.121.54',
+    #     'PORT': '5432'
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fyresale-db',
-        'USER': 'fyresale-db-user',
-        'PASSWORD': 'fyresale',
-        'HOST': '34.142.121.54',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
