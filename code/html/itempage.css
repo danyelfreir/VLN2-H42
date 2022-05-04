@@ -1,4 +1,7 @@
-
+body {
+    width:80%;
+    margin:auto;
+}
 
 header {
     width:100%;
@@ -94,7 +97,6 @@ footer {
     width:100%;
     height:70px;
     background-color: #303C6C;
-    position: fixed;
     left: 0;
     bottom: 0;
 }
@@ -193,7 +195,7 @@ button.signup_btn {
     position: fixed;
     z-index: 1;
     top: 15%;
-    left: 0;
+    right:0;
     background-color: #303C6C;
     overflow-x: hidden;
     transition: 0.5s;
@@ -205,7 +207,7 @@ button.signup_btn {
   text-decoration: none;
   font-size: 25px;
   color: white;
-  display: block;
+    display:block;
   transition: 0.3s;
 }
 
@@ -232,33 +234,80 @@ button.signup_btn {
 }
 
 .item_container {
-    display:flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    ". . . .";
     width:100%;
-    height:500px;
+    height:1000px;
     background-color: #F4976C30;
 }
 .image_container {
-    padding:20px;
-    width:300px;
-    display:block;
+    grid-row-start:1;
+
 }
 .ad_picture {
-    height:300px;
-    width:300px;
-    border:solid thin;
+    height:250px;
+    width:250px;
+    padding:20px;
 }
 
 .description_container {
-    display:flex;
+    grid-column-start:2;
+    grid-column-end:5;
     flex-direction:column;
-    padding:0px;
     width:80%;
     order:1;
     max-height:500px
 }
 
 .bid_container {
+    grid-row-start:2;
+    grid-column-start:4;
     bottom: 8px;
     left: 16px;
     font-size: 18px;
+    padding:20px;
+}
+.item_info2{
+    grid-row-start:2;
+    padding:40px;
+}
+
+/*Scroll-menu*/
+div.similar_items_container {
+    grid-row:3/ span 2;
+    grid-column: 1 /span 4;
+    background-color: white;
+    overflow: auto;
+    white-space: nowrap;
+    border:solid #F4976C30;
+
+}
+
+div.similar_items_container a {
+  display: inline-block;
+  color: white;
+}
+
+div.similar_items_container a:hover {
+  background-color: #F4976C30;
+}
+
+button.place_bid {
+    background-color: #303C6C;
+    color:white;
+    padding:20px;
+    border-radius: 8px;
+}
+button.place_bid:hover {
+    color:#F4976C;
+    cursor:pointer;
 }
