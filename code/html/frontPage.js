@@ -7,7 +7,6 @@ var btncl = document.getElementById("cancel");
 var btnsubm = document.getElementById("submit");
 var btnsignup = document.getElementById("signup");
 
-
 //display the login window
 btn.onclick = function() {
   modal.style.display = "block";
