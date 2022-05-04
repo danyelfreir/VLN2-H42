@@ -5,7 +5,7 @@ from users.models import User
 class Category(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    image = models.TextField(default=None, max_length=9999)
+    image = models.TextField(blank=True, null=True, max_length=9999)
 
     def __str__(self):
         return self.name
@@ -23,9 +23,10 @@ class SubCategory(models.Model):
 class ItemForSale(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    image = models.TextField(max_length=9999)
+    image = models.TextField(blank=True, null=True, max_length=9999)
+    condition = models.CharField(max_length=255)
     seller_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    time_of_upload = models.DateTimeField()
+    time_of_upload = models.CharField(max_length=255)
     min_bid = models.FloatField()
     cur_bid = models.FloatField()
     sold = models.BooleanField()
