@@ -18,16 +18,24 @@
 </div>
 <div id="modal">
   <div id="login-modal">
+    <h4 class="form-title">Login</h4><br>
+    <p class="form-subtitle">Welcome back</p>
     <form class="loginform" action="">
-      <h4 class="loginform">Login</h4><br>
-      <label class="loginform" for="email">Email</label><br>
-      <input class="loginform" type="text" id="email" name="email" placeholder="Email"><br>
-      <label class="loginform" for="passw">Email</label><br>
-      <input class="loginform" type="text" id="passw" name="passw" placeholder="Password"><br><br>
+      <label class="form-field-label" for="email">Email</label><br>
+      <input class="form-field" type="text" id="email" name="email"><br>
+      <label class="form-field-label" for="passw">Password</label><br>
+      <input class="form-field" type="password" id="passw" name="passw"><br><br>
+      <a class="forgotten-pw" href="#">Forgotten password?</a>
+      <div id="form-remember">
+        <input class="form-remember-box" type="checkbox" name="remember">
+        <p class="form-remember-text">Remember me</p>
+      </div>
+      <button class="form-submit" id="submit" type="submit" value="Submit">Log in</button><br>
     </form>
-    <button class="modalbtn" id="submit" type="submit" value="Submit">Submit</button><br>
-    <button class="modalbtn" id="cancel">Cancel</button><br>
-    <button class="modalbtn" id="signup">Signup</button>
+    <div id="form-footer">
+      <p class="form-footertext">Don't have an account?</p>
+      <button type="button" class="form-signup" id="form-signup">SIGN UP</button>
+    </div>
   </div>
 </div>
 
