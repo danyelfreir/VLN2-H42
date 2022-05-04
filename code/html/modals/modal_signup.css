@@ -1,0 +1,173 @@
+#login {
+  font-size: 20px;
+  margin-right: 2em;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+#login:hover {
+  font-weight: 600;
+}
+
+#login-modal {
+  width: 250px;
+  height: 542px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+
+}
+#placebid-modal {
+  width: 250px;
+  height: 230px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+
+}
+#signup-modal {
+  width: 250px;
+  height: 534px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+}
+
+#confirm-modal {
+  width: 250px;
+  height: 280px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+}
+
+#password-modal {
+  width: 250px;
+  height: 392px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+
+}
+
+#modal {
+  /*display: none;  Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.loginform {
+  margin: 30px;
+}
+
+.form-title {
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30px;
+  color: #303C6C;
+}
+
+.form-subtitle {
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 16px;
+  color: #C4C4C4;
+  margin-bottom: 30px;
+}
+
+.form-field-label {
+  font-size: 12px;
+  color: #C4C4C4;
+}
+
+.form-field {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #303C6C;
+}
+
+#form-remember {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.form-remember-box {
+
+}
+
+.forgotten-pw {
+  font-size: 12px;
+  color: #C4C4C4;
+  margin-left: 35px;
+}
+
+.form-remember-text {
+  margin-left: 5px;
+  font-size: 12px;
+  color: #C7C7C7;
+}
+
+.form-submit {
+  margin: 20px 0 0 20px;
+  width: 150px;
+  height: 50px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #303C6C;
+  color: #fff;
+  font-size: 20px;
+}
+
+#form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d4d4d4;
+  width: 100%;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.form-footertext {
+  font-size: 12px;
+  padding-left: 15px;
+}
+
+.form-signup {
+  color: #303C6C;
+  background-color: #d4d4d4;
+  border: 0;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+.bio_text {
+  width: 100%;
+  resize: none;
+}
