@@ -1,10 +1,11 @@
 .category_container {
-  width: 95%;
-    margin: 10px 10%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows:50% 50%;
+    grid-gap: 2%;
+    grid-auto-flow: column;
+    grid-template-columns: 23.5% 23.5% 23.5% 23.5%;
+    grid-template-rows: 50% 50%;
     justify-content: space-evenly;
     background-color: #fff;
     color: #444;
@@ -51,15 +52,15 @@
 }
 
 .cat_img, .cat_img_over, .cat_img1 {
-    width:100%
+    width: 100%
 }
 
 .cat_img_over:hover .cat_img1 {
-    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.5); 
 }
 
 .cat_text {
-    margin: 10px;
+    margin: 3%;
     color: black;
-    width: 60%;
+    font-size: 1.75vw;
 }

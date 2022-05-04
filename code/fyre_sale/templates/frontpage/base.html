@@ -17,9 +17,11 @@
 <header>
     {% include 'frontpage/navbar.html' %}
 </header>
-
-  {% block content %}
-  {% endblock content %}
+  <div class="content">
+    {% block content %}
+    {% endblock content %}
+    {% include 'frontpage/scroll_ads.html' %}
+  </div>
 
 <footer>
   {% include 'frontpage/footer.html' %}
