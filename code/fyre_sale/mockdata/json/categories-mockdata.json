@@ -1,0 +1,50 @@
+[
+	{
+		"id": 1,
+		"name": "Automotive"
+	},
+	{
+		"id": 2,
+		"name": "Electronics"
+	},
+	{
+		"id": 3,
+		"name": "Pets"
+	},
+	{
+		"id": 4,
+		"name": "Entertainment"
+	},
+	{
+		"id": 5,
+		"name": "Health and Fitness"
+	},
+	{
+		"id": 6,
+		"name": "Clothing"
+	},
+	{
+		"id": 7,
+		"name": "Furniture"
+	},
+	{
+		"id": 8,
+		"name": "Housing"
+	},
+	{
+		"id": 9,
+		"name": "Art"
+	},
+	{
+		"id": 10,
+		"name": "Children"
+	},
+	{
+		"id": 11,
+		"name": "Hobbies"
+	},
+	{
+		"id": 12,
+		"name": "Industrial"
+	}
+]

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/items.css' %}">
+{% endblock styles %}
+
+{% block content %}
+    <div class="items-grid-container">
+    {% for item in items %}
+        {% include 'items/grid-item.html' with item=item %}
+    {% endfor %}
+    </div>
+{% endblock content %}
