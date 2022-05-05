@@ -12,6 +12,7 @@ body {
   min-width: 715px;
   margin: 0;
   padding: 0;
+  background-color: #fbfbfb;
 }
 .content {
   margin: auto;
