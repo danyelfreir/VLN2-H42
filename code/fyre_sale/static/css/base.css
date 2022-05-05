@@ -26,3 +26,8 @@ body {
   display: block;
   height: 65px; 
 }
+
+.frontpage-title {
+  color: #303c6c;
+  margin-bottom: 0;
+}
