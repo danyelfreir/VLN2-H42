@@ -10,6 +10,7 @@
 }
 
 #login-modal {
+  display:none;
   width: 250px;
   height: 428px;
   background-color: #fefefe;
@@ -66,7 +67,6 @@
 }
 
 #modal {
-  /*display: none;  Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
