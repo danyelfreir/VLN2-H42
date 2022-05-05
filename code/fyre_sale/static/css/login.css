@@ -11,18 +11,62 @@
 
 #login-modal {
   width: 250px;
-  height: 400px;
+  height: 428px;
   background-color: #fefefe;
   margin: 200px auto; /* 15% from the top and centered */
   padding-top: 20px;
   /* border: 2px solid #ccc; */
   border-radius: 4px;
-  /* max-width: 30%; /* Could be more or less, depending on screen size */ */
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+
+}
+#placebid-modal {
+  width: 250px;
+  height: 230px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+
+}
+#signup-modal {
+  width: 250px;
+  height: 534px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+}
+
+#confirm-modal {
+  width: 250px;
+  height: 280px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
+}
+
+#password-modal {
+  width: 250px;
+  height: 392px;
+  background-color: #fefefe;
+  margin: 200px auto; /* 15% from the top and centered */
+  padding-top: 20px;
+  /* border: 2px solid #ccc; */
+  border-radius: 4px;
+  /* max-width: 30%; /* Could be more or less, depending on screen size */
 
 }
 
 #modal {
-  display: none; /* Hidden by default */
+  /*display: none;  Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -86,7 +130,7 @@
 .form-remember-text {
   margin-left: 5px;
   font-size: 12px;
-  color: #C4C4C4;
+  color: #C7C7C7;
 }
 
 .form-submit {
@@ -121,4 +165,20 @@
   border: 0;
   padding-right: 15px;
   cursor: pointer;
+}
+
+.bio_text {
+  width: 100%;
+  resize: none;
+}
+
+.close1 {
+  display:flex;
+  justify-content: flex-end;
+}
+.close2 {
+  padding:0px 20px;
+  font-size: 20px;
+  text-decoration: none;
+  color:#d4d4d4;
 }
