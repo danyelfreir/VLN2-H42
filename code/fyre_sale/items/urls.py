@@ -6,3 +6,4 @@ urlpatterns = [
     # path('<int:item_id>', views.singleitem.html, name="single_item")
     # path('all/', views.items_index, name="items_index"),
 ]
+
