@@ -8,6 +8,7 @@
 
 {% block content %}
 <div class="content">
+  <h2 class="frontpage-title">Our most loved categories</h2>
   <div class="category_container">
     <div class="cat1_img"><img class="cat_img1" src="https://www.nicepng.com/png/detail/252-2526669_new-car-img-car.png" alt="category"></div>
     <div class="cat1_overlay overlay"><img class="cat_img_over" src="{% static 'img/overlay/beach.png' %}" alt="category"></div>
@@ -41,7 +42,7 @@
     <div class="cat8_overlay overlay"><img class="cat_img_over" src="{% static 'img/overlay/blush.png' %}" alt="category"></div>
     <h1 class="cat8_text cat_text">Sport & healddsfsdfsth</h1>
   </div>
+  {% include 'frontpage/scroll_ads.html' %}
 </div>
 
-{% include 'frontpage/scroll_ads.html' %}
 {% endblock content %}

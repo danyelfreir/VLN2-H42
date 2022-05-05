@@ -1,5 +1,5 @@
 {% load static %}
-<a href="item/{{ item.id }}">
+<a href="{% url 'item_detail' item.id %}" onmouseover="itemHover">
   <div class="grid-item">
     <img class="grid-item-image" src="{{ item.image }}">
     <div class="name-price-wrapper">
