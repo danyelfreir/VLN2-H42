@@ -3,18 +3,21 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock styles %}
-
-<div class="header-container">
-  <a href="#">
-    <img id="logo" src="{% static 'img/Logo.png' %}" alt="Fyre sale logo">
-  </a>
-  <div class="right-side">
-    <div id="search-button">Search</div>
-    <a href="#" id="login">Sign In</a>
-    <!-- <div class="magnifying-glass">
-      &#9906;
-    </div> -->
+<div id="navbar">
+  <div id="orange_left"></div>
+  <div class="header-container">
+    <a id="logo_link" href="#">
+      <img id="logo" src="{% static 'img/Logo.png' %}" alt="Fyre sale logo">
+    </a>
+    <div class="right-side">
+      <div id="search-button"><i class="fas fa-search" id> </i> Search </div>
+      <a href="#" id="login">Sign In</a>
+      <!-- <div class="magnifying-glass">
+        &#9906;
+      </div> -->
+    </div>
   </div>
+  <div id="blue_right"></div>
 </div>
 <div id="modal">
   <div id="login-modal">
@@ -41,17 +44,16 @@
     </div>
   </div>
 </div>
-
 <div id="search-dropdown">
-  <button type="button" name="button">Categories</button>
+  <button id="cat-btn" type="button" name="button">Categories</button>
   <div id="search-container">
     <form id="search-form">
-      <input id="search-form-input" type="search" placeholder="Search" aria-label="Search">
       <button id="search-form-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <input id="search-form-input" type="search" placeholder="Search" aria-label="Search">
       <!-- <button id="search-form-button" type="submit"><div class="magnifying-glass">
         &#9906;
       </div></button> -->
     </form>
   </div>
-<button type="button" name="button">Filter</button>
 </div>
+<script src="{% static 'js/navbar.js' %}"></script>

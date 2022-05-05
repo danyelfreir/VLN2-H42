@@ -1,8 +1,9 @@
-footer {
-  position: absolute;
+/* footer {
+  position: relative;
   width: 100%;
-  bottom: 0px;
-}
+  bottom: 0;
+
+} */
 
 .footer-container {
   display: flex;

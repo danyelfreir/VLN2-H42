@@ -1,6 +1,5 @@
 .category_container {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 40px 0 40px 0;
     display: grid;
     grid-gap: 2%;
     grid-auto-flow: column;

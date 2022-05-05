@@ -83,20 +83,17 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 # Til að tengjast með psql
-# psql -h 192.168.1.50 -p 5432 -d testdb -U testuser -W
+# psql -h 34.142.121.54 -p 5432 -d fyresale-db -U fyresale-db-user -W
+# passwordið er 'fyresale'
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'fyresale-db',
-    #     'USER': 'fyresale-db-user',
-    #     'PASSWORD': 'fyresale',
-    #     'HOST': '34.142.121.54',
-    #     'PORT': '5432'
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fyresale-db',
+        'USER': 'fyresale-db-user',
+        'PASSWORD': 'fyresale',
+        'HOST': '34.142.121.54',
+        'PORT': '5432'
     }
 }
 
