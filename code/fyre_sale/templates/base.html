@@ -17,6 +17,8 @@
 <header>
     {% include 'frontpage/navbar.html' %}
 </header>
+  {% block filter %}
+  {% endblock filter %}
   <div class="content">
     {% block content %}
     {% endblock content %}
