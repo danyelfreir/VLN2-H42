@@ -60,3 +60,6 @@ btnsearch.addEventListener('click', () => {
     searchOpen = true;
   }
 })
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";}
