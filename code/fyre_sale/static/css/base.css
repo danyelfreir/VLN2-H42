@@ -12,7 +12,7 @@ html, body {
 
 }
 
-html, body {
+body {
   font-family: 'Open Sans', sans-serif;
   min-width: 715px;
   margin: 0;
@@ -20,9 +20,11 @@ html, body {
   background-color: #fbfbfb;
 }
 #wrapper {
-  height: 100%; 
-  margin: auto;
+  min-height: 100%;
+  margin-bottom: -65px;
+  padding-bottom: 65px;
 }
+
 .content {
   padding-top: 65px;
   padding-bottom: 65px;
