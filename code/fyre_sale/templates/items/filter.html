@@ -1,0 +1,20 @@
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/filter.css' %}">
+{% endblock styles %}
+<div id="filter-container">
+    <p id="filter-title"><i class="fa-solid fa-sliders"></i> &ensp; Filter</p>
+    <ul id="categories">
+        {% for cat in categories %}
+            <li>{{ cat.name }}</li>
+            {% for subcat in subcategories %}
+                <ul id="sub-cat">
+                {% if subcat.category_id == cat.id %}
+                    <li>{{ subcat.name }}</li>
+                {% endif %}
+                </ul>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+
+</div>

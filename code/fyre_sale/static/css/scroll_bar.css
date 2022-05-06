@@ -30,7 +30,7 @@
 
 #prev {
   top: 50%;
-  left: -5;
+  left: -5px;
   transform: translate(50%, -50%);
   display: none;
 }
@@ -39,6 +39,11 @@
   top: 50%;
   right: 10px;
   transform: translate(-50%, -50%);
+}
+
+#prev:hover,
+#next:hover {
+    color: #F4976C;
 }
 
 #scroll_content {

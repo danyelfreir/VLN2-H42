@@ -7,19 +7,19 @@
 
 {% block content %}
 <div class="item_container">
-    <div class="image_container"><a href="fortesting.html"><img class="ad_picture" src="cat.jpg" alt="cat picture" ></a><br></div>
+    <div class="image_container"><a href="fortesting.html"><img class="ad_picture" src="{{ item.image }}" alt="cat picture" ></a><br></div>
     <div class="description_container">
         <div>
             <h3 class="item_header">Short description</h3>
-            <p class="item_info"  id="short_descr">An ugly rug</p>
+            <p class="item_info"  id="short_descr">{{ item.name }}</p>
         </div>
         <div>
             <h3 class="item_header">Long description</h3>
-            <p class="item_info"  id="long_descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="item_info"  id="long_descr">{{ item.long_desc }}</p>
         </div>
         <div>
             <h3 class="item_header">Condition</h3>
-            <p class="item_info" id="condition">Absolutely fucked</p>
+            <p class="item_info" id="condition">{{ item.condition }}</p>
         </div>
     </div>
     <div class="bid_container">
@@ -28,11 +28,11 @@
     <div class="item_info2">
         <dl>
             <dt><b>Seller</b></dt><br>
-                <dd>Ravison Travis</dd><br>
+                <dd>{{ seller.name }}</dd><br>
             <dt><b>Posted on</b></dt><br>
-                <dd>01.05.2022</dd><br>
+                <dd>{{ item.time_of_upload }}<br>{{ item.date_of_upload }}</dd><br>
             <dt><b>Current highest bid</b></dt><br>
-                <dd>30000</dd><br>
+                <dd>{{ item.cur_bid }} kr.</dd><br>
         </dl>
     </div>
     <div class="similar_items_container">

@@ -12,6 +12,7 @@ body {
   min-width: 715px;
   margin: 0;
   padding: 0;
+  background-color: #fbfbfb;
 }
 .content {
   margin: auto;
@@ -24,4 +25,9 @@ body {
   content: "";
   display: block;
   height: 65px; 
+}
+
+.frontpage-title {
+  color: #303c6c;
+  margin-bottom: 0;
 }
