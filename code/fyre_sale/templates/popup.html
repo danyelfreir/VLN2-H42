@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}">
+{% endblock styles %}
+{% block popup %}
+  <div id="background-popup">
+    <div id="popup">
+      {% block signup-form %}
+      {% endblock signup-form %}
+    </div>
+  </div>
+{% endblock popup %}

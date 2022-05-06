@@ -1,6 +1,6 @@
 // Get the modal
 const modal = document.getElementById("modal");
-const
+
 const search = document.getElementById("search-dropdown");
 //Buttons
 const btn = document.getElementById("login");

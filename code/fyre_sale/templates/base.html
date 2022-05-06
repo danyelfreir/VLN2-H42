@@ -18,12 +18,16 @@
 <header>
     {% include 'frontpage/navbar.html' %}
 </header>
+  <div id="wrapper">
+    {% block popup %}
+    {% endblock popup %}
 
-  {% block filter %}
-  {% endblock filter %}
-  {% block content %}
-    
-  {% endblock content %}
+    {% block filter %}
+    {% endblock filter %}
+    {% block content %}
+      
+    {% endblock content %}
+  </div>
 
 <footer>
   {% include 'frontpage/footer.html' %}
