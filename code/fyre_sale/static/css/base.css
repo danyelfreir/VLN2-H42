@@ -7,6 +7,11 @@ button:focus {
   outline: none;
 }
 
+html, body {
+  height: 100%;
+
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   min-width: 715px;
@@ -14,10 +19,17 @@ body {
   padding: 0;
   background-color: #fbfbfb;
 }
+#wrapper {
+  min-height: 100%;
+  margin-bottom: -65px;
+  padding-bottom: 65px;
+}
+
 .content {
+  padding-top: 65px;
+  padding-bottom: 65px;
   margin: auto;
   width: 70%;
-  margin-bottom: -65px;
   overflow-y: hidden;
   
 }
