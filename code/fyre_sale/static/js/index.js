@@ -68,3 +68,12 @@ btnsearch.addEventListener('click', () => {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";}
 
+const items = document.getElementsByClassName("grid-item-link");
+for (let item of items) {
+  item.addEventListener("mouseover", (e) => {
+    item.children[0].childNodes[3].style.backgroundColor = "#F4976C";
+  });
+  item.addEventListener("mouseleave", (e) => {
+    item.children[0].childNodes[3].style.backgroundColor = "#303C6C";
+  });
+}
