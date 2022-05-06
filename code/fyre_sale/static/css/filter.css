@@ -1,12 +1,10 @@
 #filter-container {
     margin-top: 20px;
     width: 14%;
-    z-index: 2;
     height: 100%;
     margin-left: 0%;
-    z-index: 1;
-    position: absolute;
 }
+
 #filter-title {
     font-size: 25px;
     margin-left: 20px;
@@ -19,7 +17,7 @@
     padding-left: 5px;
     list-style-type: none;
     margin: 5px;
-    color: #9b9b9b;
+    color: #777777;
 }
 #categories li {
     margin-bottom: 3px;
@@ -32,4 +30,7 @@
 }
 #sub-cat li {
     margin-bottom: 3px;
+}
+li:hover {
+    color:#303C6C;
 }

@@ -7,17 +7,31 @@ button:focus {
   outline: none;
 }
 
+html, body {
+  height: 100%;
+
+}
+
 body {
+  display: flex;
   font-family: 'Open Sans', sans-serif;
   min-width: 715px;
   margin: 0;
-  padding: 0;
-  background-color: #fbfbfb;
+  background-color: #f5f5f5;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
+
+#wrapper {
+  flex: 1;
+}
+
 .content {
+  padding-top: 65px;
+  padding-bottom: 65px;
   margin: auto;
   width: 70%;
-  margin-bottom: -65px;
   overflow-y: hidden;
   
 }

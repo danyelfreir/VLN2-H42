@@ -1,6 +1,6 @@
 // Get the modal
 const modal = document.getElementById("modal");
-const
+
 const search = document.getElementById("search-dropdown");
 //Buttons
 const btn = document.getElementById("login");
@@ -36,13 +36,6 @@ btnsignup.onclick = function() {
 
 }
 
-
-//close the login window
-// btncl.onclick = function() {
-//   modal.style.display = "none";
-// }
-
-//Click outside of window to close
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -68,3 +61,12 @@ btnsearch.addEventListener('click', () => {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";}
 
+const items = document.getElementsByClassName("grid-item-link");
+for (let item of items) {
+  item.addEventListener("mouseover", (e) => {
+    item.children[0].childNodes[3].style.backgroundColor = "#F4976C";
+  });
+  item.addEventListener("mouseleave", (e) => {
+    item.children[0].childNodes[3].style.backgroundColor = "#303C6C";
+  });
+}

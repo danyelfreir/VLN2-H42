@@ -1,0 +1,17 @@
+body {
+    overflow: hidden;
+}
+
+#popup {
+    width: 500px;
+    background-color: #fbfbfb;
+    border-radius: 5px 5px 5px 5px;
+    filter: drop-shadow(0 0 0.2rem #c4c4c4);
+    padding-top: 20px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

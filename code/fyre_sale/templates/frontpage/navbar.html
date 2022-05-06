@@ -1,8 +1,10 @@
 {% load static %}
+
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock styles %}
+
 <div id="navbar">
   <div id="orange_left"></div>
   <div class="header-container">
@@ -11,10 +13,7 @@
     </a>
     <div class="right-side">
       <div id="search-button"><i class="fas fa-search" id> </i> Search </div>
-      <a href="#" id="login">Sign In</a>
-      <!-- <div class="magnifying-glass">
-        &#9906;
-      </div> -->
+      <a href="{% url 'sign_in' %}" id="login">Sign In</a>
     </div>
   </div>
   <div id="blue_right"></div>
@@ -56,4 +55,3 @@
     </form>
   </div>
 </div>
-<script src="{% static 'js/navbar.js' %}"></script>
