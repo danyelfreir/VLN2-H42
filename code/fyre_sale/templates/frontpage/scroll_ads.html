@@ -1,8 +1,10 @@
 {% load static %}
+
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/scroll_bar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/items.css' %}">
 {% endblock styles %}
+
 <h2 class="frontpage-title">This just in</h2>
 <div id="wrapper">
     <div id="carousel">
@@ -63,4 +65,3 @@
           <button id="next"><i class="fa-solid fa-circle-chevron-right"></i></button>
     </div>
 </div>
-<script src="{% static 'js/scroll_bar.js' %}"></script>
