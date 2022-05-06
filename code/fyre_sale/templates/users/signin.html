@@ -1,13 +1,14 @@
 {% extends 'popup.html' %}
 
 {% block signup-form %}
-  <h4 class="form-title">Sign up</h4><br>
+  <h4 class="form-title">Sign in</h4><br>
   <p class="form-subtitle">Join our community!</p>
-  <form class="loginform" action="">
-      <label class="form-field-label" for="email">Email</label><br>
+  <form class="loginform" method="get" action="">
+      <label class="form-field-label" for="email">Username</label><br>
       {{ form.username }}
       <label class="form-field-label" for="passw">Password</label><br>
       {{ form.password }}
+      {{ form.errors }}
     <div id="form-remember">
       <input class="form-remember-box" type="checkbox" name="remember">
       <p class="form-remember-text">Remember me</p>
@@ -15,10 +16,8 @@
     <button class="form-submit" id="submit" type="submit" value="Submit">Sign up</button><br>
   </form>
   <div id="form-footer">
-    <p class="form-footertext">Have an account?</p>
-    <button type="button" class="form-signup" id="form-signup">LOG IN</button>
+    <p class="form-footertext">Don't have an account?</p>
+    <a href="{% url 'sign_up' %}" class="form-signup" id="form-signup">SIGN UP</a>
   </div>
 
 {% endblock signup-form %}
-
-

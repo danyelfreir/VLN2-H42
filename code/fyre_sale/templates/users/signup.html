@@ -3,30 +3,26 @@
 {% block signup-form %}
   <h4 class="form-title">Sign up</h4><br>
   <p class="form-subtitle">Join our community!</p>
-  <form class="loginform" action="">
+  <form class="loginform" method="POST" action="">
       <label class="form-field-label" for="username">Username</label><br>
-      <input class="form-field" type="text" id="username" name="username"><br>
-      <label class="form-field-label" for="name">Name</label><br>
-      <input class="form-field" type="text" id="name" name="name"><br>
+      {{ form.username }}
+      <label class="form-field-label" for="first_name">Name</label><br>
+      {{ form.first_name }}
+      <label class="form-field-label" for="last_name">Name</label><br>
+      {{ form.last_name }}
       <label class="form-field-label" for="email">Email</label><br>
-      <input class="form-field" type="text" id="email" name="email"><br>
+      {{ form.email }}
       <label class="form-field-label" for="passw">Password</label><br>
-      <input class="form-field" type="text" id="passw" name="passw"><br>
+      {{ form.password1 }}
       <label class="form-field-label" for="conf_passw">Confirm password</label><br>
-      <input class="form-field" type="text" id="conf_passw" name="conf_passw"><br><br>
-      <label class="form-field-label" for="birth">Date of birth</label><br>
-      <input class="form-field" type="date" placeholder="dd/mm/yyyy" id="birth" name="birth"><br><br>
-    <div id="form-remember">
-      <input class="form-remember-box" type="checkbox" name="remember">
-      <p class="form-remember-text">Remember me</p>
-    </div>
+      {{ form.password2 }}
+      <!-- <label class="form-field-label" for="birth">Date of birth</label><br>
+      <input class="form-field" type="date" placeholder="dd/mm/yyyy" id="birth" name="birth"><br><br> -->
     <button class="form-submit" id="submit" type="submit" value="Submit">Sign up</button><br>
   </form>
   <div id="form-footer">
     <p class="form-footertext">Have an account?</p>
-    <button type="button" class="form-signup" id="form-signup">LOG IN</button>
+    <a href="{% url 'sign_in' %}" class="form-signup" id="form-signup">LOG IN</a>
   </div>
 
 {% endblock signup-form %}
-
-
