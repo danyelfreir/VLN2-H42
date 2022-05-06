@@ -84,28 +84,29 @@
 }
 
 .form-submit {
-  margin: 10px 0 0 0;
-  width: 150px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
   height: 50px;
   border: 0;
+  padding: 10px 0 10px 0;
   border-radius: 4px;
   background-color: #303C6C;
   color: #fff;
   font-size: 20px;
-  margin: auto;
-  top: 50%;
-  left: 50%;
 }
 
 #form-footer {
   display: flex;
+  padding: 5px 0 5px 0;
   justify-content: space-between;
   align-items: center;
-  background-color: #d4d4d4;
+  background-color: #b9b9b9;
   width: 100%;
   border: 0;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .form-footertext {
@@ -115,7 +116,7 @@
 
 .form-signup {
   color: #303C6C;
-  background-color: #d4d4d4;
+  background-color: transparent;
   border: 0;
   padding-right: 15px;
   cursor: pointer;
