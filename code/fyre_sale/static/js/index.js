@@ -1,5 +1,6 @@
 // Get the modal
 const modal = document.getElementById("modal");
+
 const search = document.getElementById("search-dropdown");
 //Buttons
 const btn = document.getElementById("login");
@@ -35,13 +36,6 @@ btnsignup.onclick = function() {
 
 }
 
-
-//close the login window
-// btncl.onclick = function() {
-//   modal.style.display = "none";
-// }
-
-//Click outside of window to close
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
