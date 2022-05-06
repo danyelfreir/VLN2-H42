@@ -4,20 +4,14 @@
   <h4 class="form-title">Sign up</h4><br>
   <p class="form-subtitle">Join our community!</p>
   <form class="loginform" method="POST" action="">
-      <label class="form-field-label" for="username">Username</label><br>
-      {{ form.username }}
-      <label class="form-field-label" for="first_name">Name</label><br>
-      {{ form.first_name }}
-      <label class="form-field-label" for="last_name">Name</label><br>
-      {{ form.last_name }}
-      <label class="form-field-label" for="email">Email</label><br>
-      {{ form.email }}
-      <label class="form-field-label" for="passw">Password</label><br>
-      {{ form.password1 }}
-      <label class="form-field-label" for="conf_passw">Confirm password</label><br>
-      {{ form.password2 }}
-      <!-- <label class="form-field-label" for="birth">Date of birth</label><br>
-      <input class="form-field" type="date" placeholder="dd/mm/yyyy" id="birth" name="birth"><br><br> -->
+    {% csrf_token %}
+    <label class="form-field-label" for="username">Username</label><br>
+    {{ form.username }}
+    <label class="form-field-label" for="passw">Password</label><br>
+    {{ form.password1 }}
+    <label class="form-field-label" for="conf_passw">Confirm password</label><br>
+    {{ form.password2 }}
+    {{ form.errors }}
     <button class="form-submit" id="submit" type="submit" value="Submit">Sign up</button><br>
   </form>
   <div id="form-footer">

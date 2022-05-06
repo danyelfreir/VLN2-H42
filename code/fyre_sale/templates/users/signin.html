@@ -3,7 +3,8 @@
 {% block signup-form %}
   <h4 class="form-title">Sign in</h4><br>
   <p class="form-subtitle">Join our community!</p>
-  <form class="loginform" method="get" action="">
+  <form class="loginform" method="POST" action="">
+      {% csrf_token %}
       <label class="form-field-label" for="email">Username</label><br>
       {{ form.username }}
       <label class="form-field-label" for="passw">Password</label><br>
