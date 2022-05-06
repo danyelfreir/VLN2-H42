@@ -1,15 +1,12 @@
-#background-popup {
-    margin: 0;
-    width: 100%;
-    height: 100%;
+body {
     overflow: hidden;
-    background-color:#c4c4c4;
 }
 
 #popup {
     width: 500px;
     background-color: #fbfbfb;
     border-radius: 5px 5px 5px 5px;
+    filter: drop-shadow(0 0 0.2rem #c4c4c4);
     padding-top: 20px;
     margin: 0;
     position: absolute;
