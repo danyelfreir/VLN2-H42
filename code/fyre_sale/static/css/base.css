@@ -13,16 +13,18 @@ html, body {
 }
 
 body {
+  display: flex;
   font-family: 'Open Sans', sans-serif;
   min-width: 715px;
   margin: 0;
-  padding: 0;
-  background-color: #fbfbfb;
+  background-color: #f5f5f5;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
+
 #wrapper {
-  min-height: 100%;
-  margin-bottom: -65px;
-  padding-bottom: 65px;
+  flex: 1;
 }
 
 .content {
