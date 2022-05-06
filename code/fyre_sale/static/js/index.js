@@ -1,5 +1,6 @@
 // Get the modal
 const modal = document.getElementById("modal");
+const
 const search = document.getElementById("search-dropdown");
 //Buttons
 const btn = document.getElementById("login");
@@ -11,8 +12,10 @@ const btnsearch = document.getElementById("search-button");
 const searchForm = document.getElementById("search-form");
 
 const header = document.querySelector('body');
+
 // Variables
 let searchOpen = false;
+
 
 
 //display the login window
@@ -30,6 +33,7 @@ btnsignup.onclick = function() {
   // temporary for testing remove and set a function call for
   // validating the login
   modal.style.display = "none";
+
 }
 
 
