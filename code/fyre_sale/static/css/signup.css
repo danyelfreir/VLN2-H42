@@ -1,0 +1,102 @@
+#signup-modal {
+    width: 500px;
+    height: 534px;
+    background-color: #fefefe;
+    /* border: 2px solid #ccc; */
+    border-radius: 4px;
+    /* max-width: 30%; /* Could be more or less, depending on screen size */
+}
+
+
+.form-title {
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+    color: #303C6C;
+}
+
+.form-subtitle {
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    color: #C4C4C4;
+    margin-bottom: 30px;
+}
+
+.form-field-label {
+    font-size: 12px;
+    color: #C4C4C4;
+}
+
+.form-field {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #303C6C;
+}
+
+#form-remember {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.form-remember-text {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #C7C7C7;
+}
+
+.form-submit {
+    margin: 20px 0 0 20px;
+    width: 150px;
+    height: 50px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #303C6C;
+    color: #fff;
+    font-size: 20px;
+}
+
+#form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d4d4d4;
+    width: 100%;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.form-footertext {
+    font-size: 12px;
+    padding-left: 15px;
+}
+
+.form-signup {
+    color: #303C6C;
+    background-color: #d4d4d4;
+    border: 0;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+.bio_text {
+    width: 100%;
+    resize: none;
+}
+
+.close1 {
+    display:flex;
+    justify-content: flex-end;
+}
+
+.close2 {
+    padding:0px 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color:#d4d4d4;
+}
