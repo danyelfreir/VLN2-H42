@@ -7,6 +7,8 @@
     {% csrf_token %}
     <label class="form-field-label" for="username">Username</label><br>
     {{ form.username }}
+    <label class="form-field-label" for="email">Email</label><br>
+    {{ form.email }}
     <label class="form-field-label" for="passw">Password</label><br>
     {{ form.password1 }}
     <label class="form-field-label" for="conf_passw">Confirm password</label><br>
@@ -16,7 +18,7 @@
   </form>
   <div id="form-footer">
     <p class="form-footertext">Have an account?</p>
-    <a href="{% url 'sign_in' %}" class="form-signup" id="form-signup">LOG IN</a>
+    <a href="{% url 'signin' %}" class="form-signup" id="form-signup">LOG IN</a>
   </div>
 
 {% endblock signup-form %}
