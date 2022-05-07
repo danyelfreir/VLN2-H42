@@ -13,7 +13,11 @@
     </a>
     <div class="right-side">
       <div id="search-button"><i class="fas fa-search" id> </i> Search </div>
-      <a href="{% url 'sign_in' %}" id="login">Sign In</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'signout' %}" id="signout">Sign Out</a>
+      {% else %}
+      <a href="{% url 'signin' %}" id="login">Sign In</a>
+      {% endif %}
     </div>
   </div>
   <div id="blue_right"></div>

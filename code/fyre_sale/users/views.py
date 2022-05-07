@@ -9,7 +9,7 @@ def sign_up(request):
         form = SignUpForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('sign_in')
+            return redirect('signin')
         else:
             print("epic fail")
 
@@ -21,7 +21,7 @@ def sign_in(request):
     if request.method == 'POST':
         form = SignInForm(data=request.POST)
         if form.is_valid():
-            return redirect('{% user_page', {'username': form.data['username %}']})
+            return redirect('signin')
     return render(request, 'users/signin.html', context={
         'form': SignInForm(),
     })
