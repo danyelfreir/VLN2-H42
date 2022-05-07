@@ -5,6 +5,8 @@ from users.models import User
 
 # Create your views here.
 def items_index(request):
+    print(request.GET['Category'])
+    print(request.GET['SubCategory'])
     list_of_items = ItemForSale.objects.all().order_by('time_of_upload')
     all_categories = Category.objects.all().order_by('name')
     all_subcategories = SubCategory.objects.all()
