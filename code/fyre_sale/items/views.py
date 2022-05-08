@@ -21,3 +21,9 @@ def item_detail(request, item_id):
         'item': detailed_item,
         'seller': seller_user
     })
+
+def create_item(request):
+    if request.method == 'POST':
+        print('test1')
+    else:
+        print('test2')
