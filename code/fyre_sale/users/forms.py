@@ -29,26 +29,3 @@ class SignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
-
-
-
-
-
-# class SignUpForm(forms.ModelForm):
-#     password = forms.CharField(widget=forms.PasswordInput())
-#     confirm_password = forms.CharField(widget=forms.PasswordInput())
-#     class Meta:
-#         model = User
-#         fields = [
-#             'email', 'username', 'first_name', 'last_name', 'password', 'confirm_password',
-#         ]
-#
-#     def __init__(self):
-#         super(forms.ModelForm, self).__init__()
-#         for field in self.visible_fields():
-#             field.field.widget.attrs['class'] = 'form-field'
-#
-#     def clean_password2(self):
-#         password = self.cleaned_data.get('password')
-#         confirm_password = self.cleaned_data.get('confirm_password')
-#         print('here')
