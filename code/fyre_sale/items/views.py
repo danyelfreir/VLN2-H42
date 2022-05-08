@@ -30,34 +30,6 @@ def items_index(request):
     })
 
 
-# def items_index(request):
-#     try:
-#         tmp_cat_id = Category.objects.get(name=request.GET['cat'])
-#         subcategories = SubCategory.objects.filter(category=tmp_cat_id)
-#         list_of_items = ItemForSale.objects.raw(
-#             ''' SELECT * FROM items_itemforsale I WHERE I.sub_cat_id in (
-#                     SELECT S.id FROM items_subcategory S WHERE S.category_id = (
-#                         SELECT C.id FROM items_category C WHERE C.name = %s))
-#                 ORDER BY i.time_of_upload DESC; ''', [request.GET['cat']]
-#         )
-#     except KeyError:
-#         subcategories = SubCategory.objects.all().order_by('name')
-#         list_of_items = ItemForSale.objects.all().order_by('time_of_upload')
-#
-#     try:
-#         tmp_subcat_id = SubCategory.objects.get(name=request.GET['subcat'])
-#         list_of_items = ItemForSale.objects.filter(sub_cat_id=tmp_subcat_id).order_by('time_of_upload')
-#     except KeyError:
-#         print("Subcategory query does not exist")
-#     all_categories = Category.objects.all().order_by('name')
-#
-#     return render(request, 'items/itempage.html', context={
-#         'items': list_of_items,
-#         'categories': all_categories,
-#         'subcategories': subcategories
-#     })
-
-
 def item_detail(request, item_id):
     detailed_item = ItemForSale.objects.get(pk=item_id)
     seller_user = User.objects.get(pk=detailed_item.seller_id)
@@ -94,3 +66,9 @@ def check_query(req):
     except KeyError:
         cat = None
     return name, subcat, cat
+
+def create_item(request):
+    if request.method == 'POST':
+        print('test1')
+    else:
+        print('test2')
