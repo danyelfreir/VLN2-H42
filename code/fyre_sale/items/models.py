@@ -24,19 +24,19 @@ class SubCategory(models.Model):
 class ItemForSale(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    image = models.TextField(blank=True, null=True, max_length=9999)
+    image = models.CharField(max_length=9999)
     condition = models.CharField(max_length=255)
-    seller = models.ForeignKey(User, on_delete=models.CASCADE)
-    time_of_upload = models.CharField(max_length=255)
-    date_of_upload = models.CharField(max_length=255)
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    time_of_upload = models.CharField(max_length=255, blank=True)
+    date_of_upload = models.CharField(max_length=255, blank=True)
     min_bid = models.IntegerField()
-    cur_bid = models.IntegerField()
-    sold = models.BooleanField()
+    cur_bid = models.IntegerField(default=0, blank=True)
+    sold = models.BooleanField(default=False)
     long_desc = models.TextField(max_length=9999)
     sub_cat = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.seller
 
 
 class Offer(models.Model):
@@ -45,7 +45,7 @@ class Offer(models.Model):
     time_of_offer = models.DateTimeField()
     price = models.IntegerField()
     buyer = models.ForeignKey(User_info, on_delete=models.CASCADE)
-    approved = models.BooleanField(default=False)
+    approved = models.BooleanField(default=None)
 
     def __str__(self):
         return self.price
@@ -55,5 +55,3 @@ class SoldItem(models.Model):
     id = models.BigAutoField(primary_key=True)
     itemid = models.OneToOneField(ItemForSale, on_delete=models.CASCADE)
     offerid = models.OneToOneField(Offer, on_delete=models.CASCADE)
-
-

@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from items.models import *
-from users.models import User
+from django.contrib.auth.models import User
+from items.item_form import CreateItem
+import datetime
 
 # Create your views here.
 def items_index(request):
@@ -23,7 +24,20 @@ def item_detail(request, item_id):
     })
 
 def create_item(request):
+    date = datetime.datetime.now()
     if request.method == 'POST':
-        print('test1')
-    else:
-        print('test2')
+        tmp_user = User.objects.get(username=request.user)
+        form = CreateItem(data=request.POST)
+
+        print(form.fields)
+        if form.is_valid():
+            print("Valid")
+            form.fields['seller'].value = tmp_user.id
+            form.fields['date_of_upload'].value = date.strftime("%x")
+            form.fields['time_of_upload'].value = date.strftime("%X")
+            form.save()
+            return redirect('item_index')
+    form = CreateItem()
+    return render(request, 'items/create_item.html', {
+        'form': form
+    })
