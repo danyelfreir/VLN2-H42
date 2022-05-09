@@ -119,7 +119,7 @@
 }
 
 #search-results-list {
-  position: relative;
+  position: absolute;
   z-index: 1000;
   margin-left: 12.7%;
   background-color: #ffffff;

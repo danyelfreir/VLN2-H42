@@ -1,8 +1,9 @@
 #filter-container {
     margin-top: 20px;
-    width: 55%;
+    width: 20%;
     height: 100%;
     margin-left: 0%;
+    position: absolute;
 }
 
 #filter-title {
@@ -34,3 +35,25 @@
 li:hover {
     color:#303C6C;
 }
+
+#categories a {
+    text-decoration: none;
+    color: #777777;
+}
+
+#categories a:visited {
+    color: #777777;
+}
+#categories a:active {
+    color: #303C6C;
+}
+
+.category-header {
+    font-size: 25px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #303C6C;
+    font-weight: bold;
+    text-align: center;
+  }

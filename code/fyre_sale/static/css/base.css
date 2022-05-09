@@ -23,7 +23,9 @@ body {
 }
 
 #wrapper {
-  display: flex;
+  min-height: 100%;
+  margin-bottom: -65px;
+  margin-top: 65px;
 }
 
 .content {
