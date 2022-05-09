@@ -7,12 +7,11 @@
 <div id="profile-menu">
   <ul id="profile-menu-list">
     {% if user.is_authenticated %}
-    <p>{{ user.username }}</p>
+    <p id="username">{{ user.username }}</p>
     <li><a href="{% url 'profile' %}">My profile</a></li>
     <li><a href="{% url 'inbox' %}">Inbox</a></li>
     <li><a href="{% url 'signout' %}">Sign out</a></li>
     {% else %}
-    <p>Logged out</p>
     <li><a href="{% url 'signin' %}">Sign in</a></li>
     {% endif %}
   </ul>
