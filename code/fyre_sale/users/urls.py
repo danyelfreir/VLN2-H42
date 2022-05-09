@@ -7,7 +7,7 @@ urlpatterns = [
     path('signin', views.sign_in, name="signin"),
     # path('signin', LoginView.as_view(template_name="users/signin.html"), name="signin"),
     path('signout', LogoutView.as_view(next_page="signin"), name="signout"),
-    # path('<str:username>', views.userpage, name="user_page"),
+    path('<str:username>', views.userpage, name="user_page"),
     path('profile', views.profilepage, name="profile"),
     path('profile/inbox/', views.inbox, name="inbox"),
     path('profile/inbox/<str:params>', views.inbox, name="inbox"),
