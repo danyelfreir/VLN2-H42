@@ -95,3 +95,14 @@ def notifications(request, not_id):
     return render(request, 'users/notification.html', context={
         'not': not_id
     })
+
+
+def userpage(request, username):
+    return render(request, 'users/userpage.html')
+
+def payment(request, username):
+    if request.method == 'POST':
+        print(1)
+
+    return render(request, 'users/payment.html')
+        'form' =

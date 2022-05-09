@@ -12,4 +12,5 @@ urlpatterns = [
     path('profile/inbox/', views.inbox, name="inbox"),
     path('profile/inbox/<str:params>', views.inbox, name="inbox"),
     path('profile/inbox/notifications/<int:not_id>', views.notifications, name="notifications"),
+    path('users/payment', views.payment, name="payment")
 ]

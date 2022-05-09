@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-
+from users.models import Payment_info
+from django.forms import ModelForm, widgets
 class SignInForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(SignInForm, self).__init__(*args, **kwargs)
@@ -29,3 +30,14 @@ class SignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class PaymentInsert(ModelForm):
+    class Meta:
+        model = Payment_info
+        exclude = ['id']
+        format = '%m-%Y'
+        widgets = {
+            'card_nr': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'xxxx-xxxx-xxxx-xxxx'})
+            'expires': widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'mm/yy'}.format)
+        }
