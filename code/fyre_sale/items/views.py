@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from items.models import *
-from users.models import User
+from django.contrib.auth.models import User
+from items.item_form import CreateItem
+import datetime
 
 
 def items_index(request):
@@ -68,7 +70,18 @@ def check_query(req):
     return name, subcat, cat
 
 def create_item(request):
+    date = datetime.datetime.now()
     if request.method == 'POST':
-        print('test1')
-    else:
-        print('test2')
+        tmp_user = User.objects.get(username=request.user)
+        form = CreateItem(request.POST)
+        if form.is_valid():
+            x = form.save(commit=False)
+            x.seller_id = tmp_user.id
+            x.date_of_upload = date.strftime("%x")
+            x.time_of_upload = date.strftime("%X")
+            x.save()
+            return redirect('items_index')
+    form = CreateItem()
+    return render(request, 'items/create_item.html', {
+        'form': form
+    })
