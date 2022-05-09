@@ -7,15 +7,19 @@
 <div id="filter-container">
     <p id="filter-title"><i class="fa-solid fa-sliders"></i> &ensp; Filter</p>
     <ul id="categories">
+        <a href="{% url 'items_index' %}">All items</a>
+        <p>Categories</p>
         {% for cat in categories %}
-            <li>{{ cat.name }}</li>
-            {% for subcat in subcategories %}
-                <ul id="sub-cat">
-                {% if subcat.category_id == cat.id %}
-                    <li>{{ subcat.name }}</li>
-                {% endif %}
-                </ul>
-            {% endfor %}
+            <li><a href="{% url 'items_index' %}?cat={{ cat.name }}">{{ cat.name }}</a></li>
+            {% if subcategories %}
+                {% for subcat in subcategories %}
+                    <ul id="sub-cat">
+                    {% if subcat.category_id == cat.id %}
+                        <li><a href="{% url 'items_index' %}?cat={{ cat.name }}&subcat={{ subcat.name }}">{{ subcat.name }}</a></li>
+                    {% endif %}
+                    </ul>
+                {% endfor %}
+            {% endif %}
         {% endfor %}
     </ul>
 

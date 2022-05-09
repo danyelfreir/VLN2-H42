@@ -1,22 +1,31 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.forms import ModelForm
+from django import forms
 from django.contrib.auth.models import User
 
 class SignInForm(AuthenticationForm):
-    def __init__(self):
-        super(SignInForm, self).__init__()
+    def __init__(self, *args, **kwargs):
+        super(SignInForm, self).__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-field'
 
 
-class SignUpForm(ModelForm):
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
     class Meta:
         model = User
-        fields = [
-            'email', 'username', 'first_name', 'last_name', 'password',
-        ]
+        fields = (
+            "username", "email", "password1", "password2"
+        )
 
-    def __init__(self):
-        super(ModelForm, self).__init__()
+    def __init__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-field'
+
+    def save(self, commit=True):
+        user = super(SignUpForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
