@@ -14,7 +14,8 @@
     <div class="right-side">
       <div id="search-button"><i class="fas fa-search"> </i> Search </div>
       {% if user.is_authenticated %}
-      <a href="{% url 'signout' %}" id="login">Sign Out</a>
+      {% include 'users/profilemenu.html' %}
+      <!-- <a href="{% url 'signout' %}" id="login">Sign Out</a> -->
       {% else %}
       <a href="{% url 'signin' %}" id="login">Sign In</a>
       {% endif %}
