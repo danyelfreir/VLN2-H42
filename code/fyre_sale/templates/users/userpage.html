@@ -1,16 +1,53 @@
 {% extends 'profile.html' %}
 
 {% block profile-container %}
-    <div class="item-container">
+    <div class="profile-container">
+        <div class="image-container">
+            <img class="profile-picture" src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="" >
+        </div>
+        <div class="rating">
+            <h3 class="item-header">Seller rating</h3>
+            <ul class="fa-ul">
+                <li class="fa-li"><i class="fa-regular fa-star" aria-hidden="true"></i></li>
+                <li class="fa-li"><i class="fa-regular fa-star" aria-hidden="true"></i></li>
+                <li class="fa-li"><i class="fa-regular fa-star" aria-hidden="true"></i></li>
+            </ul>
+        </div>
+        <div class="info">
+            <ul class="user-info">
+                <li><p class="info-header"><span>Username:</span><span class="info-value">Travison_1223</span></p>
+                <li><p class="info-header"><span>Name:</span><span class="info-value">Ravison Travis</span></p>
+                <li><p class="info-header"><span>Member Since:</span><span class="info-value">01.05.2022</span></p>
+            </ul>
+        </div>
+        <div class="line"></div>
+        <div class="bio">
+            <h3 class="item-header">Biography</h3>
+                <p class="desc-info"  id="short-descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    <!-- <div class="item-container">
         <div class="image-container">
             <img class="profile-picture" src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="" >
         </div>
         <div class="description-container">
+            <div class="seller-rating">
+                <h3 class="item-header">Seller rating</h3>
+                <div class="rating">
+                    <ul class="fa-ul">
+                        <li class="fa-li"><i class="fa-regular fa-star" aria-hidden="true"></i></li>
+                        <li class="fa-li"><i class="fa-regular fa-star" aria-hidden="true"></i></li>
+                        <li class="fa-li"><i class="fa-regular fa-star" aria-hidden="true"></i></li>
+                    </ul>
+                </div>
+
+            </div>
             <div>
                 <h3 class="item-header">Biography</h3>
                 <p class="item-info"  id="short-descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
+        <div class="line-break"></div>
         <div class="item-info2">
             <dl>
                 <dt><b>Username</b></dt><br>
@@ -21,6 +58,6 @@
                     <dd>01.05.2022</dd><br>
             </dl>
         </div>
-    </div>
+    </div> -->
 {% endblock profile-container %}
 

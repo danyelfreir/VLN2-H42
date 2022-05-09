@@ -1,4 +1,4 @@
-#profile {
+/* #profile {
     margin: auto;
     margin: 20px 10% 20px 10%;
 }
@@ -6,12 +6,21 @@
     grid-row-start:1;
 }
 .profile-picture {
-    object-fit: none; /* Do not scale the image */
-    object-position: center; /* Center the image within the element */
+    object-fit: none; /* Do not scale the image 
+    object-position: center; /* Center the image within the element 
     height: 350px;
     width: 350px;
 }
-
+.fa-ul li{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+.line-break {
+    width: 100%;
+    border-bottom: black solid 1px;
+    height: 0;
+}
 .item-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -57,7 +66,6 @@
     padding:40px;
 }
 
-/*Scroll-menu*/
 div.user-items {
     grid-row:3/ span 2;
     grid-column: 1 /span 4;
@@ -91,4 +99,63 @@ div.user-items {
     width:100%;
     top:0;
     grid-row:3/span 2;
+} */
+#profile {
+    margin: auto;
+    margin: 20px 10% 20px 10%;
+}
+.profile-container {
+    width: 100%;  
+    display: grid;
+    grid:
+        "image rating rating" 0.5fr
+        "image info info" 1fr
+        "line line line" 0.01fr
+        "bio bio bio" 1fr
+        / 1fr 1fr 1fr;
+    gap: 8px;
+}
+
+.image-container { 
+    grid-area: image; 
+}
+
+.profile-picture {
+    object-fit: none; 
+    object-position: center; 
+    width: 400px;
+    height: 400px;
+}
+.rating { 
+    grid-area: rating; 
+}
+.fa-ul li{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+}
+.info { 
+    grid-area: info; 
+}
+.line { 
+    grid-area: line; 
+    border-bottom: 2px solid #ccc;
+}
+.bio { 
+    grid-area: bio; 
+}
+.info-header {
+    color: rgb(106, 106, 106);
+    padding: 0 20px 0 0;
+
+}
+.info-value {
+    color: rgb(0, 0, 0);
+    padding-left: 20px;
+}
+.user-info {
+    list-style: none;
+    padding: 0;
+    font-size: 20px;
 }

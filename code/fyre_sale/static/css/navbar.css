@@ -95,6 +95,7 @@
   text-decoration: none;
   color: #ffffff;
   white-space: nowrap;
+  width: 30px;
 }
 
 #search-button:hover, #login:hover {
