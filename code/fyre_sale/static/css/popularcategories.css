@@ -11,7 +11,7 @@
     color: #444;
 }
 
-.cat1_img, .cat1_overlay, .cat1_text {
+.cat1_img, .cat1_overlay, .cat1_text, #link {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 }
