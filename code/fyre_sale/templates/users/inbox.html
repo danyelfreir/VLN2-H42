@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/inbox.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<div class="inbox-container">
+  <div class="left-menu">
+    <h2 class="frontpage-title">Inbox</h2>
+    <a href="{% url 'inbox' %}">Notifications</a><br>
+    <a href="{% url 'inbox' params='my_bids' %}">My bids</a><br>
+    <a href="{% url 'inbox' params='my_items' %}">Bids on my items</a><br>
+  </div>
+  <div class="inbox-list">
+    <table>
+      <th>Title</th>
+      <th>Date</th>
+      <th>Time</th>
+      {% for i in notifications %}
+        <tr>
+          <td><a href="{% url 'notifications' i.id %}">{{ i.title }}</a></td>
+          <td>{{ i.date }}</td>
+          <td>{{ i.time }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock content %}
