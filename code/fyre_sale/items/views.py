@@ -27,16 +27,14 @@ def create_item(request):
     date = datetime.datetime.now()
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        form = CreateItem(data=request.POST)
-
-        print(form.fields)
+        form = CreateItem(request.POST)
         if form.is_valid():
-            print("Valid")
-            form.fields['seller'].value = tmp_user.id
-            form.fields['date_of_upload'].value = date.strftime("%x")
-            form.fields['time_of_upload'].value = date.strftime("%X")
-            form.save()
-            return redirect('item_index')
+            x = form.save(commit=False)
+            x.seller_id = tmp_user.id
+            x.date_of_upload = date.strftime("%x")
+            x.time_of_upload = date.strftime("%X")
+            x.save()
+            return redirect('items_index')
     form = CreateItem()
     return render(request, 'items/create_item.html', {
         'form': form
