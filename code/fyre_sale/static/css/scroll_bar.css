@@ -1,5 +1,5 @@
-  
-#wrapper {
+
+#scroll-bar-wrapper {
     margin: 40px 0 40px 0;
     width: 101.7%;
     position: relative;
@@ -67,4 +67,3 @@
     font-size: 25px;
     margin: 0;
 }
-  
