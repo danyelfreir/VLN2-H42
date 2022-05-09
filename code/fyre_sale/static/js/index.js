@@ -35,3 +35,8 @@ searchFormInput.addEventListener('keydown', async () => {
 loginButton.addEventListener('click', () => {
   profileMenu.style.display = 'block';
 })
+
+
+function zoomIn(event){
+  console.log(event.target);
+}

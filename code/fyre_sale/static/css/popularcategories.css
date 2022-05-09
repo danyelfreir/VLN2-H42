@@ -7,46 +7,45 @@
     grid-template-columns: 23.5% 23.5% 23.5% 23.5%;
     grid-template-rows: 50% 50%;
     justify-content: space-evenly;
-    background-color: #fff;
     color: #444;
 }
 
-.cat1_img, .cat1_overlay, .cat1_text, #link {
+.cat1_img, .cat1_overlay, .cat1_text, #link-cat1 {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 }
 
-.cat2_img, .cat2_overlay, .cat2_text {
+.cat2_img, .cat2_overlay, .cat2_text, #link-cat2 {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
 }
 
-.cat3_img, .cat3_overlay, .cat3_text {
+.cat3_img, .cat3_overlay, .cat3_text, #link-cat3 {
     grid-column: 3 / 4;
     grid-row: 1 / 2;
 }
 
-.cat4_img, .cat4_overlay, .cat4_text {
+.cat4_img, .cat4_overlay, .cat4_text, #link-cat4 {
     grid-column: 4 / 5;
     grid-row: 1 / 2;
 }
 
-.cat5_img, .cat5_overlay, .cat5_text {
+.cat5_img, .cat5_overlay, .cat5_text, #link-cat5 {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
 }
 
-.cat6_img, .cat6_overlay, .cat6_text {
+.cat6_img, .cat6_overlay, .cat6_text, #link-cat6 {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }
 
-.cat7_img, .cat7_overlay, .cat7_text {
+.cat7_img, .cat7_overlay, .cat7_text, #link-cat7 {
     grid-column: 3 / 4;
     grid-row: 2 / 3;
 }
 
-.cat8_img, .cat8_overlay, .cat8_text {
+.cat8_img, .cat8_overlay, .cat8_text, #link-cat8 {
     grid-column: 4 / 5;
     grid-row: 2 / 3;
 }
@@ -55,12 +54,13 @@
     width: 100%
 }
 
-.cat_img_over:hover .cat_img1 {
-    transform: scale(1.5);
-}
 
 .cat_text {
     margin: 3%;
     color: black;
     font-size: 1.75vw;
+}
+
+.cat_img_over {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
