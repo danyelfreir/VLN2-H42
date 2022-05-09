@@ -36,5 +36,9 @@ def sign_in(request):
         'form': SignInForm(),
     })
 
-def userpage(request, username):
-    return render(request, 'users/userpage.html')
+def profilepage(request, username):
+    return render(request, 'frontpage/index.html')
+
+
+def inbox(request, username):
+    return render(request, 'frontpage/index.html')

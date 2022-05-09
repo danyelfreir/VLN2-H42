@@ -1,0 +1,11 @@
+#profile-menu {
+  display: none;
+  border: 1px solid red;
+  position: absolute;
+  z-index: 1000;
+  width: 150px;
+  background-color: #ffffff;
+  margin: auto;
+  right: 15%;
+  top: 10%;
+}

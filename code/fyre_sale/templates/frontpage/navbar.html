@@ -13,17 +13,10 @@
     </a>
     <div class="right-side">
       <div id="search-button"><i class="fas fa-search" id> </i></div>
-      <!-- <a href="{% url 'signin' %}" id="login"><i class="fa-solid fa-user"></i></a>
- -->
-      <!-- <div id="search-button"><i class="fas fa-search"> </i> Search </div> -->
-      {% if user.is_authenticated %}
-      {% include 'users/profilemenu.html' %}
-      <!-- <a href="{% url 'signout' %}" id="login">Sign Out</a> -->
-      {% else %}
-      <a href="{% url 'signin' %}" id="login"><i class="fa-solid fa-user"></i></a>
-      {% endif %}
-
+      <span id="login"><i class="fa-solid fa-user"></i></span>
+      <br>
     </div>
+    {% include 'users/profilemenu.html' %}
   </div>
   <div id="blue_right"></div>
 </div>
