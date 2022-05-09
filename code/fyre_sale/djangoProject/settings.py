@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'items.apps.ItemsConfig',
     'frontpage.apps.FrontpageConfig',
     'fontawesomefree',
+    'forms',
 ]
 
 MIDDLEWARE = [
