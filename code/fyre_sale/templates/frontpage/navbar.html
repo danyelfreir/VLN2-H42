@@ -12,44 +12,20 @@
       <img id="logo" src="{% static 'img/Logo.png' %}" alt="Fyre sale logo">
     </a>
     <div class="right-side">
-
-      <div id="search-button"><i class="fas fa-search"> </i> Search </div>
+      <div id="search-button"><i class="fas fa-search" id> </i></div>
+      <!-- <a href="{% url 'signin' %}" id="login"><i class="fa-solid fa-user"></i></a>
+ -->
+      <!-- <div id="search-button"><i class="fas fa-search"> </i> Search </div> -->
       {% if user.is_authenticated %}
       <a href="{% url 'signout' %}" id="login">Sign Out</a>
       {% else %}
-      <a href="{% url 'signin' %}" id="login">Sign In</a>
+      <a href="{% url 'signin' %}" id="login"><i class="fa-solid fa-user"></i></a>
       {% endif %}
 
     </div>
   </div>
   <div id="blue_right"></div>
 </div>
-<!-- <div id="modal">
-  <div id="login-modal">
-    <div class="close1">
-    <a href="javascript:void(0)" class="close2" onclick="closelogin()">&times;</a>
-    </div> 
-    <h4 class="form-title">Login</h4><br>
-    <p class="form-subtitle">Welcome back</p>
-    <form class="loginform" action="">
-      <label class="form-field-label" for="email">Email</label><br>
-      <input class="form-field" type="text" id="email" name="email"><br>
-      <label class="form-field-label" for="passw">Password</label><br>
-      <input class="form-field" type="password" id="passw" name="passw"><br><br>
-      <a class="forgotten-pw" href="#">Forgotten password?</a>
-      <div id="form-remember">
-        <input class="form-remember-box" type="checkbox" name="remember">
-        <p class="form-remember-text">Remember me</p>
-      </div>
-      <button class="form-submit" id="submit" type="submit" value="Submit">Log in</button><br>
-    </form>
-    <div id="form-footer">
-      <p class="form-footertext">Don't have an account?</p>
-      <button type="button" class="form-signup" id="form-signup">SIGN UP</button>
-    </div>
-  </div>
-</div> -->
-
 <div id="search-dropdown">
 {#  <button id="cat-btn" type="" name="button">Categories</button>#}
   <div id="search-container">
