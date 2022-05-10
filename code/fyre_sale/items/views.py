@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
-from items.models import ItemForsale
+from items.models import ItemForSale, SubCategory, Category
 from django.contrib.auth.models import User
 from items.item_form import CreateItem, PlaceBid
 import datetime
@@ -87,20 +87,21 @@ def create_item(request):
         'form': form
     })
 
-def place_bid(request):
+def place_bid(request, item_id):
     date = datetime.datetime.now()
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        tmp_item = ItemForsale.get(name=request.name)
-        tmp_price = ItemForSale.get(price=request.price)
+        tmp_item = ItemForSale.get(name=request.name)
+        # tmp_price = ItemForSale.get(price=request.price)
         form = PlaceBid(request.POST)
         if form.is_valid():
             x = form.save(commit=False)
             x.buyer = tmp_user.id
-            x.price = tmp_price
+            # x.price = tmp_price
             x.time_of_offer = date
             x.item = tmp_item
-            return redirect('item_detail')
+            x.save()
+            return redirect('items_index')
     form = PlaceBid
     return render(request, 'items/placebid.html', {
         'form': form
