@@ -2,17 +2,22 @@ body {
     overflow: hidden;
 }
 
+.padding-popup {
+    top: 100px;
+    bottom: 100px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 520px;
+    position: absolute;
+    overflow-x: scroll;
+}
+
 #popup {
     width: 500px;
+    height: auto;
+    margin: auto;
     background-color: #fbfbfb;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding-top: 20px;
-    margin: 0;
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    border-radius: 5px 5px 5px 5px;
 }

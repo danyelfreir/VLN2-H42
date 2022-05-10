@@ -5,8 +5,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}">
 {% endblock styles %}
 {% block popup %}
-  <div id="popup">
-    {% block signup-form %}
-    {% endblock signup-form %}
+  <div class="padding-popup">
+    <div id="popup">
+      {% block signup-form %}
+      {% endblock signup-form %}
+    </div>
   </div>
 {% endblock popup %}
