@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from users.forms import SignInForm, SignUpForm
+from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
 from users.models import User
 from items.models import Offer
 
@@ -100,9 +100,31 @@ def notifications(request, not_id):
 def userpage(request, username):
     return render(request, 'users/userpage.html')
 
-def payment(request, username):
+def payment(request):
     if request.method == 'POST':
-        print(1)
+        tmp_user = User.objects.get(username=request.user)
+        form = PaymentInsert(request.POST)
+        if form.is_valid():
+            form.save()
 
-    return render(request, 'users/payment.html')
-        'form' =
+            return redirect('user_page')
+    else:
+        form = PaymentInsert()
+    return render(request, 'users/payment.html', {
+        'form': form
+    })
+
+def address(request):
+    if request.method == 'POST':
+        tmp_user = User.objects.get(username=request.user)
+        form = AddressInsert(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('user_page')
+    else:
+        form = AddressInsert(request.POST)
+        if form.is_valid():
+            form.save()
+    return render(request, 'users/address.html', {
+        'form': form
+    })

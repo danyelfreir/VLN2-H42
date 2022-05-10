@@ -6,18 +6,20 @@
 {% endblock styles %}
 
 {% block content %}
-<div id="modal">
+<div id="popup">
     <div id="password-modal">
-        <h4 class="form-title">Payment</h4><br>
-        <p class="form-subtitle">Save your payment <br>for easy checkout</p>
-        <form class="loginform" action="{% url 'payment' %}" method="POST">
+        <h4 class="form-title">Address</h4><br>
+        <p class="form-subtitle">Save your address <br>for easy checkout</p>
+        <form class="loginform" action="{% url 'address' %}" method="POST">
         {% csrf_token %}
-        <p>Credit card number</p>
-        {{form.card_nr}}
-        <p>Expiry date</p>
-        {{form.expires}}
-        <p>CVC</p>
-        {{form.cvc}}
+        <p>Street name and number</p>
+        {{form.street_name}}
+        <p>Zip</p>
+        {{form.zip}}
+        <p>City</p>
+        {{form.city}}
+        <p>Country</p>
+        {{form.country}}
         {{ form.errors }}
         <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
         </form>
