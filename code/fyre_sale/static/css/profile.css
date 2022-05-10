@@ -147,7 +147,8 @@ div.user-items {
 /*User profile*/
 .rating { 
     grid-area: rating; 
-} */
+}
+
 .fa-ul li{
     display: inline-block;
     margin: 0;

@@ -3,7 +3,6 @@ from django import forms
 from django.contrib.auth.models import User
 from users.models import Payment_info, Address_info
 from django.forms import ModelForm, widgets
-from django.forms.utils import ErrorList
 
 # class DivErrorList(ErrorList):
 #     def __str__(self):
@@ -67,7 +66,6 @@ class PaymentInsert(ModelForm):
     #         field.field.widget.attrs['class'] = 'form-field'
 
 class AddressInsert(ModelForm):
-
     class Meta:
         def __init__(self, *args, **kwargs):
             super(AddressInsert, self).__init__(*args, **kwargs)
