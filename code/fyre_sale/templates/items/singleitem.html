@@ -20,12 +20,12 @@
         <div class="seller-info">
             <h3 class="item-header">About seller</h3>
             <ul class="info-list">
-                <li><p class="info-header"><span>Seller name:</span><span class="info-value">{{ seller.name }}</span></p>
-                <li><p class="info-header"><span>Seller rating:</span><span class="info-value">Seller rating***</span></p>
+                <li><p class="info-header"><span>Seller:</span><span class="info-value">{{ seller.username }}</span></p>
+                <li><p class="info-header"><span>Rating:</span><span class="info-value">Seller rating***</span></p>
             </ul>
         </div>
         <div class="bid_container">
-            <button class="place_bid">Place Bid</button>
+            <a href="{% url 'place_bid' item.id %}" class="place_bid">Place Bid</a>
         </div>
     </div>
 

@@ -9,7 +9,7 @@
 #filter-title {
     font-size: 25px;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 50px;
     margin-bottom: 10px;
     color: #4a5ee5;
     font-weight: bold;
@@ -71,5 +71,5 @@ li:hover {
   font-size: 18px;
   margin: 10px;
   text-decoration: none;
-
+  z-index: 10;
 }

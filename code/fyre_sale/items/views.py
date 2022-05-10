@@ -1,9 +1,11 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from items.models import *
+from items.models import ItemForSale
+from items.models import ItemForSale, SubCategory, Category
 from django.contrib.auth.models import User
-from items.item_form import CreateItem
+from items.item_form import CreateItem, PlaceBid
 import datetime
+
 
 
 def items_index(request):
@@ -54,6 +56,50 @@ def item_search(request):
     })
 
 
+def create_item(request):
+    date = datetime.datetime.now()
+    if request.method == 'POST':
+        tmp_user = User.objects.get(username=request.user)
+        form = CreateItem(request.POST)
+        if form.is_valid():
+            x = form.save(commit=False)
+            x.seller_id = tmp_user.id
+            x.date_of_upload = date.strftime("%x")
+            x.time_of_upload = date.strftime("%X")
+            x.cur_bid = x.min_bid
+            x.save()
+            return redirect('items_index')
+    form = CreateItem()
+    return render(request, 'items/create_item.html', {
+        'form': form
+    })
+
+def place_bid(request, item_id):
+    date = datetime.datetime.now()
+    chosen_item = ItemForSale.objects.get(pk=item_id)
+    if request.method == 'POST':
+        tmp_user = User.objects.get(username=request.user)
+        form = PlaceBid(chosen_item, request.POST)
+        if form.is_valid():
+            x = form.save(commit=False)
+            x.buyer = tmp_user
+            x.time_of_offer = date
+            x.item = chosen_item
+            x.save()
+            chosen_item.cur_bid = x.price
+            chosen_item.save()
+            return redirect('items_index')
+        else:
+            print(form.errors)
+    form = PlaceBid()
+    return render(request, 'items/placebid.html', {
+        'form': form,
+        'item': chosen_item,
+    })
+
+
+# ======= HELPER FUNCTIONS =========
+
 def check_query(req):
     try:
         name = req.GET['name']
@@ -68,21 +114,3 @@ def check_query(req):
     except KeyError:
         cat = None
     return name, subcat, cat
-
-
-def create_item(request):
-    date = datetime.datetime.now()
-    if request.method == 'POST':
-        tmp_user = User.objects.get(username=request.user)
-        form = CreateItem(request.POST)
-        if form.is_valid():
-            x = form.save(commit=False)
-            x.seller_id = tmp_user.id
-            x.date_of_upload = date.strftime("%x")
-            x.time_of_upload = date.strftime("%X")
-            x.save()
-            return redirect('items_index')
-    form = CreateItem()
-    return render(request, 'items/create_item.html', {
-        'form': form
-    })

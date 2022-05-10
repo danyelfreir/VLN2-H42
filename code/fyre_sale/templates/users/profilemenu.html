@@ -4,7 +4,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/profilemenu.css' %}">
 {% endblock styles %}
 
-<div id="profile-menu">
+<div id="profile-menu" style="display: none;">
   <ul id="profile-menu-list">
     {% if user.is_authenticated %}
     <p>{{ user.username }}</p>
@@ -16,3 +16,4 @@
     {% endif %}
   </ul>
 </div>
+

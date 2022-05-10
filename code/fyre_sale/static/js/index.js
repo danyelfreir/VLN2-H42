@@ -32,7 +32,8 @@ searchFormInput.addEventListener('keydown', async () => {
 // =====================================
 
 // ============ PROFILE MENU ===========
-loginButton.addEventListener('click', () => {
+loginButton.addEventListener('click', (e) => {
+  console.log(e.target);
   profileMenu.style.display = 'block';
 })
 
