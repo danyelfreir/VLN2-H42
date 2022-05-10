@@ -33,3 +33,5 @@ class Payment_info(models.Model):
 class User_rating(models.Model):
     userid = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     user_rating = models.IntegerField(default=None)
+
+class Notification(models.Model):
