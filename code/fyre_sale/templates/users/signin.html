@@ -9,12 +9,10 @@
       {{ form.username }}
       <label class="form-field-label" for="passw">Password</label><br>
       {{ form.password }}
-      {{ form.errors }}
-    <div id="form-remember">
-      <input class="form-remember-box" type="checkbox" name="remember">
-      <p class="form-remember-text">Remember me</p>
-    </div>
-    <button class="form-submit" id="submit" type="submit" value="Submit">Sign up</button><br>
+      {% if form.errors %}
+        <p style="color: red">Invalid username or password</p>
+      {% endif %}
+    <button class="form-submit" id="submit" type="submit" value="Submit">Sign in</button><br>
   </form>
   <div id="form-footer">
     <p class="form-footertext">Don't have an account?</p>

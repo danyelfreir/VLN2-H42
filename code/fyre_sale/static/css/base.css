@@ -28,9 +28,11 @@ body {
   flex-direction: column;
 }
 
+
 #site-content {
   flex: 1;
 }
+
 
 .content {
   width: 70%;

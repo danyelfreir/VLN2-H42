@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from items.models import *
 from django.contrib.auth.models import User
@@ -68,6 +68,7 @@ def check_query(req):
     except KeyError:
         cat = None
     return name, subcat, cat
+
 
 def create_item(request):
     date = datetime.datetime.now()

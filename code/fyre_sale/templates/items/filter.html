@@ -4,6 +4,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/filter.css' %}">
 {% endblock styles %}
 
+
+<a id="create-item" href="{% url 'create_item' %}">Upload your ad</a>
 <div id="filter-container">
     <p id="filter-title"><i class="fa-solid fa-sliders"></i> &ensp; Filter</p>
     <div><h3 class="category-header">{{ cat.name }}</h3></div> <!--Hægt að gera ehv svona??-->
