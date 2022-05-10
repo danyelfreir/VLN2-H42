@@ -2,9 +2,10 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
-from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
-from users.models import User
+from .forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
+from .models import User
 from items.models import Offer
+from django.contrib.formtools.wizard.views import SessionWizardView
 
 
 def sign_up(request):
@@ -132,3 +133,14 @@ def address(request):
     return render(request, 'users/address.html', {
         'form': form
     })
+
+class Checkout(SessionWizardView):
+    template_name = 'checkout.html'
+    def done(self, form_list, **kwargs):
+        form_data = self.process_form_data(form_list)
+        return self.render_to_response('done.html', {'form_data': form_data})
+
+    def process_form_data(form_list):
+        form_data = [form.cleaned_data for form in form_list]
+        return form_data
+
