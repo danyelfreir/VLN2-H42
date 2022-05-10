@@ -1,9 +1,9 @@
 {% extends 'popup.html' %}
 
-{% block signup-form %}
-    <h4 class="form-title">Sign up</h4><br>
-    <p class="form-subtitle">Join our community!</p>
-    <form class="loginform" method="POST" action="">
+{% block form %}
+  <h4 class="form-title">Sign up</h4><br>
+  <p class="form-subtitle">Join our community!</p>
+  <form class="loginform" method="POST" action="">
     {% csrf_token %}
     <label class="form-field-label" for="username">Username</label><br>
     {{ form.username }}
@@ -26,4 +26,4 @@
     <a href="{% url 'signin' %}" class="form-signup" id="form-signup">LOG IN</a>
     </div>
 
-{% endblock signup-form %}
+{% endblock form %}

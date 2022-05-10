@@ -6,7 +6,7 @@ body {
 header {
     width:100%;
     height:70px;
-    background-color: #303C6C;
+    background-color: #4a5ee5;
 }
 #logo{
     float:left;
@@ -22,7 +22,7 @@ header {
     text-decoration: none;
 }
 #sign_in:hover{
-    color:#F4976C;
+    color:#f08c34;
 }
 li:hover {
     cursor: pointer;
@@ -32,7 +32,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    color:#F4976C;
+    color:#f08c34;
 }
 li {
     text-decoration: none;
@@ -96,13 +96,13 @@ ul {
 footer {
     width:100%;
     height:70px;
-    background-color: #303C6C;
+    background-color: #4a5ee5;
     left: 0;
     bottom: 0;
 }
 
 .submit_btn {
-    background-color: #303C6C ;
+    background-color: #4a5ee5 ;
     color:white;
 }
 
@@ -111,7 +111,7 @@ footer {
 }
 .submit_btn:hover {
     background-color: #394780;
-    color:#F4976C;
+    color:#f08c34;
 }
 /* Work in progress */
 /* The Modal (background) */
@@ -137,7 +137,7 @@ footer {
 
 /* The Close Button */
 .modalbtn {
-    background-color: #303C6C;
+    background-color: #4a5ee5;
     color: white;
     font-size: 17px;
     font-weight: bold;
@@ -146,7 +146,7 @@ footer {
 
 .modalbtn:hover,
 .modalbtn:focus {
-  color: #F4976C;
+  color: #f08c34;
   text-decoration: none;
   cursor: pointer;
 }
@@ -177,7 +177,7 @@ span.question{
     color:black;
 }
 button.signup_btn {
-     background-color: #303C6C;
+     background-color: #4a5ee5;
     color: white;
     font-size: 17px;
     font-weight: bold;
@@ -196,7 +196,7 @@ button.signup_btn {
     z-index: 1;
     top: 15%;
     right:0;
-    background-color: #303C6C;
+    background-color: #4a5ee5;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -302,12 +302,12 @@ div.similar_items_container a:hover {
 }
 
 button.place_bid {
-    background-color: #303C6C;
+    background-color: #4a5ee5;
     color:white;
     padding:20px;
     border-radius: 8px;
 }
 button.place_bid:hover {
-    color:#F4976C;
+    color:#f08c34;
     cursor:pointer;
 }

@@ -19,12 +19,11 @@
 .grid-item {
   height: 300px;
   width: 250px;
-  border: 2px solid #ffffff;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
   background-color: #fff;
-}
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;}
 
 .grid-item:hover {
   filter: drop-shadow(0 0 0.75rem #c4c4c4);
@@ -43,7 +42,7 @@
   height: 65px;
   position: absolute;
   bottom: 0;
-  background-color: #303C6C;
+  background-color: #4a5ee5;
 }
 
 .grid-item-name {
@@ -59,7 +58,6 @@
 
 .grid-item-price {
   font-size: 14px;
-  color: #fff;
   color: #c4c4c4;
   padding-left: 15px;
   /* display: flex;
