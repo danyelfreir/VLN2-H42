@@ -21,11 +21,17 @@ body {
   /* justify-content: space-between; */
 
 }
-
+#wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+#site-content {
+  flex: 1;
+  height: 100%;
+}
 
 .content {
-  /* padding-top: 65px; */
-  padding-bottom: 65px;
   width: 70%;
   overflow: hidden;
   margin: 0 15% 0 15%;
