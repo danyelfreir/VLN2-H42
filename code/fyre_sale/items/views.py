@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from items.models import ItemForSale
+from users.models import Notification
 from items.models import ItemForSale, SubCategory, Category
 from django.contrib.auth.models import User
 from items.item_form import CreateItem, PlaceBid
@@ -62,12 +63,12 @@ def create_item(request):
         tmp_user = User.objects.get(username=request.user)
         form = CreateItem(request.POST)
         if form.is_valid():
-            x = form.save(commit=False)
-            x.seller_id = tmp_user.id
-            x.date_of_upload = date.strftime("%x")
-            x.time_of_upload = date.strftime("%X")
-            x.cur_bid = x.min_bid
-            x.save()
+            item_obj = form.save(commit=False)
+            item_obj.seller_id = tmp_user.id
+            item_obj.date_of_upload = date.strftime("%x")
+            item_obj.time_of_upload = date.strftime("%X")
+            item_obj.cur_bid = item_obj.min_bid
+            item_obj.save()
             return redirect('items_index')
     form = CreateItem()
     return render(request, 'items/create_item.html', {
@@ -75,23 +76,23 @@ def create_item(request):
     })
 
 def place_bid(request, item_id):
-    date = datetime.datetime.now()
     chosen_item = ItemForSale.objects.get(pk=item_id)
     if request.method == 'POST':
-        tmp_user = User.objects.get(username=request.user)
+        date = datetime.datetime.now()
+        bidding_user = User.objects.get(username=request.user)
         form = PlaceBid(chosen_item, request.POST)
         if form.is_valid():
-            x = form.save(commit=False)
-            x.buyer = tmp_user
-            x.time_of_offer = date
-            x.item = chosen_item
-            x.save()
-            chosen_item.cur_bid = x.price
-            chosen_item.save()
+            offer_obj = form.save(commit=False)
+            offer_obj.buyer = bidding_user
+            offer_obj.time_of_offer = date
+            offer_obj.item = chosen_item
+            offer_obj.save()
+            update_and_notify(chosen_item, offer_obj, date)
             return redirect('items_index')
         else:
             print(form.errors)
-    form = PlaceBid()
+    else:
+        form = PlaceBid()
     return render(request, 'items/placebid.html', {
         'form': form,
         'item': chosen_item,
@@ -114,3 +115,13 @@ def check_query(req):
     except KeyError:
         cat = None
     return name, subcat, cat
+
+def update_and_notify(item_obj, offer_obj, date_time):
+    item_obj.cur_bid = offer_obj.price
+    item_obj.save()
+    x = Notification.objects.create(
+        recipient=item_obj.seller,
+        offer=offer_obj,
+        timestamp=date_time
+    )
+

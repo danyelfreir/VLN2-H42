@@ -12,7 +12,7 @@
         {% csrf_token %}
         <label class="form-field-label" for="bid">Enter your bid</label><br>
         {{ form.price }}
-        {{ form.errors }}
+        {{ form.non_field_errors }}
       <button class="form-submit" id="submit" type="submit" value="Submit">Place bid</button><br>
     </form>
 

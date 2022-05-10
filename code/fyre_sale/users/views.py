@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
-from users.models import User
+from users.models import User, Notification
 from items.models import Offer
 
 
@@ -56,41 +56,19 @@ def inbox(request, params=None):
     elif params == 'my_items':
         bids = Offer.objects.raw("\n"
                                  "SELECT * FROM items_offer O WHERE O.item_id IN (\n"
-                                 "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s)\n", [user.id])
+                                 "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s);", [user.id])
         return render(request, 'users/inbox.html', context={
             'user': user,
             'bids': bids,
         })
-    notifications = [
-        {
-            "id": 1,
-            "title": "Bid rejected.",
-            "date": "2022-05-08",
-            "time": "12:35:22",
-            "content": "Ravisson Travis rejected your bid on item \"Cool shirt\""
-        },
-        {
-            "id": 2,
-            "title": "Bid rejected.",
-            "date": "2022-05-08",
-            "time": "18:25:52",
-            "content": "John Doe rejected your bid on item \"Video game collection\""
-        },
-        {
-            "id": 3,
-            "title": "Bid accepted.",
-            "date": "2022-05-09",
-            "time": "12:46:55",
-            "content": "Jane Johnson accepted your bid on item \"Cool shirt\""
-        }
-    ]
+    notifications = Notification.objects.filter(recipient=user)
     return render(request, 'users/inbox.html', context={
         'user': user,
         'notifications': notifications
     })
 
 
-def notifications(request, not_id):
+def notification(request, not_id):
     return render(request, 'users/notification.html', context={
         'not': not_id
     })
@@ -98,6 +76,7 @@ def notifications(request, not_id):
 
 def userpage(request, username):
     return render(request, 'users/userpage.html')
+
 
 def payment(request):
     if request.method == 'POST':
