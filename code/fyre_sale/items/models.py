@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from users.models import User_info
 from django.contrib.auth.models import User
 
@@ -37,6 +39,9 @@ class ItemForSale(models.Model):
 
     def __str__(self):
         return self.seller
+
+    def get_absolute_url(self):
+        return reverse('item_detail', args=[str(self.id)])
 
 
 class Offer(models.Model):

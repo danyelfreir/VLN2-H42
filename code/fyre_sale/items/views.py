@@ -69,6 +69,7 @@ def check_query(req):
         cat = None
     return name, subcat, cat
 
+
 def create_item(request):
     date = datetime.datetime.now()
     if request.method == 'POST':

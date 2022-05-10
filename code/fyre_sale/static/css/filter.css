@@ -1,5 +1,5 @@
 #filter-container {
-    margin-top: 20px;
+    margin-top: 50px;
     width: 20%;
     height: 100%;
     margin-left: 0%;
@@ -56,4 +56,17 @@ li:hover {
     color: #303C6C;
     font-weight: bold;
     text-align: center;
-  }
+}
+
+#create-item {
+  position: absolute;
+  border: 0;
+  padding: 10px;
+  left: 50px;
+  border-radius: 4px;
+  background-color: #303C6C;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+
+}
