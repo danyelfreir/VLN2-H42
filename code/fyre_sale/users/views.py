@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
-from users.forms import SignInForm, SignUpForm
+from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
 from users.models import User
 from items.models import Offer
 
@@ -93,4 +93,42 @@ def inbox(request, params=None):
 def notifications(request, not_id):
     return render(request, 'users/notification.html', context={
         'not': not_id
+    })
+
+
+def userpage(request, username):
+    return render(request, 'users/userpage.html')
+
+def payment(request):
+    if request.method == 'POST':
+        tmp_user = User.objects.get(username=request.user)
+        form = PaymentInsert(request.POST)
+        if form.is_valid():
+            user_id = form.save(commit=False)
+            user_id.id_id = tmp_user.id
+            user_id.save()
+            user_id.save()
+            return redirect('user_page')
+    else:
+        form = PaymentInsert()
+    return render(request, 'users/payment.html', {
+        'form': form
+    })
+
+def address(request):
+    if request.method == 'POST':
+        tmp_user = User.objects.get(username=request.user)
+        form = AddressInsert(request.POST)
+        if form.is_valid():
+            user_id = form.save(commit=False)
+            user_id.id_id = tmp_user.id
+            user_id.save()
+            user_id.save()
+        return redirect('user_page')
+    else:
+        form = AddressInsert(request.POST)
+        if form.is_valid():
+            form.save()
+    return render(request, 'users/address.html', {
+        'form': form
     })
