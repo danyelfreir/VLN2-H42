@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm
 from users.models import User
@@ -12,12 +13,12 @@ def sign_up(request):
         if form.is_valid():
             form.save()
             return redirect('signin')
-        else:
-            print("epic fail")
-
+    else:
+        form = SignUpForm()
     return render(request, 'users/signup.html', context={
-        'form': SignUpForm(),
+        'form': form,
     })
+
 
 
 def sign_in(request):
@@ -29,13 +30,11 @@ def sign_in(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f'You are now logged in as {username}.')
                 return redirect('index')
-            else:
-                messages.error(request, 'Invalid username or password.')
-
+    else:
+        form = SignInForm()
     return render(request, 'users/signin.html', context={
-        'form': SignInForm(),
+        'form': form,
     })
 
 
