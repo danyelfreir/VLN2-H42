@@ -89,20 +89,19 @@ def create_item(request):
 
 def place_bid(request, item_id):
     date = datetime.datetime.now()
+    chosen_item = ItemForSale.objects.get(pk=item_id)
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        tmp_item = ItemForSale.get(name=request.name)
-        # tmp_price = ItemForSale.get(price=request.price)
         form = PlaceBid(request.POST)
         if form.is_valid():
             x = form.save(commit=False)
             x.buyer = tmp_user.id
-            # x.price = tmp_price
             x.time_of_offer = date
             x.item = tmp_item
             x.save()
             return redirect('items_index')
-    form = PlaceBid
+    form = PlaceBid()
     return render(request, 'items/placebid.html', {
-        'form': form
+        'form': form,
+        'item': chosen_item,
     })
