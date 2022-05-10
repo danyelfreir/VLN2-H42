@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'popup.html' %}
 {% load static %}
 
 {% block styles %}
        <link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}">
 {% endblock styles %}
 
-{% block content %}
+{% block signup-form %}
     <h4 class="form-title">Create ad</h4><br>
   <p class="form-subtitle">Put your items up for auction</p>
   <form class="loginform" action="{% url 'create_item' %}" method="POST">
@@ -25,4 +25,4 @@
     {{ form.errors }}
     <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
   </form>
-{% endblock content %}
+{% endblock signup-form %}
