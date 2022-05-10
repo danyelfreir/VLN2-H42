@@ -6,9 +6,9 @@
 
 <div id="filter-container">
     <p id="filter-title"><i class="fa-solid fa-sliders"></i> &ensp; Filter</p>
+    <div><h3 class="category-header">{{ cat.name }}</h3></div> <!--Hægt að gera ehv svona??-->
     <ul id="categories">
         <a href="{% url 'items_index' %}">All items</a>
-        <p>Categories</p>
         {% for cat in categories %}
             <li><a href="{% url 'items_index' %}?cat={{ cat.name }}">{{ cat.name }}</a></li>
             {% if subcategories %}

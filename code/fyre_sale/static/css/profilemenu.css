@@ -1,11 +1,24 @@
 #profile-menu {
   display: none;
-  border: 1px solid red;
   position: absolute;
-  z-index: 1000;
+  z-index: 1003;
   width: 150px;
+  height: auto;
   background-color: #ffffff;
-  margin: auto;
-  right: 15%;
-  top: 10%;
+  top: 60px;
+  margin-left: 50px;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}
+#profile-menu-list {
+  float:left;
+  list-style-type: none;
+  padding: 10px;
+}
+#profile-menu-list li {
+  padding:5px 5px 5px 0;
+}
+#username {
+  color: #303c6c;
+  font-weight: bold;
+  text-transform: uppercase;
 }

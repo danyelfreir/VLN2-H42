@@ -1,47 +1,33 @@
-{% extends 'base.html' %}
-{% load static %}
 
-{% block styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/singleitem.css' %}">
-{% endblock styles %}
+{% extends 'profile.html' %}
 
-{% block content %}
-<div class="item_container">
-    <div class="image_container"><a href="fortesting.html"><img class="ad_picture" src="{{ item.image }}" alt="cat picture" ></a><br></div>
-    <div class="description_container">
-        <div>
-            <h3 class="item_header">Short description</h3>
-            <p class="item_info"  id="short_descr">{{ item.name }}</p>
+{% block profile-container %}
+    <div class="profile-container">
+        <div class="image-container">
+            <img class="profile-picture" src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="" >
         </div>
-        <div>
-            <h3 class="item_header">Long description</h3>
-            <p class="item_info"  id="long_descr">{{ item.long_desc }}</p>
+        <div class="item-header">
+            <h3 class="item-name">{{ item.name }}</h3>
         </div>
-        <div>
-            <h3 class="item_header">Condition</h3>
-            <p class="item_info" id="condition">{{ item.condition }}</p>
+        <div class="item-profile-info">
+            <ul class="info-list">
+                <li><p class="info-header"><span>Posted on:</span><span class="info-value">{{ item.time_of_upload }} / {{ item.date_of_upload }}</span></p>
+                <li><p class="info-header"><span>Current highest bid:</span><span class="info-value">{{ item.cur_bid }} kr.</span></p>
+                <li><p class="info-header"><span>Description:</span><span class="info-value">{{ item.long_desc }}</span></p>
+            </ul>            
+        </div>
+        <div class="line"></div>
+        <div class="seller-info">
+            <h3 class="item-header">About seller</h3>
+            <ul class="info-list">
+                <li><p class="info-header"><span>Seller name:</span><span class="info-value">{{ seller.name }}</span></p>
+                <li><p class="info-header"><span>Seller rating:</span><span class="info-value">Seller rating***</span></p>
+            </ul>
+        </div>
+        <div class="bid_container">
+            <button class="place_bid">Place Bid</button>
         </div>
     </div>
-    <div class="bid_container">
-        <button class="place_bid">Place Bid</button>
-    </div>
-    <div class="item_info2">
-        <dl>
-            <dt><b>Seller</b></dt><br>
-                <dd>{{ seller.name }}</dd><br>
-            <dt><b>Posted on</b></dt><br>
-                <dd>{{ item.time_of_upload }}<br>{{ item.date_of_upload }}</dd><br>
-            <dt><b>Current highest bid</b></dt><br>
-                <dd>{{ item.cur_bid }} kr.</dd><br>
-        </dl>
-    </div>
-    <div class="similar_items_container">
-        <a href="fortesting.html"><img class="ad_picture" src="cat.jpg" alt="cat picture" ></a>
-        <a href="fortesting.html"><img class="ad_picture" src="cat.jpg" alt="cat picture" ></a>
-        <a href="fortesting.html"><img class="ad_picture" src="cat.jpg" alt="cat picture" ></a>
-        <a href="fortesting.html"><img class="ad_picture" src="cat.jpg" alt="cat picture" ></a>
-        <a href="fortesting.html"><img class="ad_picture" src="cat.jpg" alt="cat picture" ></a>
-        <a href="fortesting.html"><img class="ad_picture" src="cat.jpg" alt="cat picture" ></a>
-    </div>
-</div>
-{% endblock content %}
+
+
+{% endblock profile-container %}
