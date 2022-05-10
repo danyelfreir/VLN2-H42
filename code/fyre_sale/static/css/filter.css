@@ -1,7 +1,7 @@
 #filter-container {
-    margin-top: 20px;
+    margin-top: 50px;
     width: 20%;
-    height: 100%;
+    /* height: 100%; */
     margin-left: 0%;
     position: absolute;
 }
@@ -9,17 +9,19 @@
 #filter-title {
     font-size: 25px;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 50px;
     margin-bottom: 10px;
     color: #303C6C;
     font-weight: bold;
 }
+
 #categories {
     padding-left: 5px;
     list-style-type: none;
     margin: 5px;
     color: #777777;
 }
+
 #categories li {
     margin-bottom: 3px;
 }
@@ -44,6 +46,7 @@ li:hover {
 #categories a:visited {
     color: #777777;
 }
+
 #categories a:active {
     color: #303C6C;
 }
@@ -56,4 +59,17 @@ li:hover {
     color: #303C6C;
     font-weight: bold;
     text-align: center;
-  }
+}
+
+#create-item {
+  position: absolute;
+  border: 0;
+  padding: 10px;
+  margin: 30px;
+  border-radius: 4px;
+  background-color: #303C6C;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+
+}

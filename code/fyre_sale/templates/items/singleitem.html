@@ -4,7 +4,7 @@
 {% block profile-container %}
     <div class="profile-container">
         <div class="image-container">
-            <img class="profile-picture" src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" alt="" >
+            <img class="profile-picture" src="{{ item.image }}" alt="" >
         </div>
         <div class="item-header">
             <h3 class="item-name">{{ item.name }}</h3>
@@ -20,8 +20,8 @@
         <div class="seller-info">
             <h3 class="item-header">About seller</h3>
             <ul class="info-list">
-                <li><p class="info-header"><span>Seller name:</span><span class="info-value">{{ seller.name }}</span></p>
-                <li><p class="info-header"><span>Seller rating:</span><span class="info-value">Seller rating***</span></p>
+                <li><p class="info-header"><span>Seller:</span><span class="info-value">{{ seller.username }}</span></p>
+                <li><p class="info-header"><span>Rating:</span><span class="info-value">Seller rating***</span></p>
             </ul>
         </div>
         <div class="bid_container">

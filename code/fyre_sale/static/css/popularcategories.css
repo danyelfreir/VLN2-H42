@@ -1,10 +1,8 @@
 .category_container {
-    z-index: 0;
     margin: 40px 0 40px 0;
     display: grid;
     grid-gap: 2%;
-    grid-auto-flow: column;
-    grid-template-columns: 23.5% 23.5% 23.5% 23.5%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 50% 50%;
     justify-content: space-evenly;
     color: #444;

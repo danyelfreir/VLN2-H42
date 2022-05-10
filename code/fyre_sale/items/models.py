@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from users.models import User_info
 from django.contrib.auth.models import User
 
@@ -9,7 +11,7 @@ class Category(models.Model):
     image = models.TextField(blank=True, null=True, max_length=9999)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class SubCategory(models.Model):
@@ -18,7 +20,7 @@ class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class ItemForSale(models.Model):
@@ -36,7 +38,10 @@ class ItemForSale(models.Model):
     sub_cat = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.seller
+        return str(self.name)
+
+    def get_absolute_url(self):
+        return reverse('item_detail', args=[str(self.id)])
 
 
 class Offer(models.Model):
@@ -48,7 +53,7 @@ class Offer(models.Model):
     approved = models.BooleanField(default=None)
 
     def __str__(self):
-        return self.price
+        return str(self.price)
 
 
 class SoldItem(models.Model):
