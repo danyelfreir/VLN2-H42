@@ -8,6 +8,7 @@
         <p id="bid-item-bid">Currently the highest bid is: {{ item.cur_bid }} kr.</p>
     </div>
     <form class="loginform" action="{% url 'place_bid' item.id %}" method="POST">
+
         {% csrf_token %}
         <label class="form-field-label" for="bid">Enter your bid</label><br>
         {{ form.price }}

@@ -113,4 +113,3 @@ def check_query(req):
     except KeyError:
         cat = None
     return name, subcat, cat
-

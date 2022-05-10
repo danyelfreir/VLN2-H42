@@ -3,7 +3,6 @@ from django import forms
 from django.contrib.auth.models import User
 from users.models import Payment_info, Address_info
 from django.forms import ModelForm, widgets
-from django.forms.utils import ErrorList
 
 # class DivErrorList(ErrorList):
 #     def __str__(self):
