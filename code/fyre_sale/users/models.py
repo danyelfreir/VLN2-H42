@@ -35,3 +35,4 @@ class User_rating(models.Model):
     user_rating = models.IntegerField(default=None)
 
 class Notification(models.Model):
+    pass
