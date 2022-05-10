@@ -81,11 +81,3 @@ class AddressInsert(ModelForm):
             'city': widgets.TextInput(attrs={'class': 'form-field'}),
             'country': widgets.TextInput(attrs={'class': 'form-field'})
         }
-
-
-class Checkout1(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(Checkout1, self).__init__(*args, **kwargs)
-        for field in self.visible_fields():
-            field.field.widget.attrs['class'] = 'form-field'
-    model

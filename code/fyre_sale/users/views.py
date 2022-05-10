@@ -5,8 +5,7 @@ from django.shortcuts import render, redirect
 from .forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
 from .models import User
 from items.models import Offer
-from django.contrib.formtools.wizard.views import SessionWizardView
-
+# from django.contrib.formtools.wizard import FormWizard
 
 def sign_up(request):
     if request.method == 'POST':
@@ -134,13 +133,14 @@ def address(request):
         'form': form
     })
 
-class Checkout(SessionWizardView):
-    template_name = 'checkout.html'
-    def done(self, form_list, **kwargs):
-        form_data = self.process_form_data(form_list)
-        return self.render_to_response('done.html', {'form_data': form_data})
+def checkout(request):
+    return render(request, 'checkout.html')
 
-    def process_form_data(form_list):
-        form_data = [form.cleaned_data for form in form_list]
-        return form_data
-
+def checkout_save(request):
+    if request.method != 'POST':
+        return redirect('checkout')
+    else:
+        checkout_address = address(request)
+        checkout_payment = payment(request)
+        checkoutform=CheckoutForm(checkout_address=checkout_address, checkout_payment=checkout_payment)
+        checkoutform.save()

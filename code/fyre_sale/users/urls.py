@@ -2,8 +2,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import include, path
 from . import views
 #fyrir checkout
-from views import Checkout
-from .forms import AddressInsert, PaymentInsert
+# from . import Checkout
+# from .forms import AddressInsert, PaymentInsert
 
 
 
@@ -17,5 +17,6 @@ urlpatterns = [
     path('profile/inbox/notifications/<int:not_id>', views.notifications, name="notifications"),
     path('payment', views.payment, name="payment"),
     path('address', views.address, name="address"),
-    path('checkout', Checkout.as_view([AddressInsert, PaymentInsert])),
+    path('checkout', views.checkout, name="checkout"),
+    path('checkout_save', views.checkout_save, name="checkout_save")
 ]
