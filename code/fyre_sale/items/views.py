@@ -1,5 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from items.models import ItemForSale
 from items.models import ItemForSale, SubCategory, Category
 from django.contrib.auth.models import User
 from items.item_form import CreateItem, PlaceBid
