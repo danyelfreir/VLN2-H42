@@ -1,6 +1,6 @@
 
 #scroll-bar-wrapper {
-    margin: 40px 0 40px 0;
+    margin: 20px 0 20px 0;
     width: 101.7%;
     position: relative;
 }
@@ -25,7 +25,7 @@
   position: absolute;
   background-color: Transparent;
   font-size: 40px;
-  color: #303c6c;
+  color: #4a5ee5;
 }
 
 #prev {
@@ -43,7 +43,7 @@
 
 #prev:hover,
 #next:hover {
-    color: #F4976C;
+    color: #f08c34;
 }
 
 #scroll_content {
@@ -64,7 +64,7 @@
     height: 75%;
 }
 .item_name {
-    color:#303c6c;
+    color:#4a5ee5;
     font-size: 25px;
     margin: 0;
 }

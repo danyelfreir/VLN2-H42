@@ -1,6 +1,6 @@
 {% extends 'popup.html' %}
 
-{% block signup-form %}
+{% block form %}
   <h4 class="form-title">Sign in</h4><br>
   <p class="form-subtitle">Join our community!</p>
   <form class="loginform" method="POST" action="">
@@ -19,4 +19,4 @@
     <a href="{% url 'signup' %}" class="form-signup" id="form-signup">SIGN UP</a>
   </div>
 
-{% endblock signup-form %}
+{% endblock form %}

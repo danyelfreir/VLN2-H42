@@ -11,7 +11,7 @@
     margin-left: 20px;
     margin-top: 50px;
     margin-bottom: 10px;
-    color: #303C6C;
+    color: #4a5ee5;
     font-weight: bold;
 }
 
@@ -35,7 +35,7 @@
     margin-bottom: 3px;
 }
 li:hover {
-    color:#303C6C;
+    color:#4a5ee5;
 }
 
 #categories a {
@@ -48,7 +48,7 @@ li:hover {
 }
 
 #categories a:active {
-    color: #303C6C;
+    color: #4a5ee5;
 }
 
 .category-header {
@@ -56,7 +56,7 @@ li:hover {
     margin-left: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    color: #303C6C;
+    color: #4a5ee5;
     font-weight: bold;
     text-align: center;
 }
@@ -65,11 +65,11 @@ li:hover {
   position: absolute;
   border: 0;
   padding: 10px;
-  margin: 30px;
-  border-radius: 4px;
-  background-color: #303C6C;
+  border-radius: 2px;
+  background-color: #4a5ee5;
   color: #fff;
   font-size: 18px;
+  margin: 10px;
   text-decoration: none;
   z-index: 10;
 }

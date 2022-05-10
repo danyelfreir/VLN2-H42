@@ -1,5 +1,5 @@
 .category_container {
-    margin: 40px 0 40px 0;
+    margin: 20px 0 5px 0;
     display: grid;
     grid-gap: 2%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -49,9 +49,11 @@
 }
 
 .cat_img {
-    width: 100%
+    width: 100%;
+    transition: all .1s ease-in;
 }
 
 .cat_img:hover {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transform: scale(1.09);
 }
