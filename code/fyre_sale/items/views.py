@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
-from items.models import *
+from items.models import ItemForsale
 from django.contrib.auth.models import User
-from items.item_form import CreateItem
+from items.item_form import CreateItem, PlaceBid
 import datetime
+
 
 
 def items_index(request):
@@ -83,5 +84,24 @@ def create_item(request):
             return redirect('items_index')
     form = CreateItem()
     return render(request, 'items/create_item.html', {
+        'form': form
+    })
+
+def place_bid(request):
+    date = datetime.datetime.now()
+    if request.method == 'POST':
+        tmp_user = User.objects.get(username=request.user)
+        tmp_item = ItemForsale.get(name=request.name)
+        tmp_price = ItemForSale.get(price=request.price)
+        form = PlaceBid(request.POST)
+        if form.is_valid():
+            x = form.save(commit=False)
+            x.buyer = tmp_user.id
+            x.price = tmp_price
+            x.time_of_offer = date
+            x.item = tmp_item
+            return redirect('item_detail')
+    form = PlaceBid
+    return render(request, 'items/placebid.html', {
         'form': form
     })

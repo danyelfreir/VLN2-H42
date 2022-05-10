@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets
 from django import forms
-from items.models import ItemForSale, SubCategory
+from items.models import ItemForSale, SubCategory, Offer
 
 
 # class CreateItem(forms.Form):
@@ -60,11 +60,6 @@ from items.models import ItemForSale, SubCategory
 
 class CreateItem(ModelForm):
     class Meta:
-        # SUBCAT_CHOICES = []
-        # subcats = SubCategory.objects.all().order_by('name')
-        # for i, sc in enumerate(subcats, start=1):
-        #     SUBCAT_CHOICES.append((i, sc.name))
-
         model = ItemForSale
         fields = '__all__'
     def __init__(self, *args, **kwargs):
@@ -72,8 +67,11 @@ class CreateItem(ModelForm):
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-field'
 
-    # def save(self, commit=True):
-    #     itemforsale = super(CreateItem, self).save(commit=False)
-    #     if commit:
-    #         itemforsale.save()
-    #     return itemforsale
+class PlaceBid(ModelForm):
+    class Meta:
+        model = Offer
+        fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super(PlaceBid, self).__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'form-field'

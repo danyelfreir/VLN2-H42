@@ -14,11 +14,19 @@
         {% csrf_token %}
         <p>Credit card number</p>
         {{form.card_nr}}
+            {% if form.errors %}
+            {{ form.errors.card_nr}}
+            {% endif %}
         <p>Expiry date</p>
         {{form.expires}}
+            {% if form.errors %}
+            {{ form.errors.expires}}
+            {% endif %}
         <p>CVC</p>
         {{form.cvc}}
-        {{ form.errors }}
+        {% if form.errors %}
+            {{ form.errors.cvc}}
+            {% endif %}
         <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
         </form>
     </div>

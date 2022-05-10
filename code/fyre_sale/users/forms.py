@@ -66,7 +66,6 @@ class PaymentInsert(ModelForm):
     #         field.field.widget.attrs['class'] = 'form-field'
 
 class AddressInsert(ModelForm):
-
     class Meta:
         def __init__(self, *args, **kwargs):
             super(AddressInsert, self).__init__(*args, **kwargs)
