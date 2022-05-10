@@ -22,11 +22,6 @@ body {
 
 }
 
-#wrapper {
-  min-height: 100%;
-  margin-bottom: -65px;
-  margin-top: 65px;
-}
 
 .content {
   /* padding-top: 65px; */
