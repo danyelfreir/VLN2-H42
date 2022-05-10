@@ -1,5 +1,4 @@
 from django.db import models
-from users.models import User_info
 from django.contrib.auth.models import User
 
 
@@ -44,7 +43,7 @@ class Offer(models.Model):
     item = models.ForeignKey(ItemForSale, on_delete=models.CASCADE)
     time_of_offer = models.DateTimeField()
     price = models.IntegerField()
-    buyer = models.ForeignKey(User_info, on_delete=models.CASCADE)
+    buyer = models.ForeignKey(User, on_delete=models.CASCADE)
     approved = models.BooleanField(default=None)
 
     def __str__(self):

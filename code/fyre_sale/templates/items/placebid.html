@@ -10,11 +10,11 @@
 <div id="modal">
   <div id="placebid-modal">
     <h4 class="form-title">Place Bid</h4><br>
-    <form class="loginform" action="{% url 'create_item' %}" method="POST">
+      {{ item.id }}
+    <form class="loginform" action="{% url 'items_index' %}" method="POST">
+        {% csrf_token %}
         <label class="form-field-label" for="bid">Enter your bid</label><br>
         <input class="form-field" type="text" id="bid" name="bid"><br>
-      <div id="form-remember">
-      </div>
       <button class="form-submit" id="submit" type="submit" value="Submit">Place bid</button><br>
     </form>
   </div>
