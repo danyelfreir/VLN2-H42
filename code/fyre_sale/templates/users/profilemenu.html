@@ -12,7 +12,6 @@
     <li><a href="{% url 'inbox' %}">Inbox</a></li>
     <li><a href="{% url 'signout' %}">Sign out</a></li>
     {% else %}
-    <p>Logged out</p>
     <li><a href="{% url 'signin' %}">Sign in</a></li>
     {% endif %}
   </ul>
