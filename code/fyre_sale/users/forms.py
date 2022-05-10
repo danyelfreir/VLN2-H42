@@ -3,8 +3,18 @@ from django import forms
 from django.contrib.auth.models import User
 from users.models import Payment_info, Address_info
 from django.forms import ModelForm, widgets
+from django.forms.utils import ErrorList
 
-
+# class DivErrorList(ErrorList):
+#     def __str__(self):
+#         return self.as_divs()
+#
+#     def as_divs(self):
+#         if not self: return ''
+#         return '<div class="errorlist">%s</div>' % ''.join(['<div class="error">%s</div>' % e for e in self])
+#         f = AddressInsert(data, auto_id=False, error_class=DivErrorList)
+#         f.as_p()
+#
 class SignInForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(SignInForm, self).__init__(*args, **kwargs)
@@ -56,7 +66,12 @@ class PaymentInsert(ModelForm):
     #         field.field.widget.attrs['class'] = 'form-field'
 
 class AddressInsert(ModelForm):
+
     class Meta:
+        def __init__(self, *args, **kwargs):
+            super(AddressInsert, self).__init__(*args, **kwargs)
+            for field in self.visible_fields():
+                field.field.widget.attrs['class'] = 'form-field'
         model = Address_info
         exclude = ['id']
         widgets = {

@@ -105,8 +105,10 @@ def payment(request):
         tmp_user = User.objects.get(username=request.user)
         form = PaymentInsert(request.POST)
         if form.is_valid():
-            form.save()
-
+            user_id = form.save(commit=False)
+            user_id.id_id = tmp_user.id
+            user_id.save()
+            user_id.save()
             return redirect('user_page')
     else:
         form = PaymentInsert()
@@ -119,7 +121,10 @@ def address(request):
         tmp_user = User.objects.get(username=request.user)
         form = AddressInsert(request.POST)
         if form.is_valid():
-            form.save()
+            user_id = form.save(commit=False)
+            user_id.id_id = tmp_user.id
+            user_id.save()
+            user_id.save()
         return redirect('user_page')
     else:
         form = AddressInsert(request.POST)
