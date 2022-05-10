@@ -46,6 +46,28 @@ body {
 }
 
 .frontpage-title {
-  color: #303c6c;
+  color: #4a5ee5;
   margin-bottom: 0;
+}
+
+
+/* Scrollbar*/
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f6ba85;
+  border: 6px solid transparent;
+  border-top: none;
+  border-bottom: none;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #f08c34;
 }

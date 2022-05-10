@@ -1,27 +1,17 @@
 {% extends 'popup.html' %}
-<!-- {% load static %}
 
-{% block styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
-{% endblock styles %} -->
-
-<!-- <div id="modal">
-    <div id="password-modal"> -->
-{% block signup-form %}
+{% block form %}
     <h4 class="form-title">Payment</h4><br>
     <p class="form-subtitle">Save your payment <br>for easy checkout</p>
     <form class="loginform" action="{% url 'payment' %}" method="POST">
-    {% csrf_token %}
-    <p>Credit card number</p>
-    {{form.card_nr}}
-    <p>Expiry date</p>
-    {{form.expires}}
-    <p>CVC</p>
-    {{form.cvc}}
-    {{ form.errors }}
-    <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
+        {% csrf_token %}
+        <label class="form-field-label" for="credit">Credit card number</label><br>
+        {{form.card_nr}}
+        <label class="form-field-label" for="expire">Expiry date</label><br>
+        {{form.expires}}
+        <label class="form-field-label" for="credit">CVC</label><br>
+        {{form.cvc}}
+        {{ form.errors }}
+        <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
     </form>
-{% endblock signup-form %}
-
-    <!-- </div>
-</div> -->
+{% endblock form %}
