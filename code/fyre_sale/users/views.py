@@ -39,8 +39,11 @@ def sign_in(request):
     })
 
 
-def profilepage(request):
-    return render(request, 'frontpage/index.html')
+def profilepage(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'users/userpage.html', context={
+        'user': user
+    })
 
 
 def inbox(request, params=None):
@@ -52,12 +55,9 @@ def inbox(request, params=None):
             'offers': offers
         })
     elif params == 'my_items':
-        bids = Offer.objects.raw("""
-            SELECT * FROM items_offer O WHERE O.item_id IN (
-              SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s
-            )
-            """, [user.id]
-        )
+        bids = Offer.objects.raw("\n"
+                                 "SELECT * FROM items_offer O WHERE O.item_id IN (\n"
+                                 "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s)\n", [user.id])
         return render(request, 'users/inbox.html', context={
             'user': user,
             'bids': bids,
