@@ -1,0 +1,36 @@
+{% extends 'popup.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<div id="popup">
+    <div id="modal">
+        <h4 class="form-title">Address</h4><br>
+        <p class="form-subtitle">Save your address <br>for easy checkout</p>
+        <form class="loginform" action="{% url 'address' %}" method="POST">
+            {% csrf_token %}
+            <p>Street name and number</p>
+                {{form.street_name}}
+            <p>Zip</p>
+                {{form.zip}}
+                {% if form.errors %}
+                    <p class="error-msg">{{ form.errors.zip}}</p>
+                {% endif %}
+            <p>City</p>
+                {{form.city}}
+                {% if form.errors %}
+                    <p class="error-msg">{{ form.errors.city}}</p>
+                {% endif %}
+            <p>Country</p>
+            {{form.country}}
+            {% if form.errors %}
+            {{ form.errors.country}}
+            {% endif %}
+        <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
+        </form>
+    </div>
+</div>
+{% endblock content %}
