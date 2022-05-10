@@ -17,25 +17,25 @@
 
 </head>
 <body>
-
-<header>
-    {% include 'frontpage/navbar.html' %}
-</header>
   <div id="wrapper">
-    {% block popup %}
-    {% endblock popup %}
+    <header>
+        {% include 'frontpage/navbar.html' %}
+    </header>
+      <div id="site-content">
+        {% block popup %}
+        {% endblock popup %}
 
-    {% block filter %}
-    {% endblock filter %}
+        {% block filter %}
+        {% endblock filter %}
 
-    {% block content %}
-    {% endblock content %}
+        {% block content %}
+        {% endblock content %}
+      </div>
+    <footer>
+      {% include 'frontpage/footer.html' %}
+    </footer>
   </div>
-
-<footer>
-  {% include 'frontpage/footer.html' %}
-</footer>
   <script src="{% static 'js/index.js' %}" type="text/javascript"></script>
   <script src="{% static 'js/scroll_bar.js' %}" type="text/javascript"></script>
-  </body>
+</body>
 </html>
