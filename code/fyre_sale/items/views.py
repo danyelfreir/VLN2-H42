@@ -1,10 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
-<<<<<<< HEAD
 from items.models import ItemForSale
-=======
 from items.models import ItemForSale, SubCategory, Category
->>>>>>> 557523b28e594eb7c33c7ae128f8969d01dbf68b
 from django.contrib.auth.models import User
 from items.item_form import CreateItem, PlaceBid
 import datetime

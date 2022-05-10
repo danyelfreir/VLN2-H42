@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'frontpage.apps.FrontpageConfig',
     'fontawesomefree',
     'forms',
-    'django.contrib.formtools',
 ]
 
 MIDDLEWARE = [
