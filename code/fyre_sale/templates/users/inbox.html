@@ -1,9 +1,92 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-<div class="inbox-container">
+<div class="wrapper-notifications">
+  <div class="tabs">
+    <div class="tab">
+      <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+      <label for="tab-1" class="tab-label">Inbox</label>
+      <div class="tab-content">
+        <div class="inbox-list">
+          {% if notifications %}
+            <table class="inbox-table">
+              <tr>
+                <th>Notification</th>
+                <th>Time</th>
+              </tr>
+              {% for notification in notifications %}
+                <tr>
+                    <td>
+                      <a href="{% url 'notification' notification.id %}">
+                        {% if notification.offer.item.seller.id == user.id %}
+                          You have received an offer for {{ notification.offer.item.name }}
+                        {% else %}
+                          {% if notification.offer.approved %}
+                            {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!
+                          {% else %}
+                            {{ notification.offer.item.seller.username }} has declined your bid on {{ notification.offer.item.name }}
+                          {% endif %}
+                        {% endif %}
+                      </a>
+                    </td>
+                    <td>
+                      <p>{{ notification.timestamp|date:"G:i:s - D j. M 'y" }}</p>
+                    </td>
+              {% endfor %}
+            </table>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="tab">
+      <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
+      <label for="tab-2" class="tab-label">My bids</label>
+      <div class="tab-content">
+        <div class="bids-placed">
+          {% if notifications %}
+          <table class="inbox-table">
+            <tr>
+              <th>Item</th>
+              <th>Amount</th>
+              <th>Time placed</th>
+            </tr>
+            {% for notification in notifications %}
+              <tr>
+                  <td>
+                    <a href="{% url 'notification' notification.id %}">
+                      {% if notification.offer.item.seller.id == user.id %}
+                        You have received an offer for {{ notification.offer.item.name }}
+                      {% else %}
+                        {% if notification.offer.approved %}
+                          {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!
+                        {% else %}
+                          {{ notification.offer.item.seller.username }} has declined your bid on {{ notification.offer.item.name }}
+                        {% endif %}
+                      {% endif %}
+                    </a>
+                  </td>
+                  <td>10.000.000</td>
+                  <td>
+                    <p>{{ notification.timestamp|date:"G:i:s - D j. M 'y" }}</p>
+                  </td>
+              {% endfor %}
+            </table>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="tab">
+      <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
+      <label for="tab-3" class="tab-label">Bids on my items</label>
+      <div class="tab-content">
+        <div class="bids-recieved">             
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="inbox-container">
   <h2 class="frontpage-title">Inbox</h2>
   <div class="inbox-menu">
     <a href="{% url 'inbox' %}">Notifications</a><br>
@@ -15,25 +98,122 @@
         {% for notification in notifications %}
           <div class="inbox-item">
             <a href="{% url 'notification' notification.id %}">
-              {% if notification.offer.item.seller.id == user.id %}
-                You have received an offer for {{ notification.offer.item.name }}
-              {% else %}
-                {% if notification.offer.approved %}
-                  {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!
+              <p class="notification-title">
+                {% if notification.offer.item.seller.id == user.id %}
+                  You have received an offer for {{ notification.offer.item.name }}
                 {% else %}
-                  {{ notification.offer.item.seller.username }} has declined your bid on {{ notification.offer.item.name }}
+                  {% if notification.offer.approved %}
+                    {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!
+                  {% else %}
+                    {{ notification.offer.item.seller.username }} has declined your bid on {{ notification.offer.item.name }}
+                  {% endif %}
                 {% endif %}
-              {% endif %}
+              </p>
             </a>
             <p>{{ notification.timestamp|date:"G:i:s - D j. M 'y" }}</p>
           </div>
         {% endfor %}
       {% endif %}
   </div>
-</div>
+</div> -->
 
 <style media="screen">
-  .inbox-container {
+.inbox-table {
+  border-collapse: collapse;
+  padding: 10px;
+  width:100%;
+}
+
+.inbox-table a {
+  text-decoration: none;
+}
+
+.inbox-table th {
+  font-size: 18px;
+  color: #4a5ee5;
+  padding: 10px;
+  text-align: left;
+}
+
+.inbox-table td {
+  padding: 5px;
+  font-size: 15px;
+}
+
+tr:nth-child(even) {
+  background-color: #fdf3ea;
+
+}
+.wrapper-notifications {
+  width: 80%;
+  margin: 10px auto 0 auto;
+  overflow-x:hidden;
+}
+.tabs {
+  position: relative;
+  background: #f08c34;
+  height: 72vh;
+}
+.tabs::before,
+.tabs::after {
+  content: "";
+  display: table;
+}
+.tabs::after {
+  clear: both;
+}
+.tab {
+  float: left;
+}
+.tab-switch {
+  display: none;
+}
+.tab-label {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  position: relative;
+  display: block;
+  line-height: 2.75em;
+  height: 3em;
+  padding: 0 1.618em;
+  background: #f08c34;
+  border-right: 1.5px solid #a86224;
+  color: #fff;
+  cursor: pointer;
+  top: 0;
+  transition: all 0.25s;
+}
+.tab-label:hover {
+  top: -0.25rem;
+  transition: top 0.25s;
+}
+.tab-content {
+  width: 100%;
+  height: fit-content;
+  position: absolute;
+  z-index: 1;
+  top: 2.75em;
+  left: 0;
+  background: #fff;
+  color: #2c3e50;
+  opacity: 0;
+  transition: all 1s;
+}
+.tab-switch:checked + .tab-label {
+  background: #fff;
+  color: #2c3e50;
+  border-bottom: 0;
+  border-right: 0.125rem solid #fff;
+  transition: all 0.35s;
+  z-index: 1;
+  top: -0.0625rem;
+}
+.tab-switch:checked + label + .tab-content {
+  z-index: 2;
+  opacity: 1;
+  transition: all 0.5s;
+}
+  /* .inbox-container {
     width: 70%;
     margin: 0 auto;
   }
@@ -54,7 +234,7 @@
 
   .inbox-item > a {
     align-self: center;
-  }
+  } */
 
 </style>
 
