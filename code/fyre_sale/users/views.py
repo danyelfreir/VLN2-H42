@@ -4,16 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-<<<<<<< HEAD
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser
 from users.models import Notification, User_info
-=======
-from django.shortcuts import render, redirect
-from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
-from users.models import User_info, Notification
->>>>>>> e72d8c69625b6652f80a04f9a280d61b241ea226
 from items.models import Offer
 
 def sign_up(request):
