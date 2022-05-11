@@ -4,11 +4,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+<<<<<<< HEAD
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect,get_object_or_404
+from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser
+from users.models import Notification, User_info
+=======
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
 from users.models import User_info, Notification
+>>>>>>> e72d8c69625b6652f80a04f9a280d61b241ea226
 from items.models import Offer
-
 
 def sign_up(request):
     if request.method == 'POST':
@@ -91,7 +97,8 @@ def payment(request, username):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-            return redirect('user_page')
+            user_id.save()
+            return redirect('profile')
     else:
         form = PaymentInsert()
     return render(request, 'users/payment.html', {
@@ -111,9 +118,28 @@ def address(request, username):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-        return redirect('user_page')
+        return redirect('profile')
     else:
-        form = AddressInsert(request.POST)
+        form = AddressInsert()
     return render(request, 'users/address.html', {
         'form': form
+    })
+
+def edit_user(request):
+    instance1 = get_object_or_404(User_info, pk=request.user.id)
+    instance2 = get_object_or_404(User, pk=request.user.id)
+    if request.method =='POST':
+        form1 = EditUser(data=request.POST, instance=instance1)
+        form2 = EditAuthUser(data=request.POST, instance=instance2)
+        print(form2.fields)
+        if form1.is_valid() and form2.is_valid():
+            form1.save()
+            form2.save()
+            return redirect('payment')
+    else:
+        form1 = EditUser(instance=instance1)
+        form2 = EditAuthUser(instance=instance2)
+    return render(request, 'users/edit_user.html', {
+        'form1': form1,
+        'form2': form2
     })
