@@ -10,9 +10,9 @@
 {% endblock filter %}
 
 {% block content %}
-    <div class="items-grid-container">
-    {% for item in items %}
-        {% include 'items/grid-item.html' with item=item %}
-    {% endfor %}
-    </div>
+  <div class="items-grid-container">
+  {% for item in items %}
+      {% include 'items/grid-item.html' with item=item %}
+  {% endfor %}
+  </div>
 {% endblock content %}

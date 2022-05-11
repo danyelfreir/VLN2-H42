@@ -7,7 +7,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from items.item_form import CreateItem, PlaceBid
 import datetime
+from enum import Enum
 
+class FilterSort(Enum):
+    PRICE_ASC = 0
+    PRICE_DESC = 1
+    DATE_ASC = 2
+    DATE_DESC = 3
 
 
 def items_index(request):
@@ -35,14 +41,6 @@ def items_index(request):
         'subcategories': subcategories
     })
 
-# def exclude_item(items, detailed_item):
-#
-#     for item in items:
-#         if item.id == detailed_item.id:
-#             items = items.exclude(id=item.id)
-#         else:
-#             continue
-#     return items
 
 def item_detail(request, item_id):
     detailed_item = ItemForSale.objects.get(pk=item_id)
