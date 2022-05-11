@@ -1,9 +1,10 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
-from users.models import User, Notification
+from users.models import User_info, Notification
 from items.models import Offer
 
 
@@ -11,7 +12,8 @@ def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_user = form.save()
+            user_info_form = User_info.objects.create(id=new_user)
             return redirect('signin')
     else:
         form = SignUpForm()
@@ -40,8 +42,10 @@ def sign_in(request):
 
 def profilepage(request, username):
     user = User.objects.get(username=username)
+    user_info = User_info.objects.get(pk=user.id)
     return render(request, 'users/userpage.html', context={
-        'user': user
+        'user': user,
+        'user_info': user_info
     })
 
 
@@ -69,8 +73,9 @@ def inbox(request, params=None):
 
 
 def notification(request, not_id):
+    notification = Notification.objects.get(pk=not_id)
     return render(request, 'users/notification.html', context={
-        'not': not_id
+        'notification': notification
     })
 
 
@@ -85,7 +90,6 @@ def payment(request):
         if form.is_valid():
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
-            user_id.save()
             user_id.save()
             return redirect('user_page')
     else:
@@ -102,12 +106,9 @@ def address(request):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-            user_id.save()
         return redirect('user_page')
     else:
         form = AddressInsert(request.POST)
-        if form.is_valid():
-            form.save()
     return render(request, 'users/address.html', {
         'form': form
     })

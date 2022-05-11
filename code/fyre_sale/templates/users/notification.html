@@ -1,6 +1,73 @@
 {% extends 'popup.html' %}
 {% load static %}
 
-{% block signup-form %}
-<p>hello {{ not }}</p>
-{% endblock signup-form %}
+{% block form %}
+{% if notification.offer.item.seller.id == user.id %}
+  <h4 class="form-title">Bid received</h4>
+  <p class="form-subtitle">{{ notification.offer.buyer.username }} wants to bid on this item</p>
+  <div id="bid-item-info">
+      <img id="bid-item-image" src="{{ notification.offer.item.image }}">
+      <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
+      <p id="bid-item-bid">{{ notification.offer.buyer.username }}'s bid: {{ notification.offer.price }} kr.</p>
+  </div>
+  <div class="accept-decline-buttons">
+    <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Accept" %}">Accept</a>
+    <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Decline" %}">Decline</a>
+  </div>
+{% else %}
+  {% if notification.offer.approved %}
+  <h4 class="form-title">Bid accepted</h4>
+  <p class="form-subtitle">Congratulations!</p>
+  <div id="bid-item-info">
+      <img id="bid-item-image" src="{{ notification.offer.item.image }}">
+      <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
+      <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
+  </div>
+  <div class="accept-decline-buttons">
+    <a class="accept-decline" href="{% url 'checkout' notification.offer.id %}">Checkout</a>
+  </div>
+  {% else %}
+  <h4 class="form-title">Bid rejected</h4>
+  <p class="form-subtitle">Unfortunately, {{ notification.offer.item.seller }} has rejected your generous offer.</p>
+  <div id="bid-item-info">
+      <img id="bid-item-image" src="{{ notification.offer.item.image }}">
+      <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
+      <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
+  </div>
+  <div class="accept-decline-buttons">
+    <a class="accept-decline" href="{% url 'inbox' %}">Inbox</a>
+  </div>
+  {% endif %}
+{% endif %}
+
+<style media="screen">
+  #bid-item-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+  }
+
+  #bid-item-name {
+      margin: auto;
+  }
+
+  #bid-item-image {
+      max-width: 200px;
+      margin: auto;
+  }
+
+  #bid-item-bid {
+      margin: auto;
+  }
+
+  .accept-decline-buttons {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>
+
+{% endblock form %}
