@@ -1,32 +1,42 @@
 {% extends 'profile.html' %}
+{% load static %}
 
 {% block profile-container %}
-<h1>This is userpage for {{ username }}</h1>
 <div class="profile-container">
     <div class="image-container">
+        {% if user_info.image %}
         <img class="profile-picture" src="{{ user_info.image }}" alt="Profile picture" >
+        {% else %}
+        <img class="profile-picture" src="{% static 'img/profile-icon.png' %}" alt="Profile picture" >
+        {% endif %}
     </div>
-    <div class="item-header">
-        <h3 class="item-name">{{ user.username }}</h3>
+    <div class="profile-header">
+        <h3 class="profile-name">{{ user.username }}</h3>
         <div class="rating">Rating *****</div>
     </div>
-    <div class="item-profile-info">
+    <div class="profile-info">
         <ul class="info-list">
-            <li><p class="info-header"><span>Name:</span><span class="info-value">{{ user_info.first_name }} {{ {{ user_info.last_name }} }}</span></p>
-            <li><p class="info-header"><span>Member Since:</span><span class="info-value">{{ user.date }} kr.</span></p>
-            <li><p class="info-header"><span>Birthday:</span><span class="info-value">{{ user_info.birthday }}</span></p>
+            <li><p class="info-header"><span>Name:</span><span class="info-value">&emsp;{{ user_info.first_name }} {{ user_info.last_name }}</span></p>
+            <li><p class="info-header"><span>Member Since:</span><span class="info-value">&emsp;{{ user_profile.date }}</span></p>
+            {% if user.id == user_profile.id %}
+            <li><p class="info-header"><span>Birthday:</span><span class="info-value">&emsp;{{ user_info.birthday }}</span></p>
+            {% else %}
+            {% endif %}
         </ul>            
     </div>
     <div class="line"></div>
-    <div class="seller-info">
+    <div class="below-line">
         <h3 class="item-header">Bio</h3>
         <ul class="info-list">
             <p class="info-value">{{ user_info.bio }}</p>
     </div>
-    <div class="bid_container">
-        <button class="edit">Edit User Info   </button>
-        <button class="edit">Edit Payment Info</button>
-        <button class="edit">Update Address   </button>
+    <div class="buttons-container">
+        {% if user.id == user_profile.id %}
+        <a href="#" class="button-profile">Edit User Info</a>
+        <a href="{% url 'payment' %}" class="button-profile">Edit Payment Info</a>
+        <a href="{% url 'address' %}" class="button-profile">Update Address</a>
+        {% else %}
+        {% endif %}
     </div>
 </div>
 {% endblock profile-container %}

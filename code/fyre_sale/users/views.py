@@ -1,10 +1,10 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
 from users.models import User_info, Notification
-from django.contrib.auth.models import User
 from items.models import Offer
 
 
@@ -12,7 +12,8 @@ def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_user = form.save()
+            user_info_form = User_info.objects.create(id=new_user)
             return redirect('signin')
     else:
         form = SignUpForm()
@@ -41,9 +42,9 @@ def sign_in(request):
 
 def profilepage(request, username):
     user = User.objects.get(username=username)
-    user_info = User_info.objects.get(pk=user)
+    user_info = User_info.objects.get(pk=user.id)
     return render(request, 'users/userpage.html', context={
-        'user': user,
+        'user_profile': user,
         'user_info': user_info
     })
 
@@ -90,7 +91,6 @@ def payment(request):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-            user_id.save()
             return redirect('user_page')
     else:
         form = PaymentInsert()
@@ -106,12 +106,9 @@ def address(request):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-            user_id.save()
         return redirect('user_page')
     else:
         form = AddressInsert(request.POST)
-        if form.is_valid():
-            form.save()
     return render(request, 'users/address.html', {
         'form': form
     })

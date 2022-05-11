@@ -6,10 +6,10 @@
         <div class="image-container">
             <img class="profile-picture" src="{{ item.image }}" alt="Item picture" >
         </div>
-        <div class="item-header">
-            <h3 class="item-name">{{ item.name }}</h3>
+        <div class="profile-header">
+            <h3 class="profile-name">{{ item.name }}</h3>
         </div>
-        <div class="item-profile-info">
+        <div class="profile-info">
             <ul class="info-list">
                 <li><p class="info-header"><span>Posted on:</span><span class="info-value">{{ item.time_of_upload }} / {{ item.date_of_upload }}</span></p>
                 <li><p class="info-header"><span>Current highest bid:</span><span class="info-value">{{ item.cur_bid }} kr.</span></p>
@@ -17,15 +17,15 @@
             </ul>            
         </div>
         <div class="line"></div>
-        <div class="seller-info">
+        <div class="below-line">
             <h3 class="item-header">About seller</h3>
             <ul class="info-list">
                 <li><p class="info-header"><span>Seller:</span><span class="info-value">{{ seller.username }}</span></p>
-                <li><p class="info-header"><span>Rating:</span><span class="info-value">Seller rating***</span></p>
+                <li><p class="info-header"><span>Rating:</span><span class="info-value rating">Seller rating***</span></p>
             </ul>
         </div>
-        <div class="bid_container">
-            <a href="{% url 'place_bid' item.id %}" class="place_bid">Place Bid</a>
+        <div class="buttons_container">
+            <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
         </div>
     </div>
 
