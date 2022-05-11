@@ -7,17 +7,19 @@ const background = document.getElementById('site-content');
 const searchResults = document.getElementById('search-results-list');
 const loginButton = document.getElementById('login');
 const profileMenu = document.getElementById('profile-menu');
-const filterButton = document.getElementById('filter-button');
+const filterButton = document.getElementById('filtering-button');
 const filterMenu = document.getElementById('filter-menu');
 
 searchButton.addEventListener('click', () => {
   searchForm.style.display = "flex";
 });
 
-background.addEventListener('click', () => {
+background.addEventListener('click', (e) => {
   searchForm.style.display = 'none';
   profileMenu.style.display = 'none';
-  filterMenu.style.display = 'none';
+  if ( e.target !== filterButton) {
+    filterMenu.style.display = 'none';
+  };
 });
 
 searchFormInput.addEventListener('keydown', async () => {
@@ -36,13 +38,13 @@ searchFormInput.addEventListener('keydown', async () => {
 
 // ============ PROFILE MENU ===========
 loginButton.addEventListener('click', (e) => {
-  console.log("Is buttoning");
+  console.log(e.target);
   profileMenu.style.display = 'block';
 })
 
 
 // ============ FILTER MENU ============
 filterButton.addEventListener('click', (e) => {
-  console.log(e.target);
   filterMenu.style.display = 'block';
+  console.log(filterMenu);
 })

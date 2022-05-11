@@ -2,8 +2,8 @@
 
 <div id="filter-menu">
   <ul id="filter-menu-list">
-    <li><a href="#">My profile</a></li>
-    <li><a href="#">Inbox</a></li>
+    <li><a href="#">Order by price</a></li>
+    <li><a href="#">Order by date added</a></li>
     <li><a href="#">Sign out</a></li>
     <li><a href="#">Sign in</a></li>
   </ul>
@@ -11,6 +11,23 @@
 <style>
     #filter-menu {
         display: none;
+        position: absolute;
+        z-index: 1003;
+        width: 150px;
+        background-color: #ffffff;
+        top: 75px;
+        margin-left: 170px;
+        padding-top: 20px;
+        box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+
+    }
+    #filter-menu-list {
+        float:left;
+        list-style-type: none;
+        padding: 10px;
+    }
+    #filter-menu-list li {
+        padding:5px 5px 5px 0;
     }
 
 </style>
