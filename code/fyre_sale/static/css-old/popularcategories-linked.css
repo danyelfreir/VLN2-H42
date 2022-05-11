@@ -7,52 +7,42 @@
     justify-content: space-evenly;
     color: #444;
 }
-
 .pets-cat {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 }
-
 .books-cat {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
 }
-
 .furniture-cat {
     grid-column: 3 / 4;
     grid-row: 1 / 2;
 }
-
 .automotive-cat {
     grid-column: 4 / 5;
     grid-row: 1 / 2;
 }
-
 .electronics-cat {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
 }
-
 .health-cat {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }
-
 .children {
     grid-column: 3 / 4;
     grid-row: 2 / 3;
 }
-
 .hobbies {
     grid-column: 4 / 5;
     grid-row: 2 / 3;
 }
-
 .cat_img {
     width: 100%;
     transition: all .1s ease-in;
 }
-
 .cat_img:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transform: scale(1.09);

@@ -7,14 +7,19 @@ const background = document.getElementById('site-content');
 const searchResults = document.getElementById('search-results-list');
 const loginButton = document.getElementById('login');
 const profileMenu = document.getElementById('profile-menu');
+const filterButton = document.getElementById('filtering-button');
+const filterMenu = document.getElementById('filter-menu');
 
 searchButton.addEventListener('click', () => {
   searchForm.style.display = "flex";
 });
 
-background.addEventListener('click', () => {
+background.addEventListener('click', (e) => {
   searchForm.style.display = 'none';
   profileMenu.style.display = 'none';
+  if ( e.target !== filterButton) {
+    filterMenu.style.display = 'none';
+  };
 });
 
 searchFormInput.addEventListener('keydown', async () => {
@@ -38,6 +43,8 @@ loginButton.addEventListener('click', (e) => {
 })
 
 
-function zoomIn(event){
-  console.log(event.target);
-}
+// ============ FILTER MENU ============
+filterButton.addEventListener('click', (e) => {
+  filterMenu.style.display = 'block';
+  console.log(filterMenu);
+})
