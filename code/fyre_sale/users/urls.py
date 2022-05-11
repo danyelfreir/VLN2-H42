@@ -9,7 +9,7 @@ urlpatterns = [
     path('profile/<str:username>', views.profilepage, name="profile"),
     path('profile/inbox/', views.inbox, name="inbox"),
     path('profile/inbox/<str:params>', views.inbox, name="inbox"),
-    path('profile/inbox/notifications/<int:not_id>', views.notifications, name="notifications"),
+    path('profile/inbox/notifications/<int:not_id>', views.notification, name="notification"),
     path('payment', views.payment, name="payment"),
     path('address', views.address, name="address")
 ]

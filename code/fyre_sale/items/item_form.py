@@ -27,4 +27,4 @@ class PlaceBid(forms.ModelForm):
         price = self.cleaned_data['price']
         if price < self.item.cur_bid:
             raise forms.ValidationError(u"Your bid must be higher than the current bid.")
-        return price
+        return self.cleaned_data

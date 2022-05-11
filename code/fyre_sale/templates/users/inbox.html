@@ -20,9 +20,16 @@
       <th>Time</th>
       {% for i in notifications %}
         <tr>
-          <td><a href="{% url 'notifications' i.id %}">{{ i.title }}</a></td>
-          <td>{{ i.date }}</td>
-          <td>{{ i.time }}</td>
+          <td><a href="{% url 'notification' i.id %}">{{ i.recipient }}</a></td>
+          <td>{{ i.offer }}</td>
+          <td>{{ i.timestamp }}</td>
+        </tr>
+      {% endfor %}
+        {% for j in bids %}
+        <tr>
+          <td><a href="{% url 'notification' j.id %}">{{ j.price }}</a></td>
+          <td>{{ j.buyer_id }}</td>
+          <td>{{ j.time_of_offer }}</td>
         </tr>
       {% endfor %}
     </table>
