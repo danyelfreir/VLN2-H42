@@ -28,6 +28,6 @@
             <a href="{% url 'place_bid' item.id %}" class="place_bid">Place Bid</a>
         </div>
     </div>
-
+{% include 'items/scroll_similar.html' with items=similar_items %}
 
 {% endblock profile-container %}
