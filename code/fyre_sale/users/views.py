@@ -1,17 +1,27 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+<<<<<<< HEAD
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser
 from users.models import Notification, User_info
+=======
+from django.shortcuts import render, redirect
+from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
+from users.models import User_info, Notification
+>>>>>>> e72d8c69625b6652f80a04f9a280d61b241ea226
 from items.models import Offer
 
 def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_user = form.save()
+            user_info_form = User_info.objects.create(id=new_user)
             return redirect('signin')
     else:
         form = SignUpForm()
@@ -40,45 +50,46 @@ def sign_in(request):
 
 def profilepage(request, username):
     user = User.objects.get(username=username)
+    user_info = User_info.objects.get(pk=user.id)
     return render(request, 'users/userpage.html', context={
-        'user': user
+        'user_profile': user,
+        'user_info': user_info
     })
 
 
-def inbox(request, params=None):
-    user = User.objects.get(username=request.user)
-    if params == 'my_bids':
-        offers = Offer.objects.filter(buyer_id=user.id)
-        return render(request, 'users/inbox.html', context={
-            'user': user,
-            'offers': offers
-        })
-    elif params == 'my_items':
-        bids = Offer.objects.raw("\n"
-                                 "SELECT * FROM items_offer O WHERE O.item_id IN (\n"
-                                 "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s);", [user.id])
-        return render(request, 'users/inbox.html', context={
-            'user': user,
-            'bids': bids,
-        })
-    notifications = Notification.objects.filter(recipient=user)
+@login_required
+def inbox(request, username):
+    if username != request.user.username:
+        raise Http404()
+
+    offers = Offer.objects.filter(buyer_id=request.user.id)
+    bids = Offer.objects.raw("\n"
+                             "SELECT * FROM items_offer O WHERE O.item_id IN (\n"
+                             "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s);", [request.user.id])
+    notifications = Notification.objects.filter(recipient=request.user)
     return render(request, 'users/inbox.html', context={
-        'user': user,
-        'notifications': notifications
+        'offers': offers,
+        'bids': bids,
+        'notifications': notifications,
     })
 
 
-def notification(request, not_id):
+@login_required
+def notification(request, username, not_id):
+    if username != request.user.username:
+        raise Http404()
+
+    notification = Notification.objects.get(pk=not_id)
     return render(request, 'users/notification.html', context={
-        'not': not_id
+        'notification': notification
     })
 
 
-def userpage(request, username):
-    return render(request, 'users/userpage.html')
+@login_required
+def payment(request, username):
+    if username != request.user.username:
+        raise Http404()
 
-
-def payment(request):
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
         form = PaymentInsert(request.POST)
@@ -94,7 +105,12 @@ def payment(request):
         'form': form
     })
 
-def address(request):
+
+@login_required
+def address(request, username):
+    if username != request.user.username:
+        raise Http404()
+
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
         form = AddressInsert(request.POST)
@@ -102,7 +118,6 @@ def address(request):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-            # user_id.save()
         return redirect('profile')
     else:
         form = AddressInsert()

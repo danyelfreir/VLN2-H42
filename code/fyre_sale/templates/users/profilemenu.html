@@ -9,11 +9,10 @@
     {% if user.is_authenticated %}
     <p>{{ user.username }}</p>
     <li><a href="{% url 'profile' username=user.username %}">My profile</a></li>
-    <li><a href="{% url 'inbox' %}">Inbox</a></li>
+    <li><a href="{% url 'inbox' username=user.username %}">Inbox</a></li>
     <li><a href="{% url 'signout' %}">Sign out</a></li>
     {% else %}
     <li><a href="{% url 'signin' %}">Sign in</a></li>
     {% endif %}
   </ul>
 </div>
-

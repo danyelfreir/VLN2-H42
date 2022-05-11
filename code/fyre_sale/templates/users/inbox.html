@@ -1,38 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/inbox.css' %}">
-{% endblock styles %}
 
 {% block content %}
 <div class="inbox-container">
-  <div class="left-menu">
-    <h2 class="frontpage-title">Inbox</h2>
-    <a href="{% url 'inbox' %}">Notifications</a><br>
-    <a href="{% url 'inbox' params='my_bids' %}">My bids</a><br>
-    <a href="{% url 'inbox' params='my_items' %}">Bids on my items</a><br>
+  <h2 class="frontpage-title">Inbox</h2>
+  <div class="inbox-menu">
+    <a href="{% url 'inbox' user.username %}">Notifications</a><br>
+    <a href="{% url 'inbox' user.username %}">My bids</a><br>
+    <a href="{% url 'inbox' user.username %}">Bids on my items</a><br>
   </div>
   <div class="inbox-list">
-    <table>
-      <th>Title</th>
-      <th>Date</th>
-      <th>Time</th>
-      {% for i in notifications %}
-        <tr>
-          <td><a href="{% url 'notification' i.id %}">{{ i.recipient }}</a></td>
-          <td>{{ i.offer }}</td>
-          <td>{{ i.timestamp }}</td>
-        </tr>
-      {% endfor %}
-        {% for j in bids %}
-        <tr>
-          <td><a href="{% url 'notification' j.id %}">{{ j.price }}</a></td>
-          <td>{{ j.buyer_id }}</td>
-          <td>{{ j.time_of_offer }}</td>
-        </tr>
-      {% endfor %}
-    </table>
+      {% if notifications %}
+        {% for notification in notifications %}
+          <div class="inbox-item">
+            <a href="{% url 'notification' user.username notification.id %}">
+              {% if notification.offer.item.seller.id == user.id %}
+                You have received an offer for {{ notification.offer.item.name }}
+              {% else %}
+                {% if notification.offer.approved %}
+                  {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!
+                {% else %}
+                  {{ notification.offer.item.seller.username }} has declined your bid on {{ notification.offer.item.name }}
+                {% endif %}
+              {% endif %}
+            </a>
+            <p>{{ notification.timestamp|date:"G:i:s - D j. M 'y" }}</p>
+          </div>
+        {% endfor %}
+      {% endif %}
   </div>
 </div>
+
+<style media="screen">
+  .inbox-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .inbox-menu {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+  }
+
+  .inbox-item {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
+
+  .inbox-item > a {
+    align-self: center;
+  }
+
+</style>
+
 {% endblock content %}

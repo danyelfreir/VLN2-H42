@@ -9,33 +9,9 @@
   font-weight: 600;
 }
 
-/* #login-modal {
-  display:none;
-  height: 428px;
-  padding-top: 20px;
-}
-#placebid-modal {
-  height: 230px;
-  padding-top: 20px;
-}
-#signup-modal {
-  height: 534px;
-  padding-top: 20px;
-}
-
-#confirm-modal {
-  height: 280px;
-}
-
-#password-modal {
-  height: 392px;
-} */
-
-
 .loginform {
   padding: 30px;
   align-items: center;
-
 }
 
 .form-title {

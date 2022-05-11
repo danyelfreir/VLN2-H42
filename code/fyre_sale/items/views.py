@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from items.models import ItemForSale
 from users.models import Notification
-from items.models import ItemForSale, SubCategory, Category
+from items.models import ItemForSale, SubCategory, Category, Offer
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from items.item_form import CreateItem, PlaceBid
 import datetime
 
@@ -68,6 +69,7 @@ def item_search(request):
     })
 
 
+@login_required
 def create_item(request):
     date = datetime.datetime.now()
     if request.method == 'POST':
@@ -86,8 +88,12 @@ def create_item(request):
         'form': form
     })
 
+
+@login_required
 def place_bid(request, item_id):
     chosen_item = ItemForSale.objects.get(pk=item_id)
+    if chosen_item.seller == request.user:
+        raise Http404()
     if request.method == 'POST':
         date = datetime.datetime.now()
         bidding_user = User.objects.get(username=request.user)
@@ -98,7 +104,9 @@ def place_bid(request, item_id):
             offer_obj.time_of_offer = date
             offer_obj.item = chosen_item
             offer_obj.save()
-            update_and_notify(chosen_item, offer_obj, date)
+            chosen_item.cur_bid = offer_obj.price
+            chosen_item.save()
+            notify(offer_obj, chosen_item.seller, date)
             return redirect('items_index')
         else:
             print(form.errors)
@@ -108,6 +116,38 @@ def place_bid(request, item_id):
         'form': form,
         'item': chosen_item,
     })
+
+
+@login_required
+def respond_bid(request, offer_id, response):
+    offer = Offer.objects.get(pk=offer_id)
+    return render(request, 'items/respond_bid.html', context={
+        'response': response,
+        'offer': offer,
+    })
+
+
+@login_required
+def accept_bid(request, offer_id):
+    offer_obj = Offer.objects.get(pk=offer_id)
+    offer_obj.approved = True
+    offer_obj.save()
+    date_time = datetime.datetime.now()
+    notify(offer_obj, offer_obj.buyer, date_time)
+    return redirect('inbox')
+
+
+@login_required
+def decline_bid(request, offer_id):
+    offer_obj = Offer.objects.get(pk=offer_id)
+    date_time = datetime.datetime.now()
+    notify(offer_obj, offer_obj.buyer, date_time)
+    return redirect('inbox')
+
+
+@login_required
+def checkout(request, offer_id):
+    pass
 
 
 # ======= HELPER FUNCTIONS =========
@@ -128,12 +168,9 @@ def check_query(req):
     return name, subcat, cat
 
 
-def update_and_notify(item_obj, offer_obj, date_time):
-    item_obj.cur_bid = offer_obj.price
-    item_obj.save()
-    x = Notification.objects.create(
-        recipient=item_obj.seller,
+def notify(offer_obj, recipient, date_time):
+    new_not = Notification.objects.create(
+        recipient=recipient,
         offer=offer_obj,
         timestamp=date_time
     )
-
