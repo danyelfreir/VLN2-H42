@@ -56,11 +56,12 @@ def inbox(request, username):
     if username != request.user.username:
         raise Http404()
 
-    offers = Offer.objects.filter(buyer_id=request.user.id)
+    offers = Offer.objects.filter(buyer_id=request.user.id).order_by('-time_of_offer')
     bids = Offer.objects.raw("\n"
                              "SELECT * FROM items_offer O WHERE O.item_id IN (\n"
-                             "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s);", [request.user.id])
-    notifications = Notification.objects.filter(recipient=request.user)
+                             "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s)\n"
+                             "ORDER BY O.time_of_offer DESC;", [request.user.id])
+    notifications = Notification.objects.filter(recipient=request.user).order_by('-timestamp')
     return render(request, 'users/inbox.html', context={
         'offers': offers,
         'bids': bids,
