@@ -18,7 +18,7 @@
                 {% for notification in notifications %}
                   <tr>
                       <td>
-                        <a href="{% url 'notification' notification.id %}">
+                        <a href="{% url 'notification' user.username notification.id %}">
                           {% if notification.offer.item.seller.id == user.id %}
                             You have received an offer for {{ notification.offer.item.name }}
                           {% else %}
@@ -55,13 +55,13 @@
               {% for bid in bids %}
                 <tr>
                     <td>
-                      <a href="{% url 'item_detail/' bid.offer.item %}">
-                        {{ bids.offer.name }}
+                      <a href="{% url 'item_detail' bid.item.id %}">
+                        {{ bid.item.name }}
                       </a>
                     </td>
-                    <td>{{ bids.offer.amount }}</td>
+                    <td>{{ bid.price }}</td>
                     <td>
-                      <p>{{ bids.offer.timestamp|date:"G:i:s - D j. M 'y" }}</p>
+                      <p>{{ bid.timestamp|date:"G:i:s - D j. M 'y" }}</p>
                     </td>
                 {% endfor %}
               </table>
@@ -85,7 +85,7 @@
               {% for bid in bids %}
                 <tr>
                     <td>
-                      <a href="{% url 'item_detail/' bid.offer.item %}">
+                      <a href="#">
                         {{ bids.offer.name }}
                       </a>
                     </td>
@@ -95,7 +95,7 @@
                     </td>
                 {% endfor %}
               </table>
-            {% endif %}           
+            {% endif %}
           </div>
         </div>
       </div>
