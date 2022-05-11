@@ -3,7 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
-from users.models import User, Notification
+from users.models import User_info, Notification
+from django.contrib.auth.models import User
 from items.models import Offer
 
 
@@ -40,7 +41,7 @@ def sign_in(request):
 
 def profilepage(request, username):
     user = User.objects.get(username=username)
-    user_info = User_info.get(pk=user.id)
+    user_info = User_info.objects.get(pk=user)
     return render(request, 'users/userpage.html', context={
         'user': user,
         'user_info': user_info

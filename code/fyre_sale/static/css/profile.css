@@ -108,8 +108,8 @@ div.user-items {
     width: 100%;  
     display: grid;
     grid:
-        "image rating rating" 0.5fr
-        "image info info" 1fr
+        "image rating rating" 0.2fr
+        "image info info" 1.3fr
         "line line line" 0.01fr
         "below below belowright" 1fr
         / 1fr 1fr 1fr;

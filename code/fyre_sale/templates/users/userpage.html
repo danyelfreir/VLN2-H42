@@ -1,35 +1,32 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'profile.html' %}
 
-{% block styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/singleitem.css' %}">
-{% endblock styles %}
-
-{% block content %}
+{% block profile-container %}
 <h1>This is userpage for {{ username }}</h1>
-<div class="item_container">
-    <div class="image_container"><a href="../fortesting.html"><img class="ad_picture" src="troll.png" alt="cat picture" ></a><br></div>
-    <div class="description_container">
-        <div>
-            <h3 class="item_header">Biography</h3>
-            <p class="item_info"  id="short_descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-
+<div class="profile-container">
+    <div class="image-container">
+        <img class="profile-picture" src="{{ user_info.image }}" alt="Profile picture" >
     </div>
-    <div class="edit_container">
-        <button class="edit">Edid User Info   </button>
+    <div class="item-header">
+        <h3 class="item-name">{{ user.username }}</h3>
+        <div class="rating">Rating *****</div>
+    </div>
+    <div class="item-profile-info">
+        <ul class="info-list">
+            <li><p class="info-header"><span>Name:</span><span class="info-value">{{ user_info.first_name }} {{ {{ user_info.last_name }} }}</span></p>
+            <li><p class="info-header"><span>Member Since:</span><span class="info-value">{{ user.date }} kr.</span></p>
+            <li><p class="info-header"><span>Birthday:</span><span class="info-value">{{ user_info.birthday }}</span></p>
+        </ul>            
+    </div>
+    <div class="line"></div>
+    <div class="seller-info">
+        <h3 class="item-header">Bio</h3>
+        <ul class="info-list">
+            <p class="info-value">{{ user_info.bio }}</p>
+    </div>
+    <div class="bid_container">
+        <button class="edit">Edit User Info   </button>
         <button class="edit">Edit Payment Info</button>
         <button class="edit">Update Address   </button>
     </div>
-    <div class="item_info2">
-        <dl>
-            <dt><b>Username</b></dt><br>
-                <dd>Travison_123</dd><br>
-            <dt><b>Name</b></dt><br>
-                <dd>Ravison Travis</dd><br>
-            <dt><b>Member Since</b></dt><br>
-                <dd>01.05.2022</dd><br>
-        </dl>
-    </div>
 </div>
-{% endblock content %}
+{% endblock profile-container %}
