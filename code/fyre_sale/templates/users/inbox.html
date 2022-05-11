@@ -44,24 +44,23 @@
         <label for="tab-2" class="tab-label">My bids</label>
         <div class="tab-content">
           <div class="bids-placed">
-            {% if bids %}
+            {% if offers %}
             <table class="inbox-table">
               <tr>
                 <th>Item</th>
                 <th>Amount</th>
                 <th>Time placed</th>
-                <th>Status</th>
               </tr>
-              {% for bid in bids %}
+              {% for offer in offers %}
                 <tr>
                     <td>
-                      <a href="{% url 'item_detail' bid.item.id %}">
-                        {{ bid.item.name }}
+                      <a href="{% url 'item_detail' offer.item.id %}">
+                        {{ offer.item.name }}
                       </a>
                     </td>
-                    <td>{{ bid.price }}</td>
+                    <td>{{ offer.price }}</td>
                     <td>
-                      <p>{{ bid.timestamp|date:"G:i:s - D j. M 'y" }}</p>
+                      <p>{{ offer.time_of_offer|date:"G:i:s - D j. M 'y" }}</p>
                     </td>
                 {% endfor %}
               </table>
@@ -80,18 +79,17 @@
                 <th>Item</th>
                 <th>Amount</th>
                 <th>Time recieved</th>
-                <th>Status</th>
               </tr>
               {% for bid in bids %}
                 <tr>
                     <td>
-                      <a href="#">
-                        {{ bids.offer.name }}
+                      <a href="{% url 'item_detail' bid.item.id %}">
+                        {{ bid.item.name }}
                       </a>
                     </td>
-                    <td>{{ bids.offer.amount }}</td>
+                    <td>{{ bid.price }}</td>
                     <td>
-                      <p>{{ bids.offer.timestamp|date:"G:i:s - D j. M 'y" }}</p>
+                      <p>{{ bid.time_of_offer|date:"G:i:s - D j. M 'y" }}</p>
                     </td>
                 {% endfor %}
               </table>
