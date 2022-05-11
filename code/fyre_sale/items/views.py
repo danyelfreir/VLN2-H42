@@ -34,13 +34,24 @@ def items_index(request):
         'subcategories': subcategories
     })
 
+# def exclude_item(items, detailed_item):
+#
+#     for item in items:
+#         if item.id == detailed_item.id:
+#             items = items.exclude(id=item.id)
+#         else:
+#             continue
+#     return items
 
 def item_detail(request, item_id):
     detailed_item = ItemForSale.objects.get(pk=item_id)
     seller_user = User.objects.get(pk=detailed_item.seller_id)
+    similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
+    similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
     return render(request, 'items/singleitem.html', context={
         'item': detailed_item,
-        'seller': seller_user
+        'seller': seller_user,
+        'similar_items': similar_items_cleaned
     })
 
 
@@ -142,12 +153,6 @@ def check_query(req):
         cat = None
     return name, subcat, cat
 
-# def update_cur_bid_and_notify(item_obj, offer_obj, date_time):
-#     x = Notification.objects.create(
-#         recipient=item_obj.seller,
-#         offer=offer_obj,
-#         timestamp=date_time
-#     )
 
 def notify(offer_obj, recipient, date_time):
     new_not = Notification.objects.create(
