@@ -7,6 +7,8 @@ const background = document.getElementById('site-content');
 const searchResults = document.getElementById('search-results-list');
 const loginButton = document.getElementById('login');
 const profileMenu = document.getElementById('profile-menu');
+const filterButton = document.getElementById('filter-button');
+const filterMenu = document.getElementById('filter-menu');
 
 searchButton.addEventListener('click', () => {
   searchForm.style.display = "flex";
@@ -15,6 +17,7 @@ searchButton.addEventListener('click', () => {
 background.addEventListener('click', () => {
   searchForm.style.display = 'none';
   profileMenu.style.display = 'none';
+  filterMenu.style.display = 'none';
 });
 
 searchFormInput.addEventListener('keydown', async () => {
@@ -38,6 +41,8 @@ loginButton.addEventListener('click', (e) => {
 })
 
 
-function zoomIn(event){
-  console.log(event.target);
-}
+// ============ FILTER MENU ============
+loginButton.addEventListener('click', (e) => {
+  console.log(e.target);
+  profileMenu.style.display = 'block';
+})
