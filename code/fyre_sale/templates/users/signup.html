@@ -1,6 +1,6 @@
 {% extends 'popup.html' %}
 
-{% block signup-form %}
+{% block form %}
   <h4 class="form-title">Sign up</h4><br>
   <p class="form-subtitle">Join our community!</p>
   <form class="loginform" method="POST" action="">
@@ -20,10 +20,10 @@
       {{ form.errors.username }}
     {% endif %}
     <button class="form-submit" id="submit" type="submit" value="Submit">Sign up</button><br>
-  </form>
-  <div id="form-footer">
+    </form>
+    <div id="form-footer">
     <p class="form-footertext">Have an account?</p>
     <a href="{% url 'signin' %}" class="form-signup" id="form-signup">LOG IN</a>
-  </div>
+    </div>
 
-{% endblock signup-form %}
+{% endblock form %}

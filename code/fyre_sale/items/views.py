@@ -1,9 +1,13 @@
-from django.shortcuts import render,redirect
-from django.http import JsonResponse
-from items.models import *
+from django.shortcuts import render, redirect
+from django.http import JsonResponse, Http404
+from items.models import ItemForSale
+from users.models import Notification
+from items.models import ItemForSale, SubCategory, Category, Offer
 from django.contrib.auth.models import User
-from items.item_form import CreateItem
+from django.contrib.auth.decorators import login_required
+from items.item_form import CreateItem, PlaceBid
 import datetime
+
 
 
 def items_index(request):
@@ -31,13 +35,24 @@ def items_index(request):
         'subcategories': subcategories
     })
 
+# def exclude_item(items, detailed_item):
+#
+#     for item in items:
+#         if item.id == detailed_item.id:
+#             items = items.exclude(id=item.id)
+#         else:
+#             continue
+#     return items
 
 def item_detail(request, item_id):
     detailed_item = ItemForSale.objects.get(pk=item_id)
     seller_user = User.objects.get(pk=detailed_item.seller_id)
+    similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
+    similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
     return render(request, 'items/singleitem.html', context={
         'item': detailed_item,
-        'seller': seller_user
+        'seller': seller_user,
+        'similar_items': similar_items_cleaned
     })
 
 
@@ -53,6 +68,89 @@ def item_search(request):
         'results': data,
     })
 
+
+@login_required
+def create_item(request):
+    date = datetime.datetime.now()
+    if request.method == 'POST':
+        tmp_user = User.objects.get(username=request.user)
+        form = CreateItem(request.POST)
+        if form.is_valid():
+            item_obj = form.save(commit=False)
+            item_obj.seller_id = tmp_user.id
+            item_obj.date_of_upload = date.strftime("%x")
+            item_obj.time_of_upload = date.strftime("%X")
+            item_obj.cur_bid = item_obj.min_bid
+            item_obj.save()
+            return redirect('items_index')
+    form = CreateItem()
+    return render(request, 'items/create_item.html', {
+        'form': form
+    })
+
+
+@login_required
+def place_bid(request, item_id):
+    chosen_item = ItemForSale.objects.get(pk=item_id)
+    if chosen_item.seller == request.user:
+        raise Http404()
+    if request.method == 'POST':
+        date = datetime.datetime.now()
+        bidding_user = User.objects.get(username=request.user)
+        form = PlaceBid(chosen_item, request.POST)
+        if form.is_valid():
+            offer_obj = form.save(commit=False)
+            offer_obj.buyer = bidding_user
+            offer_obj.time_of_offer = date
+            offer_obj.item = chosen_item
+            offer_obj.save()
+            chosen_item.cur_bid = offer_obj.price
+            chosen_item.save()
+            notify(offer_obj, chosen_item.seller, date)
+            return redirect('items_index')
+        else:
+            print(form.errors)
+    else:
+        form = PlaceBid()
+    return render(request, 'items/placebid.html', {
+        'form': form,
+        'item': chosen_item,
+    })
+
+
+@login_required
+def respond_bid(request, offer_id, response):
+    offer = Offer.objects.get(pk=offer_id)
+    return render(request, 'items/respond_bid.html', context={
+        'response': response,
+        'offer': offer,
+    })
+
+
+@login_required
+def accept_bid(request, offer_id):
+    offer_obj = Offer.objects.get(pk=offer_id)
+    offer_obj.approved = True
+    offer_obj.save()
+    date_time = datetime.datetime.now()
+    notify(offer_obj, offer_obj.buyer, date_time)
+    return redirect('inbox')
+
+
+@login_required
+def decline_bid(request, offer_id):
+    offer_obj = Offer.objects.get(pk=offer_id)
+    date_time = datetime.datetime.now()
+    notify(offer_obj, offer_obj.buyer, date_time)
+    return redirect('inbox')
+
+
+@login_required
+def checkout(request, offer_id):
+    pass
+
+
+# ======= HELPER FUNCTIONS =========
 
 def check_query(req):
     try:
@@ -70,19 +168,9 @@ def check_query(req):
     return name, subcat, cat
 
 
-def create_item(request):
-    date = datetime.datetime.now()
-    if request.method == 'POST':
-        tmp_user = User.objects.get(username=request.user)
-        form = CreateItem(request.POST)
-        if form.is_valid():
-            x = form.save(commit=False)
-            x.seller_id = tmp_user.id
-            x.date_of_upload = date.strftime("%x")
-            x.time_of_upload = date.strftime("%X")
-            x.save()
-            return redirect('items_index')
-    form = CreateItem()
-    return render(request, 'items/create_item.html', {
-        'form': form
-    })
+def notify(offer_obj, recipient, date_time):
+    new_not = Notification.objects.create(
+        recipient=recipient,
+        offer=offer_obj,
+        timestamp=date_time
+    )

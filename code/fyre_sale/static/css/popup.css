@@ -3,21 +3,20 @@ body {
 }
 
 .padding-popup {
-    top: 100px;
+    top: 120px;
     bottom: 100px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    width: 520px;
+    width: 720px;
     position: absolute;
-    overflow-x: scroll;
+    overflow-x:hidden;
 }
 
 #popup {
-    width: 500px;
+    width: 720px;
     height: auto;
     margin: auto;
     background-color: #fbfbfb;
     padding-top: 20px;
-    border-radius: 5px 5px 5px 5px;
 }

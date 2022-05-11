@@ -9,40 +9,17 @@
   font-weight: 600;
 }
 
-#login-modal {
-  display:none;
-  height: 428px;
-  padding-top: 20px;
-}
-#placebid-modal {
-  height: 230px;
-  padding-top: 20px;
-}
-#signup-modal {
-  height: 534px;
-  padding-top: 20px;
-}
-
-#confirm-modal {
-  height: 280px;
-}
-
-#password-modal {
-  height: 392px;
-}
-
-
 .loginform {
-  margin: 30px 30px 0 30px;
+  padding: 30px;
+  align-items: center;
 }
 
 .form-title {
   margin: 0;
   display: flex;
   justify-content: space-around;
-  align-items: center;
   font-size: 30px;
-  color: #303C6C;
+  color: #4a5ee5;
 }
 
 .form-subtitle {
@@ -52,7 +29,7 @@
   align-items: center;
   font-size: 20px;
   color: #9c9c9c;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .form-field-label {
@@ -62,6 +39,7 @@
 
 .form-field {
   width: 100%;
+  padding: 10px 0;
   border: 0;
   background: none;
   border-bottom: 1.5px solid #c4c4c4;
@@ -88,12 +66,12 @@
   margin: 30px auto auto auto;
   display: flex;
   justify-content: space-around;
-  width: 50%;
+  width: 200px;
   height: 50px;
   border: 0;
-  padding: 10px 0 10px 0;
+  padding: 15px 0 15px 0;
   border-radius: 4px;
-  background-color: #303C6C;
+  background-color: #4a5ee5;
   color: #fff;
   font-size: 20px;
 }

@@ -11,14 +11,14 @@
 <div class="content">
   <h2 class="frontpage-title">Our most loved categories</h2>
   <div class="category_container">
-    <a id="pop-cat pets-cat"><img class="cat_img" scr="{% static 'img/overlay/pets.png' %}" alt="category"></a>
-    <a id="pop-cat books-cat"><img class="cat_img" scr="{% static 'img/overlay/books.png' %}" alt="category"></a>
-    <a id="pop-cat furniture-cat"><img class="cat_img" scr="{% static 'img/overlay/furniture.png' %}" alt="category"></a>
-    <a id="pop-cat automotive-cat"><img class="cat_img" scr="{% static 'img/overlay/automotive.png' %}" alt="category"></a>
-    <a id="pop-cat electronics-cat"><img class="cat_img" scr="{% static 'img/overlay/electronics.png' %}" alt="category"></a>
-    <a id="pop-cat health-cat"><img class="cat_img" scr="{% static 'img/overlay/health&fitness.png' %}" alt="category"></a>
-    <a id="pop-cat children-cat"><img class="cat_img" scr="{% static 'img/overlay/children.png' %}" alt="category"></a>
-    <a id="pop-cat hobbies-cat"><img class="cat_img" scr="{% static 'img/overlay/hobbies.png' %}" alt="category"></a>
+    <a id="pop-cat pets-cat" href="{% url 'items_index' %}?cat=Pets"><img class="cat_img" src="{% static 'img/overlay/pets.png' %}" alt="category"></a>
+    <a id="pop-cat books-cat " href="{% url 'items_index' %}?cat=Entertainment&subcat=Books"><img class="cat_img" src="{% static 'img/overlay/books.png' %}" alt="category"></a>
+    <a id="pop-cat furniture-cat" href="{% url 'items_index' %}?cat=Furniture"><img class="cat_img" src="{% static 'img/overlay/furniture.png' %}" alt="category"></a>
+    <a id="pop-cat automotive-cat" href="{% url 'items_index' %}?cat=Automotive"><img class="cat_img" src="{% static 'img/overlay/automotive.png' %}" alt="category"></a>
+    <a id="pop-cat electronics-cat" href="{% url 'items_index' %}?cat=Electronics"><img class="cat_img" src="{% static 'img/overlay/electronics.png' %}" alt="category"></a>
+    <a id="pop-cat health-cat" href="{% url 'items_index' %}?cat=Health%20and%20Fitness"><img class="cat_img" src="{% static 'img/overlay/health&fitness.png' %}" alt="category"></a>
+    <a id="pop-cat children-cat" href="{% url 'items_index' %}?cat=Children"><img class="cat_img" src="{% static 'img/overlay/children.png' %}" alt="category"></a>
+    <a id="pop-cat hobbies-cat" href="{% url 'items_index' %}?cat=Hobbies"><img class="cat_img" src="{% static 'img/overlay/hobbies.png' %}" alt="category"></a>
   </div>
   <a id="all-items" href="{% url 'items_index' %}">All items</a>
   {% include 'frontpage/scroll_ads.html' %}
