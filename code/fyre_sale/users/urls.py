@@ -9,7 +9,8 @@ urlpatterns = [
     path('<str:username>', views.profilepage, name="profile"),
     path('<str:username>/inbox/', views.inbox, name="inbox"),
     path('<str:username>/inbox/notification/<int:not_id>', views.notification, name="notification"),
-    path('<str:username>/payment', views.payment, name="payment"),
-    path('<str:username>/address', views.address, name="address"),
     path('<str:username>/inbox/notification/<int:not_id>/rate_sales', views.rate_sales, name="rate_sales"),
+    path('<str:username>/edit/payment', views.edit_payment, name="edit_payment"),
+    path('<str:username>/edit/address', views.edit_address, name="edit_address"),
+    path('<str:username>/edit/profile', views.edit_profile, name="edit_profile")
 ]

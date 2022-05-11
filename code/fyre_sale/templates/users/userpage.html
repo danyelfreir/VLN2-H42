@@ -22,7 +22,7 @@
             <li><p class="info-header"><span>Birthday:</span><span class="info-value">&emsp;{{ user_info.birthday }}</span></p>
             {% else %}
             {% endif %}
-        </ul>            
+        </ul>
     </div>
     <div class="line"></div>
     <div class="below-line">
@@ -32,9 +32,9 @@
     </div>
     <div class="buttons-container">
         {% if user.id == user_profile.id %}
-        <a href="#" class="button-profile">Edit User Info</a>
-        <a href="{% url 'payment' %}" class="button-profile">Edit Payment Info</a>
-        <a href="{% url 'address' %}" class="button-profile">Update Address</a>
+        <a href="{% url 'edit_profile' user.username %}" class="button-profile">Edit User Info</a>
+        <a href="{% url 'edit_payment' user.username %}" class="button-profile">Edit Payment Info</a>
+        <a href="{% url 'edit_address' user.username %}" class="button-profile">Update Address</a>
         {% else %}
         {% endif %}
     </div>

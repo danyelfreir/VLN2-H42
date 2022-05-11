@@ -134,7 +134,7 @@ def accept_bid(request, offer_id):
     offer_obj.save()
     date_time = datetime.datetime.now()
     notify(offer_obj, offer_obj.buyer, date_time)
-    return redirect('inbox')
+    return redirect('inbox', username=request.user.username)
 
 
 @login_required
@@ -142,7 +142,7 @@ def decline_bid(request, offer_id):
     offer_obj = Offer.objects.get(pk=offer_id)
     date_time = datetime.datetime.now()
     notify(offer_obj, offer_obj.buyer, date_time)
-    return redirect('inbox')
+    return redirect('inbox', username=request.user.username)
 
 
 @login_required

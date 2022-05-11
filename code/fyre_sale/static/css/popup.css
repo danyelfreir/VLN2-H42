@@ -20,3 +20,8 @@ body {
     background-color: #fbfbfb;
     padding-top: 20px;
 }
+
+
+textarea {
+   resize: none;
+}
