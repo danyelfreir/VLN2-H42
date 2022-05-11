@@ -6,9 +6,8 @@ from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
-from users.models import User_info, Notification
+from users.models import Notification
 from items.models import Offer
-# from django.contrib.formtools.wizard import FormWizard
 
 def sign_up(request):
     if request.method == 'POST':
