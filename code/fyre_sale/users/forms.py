@@ -101,9 +101,6 @@ class EditAuthUser(ModelForm):
             for field in self.visible_fields():
                 field.field.widget.attrs['class'] = 'form-field'
         model = User
-        exclude = ['id']
-        widgets = {
-            'first_name': widgets.TextInput(attrs={'class': 'form-field'}),
-            'last_name': widgets.TextInput(attrs={'class': 'form-field'}),
-            'email': widgets.EmailInput(attrs={'class': 'form-field'}),
-        }
+        fields = [
+            'first_name', 'last_name', 'email'
+        ]
