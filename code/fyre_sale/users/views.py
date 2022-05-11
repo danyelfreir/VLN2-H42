@@ -40,8 +40,10 @@ def sign_in(request):
 
 def profilepage(request, username):
     user = User.objects.get(username=username)
+    user_info = User_info.get(pk=user.id)
     return render(request, 'users/userpage.html', context={
-        'user': user
+        'user': user,
+        'user_info': user_info
     })
 
 
@@ -69,8 +71,9 @@ def inbox(request, params=None):
 
 
 def notification(request, not_id):
+    notification = Notification.objects.get(pk=not_id)
     return render(request, 'users/notification.html', context={
-        'not': not_id
+        'notification': notification
     })
 
 
