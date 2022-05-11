@@ -89,18 +89,20 @@
 <!-- <div class="inbox-container">
   <h2 class="frontpage-title">Inbox</h2>
   <div class="inbox-menu">
-    <a href="{% url 'inbox' %}">Notifications</a><br>
-    <a href="{% url 'inbox' params='my_bids' %}">My bids</a><br>
-    <a href="{% url 'inbox' params='my_items' %}">Bids on my items</a><br>
+    <a href="{% url 'inbox' user.username %}">Notifications</a><br>
+    <a href="{% url 'inbox' user.username %}">My bids</a><br>
+    <a href="{% url 'inbox' user.username %}">Bids on my items</a><br>
   </div>
   <div class="inbox-list">
       {% if notifications %}
         {% for notification in notifications %}
           <div class="inbox-item">
-            <a href="{% url 'notification' notification.id %}">
-              <p class="notification-title">
-                {% if notification.offer.item.seller.id == user.id %}
-                  You have received an offer for {{ notification.offer.item.name }}
+            <a href="{% url 'notification' user.username notification.id %}">
+              {% if notification.offer.item.seller.id == user.id %}
+                You have received an offer for {{ notification.offer.item.name }}
+              {% else %}
+                {% if notification.offer.approved %}
+                  {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!
                 {% else %}
                   {% if notification.offer.approved %}
                     {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!

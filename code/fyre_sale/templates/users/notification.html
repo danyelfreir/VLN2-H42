@@ -35,7 +35,7 @@
       <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
   </div>
   <div class="accept-decline-buttons">
-    <a class="accept-decline" href="{% url 'inbox' %}">Inbox</a>
+    <a class="accept-decline" href="{% url 'inbox' user.username %}">Inbox</a>
   </div>
   {% endif %}
 {% endif %}
