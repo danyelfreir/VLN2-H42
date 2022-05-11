@@ -1,0 +1,30 @@
+{% extends 'popup.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}">
+{% endblock styles %}
+
+{% block form %}
+    <h4 class="form-title">Rate Seller</h4><br>
+  <p class="form-subtitle">Rate your purchase</p>
+  <form class="loginform" action="{% url 'rate_sales' user.username notification.id %}" method="POST">
+    {% csrf_token %}
+      <p>User rating</p>
+    {{form.user_rating}}
+    {{ form.errors.user_rating }}
+    <img src="{{notification.offer.item.image}}" width="200px"></p>
+    <p>Price</p>
+    {{notification.offer.price}}
+    <p>Short description</p>
+    {{notification.offer.item.name}}
+    <span><p>Long Description: </p></span>
+    {{notification.offer.item.long_desc}}
+    <p>Condition</p>
+    {{notification.offer.item.condition}}
+    <p>Seller</p>
+    {{notification.offer.item.seller}}
+
+    <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
+  </form>
+{% endblock form %}

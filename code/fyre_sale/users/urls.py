@@ -10,5 +10,6 @@ urlpatterns = [
     path('<str:username>/inbox/', views.inbox, name="inbox"),
     path('<str:username>/inbox/notification/<int:not_id>', views.notification, name="notification"),
     path('<str:username>/payment', views.payment, name="payment"),
-    path('<str:username>/address', views.address, name="address")
+    path('<str:username>/address', views.address, name="address"),
+    path('<str:username>/inbox/notification/<int:not_id>/rate_sales', views.rate_sales, name="rate_sales"),
 ]
