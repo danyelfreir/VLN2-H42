@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from items.models import ItemForSale
 from users.models import Notification
 from items.models import ItemForSale, SubCategory, Category, Offer
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from items.item_form import CreateItem, PlaceBid
 import datetime
 
@@ -68,6 +69,7 @@ def item_search(request):
     })
 
 
+@login_required
 def create_item(request):
     date = datetime.datetime.now()
     if request.method == 'POST':
@@ -86,8 +88,12 @@ def create_item(request):
         'form': form
     })
 
+
+@login_required
 def place_bid(request, item_id):
     chosen_item = ItemForSale.objects.get(pk=item_id)
+    if chosen_item.seller == request.user:
+        raise Http404()
     if request.method == 'POST':
         date = datetime.datetime.now()
         bidding_user = User.objects.get(username=request.user)
@@ -111,6 +117,8 @@ def place_bid(request, item_id):
         'item': chosen_item,
     })
 
+
+@login_required
 def respond_bid(request, offer_id, response):
     offer = Offer.objects.get(pk=offer_id)
     return render(request, 'items/respond_bid.html', context={
@@ -118,6 +126,8 @@ def respond_bid(request, offer_id, response):
         'offer': offer,
     })
 
+
+@login_required
 def accept_bid(request, offer_id):
     offer_obj = Offer.objects.get(pk=offer_id)
     offer_obj.approved = True
@@ -126,12 +136,16 @@ def accept_bid(request, offer_id):
     notify(offer_obj, offer_obj.buyer, date_time)
     return redirect('inbox')
 
+
+@login_required
 def decline_bid(request, offer_id):
     offer_obj = Offer.objects.get(pk=offer_id)
     date_time = datetime.datetime.now()
     notify(offer_obj, offer_obj.buyer, date_time)
     return redirect('inbox')
 
+
+@login_required
 def checkout(request, offer_id):
     pass
 
