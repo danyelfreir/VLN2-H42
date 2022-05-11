@@ -5,9 +5,9 @@ from items.models import Offer
 
 class User_info(models.Model):
     id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    profileimg = models.TextField(blank=True, null=True, max_length=9999)
-    bio = models.TextField(default=None, max_length=9999)
-    birthday = models.CharField(default=None, max_length=255)
+    profileimg = models.TextField(default=None, blank=True, null=True, max_length=9999)
+    bio = models.TextField(default=None, blank=True, null=True, max_length=9999)
+    birthday = models.CharField(default=None, blank=True, null=True, max_length=255)
 
 class Address_info(models.Model):
     id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -31,17 +31,3 @@ class Notification(models.Model):
     recipient = models.ForeignKey(User, on_delete=models.CASCADE)
     offer = models.ForeignKey(Offer, null=True, on_delete=models.SET_NULL)
     timestamp = models.DateTimeField(blank=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
