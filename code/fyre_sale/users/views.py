@@ -1,6 +1,8 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
@@ -49,41 +51,39 @@ def profilepage(request, username):
     })
 
 
-def inbox(request, params=None):
-    user = User.objects.get(username=request.user)
-    if params == 'my_bids':
-        offers = Offer.objects.filter(buyer_id=user.id)
-        return render(request, 'users/inbox.html', context={
-            'user': user,
-            'offers': offers
-        })
-    elif params == 'my_items':
-        bids = Offer.objects.raw("\n"
-                                 "SELECT * FROM items_offer O WHERE O.item_id IN (\n"
-                                 "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s);", [user.id])
-        return render(request, 'users/inbox.html', context={
-            'user': user,
-            'bids': bids,
-        })
-    notifications = Notification.objects.filter(recipient=user)
+@login_required
+def inbox(request, username):
+    if username != request.user.username:
+        raise Http404()
+
+    offers = Offer.objects.filter(buyer_id=request.user.id)
+    bids = Offer.objects.raw("\n"
+                             "SELECT * FROM items_offer O WHERE O.item_id IN (\n"
+                             "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s);", [request.user.id])
+    notifications = Notification.objects.filter(recipient=request.user)
     return render(request, 'users/inbox.html', context={
-        'user': user,
-        'notifications': notifications
+        'offers': offers,
+        'bids': bids,
+        'notifications': notifications,
     })
 
 
-def notification(request, not_id):
+@login_required
+def notification(request, username, not_id):
+    if username != request.user.username:
+        raise Http404()
+
     notification = Notification.objects.get(pk=not_id)
     return render(request, 'users/notification.html', context={
         'notification': notification
     })
 
 
-def userpage(request, username):
-    return render(request, 'users/userpage.html')
+@login_required
+def payment(request, username):
+    if username != request.user.username:
+        raise Http404()
 
-
-def payment(request):
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
         form = PaymentInsert(request.POST)
@@ -98,7 +98,12 @@ def payment(request):
         'form': form
     })
 
-def address(request):
+
+@login_required
+def address(request, username):
+    if username != request.user.username:
+        raise Http404()
+
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
         form = AddressInsert(request.POST)
