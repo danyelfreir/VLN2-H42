@@ -7,7 +7,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from items.item_form import CreateItem, PlaceBid
 import datetime
+from enum import Enum
 
+class FilterSort(Enum):
+    PRICE_ASC = 0
+    PRICE_DESC = 1
+    DATE_ASC = 2
+    DATE_DESC = 3
 
 
 def items_index(request):
@@ -35,14 +41,6 @@ def items_index(request):
         'subcategories': subcategories
     })
 
-# def exclude_item(items, detailed_item):
-#
-#     for item in items:
-#         if item.id == detailed_item.id:
-#             items = items.exclude(id=item.id)
-#         else:
-#             continue
-#     return items
 
 def item_detail(request, item_id):
     detailed_item = ItemForSale.objects.get(pk=item_id)
@@ -134,7 +132,7 @@ def accept_bid(request, offer_id):
     offer_obj.save()
     date_time = datetime.datetime.now()
     notify(offer_obj, offer_obj.buyer, date_time)
-    return redirect('inbox')
+    return redirect('inbox', username=request.user.username)
 
 
 @login_required
@@ -142,7 +140,7 @@ def decline_bid(request, offer_id):
     offer_obj = Offer.objects.get(pk=offer_id)
     date_time = datetime.datetime.now()
     notify(offer_obj, offer_obj.buyer, date_time)
-    return redirect('inbox')
+    return redirect('inbox', username=request.user.username)
 
 
 @login_required

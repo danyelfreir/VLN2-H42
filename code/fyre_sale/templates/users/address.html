@@ -4,7 +4,7 @@
 {% block form %}
         <h4 class="form-title">Address</h4><br>
         <p class="form-subtitle">Save your address <br>for easy checkout</p>
-        <form class="loginform" action="{% url 'address' %}" method="POST">
+        <form class="loginform" action="{% url 'edit_address' user.username %}" method="POST">
             {% csrf_token %}
             <p>Street name and number</p>
                 {{form.street_name}}

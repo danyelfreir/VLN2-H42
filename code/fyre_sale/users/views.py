@@ -4,9 +4,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert
 from users.models import Notification
+=======
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect,get_object_or_404
+from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser
+from users.models import Notification, User_info
+>>>>>>> 0048d3f6ceeac147ccdaa146ceef597837403ce1
 from items.models import Offer
 
 def sign_up(request):
@@ -55,11 +62,12 @@ def inbox(request, username):
     if username != request.user.username:
         raise Http404()
 
-    offers = Offer.objects.filter(buyer_id=request.user.id)
+    offers = Offer.objects.filter(buyer_id=request.user.id).order_by('-time_of_offer')
     bids = Offer.objects.raw("\n"
                              "SELECT * FROM items_offer O WHERE O.item_id IN (\n"
-                             "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s);", [request.user.id])
-    notifications = Notification.objects.filter(recipient=request.user)
+                             "SELECT I.id FROM items_itemforsale I WHERE I.seller_id = %s)\n"
+                             "ORDER BY O.time_of_offer DESC;", [request.user.id])
+    notifications = Notification.objects.filter(recipient=request.user).order_by('-timestamp')
     return render(request, 'users/inbox.html', context={
         'offers': offers,
         'bids': bids,
@@ -79,7 +87,7 @@ def notification(request, username, not_id):
 
 
 @login_required
-def payment(request, username):
+def edit_payment(request, username):
     if username != request.user.username:
         raise Http404()
 
@@ -90,7 +98,8 @@ def payment(request, username):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-            return redirect('user_page')
+            user_id.save()
+            return redirect('profile')
     else:
         form = PaymentInsert()
     return render(request, 'users/payment.html', {
@@ -99,7 +108,7 @@ def payment(request, username):
 
 
 @login_required
-def address(request, username):
+def edit_address(request, username):
     if username != request.user.username:
         raise Http404()
 
@@ -110,13 +119,14 @@ def address(request, username):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-        return redirect('user_page')
+        return redirect('profile')
     else:
-        form = AddressInsert(request.POST)
+        form = AddressInsert()
     return render(request, 'users/address.html', {
         'form': form
     })
 
+<<<<<<< HEAD
 def checkout(request):
     return render(request, 'checkout.html')
 
@@ -128,3 +138,26 @@ def checkout_save(request):
         checkout_payment = payment(request)
         checkoutform=CheckoutForm(checkout_address=checkout_address, checkout_payment=checkout_payment)
         checkoutform.save()
+=======
+def edit_profile(request, username):
+    if username != request.user.username:
+        raise Http404()
+
+    instance1 = get_object_or_404(User_info, pk=request.user.id)
+    instance2 = get_object_or_404(User, pk=request.user.id)
+    if request.method =='POST':
+        form1 = EditUser(data=request.POST, instance=instance1)
+        form2 = EditAuthUser(data=request.POST, instance=instance2)
+        print(form2.fields)
+        if form1.is_valid() and form2.is_valid():
+            form1.save()
+            form2.save()
+            return redirect('payment')
+    else:
+        form1 = EditUser(instance=instance1)
+        form2 = EditAuthUser(instance=instance2)
+    return render(request, 'users/edit_user.html', {
+        'form1': form1,
+        'form2': form2
+    })
+>>>>>>> 0048d3f6ceeac147ccdaa146ceef597837403ce1
