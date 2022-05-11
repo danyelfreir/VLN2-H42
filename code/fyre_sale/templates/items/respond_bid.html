@@ -7,14 +7,14 @@
     <p class="form-subtitle">Are you sure?</p>
     <div class="accept-decline-buttons">
       <a class="accept-decline" href="{% url 'accept_bid' offer.id %}">Yes</a>
-      <a class="accept-decline" href="{% url 'inbox' %}">No</a>
+      <a class="accept-decline" href="{% url 'inbox' user.username %}">No</a>
     </div>
   {% elif response == "Decline" %}
     <h4 class="form-title">Decline bid</h4>
     <p class="form-subtitle">Are you sure?</p>
     <div class="accept-decline-buttons">
       <a class="accept-decline" href="{% url 'decline_bid' offer.id %}">Yes</a>
-      <a class="accept-decline" href="{% url 'inbox' %}">No</a>
+      <a class="accept-decline" href="{% url 'inbox' user.username %}">No</a>
     </div>
   {% endif %}
 {% endblock form %}
