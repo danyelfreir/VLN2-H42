@@ -13,7 +13,7 @@ def sign_up(request):
         form = SignUpForm(data=request.POST)
         if form.is_valid():
             new_user = form.save()
-            user_info_form = User_info.create(id=new_user)
+            user_info_form = User_info.objects.create(id=new_user)
             return redirect('signin')
     else:
         form = SignUpForm()
