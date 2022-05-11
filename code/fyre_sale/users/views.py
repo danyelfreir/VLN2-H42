@@ -4,11 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.shortcuts import render, redirect
+from users.models import User_info, Notification
+from items.models import Offer, ItemForSale
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
-from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser
+from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
 from users.models import Notification, User_info
-from items.models import Offer
+
 
 def sign_up(request):
     if request.method == 'POST':
@@ -105,7 +108,6 @@ def edit_payment(request, username):
 def edit_address(request, username):
     if username != request.user.username:
         raise Http404()
-
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
         form = AddressInsert(request.POST)
@@ -118,6 +120,28 @@ def edit_address(request, username):
         form = AddressInsert()
     return render(request, 'users/address.html', {
         'form': form
+    })
+
+
+@login_required
+def rate_sales(request, username, not_id):
+    if username != request.user.username:
+        raise Http404()
+    print(request.POST)
+    notification = Notification.objects.get(pk=not_id)
+    if username != request.user.username:
+        raise Http404()
+    if request.method == 'POST':
+        form = RateSeller(request.POST, notification)
+        if form.is_valid():
+            form.save()
+            return redirect('user_page')
+    else:
+        form = RateSeller(request.POST)
+    return render(request, 'users/rateseller.html', {
+        'form': form,
+        'username': username,
+        'notification': notification,
     })
 
 def edit_profile(request, username):
@@ -141,3 +165,4 @@ def edit_profile(request, username):
         'form1': form1,
         'form2': form2
     })
+

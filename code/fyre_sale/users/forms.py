@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-from users.models import Payment_info, Address_info, User_info
+from users.models import Payment_info, Address_info, User_info, User_rating
 from django.forms import ModelForm, widgets
 from django.contrib.auth.models import User
 
@@ -80,6 +80,19 @@ class AddressInsert(ModelForm):
             'country': widgets.TextInput(attrs={'class': 'form-field'})
         }
 
+class RateSeller(ModelForm):
+    class Meta:
+        def __init__(self, notification=None, *args, **kwargs):
+            super(RateSeller, self).__init__(*args, **kwargs)
+            for field in self.visible_fields():
+                field.field.widget.attrs['class'] = 'form-field'
+        rates = [(i, i) for i in range(11)]
+        model = User_rating
+        exclude =['userid']
+        widgets = {
+            'user_rating': widgets.Select(attrs={'class': 'form-field'}, choices=rates),
+        }
+        
 class EditUser(ModelForm):
     class Meta:
         def __init__(self, *args, **kwargs):
@@ -104,3 +117,4 @@ class EditAuthUser(ModelForm):
         fields = [
             'first_name', 'last_name', 'email'
         ]
+
