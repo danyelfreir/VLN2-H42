@@ -19,9 +19,9 @@
                 You have received an offer for {{ notification.offer.item.name }}
               {% else %}
                 {% if notification.offer.approved %}
-                  {{ notification.offer.item.seller.name }} has accepted your bid on {{ notification.offer.item.name }}!
+                  {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!
                 {% else %}
-                  {{ notification.offer.item.seller.name }} has declined your bid on {{ notification.offer.item.name }}
+                  {{ notification.offer.item.seller.username }} has declined your bid on {{ notification.offer.item.name }}
                 {% endif %}
               {% endif %}
             </a>

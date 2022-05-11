@@ -11,14 +11,32 @@
       <p id="bid-item-bid">{{ notification.offer.buyer.username }}'s bid: {{ notification.offer.price }} kr.</p>
   </div>
   <div class="accept-decline-buttons">
-    <a class="accept-decline" href="#">Accept</a>
-    <a class="accept-decline" href="#">Decline</a>
+    <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Accept" %}">Accept</a>
+    <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Decline" %}">Decline</a>
   </div>
 {% else %}
   {% if notification.offer.approved %}
-    {{ notification.offer.item.seller.name }} has accepted your bid on {{ notification.offer.item.name }}!
+  <h4 class="form-title">Bid accepted</h4>
+  <p class="form-subtitle">Congratulations!</p>
+  <div id="bid-item-info">
+      <img id="bid-item-image" src="{{ notification.offer.item.image }}">
+      <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
+      <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
+  </div>
+  <div class="accept-decline-buttons">
+    <a class="accept-decline" href="{% url 'checkout' notification.offer.id %}">Checkout</a>
+  </div>
   {% else %}
-    {{ notification.offer.item.seller.name }} has declined your bid on {{ notification.offer.item.name }}
+  <h4 class="form-title">Bid rejected</h4>
+  <p class="form-subtitle">Unfortunately, {{ notification.offer.item.seller }} has rejected your generous offer.</p>
+  <div id="bid-item-info">
+      <img id="bid-item-image" src="{{ notification.offer.item.image }}">
+      <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
+      <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
+  </div>
+  <div class="accept-decline-buttons">
+    <a class="accept-decline" href="{% url 'inbox' %}">Inbox</a>
+  </div>
   {% endif %}
 {% endif %}
 
