@@ -1,8 +1,9 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-from users.models import Payment_info, Address_info
+from users.models import Payment_info, Address_info, User_info
 from django.forms import ModelForm, widgets
+from django.contrib.auth.models import User
 
 # class DivErrorList(ErrorList):
 #     def __str__(self):
@@ -47,7 +48,6 @@ class SignUpForm(UserCreationForm):
 class PaymentInsert(ModelForm):
     class Meta:
         model = Payment_info
-        exp = '%m-%Y'
         exclude = ['id']
         widgets = {
             'card_nr': widgets.TextInput(attrs={'class': 'form-field', 'maxlength': 16, 'pattern': '[0-9]+'}),
@@ -56,7 +56,7 @@ class PaymentInsert(ModelForm):
                 'type': 'date',
                 'placeholder': 'MM/YY'},
                 format='%m/%Y'),
-            'cvc': widgets.TextInput(attrs={'class': 'form-field', 'size': '20', 'minlength': 3, 'maxlength': 4})
+            'cvc': widgets.TextInput(attrs={'class': 'form-field', 'minlength': 3, 'maxlength': 4})
         }
     # def __init__(self, *args, **kwargs):
     #     super(PaymentInsert, self).__init__(*args, **kwargs)
@@ -78,4 +78,32 @@ class AddressInsert(ModelForm):
             'zip': widgets.TextInput(attrs={'class': 'form-field'}),
             'city': widgets.TextInput(attrs={'class': 'form-field'}),
             'country': widgets.TextInput(attrs={'class': 'form-field'})
+        }
+
+class EditUser(ModelForm):
+    class Meta:
+        def __init__(self, *args, **kwargs):
+            super(EditUser, self).__init__(*args, **kwargs)
+            for field in self.visible_fields():
+                field.field.widget.attrs['class'] = 'form-field'
+        model = User_info
+        exclude = ['id']
+        widgets = {
+            'profileimg': widgets.TextInput(attrs={'class': 'form-field'}),
+            'bio': widgets.Textarea(attrs={'class': 'form-field', 'type': 'date'}),
+            'birthday': widgets.DateTimeInput(attrs={'class': 'form-field', 'type': 'date'}),
+        }
+
+class EditAuthUser(ModelForm):
+    class Meta:
+        def __init__(self, *args, **kwargs):
+            super(EditAuthUser, self).__init__(*args, **kwargs)
+            for field in self.visible_fields():
+                field.field.widget.attrs['class'] = 'form-field'
+        model = User
+        exclude = ['id']
+        widgets = {
+            'first_name': widgets.TextInput(attrs={'class': 'form-field'}),
+            'last_name': widgets.TextInput(attrs={'class': 'form-field'}),
+            'email': widgets.EmailInput(attrs={'class': 'form-field'}),
         }

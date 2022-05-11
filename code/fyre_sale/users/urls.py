@@ -11,5 +11,6 @@ urlpatterns = [
     path('profile/inbox/<str:params>', views.inbox, name="inbox"),
     path('profile/inbox/notifications/<int:not_id>', views.notification, name="notification"),
     path('payment', views.payment, name="payment"),
-    path('address', views.address, name="address")
+    path('address', views.address, name="address"),
+    path('edit_user', views.edit_user, name="edit_user"),
 ]

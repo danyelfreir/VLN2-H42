@@ -7,7 +7,7 @@ class User_info(models.Model):
     id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     profileimg = models.TextField(blank=True, null=True, max_length=9999)
     bio = models.TextField(default=None, max_length=9999)
-    birthday = models.CharField(default=None, max_length=255)
+    birthday = models.DateField(default=None)
 
 class Address_info(models.Model):
     id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
