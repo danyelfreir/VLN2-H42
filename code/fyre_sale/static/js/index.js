@@ -36,13 +36,13 @@ searchFormInput.addEventListener('keydown', async () => {
 
 // ============ PROFILE MENU ===========
 loginButton.addEventListener('click', (e) => {
-  console.log(e.target);
+  console.log("Is buttoning");
   profileMenu.style.display = 'block';
 })
 
 
 // ============ FILTER MENU ============
-loginButton.addEventListener('click', (e) => {
+filterButton.addEventListener('click', (e) => {
   console.log(e.target);
-  profileMenu.style.display = 'block';
+  filterMenu.style.display = 'block';
 })
