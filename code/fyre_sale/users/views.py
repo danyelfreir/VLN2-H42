@@ -44,7 +44,7 @@ def profilepage(request, username):
     user = User.objects.get(username=username)
     user_info = User_info.objects.get(pk=user.id)
     return render(request, 'users/userpage.html', context={
-        'user': user,
+        'user_profile': user,
         'user_info': user_info
     })
 

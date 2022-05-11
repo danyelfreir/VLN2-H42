@@ -1,3 +1,109 @@
+#profile {
+    margin: 20px 15% 20px 15%;
+}
+.profile-container {
+    width: 100%;  
+    display: grid;
+    grid:
+        "image header header" 0.2fr
+        "image info info" 1.3fr
+        "line line line" 0.01fr
+        "below below belowright" 1fr
+        / 1fr 1fr 1fr;
+    gap: 8px;
+}
+
+.image-container { 
+    grid-area: image; 
+}
+
+.profile-picture {
+    object-fit: cover; 
+    object-position: center; 
+    width: 400px;
+    height: 400px;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}
+
+.profile-header {
+    grid-area: header;
+    padding-left: 20px;
+}
+
+.profile-info {
+    grid-area: info; 
+}
+
+.info-header {
+    color: rgb(106, 106, 106);
+    padding: 0;
+}
+
+.info-value {
+    color: rgb(0, 0, 0);
+}
+
+.line { 
+    grid-area: line; 
+    border-bottom: 2px solid #ccc;
+}
+
+.below-line { 
+    grid-area: below; 
+}
+
+.user-info {
+    list-style: none;
+    padding: 0;
+    font-size: 20px;
+}
+
+.buttons-container {
+    grid-area: belowright;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: 0;
+    padding-top: 10px;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0 0 0 20px;
+}
+
+.item-header {
+    color: rgb(72, 72, 72);
+    padding: 0 0 0 20px;
+}
+
+.profile-name {
+    font-size: 30px;
+    color: #4a5ee5;
+}
+
+.rating {
+    margin: auto;
+}
+
+.button-profile {
+    text-align: center;
+    line-height: 40px;
+    margin: 5px;
+    width: 150px;
+    height: 40px;
+    background-color: #4a5ee5;
+    border-radius: 2px;
+    text-decoration: none;
+    color:  white;
+}
+
+.button-profile:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    
+
+}
+
 /* #profile {
     margin: auto;
     margin: 20px 10% 20px 10%;
@@ -100,92 +206,3 @@ div.user-items {
     top:0;
     grid-row:3/span 2;
 } */
-
-#profile {
-    margin: 20px 15% 20px 15%;
-}
-.profile-container {
-    width: 100%;  
-    display: grid;
-    grid:
-        "image rating rating" 0.5fr
-        "image info info" 1fr
-        "line line line" 0.01fr
-        "below below belowright" 1fr
-        / 1fr 1fr 1fr;
-    gap: 8px;
-}
-
-.image-container { 
-    grid-area: image; 
-}
-
-.profile-picture {
-    object-fit: cover; 
-    object-position: center; 
-    width: 400px;
-    height: 400px;
-    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-}
-.info-header {
-    color: rgb(106, 106, 106);
-    padding: 0 20px 0 0;
-}
-
-.info-value {
-    color: rgb(0, 0, 0);
-    padding-left: 20px;
-}
-.info { 
-    grid-area: info; 
-}
-.line { 
-    grid-area: line; 
-    border-bottom: 2px solid #ccc;
-}
-
-/*User profile*/
-.rating { 
-    grid-area: rating; 
-}
-
-.fa-ul li{
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-}
-
-.bio { 
-    grid-area: below / below-right; 
-}
-
-.user-info {
-    list-style: none;
-    padding: 0;
-    font-size: 20px;
-}
-
-/*Item profile*/
-
-.item-profile-info {
-    grid-area: info; 
-}
-.item-header {
-    grid-area: rating;
-}
-
-.seller-info {
-    grid-area: below;
-}
-.bid-container {
-    grid-area: belowright;
-}
-
-.info-list {
-    list-style: none;
-    padding: 0 0 0 20px;
-}
-
-.item-header {
-    padding: 0 0 0 20px;
-}
