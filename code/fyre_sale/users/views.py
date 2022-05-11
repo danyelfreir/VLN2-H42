@@ -80,7 +80,7 @@ def notification(request, username, not_id):
 
 
 @login_required
-def payment(request, username):
+def edit_payment(request, username):
     if username != request.user.username:
         raise Http404()
 
@@ -101,7 +101,7 @@ def payment(request, username):
 
 
 @login_required
-def address(request, username):
+def edit_address(request, username):
     if username != request.user.username:
         raise Http404()
 
@@ -119,7 +119,10 @@ def address(request, username):
         'form': form
     })
 
-def edit_user(request):
+def edit_profile(request, username):
+    if username != request.user.username:
+        raise Http404()
+
     instance1 = get_object_or_404(User_info, pk=request.user.id)
     instance2 = get_object_or_404(User, pk=request.user.id)
     if request.method =='POST':

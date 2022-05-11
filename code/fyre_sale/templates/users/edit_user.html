@@ -4,7 +4,7 @@
 {% block form %}
         <h4 class="form-title">User information</h4><br>
         <p class="form-subtitle">Update your information</p>
-        <form class="loginform" action="{% url 'edit_user' %}" method="POST">
+        <form class="loginform" action="{% url 'edit_profile' user.username %}" method="POST">
             {% csrf_token %}
             <p>Profile image</p>
                 {{form1.profileimg}}
