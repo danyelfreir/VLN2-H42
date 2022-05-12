@@ -86,7 +86,6 @@ def create_item(request):
             item_obj = form.save(commit=False)
             item_obj.seller_id = tmp_user.id
             item_obj.date_of_upload = date.strftime("%x")
-            # item_obj.time_of_upload = date.strftime("%X")
             item_obj.cur_bid = item_obj.min_bid
             item_obj.save()
             return redirect('items_index')
