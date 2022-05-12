@@ -18,7 +18,7 @@ class Address_info(models.Model):
 
 class Payment_info(models.Model):
     id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    card_nr = models.CharField(default=None, max_length=20)
+    card_nr = models.CharField(default=None, max_length=16)
     expires = models.CharField(default=None, max_length=10)
     cvc = models.CharField(default=None, max_length=4)
 

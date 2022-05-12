@@ -42,7 +42,7 @@ class ItemForSale(models.Model):
 class ItemImages(models.Model):
     item = models.ForeignKey(ItemForSale, on_delete=models.CASCADE, blank=True)
     image = models.ImageField(default="favicon-fyresale.svg", null=True, blank=True)
-    main_image = models.BooleanField(default=None, blank=True)
+    main_image = models.BooleanField(default=False, blank=True)
 
 class Offer(models.Model):
     id = models.BigAutoField(primary_key=True)

@@ -5,11 +5,11 @@
     <p class="form-subtitle">Save your payment <br>for easy checkout</p>
     <form class="loginform" action="{% url 'edit_payment' user.username %}" method="POST">
         {% csrf_token %}
-        <label class="form-field-label" for="credit">Credit card number</label><br>
+        <p>Credit card number</p>
         {{form.card_nr}}
-        <label class="form-field-label" for="expire">Expiry date</label><br>
+        <p>Expiry date</p>
         {{form.expires}}
-        <label class="form-field-label" for="credit">CVC</label><br>
+        <p>CVC</p>
         {{form.cvc}}
         {{ form.errors }}
         <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
