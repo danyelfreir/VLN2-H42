@@ -4,11 +4,7 @@
 {% block profile-container %}
 <div class="profile-container">
     <div class="image-container">
-        {% if user_info.image %}
-        <img class="profile-picture" src="{{ user_info.image }}" alt="Profile picture" >
-        {% else %}
-        <img class="profile-picture" src="{% static 'img/profile-icon.png' %}" alt="Profile picture" >
-        {% endif %}
+        <img class="profile-picture" src="{{MEDIA_URL}}/images/{{user_info.profileimg}}" alt="Profile picture" >
     </div>
     <div class="profile-header">
         <h3 class="profile-name">{{ user.username }}</h3>
@@ -16,8 +12,8 @@
     </div>
     <div class="profile-info">
         <ul class="info-list">
-            <li><p class="info-header"><span>Name:</span><span class="info-value">&emsp;{{ user_info.first_name }} {{ user_info.last_name }}</span></p>
-            <li><p class="info-header"><span>Member Since:</span><span class="info-value">&emsp;{{ user_profile.date }}</span></p>
+            <li><p class="info-header"><span>Name:</span><span class="info-value">&emsp;{{ user.first_name }} {{ user.last_name }}</span></p>
+            <li><p class="info-header"><span>Member Since:</span><span class="info-value">&emsp;{{ joined }}</span></p>
             {% if user.id == user_profile.id %}
             <li><p class="info-header"><span>Birthday:</span><span class="info-value">&emsp;{{ user_info.birthday }}</span></p>
             {% else %}

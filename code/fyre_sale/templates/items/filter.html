@@ -1,15 +1,7 @@
 {% load static %}
 
-{% block styles %}
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/filter.css' %}"> -->
-{% endblock styles %}
-
-
-<a id="create-item" href="{% url 'create_item' %}">Upload your ad</a>
-<a id="filter-button"><i class="fa-solid fa-sliders"></i></a>
 <div id="filter-container">
     <p id="filter-title">Categories</p>
-    <div><h3 class="category-header">{{ cat.name }}</h3></div> <!--Hægt að gera ehv svona??-->
     <ul id="categories">
         <a href="{% url 'items_index' %}">All items</a>
         {% for cat in categories %}
@@ -26,12 +18,9 @@
         {% endfor %}
     </ul>
 </div>
-
 <style>
     #filter-container {
-        margin-top: 50px;
         width: 20%;
-        /* height: 100%; */
         margin-left: 0%;
         position: absolute;
     }
@@ -81,16 +70,5 @@
         color: #4a5ee5;
         font-weight: bold;
         text-align: center;
-    }
-    #create-item, #filter-button {
-        float: left;
-        padding: 10px;
-        border-radius: 2px;
-        background-color: #4a5ee5;
-        color: #fff;
-        font-size: 18px;
-        margin: 10px;
-        text-decoration: none;
-        z-index: 10;
     }
 </style>

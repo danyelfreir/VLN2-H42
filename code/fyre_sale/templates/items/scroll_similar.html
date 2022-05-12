@@ -2,20 +2,20 @@
 
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/scroll_bar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/items.css' %}">
 {% endblock styles %}
-
-<h2 class="frontpage-title">Similar items</h2>
-<div id="scroll-bar-wrapper">
-    <div id="carousel">
-        <div id="scroll_content">
-            {% for item in items %}
-                {% include 'items/grid-item.html' with item=item %}
-            {% endfor %}
+{% if items %}
+    <h2 class="frontpage-title">Similar items</h2>
+    <div id="scroll-bar-wrapper">
+        <div id="carousel">
+            <div id="scroll_content">
+                {% for item in items %}
+                    {% include 'items/grid-item.html' with item=item %}
+                {% endfor %}
+            </div>
+            <button id="prev"><i class="fa-solid fa-circle-chevron-left"></i></button>
+            <button id="next"><i class="fa-solid fa-circle-chevron-right"></i></button>
         </div>
-        <button id="prev"><i class="fa-solid fa-circle-chevron-left"></i></button>
-          <button id="next"><i class="fa-solid fa-circle-chevron-right"></i></button>
     </div>
-</div>
-<script src="{% static 'js/scroll_bar.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/scroll_bar.js' %}" type="text/javascript"></script>
+{% endif %}
 

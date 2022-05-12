@@ -5,11 +5,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.shortcuts import render, redirect
+from users.models import User_info, Notification
+from items.models import Offer, ItemForSale
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
-from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser
 from users.models import Notification, User_info, Address_info, Payment_info
 from items.models import Offer
+from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
+
 
 def sign_up(request):
     if request.method == 'POST':
@@ -46,12 +50,14 @@ def sign_in(request):
 def profilepage(request, username):
     user = User.objects.get(username=username)
     user_info = User_info.objects.get(pk=user.id)
+    joined = user.date_joined.strftime("%x")
+    print("test")
+    print(joined)
     return render(request, 'users/userpage.html', context={
         'user_profile': user,
-        'user_info': user_info
+        'user_info': user_info,
+        'joined': joined
     })
-
-
 @login_required
 def inbox(request, username):
     if username != request.user.username:
@@ -106,7 +112,6 @@ def edit_payment(request, username):
 def edit_address(request, username):
     if username != request.user.username:
         raise Http404()
-
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
         form = AddressInsert(request.POST)
@@ -114,7 +119,7 @@ def edit_address(request, username):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-            return redirect('profile')
+        return redirect('profile', username=username)
     else:
         form = AddressInsert()
     return render(request, 'users/address.html', {
@@ -186,7 +191,28 @@ def checkout(request, offer_id, step):
     })
 
 
-def edit_profile(request,  username):
+@login_required
+def rate_sales(request, username, not_id):
+    if username != request.user.username:
+        raise Http404()
+    print(request.POST)
+    notification = Notification.objects.get(pk=not_id)
+    if username != request.user.username:
+        raise Http404()
+    if request.method == 'POST':
+        form = RateSeller(request.POST, notification)
+        if form.is_valid():
+            form.save()
+            return redirect('user_page')
+    else:
+        form = RateSeller(request.POST)
+    return render(request, 'users/rateseller.html', {
+        'form': form,
+        'username': username,
+        'notification': notification,
+    })
+
+def edit_profile(request, username):
     if username != request.user.username:
         raise Http404()
 
@@ -199,7 +225,7 @@ def edit_profile(request,  username):
         if form1.is_valid() and form2.is_valid():
             form1.save()
             form2.save()
-            return redirect('payment')
+            return redirect('profile', username=username)
     else:
         form1 = EditUser(instance=instance1)
         form2 = EditAuthUser(instance=instance2)

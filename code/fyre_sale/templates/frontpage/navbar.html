@@ -21,7 +21,7 @@
   <div id="orange_right"></div>
 </div>
 <div id="search-dropdown">
-
+  <button id="filtering-button" ><i class="fa-solid fa-sliders"></i> filter</button>
   <div id="search-container">
     <form id="search-form" action="{% url 'items_index' %}" method="GET">
       <select id="cat-btn">
@@ -42,3 +42,130 @@
     </div>
   </div>
 </div>
+
+<style>
+  #filtering-button {
+    display: none;
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 65px;
+    background-color: #f08c34;
+    margin: 0 0 0 0%;
+  }
+  #logo {
+    width: 230px;
+    height: 70px;
+    display: inline;
+  }
+  #search-dropdown {
+    display: none;
+    width: 100%;
+    animation: growDown 200ms ease-in-out forwards;
+    background-color: #a5aff2;
+    height: 55px;
+  }
+  #search-container {
+    width: 60%;
+    height:45px;
+    align-items: center;
+    margin: auto 20%;
+    justify-content: space-around;
+  }
+  #search-form {
+    height: 100%;
+    /* border-radius: 20px; */
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    width: 100%;
+  }
+  #search-form-input {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    z-index: 1001;
+  }
+  #search-form-button {
+    font-size: 20px;
+    width: 40px;
+    height: 100%;
+    border: none;
+    background-color: #fff;
+    color: rgb(140, 140, 140);
+    z-index: 1001;
+  }
+  #cat-btn {
+    font-size: 16px;
+    width: 15%;
+    height: 45px; 
+    margin: auto 0; 
+    padding-left: 10px;
+    border: none;
+    color: rgb(140, 140, 140);
+    border-right: solid #ccc 1.5px;
+  }
+  #search-form-button:hover {
+    cursor: pointer;
+  }
+  .right-side {
+    display: flex;
+    align-items: center;
+    width: 20%;
+  }
+  #search-button, #login {
+    font-size: 20px;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px;
+    width: 30px;
+  }
+  #search-button:hover, #login:hover {
+    cursor: pointer;
+    font-weight: 900;
+  }
+  #orange_right {
+    width: 10%;
+    background-color: #f08c34;
+    height: 65px;
+  }
+  #blue_left {
+    width: 10%;
+    background-color: #4a5ee5;
+    height: 65px;
+  }
+  #navbar {
+    display: flex;
+    flex-direction: row;
+    z-index: 1004;
+  }
+  #search-results-list {
+    position: absolute;
+    z-index: 1000;
+    margin-left: 12.7%;
+    background-color: #ffffff;
+    border: none; 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-top: -1px;
+  }
+  #search-result {
+    display: block;
+    height: 20px;
+    text-decoration: none;
+    padding: 10px 10px 10px 40px;
+  }
+  @keyframes growDown {
+      0% {
+          transform: scaleY(0)
+      }
+      80% {
+          transform: scaleY(1.1)
+      }
+      100% {
+          transform: scaleY(1)
+      }
+  }
+</style>

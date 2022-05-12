@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-from users.models import Payment_info, Address_info, User_info
+from users.models import Payment_info, Address_info, User_info, User_rating
 from django.forms import ModelForm, widgets
 from django.contrib.auth.models import User
 
@@ -81,6 +81,19 @@ class AddressInsert(ModelForm):
             'country': widgets.TextInput(attrs={'class': 'form-field'})
         }
 
+class RateSeller(ModelForm):
+    class Meta:
+        def __init__(self, *args, **kwargs):
+            super(RateSeller, self).__init__(*args, **kwargs)
+            for field in self.visible_fields():
+                field.field.widget.attrs['class'] = 'form-field'
+        rates = [(i, i) for i in range(11)]
+        model = User_rating
+        exclude =['userid']
+        widgets = {
+            'user_rating': widgets.Select(attrs={'class': 'form-field'}, choices=rates),
+        }
+
 class EditUser(ModelForm):
     # def __init__(self, *args, **kwargs):
     #     super(EditUser, self).__init__(*args, **kwargs)
@@ -91,7 +104,7 @@ class EditUser(ModelForm):
         model = User_info
         exclude = ['id']
         widgets = {
-            'profileimg': widgets.TextInput(attrs={'class': 'form-field'}),
+            'profileimg': widgets.FileInput(attrs={'class': 'form-field'}),
             'bio': widgets.Textarea(attrs={'class': 'form-field', 'type': 'date'}),
             'birthday': widgets.DateTimeInput(attrs={'class': 'form-field', 'type': 'date'}),
         }

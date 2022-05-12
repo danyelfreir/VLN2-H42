@@ -1,0 +1,42 @@
+{% load static %}
+
+<div id="filter-menu">
+  <p id="filter-menu-header">Order by:</p>
+  <ul id="filter-menu-list">
+    <li><a href="#">Price <i class="fa-solid fa-arrow-up"></i></a></li>
+    <li><a href="#">Price <i class="fa-solid fa-arrow-down"></i></a></li>
+    <li><a href="#">Date added <i class="fa-solid fa-arrow-up"></i></i></a></li>
+    <li><a href="#">Date added <i class="fa-solid fa-arrow-down"></i></a></li>
+  </ul>
+</div>
+<style>
+    #filter-menu-header {
+        color: rgb(140, 140, 140);
+        font-size: 18px;
+        padding: 5px;
+        margin:0;
+        font-weight: 900;
+    }
+    #filter-menu {
+        top: 115px;
+        display: none;
+        position: absolute;
+        z-index: 1003;
+        width: 170px;
+        background-color: #ffffff;
+        margin-left: 5px;
+        box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    }
+    #filter-menu-list {
+        margin:0;
+        float:left;
+        list-style-type: none;
+        padding: 5px;
+    }
+    #filter-menu-list li {
+        padding:5px 5px 5px 0;
+        font-size: 16;
+        text-decoration: none;
+        color: #4a5ee5;
+    }
+</style>

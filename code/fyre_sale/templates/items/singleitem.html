@@ -1,20 +1,19 @@
-
 {% extends 'profile.html' %}
-
+{% load static #}
 {% block profile-container %}
     <div class="profile-container">
         <div class="image-container">
-            <img class="profile-picture" src="{{ item.image }}" alt="Item picture" >
+            <img class="profile-picture" src="{{MEDIA_URL}}/images/{{item.image}}" alt="Item picture" enctype="multipart/form-data">
         </div>
         <div class="profile-header">
             <h3 class="profile-name">{{ item.name }}</h3>
         </div>
         <div class="profile-info">
             <ul class="info-list">
-                <li><p class="info-header"><span>Posted on:</span><span class="info-value">{{ item.time_of_upload }} / {{ item.date_of_upload }}</span></p>
+                <li><p class="info-header"><span>Posted on:</span><span class="info-value">{{ item.date_of_upload }} / {{ item.date_of_upload }}</span></p>
                 <li><p class="info-header"><span>Current highest bid:</span><span class="info-value">{{ item.cur_bid }} kr.</span></p>
                 <li><p class="info-header"><span>Description:</span><span class="info-value">{{ item.long_desc }}</span></p>
-            </ul>            
+            </ul>
         </div>
         <div class="line"></div>
         <div class="below-line">
@@ -24,8 +23,12 @@
                 <li><p class="info-header"><span>Rating:</span><span class="info-value rating">Seller rating***</span></p>
             </ul>
         </div>
-        <div class="buttons_container">
-            <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
+        <div class="buttons-container">
+            {% if user.id != item.seller.id %}
+                <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
+            {% else %}
+                <a href="{% url 'place_bid' item.id %}" class="button-profile">Edit item</a>
+            {% endif %}
         </div>
     </div>
 {% include 'items/scroll_similar.html' with items=similar_items %}

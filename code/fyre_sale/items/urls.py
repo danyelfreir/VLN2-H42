@@ -1,6 +1,11 @@
 from django.urls import path
 from . import views
 
+
+#tilraun fyrir myndauppload
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('', views.items_index, name="items_index"),
     path('<int:item_id>', views.item_detail, name="item_detail"),
@@ -11,3 +16,6 @@ urlpatterns = [
     path('offer/<int:offer_id>/accept', views.accept_bid, name="accept_bid"),
     path('offer/<int:offer_id>/decline', views.decline_bid, name="decline_bid"),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

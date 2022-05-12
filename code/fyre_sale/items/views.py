@@ -21,7 +21,7 @@ def items_index(request):
     list_of_items, categories, subcategories = None, None, None
 
     if name is None and subcat is None and cat is None:
-        list_of_items = ItemForSale.objects.all().order_by('time_of_upload')
+        list_of_items = ItemForSale.objects.all().order_by('date_of_upload')
     elif name is not None and subcat is None and cat is None:
         list_of_items = ItemForSale.objects.filter(name__icontains=name)
         subcategories = None
@@ -30,7 +30,7 @@ def items_index(request):
             ''' SELECT * FROM items_itemforsale I WHERE I.sub_cat_id in (
                     SELECT S.id FROM items_subcategory S WHERE S.category_id = (
                         SELECT C.id FROM items_category C WHERE C.name = %s))
-                ORDER BY i.time_of_upload DESC; ''', [cat]
+                ORDER BY i.date_of_upload DESC; ''', [cat]
         )
         tmp_cat = Category.objects.get(name=cat)
         subcategories = SubCategory.objects.filter(category_id=tmp_cat)
@@ -72,12 +72,12 @@ def create_item(request):
     date = datetime.datetime.now()
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        form = CreateItem(request.POST)
+        form = CreateItem(request.POST, request.FILES)
         if form.is_valid():
             item_obj = form.save(commit=False)
             item_obj.seller_id = tmp_user.id
             item_obj.date_of_upload = date.strftime("%x")
-            item_obj.time_of_upload = date.strftime("%X")
+            # item_obj.time_of_upload = date.strftime("%X")
             item_obj.cur_bid = item_obj.min_bid
             item_obj.save()
             return redirect('items_index')
@@ -142,10 +142,6 @@ def decline_bid(request, offer_id):
     notify(offer_obj, offer_obj.buyer, date_time)
     return redirect('inbox', username=request.user.username)
 
-
-@login_required
-def checkout(request, offer_id):
-    pass
 
 
 # ======= HELPER FUNCTIONS =========

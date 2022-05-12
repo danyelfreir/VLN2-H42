@@ -5,7 +5,7 @@ from items.models import Offer
 
 class User_info(models.Model):
     id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    profileimg = models.TextField(default=None, blank=True, null=True, max_length=9999)
+    profileimg = models.ImageField(default="profile-icon.png", blank=True, null=True)
     bio = models.TextField(default=None, blank=True, null=True, max_length=9999)
     birthday = models.CharField(default=None, blank=True, null=True, max_length=255)
 
