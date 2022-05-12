@@ -14,7 +14,7 @@ class CreateItem(ModelForm):
         }
         widgets = {
             'condition': widgets.Select(attrs={'class': 'form-field'}, choices=conditions),
-            'image': widgets.FileInput(attrs={'class': 'form-field', 'enctype': 'multipart/form-data'}),
+            'image': widgets.FileInput(attrs={'class': 'form-field', 'enctype': 'multipart/form-data', 'multiple': True}),
         }
     def __init__(self, *args, **kwargs):
         super(CreateItem, self).__init__(*args, **kwargs)

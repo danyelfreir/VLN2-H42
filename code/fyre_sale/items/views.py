@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, Http404
 from items.models import ItemForSale
 from users.models import Notification
-from items.models import ItemForSale, SubCategory, Category, Offer
+from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from items.item_form import CreateItem, PlaceBid
@@ -82,8 +82,25 @@ def create_item(request):
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
         form = CreateItem(request.POST, request.FILES)
+        images = request.FILES.getlist('images')
+
         if form.is_valid():
             item_obj = form.save(commit=False)
+            count = 1
+            for image in images:
+                if count > 1:
+                    photo = ItemImages.objects.create(
+                        item_obj=item_obj,
+                        image=image,
+                        main_image=True,
+                    )
+                else:
+                    photo = ItemImages.objects.create(
+                        item_obj=item_obj,
+                        image=image,
+                        main_image=False,
+                    )
+                photo.save()
             item_obj.seller_id = tmp_user.id
             item_obj.date_of_upload = date.strftime("%x")
             item_obj.cur_bid = item_obj.min_bid
