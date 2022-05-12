@@ -10,5 +10,4 @@ urlpatterns = [
     path('<int:offer_id>/respond/<str:response>', views.respond_bid, name="respond_bid"),
     path('offer/<int:offer_id>/accept', views.accept_bid, name="accept_bid"),
     path('offer/<int:offer_id>/decline', views.decline_bid, name="decline_bid"),
-    path('offer/<int:offer_id>/checkout', views.checkout, name="checkout")
 ]

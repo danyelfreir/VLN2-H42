@@ -48,29 +48,30 @@ class SignUpForm(UserCreationForm):
 class PaymentInsert(ModelForm):
     class Meta:
         model = Payment_info
-        exclude = ['id']
+        fields = [
+            'card_nr', 'expires', 'cvc'
+        ]
         widgets = {
             'card_nr': widgets.TextInput(attrs={'class': 'form-field', 'maxlength': 16, 'pattern': '[0-9]+'}),
             'expires': widgets.DateTimeInput(attrs={
                 'class': 'form-field',
                 'type': 'date',
                 'placeholder': 'MM/YY'},
-                format='%m/%Y'),
+                format='%m%Y'),
             'cvc': widgets.TextInput(attrs={'class': 'form-field', 'minlength': 3, 'maxlength': 4})
         }
     # def __init__(self, *args, **kwargs):
     #     super(PaymentInsert, self).__init__(*args, **kwargs)
     #     for field in self.visible_fields():
-    #         if field.name == 'card_nr':
-    #             'card_nr': widgets.NumberInput()
     #         field.field.widget.attrs['class'] = 'form-field'
 
 class AddressInsert(ModelForm):
+    # def __init__(self, *args, **kwargs):
+    #     super(AddressInsert, self).__init__(*args, **kwargs)
+    #     for field in self.visible_fields():
+    #         field.field.widget.attrs['class'] = 'form-field'
+
     class Meta:
-        def __init__(self, *args, **kwargs):
-            super(AddressInsert, self).__init__(*args, **kwargs)
-            for field in self.visible_fields():
-                field.field.widget.attrs['class'] = 'form-field'
         model = Address_info
         exclude = ['id']
         widgets = {
@@ -81,11 +82,12 @@ class AddressInsert(ModelForm):
         }
 
 class EditUser(ModelForm):
+    # def __init__(self, *args, **kwargs):
+    #     super(EditUser, self).__init__(*args, **kwargs)
+    #     for field in self.visible_fields():
+    #         field.field.widget.attrs['class'] = 'form-field'
+
     class Meta:
-        def __init__(self, *args, **kwargs):
-            super(EditUser, self).__init__(*args, **kwargs)
-            for field in self.visible_fields():
-                field.field.widget.attrs['class'] = 'form-field'
         model = User_info
         exclude = ['id']
         widgets = {
@@ -95,12 +97,18 @@ class EditUser(ModelForm):
         }
 
 class EditAuthUser(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(EditAuthUser, self).__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'form-field'
+
     class Meta:
-        def __init__(self, *args, **kwargs):
-            super(EditAuthUser, self).__init__(*args, **kwargs)
-            for field in self.visible_fields():
-                field.field.widget.attrs['class'] = 'form-field'
         model = User
         fields = [
             'first_name', 'last_name', 'email'
         ]
+        widgets = {
+            'first_name': widgets.TextInput(attrs={'class': 'form-field'}),
+            'last_name': widgets.TextInput(attrs={'class': 'form-field'}),
+            'email': widgets.DateTimeInput(attrs={'class': 'form-field'}),
+        }

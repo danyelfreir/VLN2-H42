@@ -1,43 +1,17 @@
 {% extends 'popup.html' %}
 
-{% block signup-form  %}
+{% block form  %}
+  <h4 class="form-title">Checkout</h4>
+  <p class="form-subtitle">Set up your delivery addresses and payment methods to receive your product</p>
+  <form class="loginform" action="{% url 'checkout' offer next %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <label for="save-info">Save this information to your profile?</label>
+    <input type="checkbox" name="save-info" value="yes">
+    <button class="form-submit" id="submit" type="submit" value="Submit">Continue</button><br>
+    {% if prev > 0 %}
+    <a href="{% url 'checkout' offer prev %}">Back</a>
+    {% endif %}
+  </form>
 
-{% endblock signup-form  %}
-
-
-
-
-
-
-
-<!--{% extends 'popup.html' %}-->
-
-<!--{% block signup-form  %}-->
-<!--    <h4 class="form-title">Payment</h4><br>-->
-<!--    <p class="form-subtitle">Save your payment <br>for easy checkout</p>-->
-<!--        <p>step {{ wizard.steps.step1}} of {{ wizard.steps.count }}</p>-->
-<!--        {% for field in form %}-->
-<!--            {{field.error}}-->
-<!--        {% endfor %}-->
-
-
-<!--    <form class="loginform" action="{% url 'address %}" method="POST">{% csrf_token %}-->
-<!--        <table>-->
-<!--            {{ wizard.management_form }}-->
-<!--            {% if wizard.form.forms %}-->
-<!--                {{ wizard.form.management_form }}-->
-<!--                {% for form in wizard.form.forms %}-->
-<!--                    {{ form }}-->
-<!--                {% endfor %}-->
-<!--            {% else %}-->
-<!--                {{ wizard.form }}-->
-<!--            {% endif %}-->
-<!--        </table>-->
-<!--        {% if wizard.steps.prev %}-->
-<!--        <button name="'wizard_goto_step" type="sumbit" value="{wizard.steps.first}}">'First Step</button>-->
-<!--        <button name="'wizard_goto_step" type="sumbit" value="{wizard.steps.prev}}">'Previous Step Step</button>-->
-<!--        {% endif %}-->
-
-<!--        <input type="submit" calue="Submit" />-->
-<!--    </form>-->
-<!--{% endblock signup-form %}-->
+{% endblock form  %}

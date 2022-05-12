@@ -24,7 +24,7 @@
       <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
   </div>
   <div class="accept-decline-buttons">
-    <a class="accept-decline" href="{% url 'checkout' notification.offer.id %}">Checkout</a>
+    <a class="accept-decline" href="{% url 'checkout' notification.offer.id 1 %}">Checkout</a>
   </div>
   {% else %}
   <h4 class="form-title">Bid rejected</h4>
