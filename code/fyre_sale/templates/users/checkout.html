@@ -5,8 +5,11 @@
   <p class="form-subtitle">Set up your delivery addresses and payment methods to receive your product</p>
   <form class="loginform" action="{% url 'checkout' offer next %}" method="post">
     {% csrf_token %}
-    {{ form }}
-    <label for="save-info">Save this information to your profile?</label>
+    {% for field in form %}
+      <label class="form-field-label">{{ field.label }}</label>
+    {{ field }}
+    {% endfor %}
+    <label for="form-field-label">Save this information to your profile?</label>
     <input type="checkbox" name="save-info" value="yes">
     <button class="form-submit" id="submit" type="submit" value="Submit">Continue</button><br>
     <button class="form-submit" id="submit" onclick="history.back()">Back</button><br>

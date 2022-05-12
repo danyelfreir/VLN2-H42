@@ -15,9 +15,8 @@ body {
 #popup {
     width: 720px;
     height: auto;
-    margin: auto;
+    padding: 20px 0;
     background-color: #fbfbfb;
-    padding-top: 20px;
 }
 #close-form {
     width:98%;
