@@ -117,7 +117,7 @@ def edit_address(request, username):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-        return redirect('profile/'+username)
+        return redirect('profile', username=username)
     else:
         form = AddressInsert()
     return render(request, 'users/address.html', {
