@@ -26,12 +26,12 @@ class ItemForSale(models.Model):
     date_of_upload = models.CharField(max_length=255, blank=True)
     name = models.CharField(max_length=255)
     image = models.ImageField(default="photo.png", null=True, blank=True)
-    condition = models.CharField(max_length=255)
+    condition = models.CharField(max_length=50)
     seller = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     min_bid = models.IntegerField()
     cur_bid = models.IntegerField(default=0, blank=True)
     sold = models.BooleanField(default=False)
-    long_desc = models.TextField(max_length=9999)
+    long_desc = models.TextField(max_length=400)
     sub_cat = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -43,6 +43,7 @@ class ItemForSale(models.Model):
 class ItemImages(models.Model):
     item = models.ForeignKey(ItemForSale, on_delete=models.CASCADE, blank=True)
     image = models.ImageField(default="favicon-fyresale.svg", null=True, blank=True)
+    main_image = models.BooleanField(default=None, blank=True)
 
 class Offer(models.Model):
     id = models.BigAutoField(primary_key=True)
