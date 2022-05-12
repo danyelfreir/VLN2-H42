@@ -25,7 +25,6 @@ class ItemForSale(models.Model):
     id = models.BigAutoField(primary_key=True)
     date_of_upload = models.CharField(max_length=255, blank=True)
     name = models.CharField(max_length=255)
-    image = models.ImageField(default="photo.png", null=True, blank=True)
     condition = models.CharField(max_length=50)
     seller = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     min_bid = models.IntegerField()
@@ -59,5 +58,5 @@ class Offer(models.Model):
 
 class SoldItem(models.Model):
     id = models.BigAutoField(primary_key=True)
-    itemid = models.OneToOneField(ItemForSale, on_delete=models.CASCADE)
-    offerid = models.OneToOneField(Offer, on_delete=models.CASCADE)
+    item = models.OneToOneField(ItemForSale, on_delete=models.CASCADE)
+    offer = models.OneToOneField(Offer, on_delete=models.CASCADE)

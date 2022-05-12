@@ -11,8 +11,9 @@ from items.models import Offer, ItemForSale
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
 from users.models import Notification, User_info, Address_info, Payment_info
-from items.models import Offer
+from items.models import Offer, SoldItem
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
+from datetime import datetime
 
 
 def sign_up(request):
@@ -195,16 +196,22 @@ def checkout(request, offer_id, step):
 
 @login_required
 def checkout_confirm(request, offer_id):
+    offer_obj = Offer.objects.get(pk=offer_id)
     if request.method == 'POST':
+        item_obj = ItemForSale.objects.get(pk=offer_obj.item_id)
+        item_obj.sold = True
+        item_obj.save()
+
+        sold_item_obj = SoldItem.objects.create(
+            offer=offer_obj,
+            item=item_obj
+        )
+
+        notif_content = f'Congratulations on your new {item_obj.name}. Please take the time to rate {item_obj.seller} as a seller.'
+        notify(offer_obj, request.user, notif_content, datetime.now())
+
         clean_checkout_session(request)
         return redirect('inbox', username=request.user.username)
-    print("info")
-    print(request.session['user_info'])
-    print("address")
-    print(request.session['user_address'])
-    print("payment")
-    print(request.session['user_payment'])
-    offer_obj = Offer.objects.get(pk=offer_id)
     return render(request, 'users/checkout_confirm.html', context={
         'user_info': request.session['user_info'],
         'user_address': request.session['user_address'],
@@ -272,3 +279,11 @@ def clean_checkout_session(request):
         pass
     print(request.session.keys())
     return HttpResponse("Clean as fuck boi")
+
+def notify(offer_obj, recipient, content, date_time):
+    new_not = Notification.objects.create(
+        recipient=recipient,
+        offer=offer_obj,
+        content=content,
+        timestamp=date_time
+    )
