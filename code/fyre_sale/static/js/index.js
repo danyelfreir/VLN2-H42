@@ -9,13 +9,19 @@ const loginButton = document.getElementById('login');
 const profileMenu = document.getElementById('profile-menu');
 const filterButton = document.getElementById('filtering-button');
 const filterMenu = document.getElementById('filter-menu');
-
+const currentWindow = window.location.pathname
 searchButton.addEventListener('click', () => {
   searchForm.style.display = "flex";
 });
 
+if (currentWindow === "/items/") {
+  searchButton.click();
+};
+
 background.addEventListener('click', (e) => {
-  searchForm.style.display = 'none';
+  if ( window.location.pathname !== "/items/" ) {
+    searchForm.style.display = 'none';
+  };
   profileMenu.style.display = 'none';
   if ( e.target !== filterButton) {
     filterMenu.style.display = 'none';
