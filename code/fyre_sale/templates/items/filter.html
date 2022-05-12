@@ -2,7 +2,6 @@
 
 <div id="filter-container">
     <p id="filter-title">Categories</p>
-    <div><h3 class="category-header">{{ cat.name }}</h3></div> <!--Hægt að gera ehv svona??-->
     <ul id="categories">
         <a href="{% url 'items_index' %}">All items</a>
         {% for cat in categories %}
@@ -21,9 +20,7 @@
 </div>
 <style>
     #filter-container {
-        margin-top: 50px;
         width: 20%;
-        /* height: 100%; */
         margin-left: 0%;
         position: absolute;
     }

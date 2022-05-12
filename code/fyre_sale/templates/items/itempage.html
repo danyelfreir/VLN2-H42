@@ -7,12 +7,61 @@
 
 {% block content %}
     {% include 'items/filtermenu.html' %}
-    <a id="create-item" href="{% url 'create_item' %}">Upload your ad</a>
-    <div><button id="filtering-button" ><i class="fa-solid fa-sliders"></i></button></div>
-    <div class="items-header"><h2 class="category-title">gaman að fá category title hér.</h2> </div>
+    <div class="filter-nav">
+        <div class="items-header">
+            {% if subcategories %}
+            <h2 class="category-title">{{ subcategories.0.category.name }}</h2>
+            {% else %}
+            <h2 class="category-title">All items</h2>
+            {% endif %}
+        </div>
+    </div>
     <div class="items-grid-container">
     {% for item in items %}
         {% include 'items/grid-item.html' with item=item %}
     {% endfor %}
+    <a id="create-item" href="{% url 'create_item' %}">Upload <br> your item!</a>
     </div>
+    <style>
+        /* .filter-nav {
+             
+        } */
+        #filtering-button {
+            display: block;
+            border: none;
+            height: 45px;
+            background-color: #4a5ee5;
+            border-radius: 2px;
+            color: white;
+            position: absolute;
+            z-index: 100000;
+            margin: 5px 5px;
+            width: 170px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .items-header {
+            width:70%;
+            margin: 0 15%;
+        }
+        .category-title {
+            font-size: 25px;
+            color: #4a5ee5;
+            font-weight: bold;
+            text-align: center;
+        }
+        #create-item {
+            position: fixed;
+            bottom: 65px;
+            right:15px;
+            padding: 10px;
+            border-radius: 2px;
+            background-color: #4a5ee5;
+            color: #fff;
+            font-size: 18px;
+            margin-left: -15%;
+            text-decoration: none;
+            z-index: 10;
+        }
+    </style>
 {% endblock content %}

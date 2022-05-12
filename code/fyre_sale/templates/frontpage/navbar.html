@@ -21,7 +21,7 @@
   <div id="orange_right"></div>
 </div>
 <div id="search-dropdown">
-
+  <button id="filtering-button" ><i class="fa-solid fa-sliders"></i> filter</button>
   <div id="search-container">
     <form id="search-form" action="{% url 'items_index' %}" method="GET">
       <select id="cat-btn">
@@ -44,6 +44,9 @@
 </div>
 
 <style>
+  #filtering-button {
+    display: none;
+  }
   .header-container {
     display: flex;
     justify-content: space-between;
@@ -61,16 +64,16 @@
   #search-dropdown {
     display: none;
     width: 100%;
-    justify-content: space-around;
-    align-items: center;
     animation: growDown 200ms ease-in-out forwards;
     background-color: #a5aff2;
     height: 55px;
   }
   #search-container {
-    width: 70%;
-    height: 40px;
+    width: 60%;
+    height:45px;
     align-items: center;
+    margin: auto 20%;
+    justify-content: space-around;
   }
   #search-form {
     height: 100%;
@@ -98,7 +101,8 @@
   #cat-btn {
     font-size: 16px;
     width: 15%;
-    height: 40px;
+    height: 45px; 
+    margin: auto 0; 
     padding-left: 10px;
     border: none;
     color: rgb(140, 140, 140);
