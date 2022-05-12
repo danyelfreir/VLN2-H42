@@ -23,8 +23,12 @@
                 <li><p class="info-header"><span>Rating:</span><span class="info-value rating">Seller rating***</span></p>
             </ul>
         </div>
-        <div class="buttons_container">
-            <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
+        <div class="buttons-container">
+            {% if user.id != item.seller.id %}
+                <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
+            {% else %}
+                <a href="{% url 'place_bid' item.id %}" class="button-profile">Edit item</a>
+            {% endif %}
         </div>
     </div>
 {% include 'items/scroll_similar.html' with items=similar_items %}
