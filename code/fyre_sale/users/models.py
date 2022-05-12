@@ -30,4 +30,5 @@ class Notification(models.Model):
     id = models.BigAutoField(primary_key=True)
     recipient = models.ForeignKey(User, on_delete=models.CASCADE)
     offer = models.ForeignKey(Offer, null=True, on_delete=models.SET_NULL)
+    content = models.CharField(default=None, max_length=255)
     timestamp = models.DateTimeField(blank=True)
