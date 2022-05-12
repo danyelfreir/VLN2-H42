@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, Http404
 from items.models import ItemForSale
 from users.models import Notification
-from items.models import ItemForSale, SubCategory, Category, Offer
+from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from items.item_form import CreateItem, PlaceBid
+
+from items.item_form import CreateItem, PlaceBid, GetImages
 from datetime import datetime
 from enum import Enum
 
@@ -83,18 +84,42 @@ def create_item(request):
     date = datetime.now()
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        form = CreateItem(request.POST, request.FILES)
+        form = CreateItem(request.POST)
+        images = request.FILES.getlist('images')
+        print(images)
         if form.is_valid():
             item_obj = form.save(commit=False)
             item_obj.seller_id = tmp_user.id
             item_obj.date_of_upload = date.strftime("%x")
             item_obj.cur_bid = item_obj.min_bid
             item_obj.save()
+
+            count = 1
+            for image in images:
+                if count > 1:
+                    photo = ItemImages.objects.create(
+                        item=item_obj,
+                        image=image,
+                        main_image=True,
+                    )
+                else:
+                    print("test2")
+                    photo = ItemImages.objects.create(
+                        item=item_obj,
+                        image=image,
+                        main_image=False,
+                    )
+            print("test3")
+
             return redirect('items_index')
     form = CreateItem()
+    images = GetImages()
     return render(request, 'items/create_item.html', {
-        'form': form
+        'form': form,
+        'images': images
     })
+
+
 
 
 @login_required

@@ -7,8 +7,9 @@
     {% csrf_token %}
     <label class="form-field-label">Name</label><br>
     {{form.name}}
+      <p>Image</p>
     <label class="form-field-label">Image</label><br>
-    {{form.image}}
+    <input required name="images" type="file" multiple class="form-field">
     <label class="form-field-label">Condition</label><br>
     {{form.condition}}
     <label class="form-field-label">Minimum bid</label><br>
