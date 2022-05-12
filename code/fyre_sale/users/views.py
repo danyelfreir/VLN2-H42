@@ -159,7 +159,7 @@ def edit_profile(request, username):
         if form1.is_valid() and form2.is_valid():
             form1.save()
             form2.save()
-            return redirect('profile')
+            return redirect('profile', username=username)
     else:
         form1 = EditUser(instance=instance1)
         form2 = EditAuthUser(instance=instance2)
