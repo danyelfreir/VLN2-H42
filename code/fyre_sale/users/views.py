@@ -127,6 +127,7 @@ def edit_address(request, username):
     })
 
 
+@login_required
 def checkout(request, offer_id, step):
     try:
         user_address_instance = Address_info.objects.get(pk=request.user.id)
@@ -142,8 +143,7 @@ def checkout(request, offer_id, step):
             if form.is_valid():
                 if request.POST.get('save-info') == 'yes':
                     form.save()
-                else:
-                    request.session['user_info'] = form.cleaned_data
+                request.session['user_info'] = form.cleaned_data
                 return redirect('checkout', offer_id=offer_id, step=step+1)
         else:
             if 'user_info' in request.session:
@@ -155,9 +155,10 @@ def checkout(request, offer_id, step):
             form = AddressInsert(data=request.POST, instance=user_address_instance)
             if form.is_valid():
                 if request.POST.get('save-info') == 'yes':
-                    form.save()
-                else:
-                    request.session['user_address'] = form.cleaned_data
+                    tmp_form = form.save(commit=False)
+                    tmp_form.id = request.user
+                    tmp_form.save()
+                request.session['user_address'] = form.cleaned_data
                 return redirect('checkout', offer_id=offer_id, step=step+1)
         else:
             if 'user_address' in request.session:
@@ -169,25 +170,46 @@ def checkout(request, offer_id, step):
             form = PaymentInsert(data=request.POST, instance=user_payment_instance)
             if form.is_valid():
                 if request.POST.get('save-info') == 'yes':
-                    form.save()
-                else:
-                    request.session['user_payment'] = form.cleaned_data
-                    print(request.session.keys())
-            else:
-                print("No validato :(")
-                print(form.errors)
-                return redirect('checkout', offer_id=offer_id, step=step)
+                    tmp_form = form.save(commit=False)
+                    tmp_form.id = request.user
+                    tmp_form.save()
+                request.session['user_payment'] = form.cleaned_data
+            return redirect('checkout_confirm', offer_id=offer_id)
         else:
             if 'user_payment' in request.session:
                 form = PaymentInsert(initial=request.session['user_payment'])
             else:
                 form = PaymentInsert(instance=user_payment_instance)
+    elif step == 4:
+        if request.method == 'POST':
+            pass
+        else:
+            form = ConfirmCheckout()
 
     return render(request, 'users/checkout.html', context={
         'form': form,
         'offer': offer_id,
         'next': step,
-        'prev': step - 1,
+    })
+
+
+@login_required
+def checkout_confirm(request, offer_id):
+    if request.method == 'POST':
+        clean_checkout_session(request)
+        return redirect('inbox', username=request.user.username)
+    print("info")
+    print(request.session['user_info'])
+    print("address")
+    print(request.session['user_address'])
+    print("payment")
+    print(request.session['user_payment'])
+    offer_obj = Offer.objects.get(pk=offer_id)
+    return render(request, 'users/checkout_confirm.html', context={
+        'user_info': request.session['user_info'],
+        'user_address': request.session['user_address'],
+        'user_payment': request.session['user_payment'],
+        'offer': offer_obj,
     })
 
 
