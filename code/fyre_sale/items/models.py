@@ -24,7 +24,7 @@ class SubCategory(models.Model):
 class ItemForSale(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    image = models.CharField(max_length=9999)
+    image = models.ImageField(default="photo.png", null=True, blank=True)
     condition = models.CharField(max_length=255)
     seller = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     time_of_upload = models.CharField(max_length=255, blank=True)

@@ -17,7 +17,7 @@ INSERT INTO items_subcategory (id,name,category_id)
 VALUES
 (1,'Cars.',1),
 (2,'Laptops',2),
-(3,'Cat toys',3),
+(3,'Pet toys',3),
 (4,'Video Games',4),
 (5,'Weights',5),
 (6,'Jeans',6),
@@ -27,3 +27,9 @@ VALUES
 (10,'Toys',10),
 (11,'Skiing',11),
 (12,'Agricultural',12);
+(13, 'Parts',1),
+(14, 'Pets',3),
+(15, 'Jewelry', 6),
+(13, 'Parts',1),
+(14, 'Pets',3),
+(15, 'Jewelry', 6)
