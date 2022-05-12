@@ -1,0 +1,17 @@
+{% extends 'popup.html' %}
+
+{% block form  %}
+  <h4 class="form-title">Checkout</h4>
+  <p class="form-subtitle">Set up your delivery addresses and payment methods to receive your product</p>
+  <form class="loginform" action="{% url 'checkout' offer next %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <label for="save-info">Save this information to your profile?</label>
+    <input type="checkbox" name="save-info" value="yes">
+    <button class="form-submit" id="submit" type="submit" value="Submit">Continue</button><br>
+    {% if prev > 0 %}
+    <a href="{% url 'checkout' offer prev %}">Back</a>
+    {% endif %}
+  </form>
+
+{% endblock form  %}
