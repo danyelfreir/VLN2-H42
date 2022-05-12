@@ -3,11 +3,30 @@
 {% block form  %}
   <h4 class="form-title">Checkout</h4>
   <p class="form-subtitle">Confirm that all your information is correct</p>
-  <form class="loginform" action="{% url 'checkout_confirm' offer_id %}" method="post">
-    <button class="form-submit" id="submit" type="submit" value="Submit">Continue</button><br>
-    {% if prev > 0 %}
-    <a href="{% url 'checkout' offer prev %}">Back</a>
-    {% endif %}
+  <form class="loginform" action="{% url 'checkout_confirm' offer.id %}" method="post">
+    <img src="{{ MEDIA_URL }}/images/{{ offer.item.image }}" alt="">
+    <h3>Product</h3>
+    <p>Name: {{ offer.item.name }}</p>
+    <p>Condition: {{ offer.item.condition }}</p>
+    <p>Description: {{ offer.item.long_desc }}</p>
+    <p>Seller: {{ offer.item.seller.username }}</p>
+    <p>Your bid: {{ offer.price }}</p>
+    <h3>Ships to</h3>
+    <p>{{ user_address.street_name }}</p>
+    <p>{{ user_address.city }}, {{ user_address.zip }}</p>
+    <p>{{ user_address.country }}</p>
+    <h3>Payment method</h3>
+    <p>Credit card number: {{ user_payment.card_nr|slice:4 }}-****-****-****</p>
+    <p>Expiry date: {{ user_payment.expires }}</p>
+    <p>CVC: {{ user_payment.cvc|slice:1 }}**</p>
+    <button class="form-submit" id="submit" type="submit" value="Submit">Check out</button><br>
+    <button class="form-submit" id="submit" onclick="history.back()">Back</button><br>
   </form>
+
+  <style media="screen">
+    #close-form-btn {
+      display: none;
+    }
+  </style>
 
 {% endblock form  %}

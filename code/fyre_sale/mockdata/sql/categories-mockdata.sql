@@ -26,10 +26,7 @@ VALUES
 (9,'Paintings',9),
 (10,'Toys',10),
 (11,'Skiing',11),
-(12,'Agricultural',12);
+(12,'Agricultural',12),
 (13, 'Parts',1),
 (14, 'Pets',3),
-(15, 'Jewelry', 6),
-(13, 'Parts',1),
-(14, 'Pets',3),
-(15, 'Jewelry', 6)
+(15, 'Jewelry', 6);
