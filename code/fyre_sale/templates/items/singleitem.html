@@ -16,7 +16,19 @@
             </ul>
         </div>
         <div class="line"></div>
-        <div class="below-line">
+        <div class="below-left">
+            <ul class="image-ul">
+                Óklárað!!!!!
+                {% for image in images %}
+                    {% if image.id == item.id%}
+                        <li class="image-li">
+                            <img class="item-image" id="image_{{image.id}}" src="" alt="Item image" onclick="scaleImage(this.id)">
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="below-seller">
             <h3 class="item-header">About seller</h3>
             <ul class="info-list">
                 <li><p class="info-header"><span>Seller:</span><span class="info-value">{{ seller.username }}</span></p>
@@ -30,7 +42,37 @@
                 <a href="{% url 'place_bid' item.id %}" class="button-profile">Edit item</a>
             {% endif %}
         </div>
+        <div id="image-popup">
+            <img id="image-scaled" src="">
+        </div>
     </div>
+    <style>
+        .below-seller {
+            grid-area: below ; 
+        }
+        .below-left {
+            grid-area: belowleft; 
+            border: solid red 1px;
+        }
+        .image-ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .image-li {
+            height: 30vh;
+            flex-grow: 1;
+        }
+        .image-li:last-child {
+            flex-grow: 10;
+        }
+        .item-image {
+            max-height: 100%;
+            min-width: 100%;
+            object-fit: cover;
+            vertical-align: bottom;
+        }
+    </style>
 {% include 'items/scroll_similar.html' with items=similar_items %}
 
 {% endblock profile-container %}

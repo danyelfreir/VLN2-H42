@@ -9,7 +9,9 @@ const loginButton = document.getElementById('login');
 const profileMenu = document.getElementById('profile-menu');
 const filterButton = document.getElementById('filtering-button');
 const filterMenu = document.getElementById('filter-menu');
-const currentWindow = window.location.pathname
+const currentWindow = window.location.pathname;
+const imagePopUp = document.getElementById("image-popup");
+
 searchButton.addEventListener('click', () => {
   searchForm.style.display = "flex";
 });
@@ -54,3 +56,10 @@ filterButton.addEventListener('click', (e) => {
   filterMenu.style.display = 'block';
   console.log(filterMenu);
 })
+
+// ============ SCALE IMAGE ============
+function scaleImage(clickedImageId) {
+  var imageId = clickedImageId.replace('image_',''); //Nota þetta til að fá image id sem er í gagnagrunninum.
+  document.getElementById("image-scaled").src="??"; //setja inní réttan link hér.
+  imagePopUp.style.display = 'block';
+}
