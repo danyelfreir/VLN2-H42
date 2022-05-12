@@ -15,6 +15,8 @@ from django.contrib.auth.models import User
 #         f = AddressInsert(data, auto_id=False, error_class=DivErrorList)
 #         f.as_p()
 #
+CREDITC_REG = r'^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\d{11})$'
+
 class SignInForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(SignInForm, self).__init__(*args, **kwargs)
@@ -53,12 +55,18 @@ class PaymentInsert(ModelForm):
         ]
         widgets = {
             'card_nr': widgets.TextInput(attrs={'class': 'form-field', 'maxlength': 16, 'pattern': '[0-9]+'}),
-            'expires': widgets.DateTimeInput(attrs={
-                'class': 'form-field',
-                'type': 'date',
-                'placeholder': 'MM/YY'},
-                format='%m%Y'),
-            'cvc': widgets.TextInput(attrs={'class': 'form-field', 'minlength': 3, 'maxlength': 4})
+            'expires': widgets.TextInput(attrs={'class': 'form-field',
+                                                'placeholder': 'MM/YY',
+                                                'min_length': 4,
+                                                'max_length': 4,
+                                                'pattern': '^(0[1-9]|1[0-2])\/?([0-9]{2})$'
+}),
+            # 'expires': widgets.DateTimeInput(attrs={
+            #     'class': 'form-field',
+            #     'type': 'date',
+            #     'placeholder': 'MM/YY'},
+            #     format='%m%Y'),
+            'cvc': widgets.TextInput(attrs={'class': 'form-field', 'min_length': 3, 'max_length': 4, 'pattern': '[0-9]+'}),
         }
     # def __init__(self, *args, **kwargs):
     #     super(PaymentInsert, self).__init__(*args, **kwargs)

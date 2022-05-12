@@ -5,7 +5,7 @@ from users.models import Notification
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from items.item_form import CreateItem, PlaceBid
+from items.item_form import CreateItem, PlaceBid, GetImages
 import datetime
 from enum import Enum
 
@@ -81,35 +81,42 @@ def create_item(request):
     date = datetime.datetime.now()
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        form = CreateItem(request.POST, request.FILES)
+        form = CreateItem(request.POST)
         images = request.FILES.getlist('images')
-
+        print(images)
         if form.is_valid():
             item_obj = form.save(commit=False)
-            count = 1
-            for image in images:
-                if count > 1:
-                    photo = ItemImages.objects.create(
-                        item_obj=item_obj,
-                        image=image,
-                        main_image=True,
-                    )
-                else:
-                    photo = ItemImages.objects.create(
-                        item_obj=item_obj,
-                        image=image,
-                        main_image=False,
-                    )
-                photo.save()
             item_obj.seller_id = tmp_user.id
             item_obj.date_of_upload = date.strftime("%x")
             item_obj.cur_bid = item_obj.min_bid
             item_obj.save()
+
+            count = 1
+            for image in images:
+                if count > 1:
+                    photo = ItemImages.objects.create(
+                        item=item_obj,
+                        image=image,
+                        main_image=True,
+                    )
+                else:
+                    print("test2")
+                    photo = ItemImages.objects.create(
+                        item=item_obj,
+                        image=image,
+                        main_image=False,
+                    )
+            print("test3")
+
             return redirect('items_index')
     form = CreateItem()
+    images = GetImages()
     return render(request, 'items/create_item.html', {
-        'form': form
+        'form': form,
+        'images': images
     })
+
+
 
 
 @login_required

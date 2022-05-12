@@ -1,5 +1,5 @@
 from django import forms
-from items.models import ItemForSale, SubCategory, Offer
+from items.models import ItemForSale, SubCategory, Offer, ItemImages
 from django.forms import ModelForm, widgets
 
 class CreateItem(ModelForm):
@@ -14,10 +14,22 @@ class CreateItem(ModelForm):
         }
         widgets = {
             'condition': widgets.Select(attrs={'class': 'form-field'}, choices=conditions),
-            'image': widgets.FileInput(attrs={'class': 'form-field', 'enctype': 'multipart/form-data', 'multiple': True}),
         }
     def __init__(self, *args, **kwargs):
         super(CreateItem, self).__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'form-field'
+
+
+class GetImages(ModelForm):
+    class Meta:
+        model = ItemImages
+        fields = '__all__'
+        widgets = {
+           'image': widgets.FileInput(attrs={'class': 'form-field', 'enctype': 'multipart/form-data', 'multiple': True}),
+        }
+    def __init__(self, *args, **kwargs):
+        super(GetImages, self).__init__(*args, **kwargs)
         for field in self.visible_fields():
             field.field.widget.attrs['class'] = 'form-field'
 

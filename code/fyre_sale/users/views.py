@@ -91,18 +91,18 @@ def notification(request, username, not_id):
 def edit_payment(request, username):
     if username != request.user.username:
         raise Http404()
-
+    instance = get_object_or_404(Payment_info, pk=request.user.id)
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        form = PaymentInsert(request.POST)
+        form = PaymentInsert(data=request.POST, instance=instance)
         if form.is_valid():
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
             user_id.save()
-            return redirect('profile')
+            return redirect('profile', username=username)
     else:
-        form = PaymentInsert()
+        form = PaymentInsert(instance=instance)
     return render(request, 'users/payment.html', {
         'form': form
     })
@@ -112,16 +112,17 @@ def edit_payment(request, username):
 def edit_address(request, username):
     if username != request.user.username:
         raise Http404()
+    instance = get_object_or_404(Address_info, pk=request.user.id)
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        form = AddressInsert(request.POST)
+        form = AddressInsert(data=request.POST, instance=instance)
         if form.is_valid():
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
         return redirect('profile', username=username)
     else:
-        form = AddressInsert()
+        form = AddressInsert(instance=instance)
     return render(request, 'users/address.html', {
         'form': form
     })
@@ -174,7 +175,7 @@ def checkout(request, offer_id, step):
                     request.session['user_payment'] = form.cleaned_data
                     print(request.session.keys())
             else:
-                print("No validato :(")
+                print("No validator :(")
                 print(form.errors)
                 return redirect('checkout', offer_id=offer_id, step=step)
         else:
