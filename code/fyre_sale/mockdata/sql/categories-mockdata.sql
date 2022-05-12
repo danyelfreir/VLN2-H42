@@ -29,5 +29,9 @@ VALUES
 (12,'Agricultural',12),
 (13, 'Parts',1),
 (14, 'Pets',3),
+<<<<<<< HEAD
+(15, 'Jewelry', 6);
+=======
 (15, 'Jewelry', 6),
 (16, 'Baby furniture',10)
+>>>>>>> f5a83cc952523469763316c5209708e275112d39

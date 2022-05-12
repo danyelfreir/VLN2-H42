@@ -9,9 +9,13 @@
     <label for="save-info">Save this information to your profile?</label>
     <input type="checkbox" name="save-info" value="yes">
     <button class="form-submit" id="submit" type="submit" value="Submit">Continue</button><br>
-    {% if prev > 0 %}
-    <a href="{% url 'checkout' offer prev %}">Back</a>
-    {% endif %}
+    <button class="form-submit" id="submit" onclick="history.back()">Back</button><br>
   </form>
+
+  <style media="screen">
+    #close-form-btn {
+      display: none;
+    }
+  </style>
 
 {% endblock form  %}
