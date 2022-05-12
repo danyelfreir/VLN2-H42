@@ -19,6 +19,7 @@ class FilterSort(Enum):
 def items_index(request):
     name, subcat, cat = check_query(request)
     list_of_items, categories, subcategories = None, None, None
+    title = None
 
     if name is None and subcat is None and cat is None:
         list_of_items = ItemForSale.objects.all().order_by('date_of_upload')
@@ -34,11 +35,19 @@ def items_index(request):
         )
         tmp_cat = Category.objects.get(name=cat)
         subcategories = SubCategory.objects.filter(category_id=tmp_cat)
+        title = cat
+    elif name is None and subcat is not None and cat is not None:
+        tmp_cat = Category.objects.get(name=cat)
+        tmp_scat = SubCategory.objects.get(name=subcat)
+        subcategories = SubCategory.objects.filter(category=tmp_cat)
+        list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat)
+        title = f'{cat} - {subcat}'
     categories = Category.objects.all().order_by('name')
     return render(request, 'items/itempage.html', context={
         'items': list_of_items,
         'categories': categories,
-        'subcategories': subcategories
+        'subcategories': subcategories,
+        'title': title,
     })
 
 

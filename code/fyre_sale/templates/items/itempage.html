@@ -9,10 +9,10 @@
     {% include 'items/filtermenu.html' %}
     <div class="filter-nav">
         <div class="items-header">
-            {% if subcategories %}
-            <h2 class="category-title">{{ subcategories.0.category.name }}</h2>
+            {% if title %}
+              <h2 class="category-title">{{ title }}</h2>
             {% else %}
-            <h2 class="category-title">All items</h2>
+              <h2 class="category-title">All items</h2>
             {% endif %}
         </div>
     </div>
