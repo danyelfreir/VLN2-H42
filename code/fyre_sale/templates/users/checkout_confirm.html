@@ -3,7 +3,7 @@
 {% block form  %}
   <h4 class="form-title">Checkout</h4>
   <p class="form-subtitle">Confirm that all your information is correct</p>
-  <form class="loginform" action="{% url 'checkout' offer next %}" method="post">
+  <form class="loginform" action="{% url 'checkout_confirm' offer_id %}" method="post">
     <button class="form-submit" id="submit" type="submit" value="Submit">Continue</button><br>
     {% if prev > 0 %}
     <a href="{% url 'checkout' offer prev %}">Back</a>

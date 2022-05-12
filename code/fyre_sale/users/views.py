@@ -127,6 +127,7 @@ def edit_address(request, username):
     })
 
 
+@login_required
 def checkout(request, offer_id, step):
     try:
         user_address_instance = Address_info.objects.get(pk=request.user.id)
@@ -172,22 +173,35 @@ def checkout(request, offer_id, step):
                     form.save()
                 else:
                     request.session['user_payment'] = form.cleaned_data
-                    print(request.session.keys())
-            else:
-                print("No validato :(")
-                print(form.errors)
-                return redirect('checkout', offer_id=offer_id, step=step)
+            return redirect('checkout_confirm', offer_id=offer_id)
         else:
             if 'user_payment' in request.session:
                 form = PaymentInsert(initial=request.session['user_payment'])
             else:
                 form = PaymentInsert(instance=user_payment_instance)
+    elif step == 4:
+        if request.method == 'POST':
+            pass
+        else:
+            form = ConfirmCheckout()
 
     return render(request, 'users/checkout.html', context={
         'form': form,
         'offer': offer_id,
         'next': step,
         'prev': step - 1,
+    })
+
+
+@login_required
+def checkout_confirm(request, offer_id):
+    if request.method == 'POST':
+        clean_checkout_session(request)
+        return redirect('inbox', username=request.user.username)
+    return render(request, 'users/checkout_confirm.html', context={
+        'user_info': request.session['user_info'],
+        'user_address': request.session['user_address'],
+        'user_payment': request.session['user_payment'],
     })
 
 
