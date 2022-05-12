@@ -33,7 +33,7 @@ body {
     height: 30px;
     font-size: 18px;
     width: 30px;
-    margin-top: -5px;
+    margin: -5px 13px 0 0;
 }
 textarea {
    resize: none;

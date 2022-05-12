@@ -5,17 +5,17 @@
   <p class="form-subtitle">Put your items up for auction</p>
   <form class="loginform" action="{% url 'create_item' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-      <p>Name</p>
+    <label class="form-field-label">Name</label><br>
     {{form.name}}
-      <p>Image</p>
+    <label class="form-field-label">Image</label><br>
     {{form.image}}
-      <p>Condition</p>
+    <label class="form-field-label">Condition</label><br>
     {{form.condition}}
-      <p>Minimum bid</p>
+    <label class="form-field-label">Minimum bid</label><br>
     {{form.min_bid}}
-      <p>Long description</p>
+    <label class="form-field-label">Long description</label><br>
     {{form.long_desc}}
-      <p>Sub category</p>
+    <label class="form-field-label">Sub category</label><br>
     {{form.sub_cat}}
     {{ form.errors }}
     <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
