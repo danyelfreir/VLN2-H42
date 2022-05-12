@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, Http404
 from items.models import ItemForSale
 from users.models import Notification
 from items.models import ItemForSale, SubCategory, Category, Offer
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from items.item_form import CreateItem, PlaceBid
+from items.item_form import CreateItem, PlaceBid, EditAd
 import datetime
 
 
@@ -15,7 +15,7 @@ def items_index(request):
     list_of_items, categories, subcategories = None, None, None
 
     if name is None and subcat is None and cat is None:
-        list_of_items = ItemForSale.objects.all().order_by('time_of_upload')
+        list_of_items = ItemForSale.objects.all().order_by('date_of_upload')
     elif name is not None and subcat is None and cat is None:
         list_of_items = ItemForSale.objects.filter(name__icontains=name)
         subcategories = None
@@ -174,3 +174,29 @@ def notify(offer_obj, recipient, date_time):
         offer=offer_obj,
         timestamp=date_time
     )
+
+@login_required
+def edit_ad(request, item_id):
+    chosen_item = ItemForSale.objects.get(pk=item_id)
+    if chosen_item.seller == request.user:
+        raise Http404()
+    instance = get_object_or_404(ItemForSale, pk=item_id)
+    if request.method == 'POST':
+        date = datetime.datetime.now()
+        form = EditAd(chosen_item, request.POST, instance=instance)
+        if form.is_valid():
+            item_obj = form.save(commit=False)
+            item_obj.min_bid = chosen_item.cur_bid
+            item_obj.seller_id = chosen_item.seller_id
+            item_obj.date_of_upload = date
+            item_obj.save()
+            return redirect('items_index')
+        else:
+            print(form.errors)
+    else:
+        form = EditAd()
+    return render(request, 'items/editad.html', {
+        'form': form,
+        'item': chosen_item,
+
+    })
