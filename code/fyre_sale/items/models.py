@@ -27,7 +27,6 @@ class ItemForSale(models.Model):
     image = models.ImageField(default="photo.png", null=True, blank=True)
     condition = models.CharField(max_length=255)
     seller = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    time_of_upload = models.CharField(max_length=255, blank=True)
     date_of_upload = models.CharField(max_length=255, blank=True)
     min_bid = models.IntegerField()
     cur_bid = models.IntegerField(default=0, blank=True)
