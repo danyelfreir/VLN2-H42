@@ -19,7 +19,8 @@
                   <tr>
                       <td>
                         <a href="{% url 'notification' user.username notification.id %}">
-                          {% if notification.offer.item.seller.id == user.id %}
+                          {{ notification.content }}
+                          {# {% if notification.offer.item.seller.id == user.id %}
                             You have received an offer for {{ notification.offer.item.name }}
                           {% else %}
                             {% if notification.offer.approved %}
@@ -27,7 +28,7 @@
                             {% else %}
                               {{ notification.offer.item.seller.username }} has declined your bid on {{ notification.offer.item.name }}
                             {% endif %}
-                          {% endif %}
+                          {% endif %} #}
                         </a>
                       </td>
                       <td>

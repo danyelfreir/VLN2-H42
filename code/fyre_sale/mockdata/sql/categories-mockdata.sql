@@ -29,5 +29,4 @@ VALUES
 (12,'Agricultural',12),
 (13, 'Parts',1),
 (14, 'Pets',3),
-(15, 'Jewelry', 6),
-(16, 'Baby furniture',10)
+(15, 'Jewelry', 6);

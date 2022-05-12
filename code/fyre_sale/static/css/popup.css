@@ -15,9 +15,8 @@ body {
 #popup {
     width: 720px;
     height: auto;
-    margin: auto;
+    padding: 20px 0;
     background-color: #fbfbfb;
-    padding-top: 20px;
 }
 #close-form {
     width:98%;
@@ -34,7 +33,7 @@ body {
     height: 30px;
     font-size: 18px;
     width: 30px;
-    margin-top: -5px;
+    margin: -5px 13px 0 0;
 }
 textarea {
    resize: none;

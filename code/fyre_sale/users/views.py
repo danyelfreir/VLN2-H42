@@ -11,8 +11,9 @@ from items.models import Offer, ItemForSale
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
 from users.models import Notification, User_info, Address_info, Payment_info
-from items.models import Offer
+from items.models import Offer, SoldItem
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
+from datetime import datetime
 
 
 def sign_up(request):
@@ -128,6 +129,7 @@ def edit_address(request, username):
     })
 
 
+@login_required
 def checkout(request, offer_id, step):
     try:
         user_address_instance = Address_info.objects.get(pk=request.user.id)
@@ -143,8 +145,7 @@ def checkout(request, offer_id, step):
             if form.is_valid():
                 if request.POST.get('save-info') == 'yes':
                     form.save()
-                else:
-                    request.session['user_info'] = form.cleaned_data
+                request.session['user_info'] = form.cleaned_data
                 return redirect('checkout', offer_id=offer_id, step=step+1)
         else:
             if 'user_info' in request.session:
@@ -156,9 +157,10 @@ def checkout(request, offer_id, step):
             form = AddressInsert(data=request.POST, instance=user_address_instance)
             if form.is_valid():
                 if request.POST.get('save-info') == 'yes':
-                    form.save()
-                else:
-                    request.session['user_address'] = form.cleaned_data
+                    tmp_form = form.save(commit=False)
+                    tmp_form.id = request.user
+                    tmp_form.save()
+                request.session['user_address'] = form.cleaned_data
                 return redirect('checkout', offer_id=offer_id, step=step+1)
         else:
             if 'user_address' in request.session:
@@ -170,25 +172,53 @@ def checkout(request, offer_id, step):
             form = PaymentInsert(data=request.POST, instance=user_payment_instance)
             if form.is_valid():
                 if request.POST.get('save-info') == 'yes':
-                    form.save()
-                else:
-                    request.session['user_payment'] = form.cleaned_data
-                    print(request.session.keys())
-            else:
-                print("No validator :(")
-                print(form.errors)
-                return redirect('checkout', offer_id=offer_id, step=step)
+
+                    tmp_form = form.save(commit=False)
+                    tmp_form.id = request.user
+                    tmp_form.save()
+                request.session['user_payment'] = form.cleaned_data
+            return redirect('checkout_confirm', offer_id=offer_id)
         else:
             if 'user_payment' in request.session:
                 form = PaymentInsert(initial=request.session['user_payment'])
             else:
                 form = PaymentInsert(instance=user_payment_instance)
+    elif step == 4:
+        if request.method == 'POST':
+            pass
+        else:
+            form = ConfirmCheckout()
 
     return render(request, 'users/checkout.html', context={
         'form': form,
         'offer': offer_id,
         'next': step,
-        'prev': step - 1,
+    })
+
+
+@login_required
+def checkout_confirm(request, offer_id):
+    offer_obj = Offer.objects.get(pk=offer_id)
+    if request.method == 'POST':
+        item_obj = ItemForSale.objects.get(pk=offer_obj.item_id)
+        item_obj.sold = True
+        item_obj.save()
+
+        sold_item_obj = SoldItem.objects.create(
+            offer=offer_obj,
+            item=item_obj
+        )
+
+        notif_content = f'Congratulations on your new {item_obj.name}. Please take the time to rate {item_obj.seller} as a seller.'
+        notify(offer_obj, request.user, notif_content, datetime.now())
+
+        clean_checkout_session(request)
+        return redirect('inbox', username=request.user.username)
+    return render(request, 'users/checkout_confirm.html', context={
+        'user_info': request.session['user_info'],
+        'user_address': request.session['user_address'],
+        'user_payment': request.session['user_payment'],
+        'offer': offer_obj,
     })
 
 
@@ -251,3 +281,11 @@ def clean_checkout_session(request):
         pass
     print(request.session.keys())
     return HttpResponse("Clean as fuck boi")
+
+def notify(offer_obj, recipient, content, date_time):
+    new_not = Notification.objects.create(
+        recipient=recipient,
+        offer=offer_obj,
+        content=content,
+        timestamp=date_time
+    )

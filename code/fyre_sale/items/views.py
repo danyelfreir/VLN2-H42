@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, Http404
 from items.models import ItemForSale
 from users.models import Notification
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
 from items.item_form import CreateItem, PlaceBid, GetImages
-import datetime
+from datetime import datetime
 from enum import Enum
 
 class FilterSort(Enum):
@@ -31,6 +32,7 @@ def items_index(request):
             ''' SELECT * FROM items_itemforsale I WHERE I.sub_cat_id in (
                     SELECT S.id FROM items_subcategory S WHERE S.category_id = (
                         SELECT C.id FROM items_category C WHERE C.name = %s))
+                WHERE I.sold = 'False'
                 ORDER BY i.date_of_upload DESC; ''', [cat]
         )
         tmp_cat = Category.objects.get(name=cat)
@@ -52,7 +54,8 @@ def items_index(request):
 
 
 def item_detail(request, item_id):
-    detailed_item = ItemForSale.objects.get(pk=item_id)
+    # detailed_item = ItemForSale.objects.get(pk=item_id)
+    detailed_item = get_object_or_404(ItemForSale, pk=item_id)
     seller_user = User.objects.get(pk=detailed_item.seller_id)
     similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
     similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
@@ -78,7 +81,7 @@ def item_search(request):
 
 @login_required
 def create_item(request):
-    date = datetime.datetime.now()
+    date = datetime.now()
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
         form = CreateItem(request.POST)
@@ -125,7 +128,7 @@ def place_bid(request, item_id):
     if chosen_item.seller == request.user:
         raise Http404()
     if request.method == 'POST':
-        date = datetime.datetime.now()
+        date = datetime.now()
         bidding_user = User.objects.get(username=request.user)
         form = PlaceBid(chosen_item, request.POST)
         if form.is_valid():
@@ -136,7 +139,9 @@ def place_bid(request, item_id):
             offer_obj.save()
             chosen_item.cur_bid = offer_obj.price
             chosen_item.save()
-            notify(offer_obj, chosen_item.seller, date)
+
+            notif_content = f'{request.user.username} placed a bid on {chosen_item.name}'
+            notify(offer_obj, chosen_item.seller, notif_content, date)
             return redirect('items_index')
         else:
             print(form.errors)
@@ -162,16 +167,20 @@ def accept_bid(request, offer_id):
     offer_obj = Offer.objects.get(pk=offer_id)
     offer_obj.approved = True
     offer_obj.save()
-    date_time = datetime.datetime.now()
-    notify(offer_obj, offer_obj.buyer, date_time)
+    date_time = datetime.now()
+
+    notif_content = f'{request.user.username} has accepted your offer on {offer_obj.item.name}'
+    notify(offer_obj, offer_obj.buyer, notif_content, date_time)
     return redirect('inbox', username=request.user.username)
 
 
 @login_required
 def decline_bid(request, offer_id):
     offer_obj = Offer.objects.get(pk=offer_id)
-    date_time = datetime.datetime.now()
-    notify(offer_obj, offer_obj.buyer, date_time)
+    date_time = datetime.now()
+
+    notif_content = f'{request.user.username} has rejected your offer on {offer_obj.item.name}'
+    notify(offer_obj, offer_obj.buyer, notif_content, date_time)
     return redirect('inbox', username=request.user.username)
 
 
@@ -194,9 +203,10 @@ def check_query(req):
     return name, subcat, cat
 
 
-def notify(offer_obj, recipient, date_time):
+def notify(offer_obj, recipient, content, date_time):
     new_not = Notification.objects.create(
         recipient=recipient,
         offer=offer_obj,
+        content=content,
         timestamp=date_time
     )

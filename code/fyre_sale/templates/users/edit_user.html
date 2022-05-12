@@ -6,36 +6,36 @@
         <p class="form-subtitle">Update your information</p>
         <form class="loginform" action="{% url 'edit_profile' user.username %}" method="POST">
             {% csrf_token %}
-            <p>Profile image</p>
-                {{form1.profileimg}}
+            <label class="form-field-label">Profile image</label><br>
+            {{form1.profileimg}}
             {% if form1.errors %}
-                   <p class="error-msg">{{ form.errors.profileimg}}</p>
-              {% endif %}
-            <p>Biography</p>
-                {{form1.bio}}
-               {% if form1.errors %}
-                   <p class="error-msg">{{ form.errors.bio}}</p>
-              {% endif %}
-            <p>Birthday</p>
-                {{form1.birthday}}
-                {% if form1.errors %}
-                    <p class="error-msg">{{ form.errors.birthday}}</p>
-                {% endif %}
-            <p>First Name</p>
-                {{form2.first_name}}
-                {% if form2.errors %}
-                    <p class="error-msg">{{ form.errors.first_name}}</p>
-                {% endif %}
-            <p>Last Name</p>
-                {{form2.last_name}}
-                {% if form2.errors %}
-                    <p class="error-msg">{{ form.errors.last_name}}</p>
-                {% endif %}
-            <p>Email</p>
-                {{form2.email}}
-                {% if form2.errors %}
-                    <p class="error-msg">{{ form.errors.email}}</p>
-                {% endif %}
+                <p class="error-msg">{{ form.errors.profileimg}}</p>
+            {% endif %}
+            <label class="form-field-label">Biography</label><br>
+            {{form1.bio}}
+            {% if form1.errors %}
+                <p class="error-msg">{{ form.errors.bio}}</p>
+            {% endif %}
+            <label class="form-field-label">Birthday</label><br>
+            {{form1.birthday}}
+            {% if form1.errors %}
+                <p class="error-msg">{{ form.errors.birthday}}</p>
+            {% endif %}
+            <label class="form-field-label">First Name</label><br>
+            {{form2.first_name}}
+            {% if form2.errors %}
+                <p class="error-msg">{{ form.errors.first_name}}</p>
+            {% endif %}
+            <label class="form-field-label">Last Name</label><br>
+            {{form2.last_name}}
+            {% if form2.errors %}
+                <p class="error-msg">{{ form.errors.last_name}}</p>
+            {% endif %}
+            <label class="form-field-label">Email</label><br>
+            {{form2.email}}
+            {% if form2.errors %}
+                <p class="error-msg">{{ form.errors.email}}</p>
+            {% endif %}
         <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
         </form>
 {% endblock form %}

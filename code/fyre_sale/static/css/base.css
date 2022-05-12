@@ -6,20 +6,14 @@ textarea:focus,
 button:focus {
   outline: none;
 }
-
 html, body {
   height: 100%;
-
 }
-
 body {
-  /* display: flex; */
   font-family: 'Open Sans', sans-serif;
   min-width: 715px;
   margin: 0;
   background-color: #f5f5f5;
-  /* justify-content: space-between; */
-
 }
 #wrapper {
   overflow: hidden;
@@ -27,39 +21,42 @@ body {
   min-height: 100vh;
   flex-direction: column;
 }
-
-
 #site-content {
   flex: 1;
 }
-
-
 .content {
   width: 70%;
   margin: 0 15% 0 15%;
 }
-
 .content:after {
   content: "";
   display: block;
   height: 65px;
 }
-
 .frontpage-title {
   color: #4a5ee5;
   margin-bottom: 0;
 }
-
-
+#create-item {
+  position: fixed;
+  bottom: 65px;
+  right:15px;
+  padding: 10px;
+  border-radius: 2px;
+  background-color: #4a5ee5;
+  color: #fff;
+  font-size: 18px;
+  margin-left: -15%;
+  text-decoration: none;
+  z-index: 10;
+}
 /* Scrollbar*/
 ::-webkit-scrollbar {
   width: 20px;
 }
-
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
   background-color: #f6ba85;
   border: 6px solid transparent;
@@ -67,7 +64,6 @@ body {
   border-bottom: none;
   background-clip: content-box;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background-color: #f08c34;
 }

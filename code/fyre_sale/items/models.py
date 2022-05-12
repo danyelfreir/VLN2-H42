@@ -58,5 +58,5 @@ class Offer(models.Model):
 
 class SoldItem(models.Model):
     id = models.BigAutoField(primary_key=True)
-    itemid = models.OneToOneField(ItemForSale, on_delete=models.CASCADE)
-    offerid = models.OneToOneField(Offer, on_delete=models.CASCADE)
+    item = models.OneToOneField(ItemForSale, on_delete=models.CASCADE)
+    offer = models.OneToOneField(Offer, on_delete=models.CASCADE)

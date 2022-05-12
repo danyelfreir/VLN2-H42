@@ -6,19 +6,19 @@
         <p class="form-subtitle">Save your address <br>for easy checkout</p>
         <form class="loginform" action="{% url 'edit_address' user.username %}" method="POST">
             {% csrf_token %}
-            <p>Street name and number</p>
+            <label class="form-field-label">Street name and number</label><br>
                 {{form.street_name}}
-            <p>Zip</p>
+            <label class="form-field-label">Zip</label><br>
                 {{form.zip}}
                 {% if form.errors %}
-                    <p class="error-msg">{{ form.errors.zip}}</p>
+                    <p class="error-msg">{{ form.errors.zip}}</label><br>
                 {% endif %}
-            <p>City</p>
+            <label class="form-field-label">City</label><br>
                 {{form.city}}
                 {% if form.errors %}
-                    <p class="error-msg">{{ form.errors.city}}</p>
+                    <p class="error-msg">{{ form.errors.city}}</label><br>
                 {% endif %}
-            <p>Country</p>
+            <label class="form-field-label">Country</label><br>
             {{form.country}}
             {% if form.errors %}
             {{ form.errors.country}}

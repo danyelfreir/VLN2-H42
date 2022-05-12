@@ -8,7 +8,7 @@
         "image header header" 0.2fr
         "image info info" 1.3fr
         "line line line" 0.01fr
-        "below below belowright" 1fr
+        "belowleft below belowright" 1fr
         / 1fr 1fr 1fr;
     gap: 8px;
 }
@@ -40,10 +40,6 @@
 .line { 
     grid-area: line; 
     border-bottom: 2px solid #ccc;
-}
-
-.below-line { 
-    grid-area: below; 
 }
 .user-info {
     list-style: none;

@@ -4,6 +4,11 @@
   text-decoration: none;
   color: #ffffff;
 }
+.login-image  {/* image in pop-up forms */
+  width: 90%;
+  height: auto;
+  padding: 0 5%;
+}
 
 #login:hover {
   font-weight: 600;
@@ -16,25 +21,23 @@
 
 .form-title {
   margin: 0;
-  display: flex;
-  justify-content: space-around;
+  padding: 40px 0 0 0;
   font-size: 30px;
   color: #4a5ee5;
+  text-align: center;
 }
 
 .form-subtitle {
   margin: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  text-align: center;
   font-size: 20px;
-  color: #9c9c9c;
+  color: #919191;
   margin-bottom: 10px;
 }
 
 .form-field-label {
   font-size: 15px;
-  color: #9c9c9c;
+  color: #919191;
 }
 
 .form-field {
@@ -45,12 +48,12 @@
   border-bottom: 1.5px solid #c4c4c4;
 }
 
-#form-remember {
+/* #form-remember {
   display: flex;
   justify-content: flex-start;
-}
+} */
 
-.forgotten-pw {
+/* .forgotten-pw {
   font-size: 12px;
   color: #C4C4C4;
   margin-left: 35px;
@@ -60,16 +63,18 @@
   margin-left: 5px;
   font-size: 12px;
   color: #C7C7C7;
-}
+} */
 
 .form-submit {
-  margin: 30px auto auto auto;
+  height: 50px;
+}
+.form-submit, .accept-decline {
+  margin: 10px auto 0 auto;
   display: flex;
   justify-content: space-around;
-  width: 200px;
-  height: 50px;
+  width: 150px;
   border: 0;
-  padding: 15px 0 15px 0;
+  padding: 15px 20px 15px 20px;
   border-radius: 4px;
   background-color: #4a5ee5;
   color: #fff;
