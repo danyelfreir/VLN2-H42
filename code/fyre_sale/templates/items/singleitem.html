@@ -1,9 +1,9 @@
 {% extends 'profile.html' %}
-
+{% load static #}
 {% block profile-container %}
     <div class="profile-container">
         <div class="image-container">
-            <img class="profile-picture" src="{{ item.image }}" alt="Item picture" >
+            <img class="profile-picture" src="{{MEDIA_URL}}/images/{{item.image}}" alt="Item picture" enctype="multipart/form-data">
         </div>
         <div class="profile-header">
             <h3 class="profile-name">{{ item.name }}</h3>

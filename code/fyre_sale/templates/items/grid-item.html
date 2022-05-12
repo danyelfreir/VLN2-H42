@@ -2,7 +2,7 @@
 
 <a href="{% url 'item_detail' item.id %}" class="grid-item-link">
   <div class="grid-item">
-    <img class="grid-item-image" src="{{ item.image }}">
+    <img class="grid-item-image" src="{{MEDIA_URL}}/images/{{item.image}}">
     <div class="name-price-wrapper">
       <p class="grid-item-name">{{ item.name }}</p>
       <p class="grid-item-price">{{ item.cur_bid }} kr.</p>

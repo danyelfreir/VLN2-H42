@@ -82,7 +82,7 @@ class AddressInsert(ModelForm):
 
 class RateSeller(ModelForm):
     class Meta:
-        def __init__(self, notification=None, *args, **kwargs):
+        def __init__(self, *args, **kwargs):
             super(RateSeller, self).__init__(*args, **kwargs)
             for field in self.visible_fields():
                 field.field.widget.attrs['class'] = 'form-field'
@@ -102,7 +102,7 @@ class EditUser(ModelForm):
         model = User_info
         exclude = ['id']
         widgets = {
-            'profileimg': widgets.TextInput(attrs={'class': 'form-field'}),
+            'profileimg': widgets.FileInput(attrs={'class': 'form-field'}),
             'bio': widgets.Textarea(attrs={'class': 'form-field', 'type': 'date'}),
             'birthday': widgets.DateTimeInput(attrs={'class': 'form-field', 'type': 'date'}),
         }

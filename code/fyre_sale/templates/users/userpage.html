@@ -4,11 +4,7 @@
 {% block profile-container %}
 <div class="profile-container">
     <div class="image-container">
-        {% if user_info.image %}
-        <img class="profile-picture" src="{{ user_info.image }}" alt="Profile picture" >
-        {% else %}
-        <img class="profile-picture" src="{% static 'img/profile-icon.png' %}" alt="Profile picture" >
-        {% endif %}
+        <img class="profile-picture" src="{{MEDIA_URL}}/images/{{user_info.profileimg}}" alt="Profile picture" >
     </div>
     <div class="profile-header">
         <h3 class="profile-name">{{ user.username }}</h3>

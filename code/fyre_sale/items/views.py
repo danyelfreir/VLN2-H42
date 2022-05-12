@@ -74,7 +74,7 @@ def create_item(request):
     date = datetime.datetime.now()
     if request.method == 'POST':
         tmp_user = User.objects.get(username=request.user)
-        form = CreateItem(request.POST)
+        form = CreateItem(request.POST, request.FILES)
         if form.is_valid():
             item_obj = form.save(commit=False)
             item_obj.seller_id = tmp_user.id
