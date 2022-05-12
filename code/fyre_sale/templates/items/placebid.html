@@ -4,7 +4,7 @@
     <h4 class="form-title">Place a bid on this item</h4><br>
     <div id="bid-item-info">
         <img id="bid-item-image" src="{{MEDIA_URL}}/images/{{item.image}}">
-        <h2 id="bid-item-name">{{ item.name }}</h2>
+        <h2 class="form-subtitle">{{ item.name }}</h2>
         <p id="bid-item-bid">Currently the highest bid is: {{ item.cur_bid }} kr.</p>
     </div>
     <form class="loginform" action="{% url 'place_bid' item.id %}" method="POST">
@@ -20,12 +20,6 @@
 #bid-item-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
-}
-
-#bid-item-name {
-    margin: auto;
 }
 
 #bid-item-image {
@@ -35,6 +29,8 @@
 
 #bid-item-bid {
     margin: auto;
+    font-size: 18px;
+    color: #919191;
 }
 </style>
 {% endblock form %}
