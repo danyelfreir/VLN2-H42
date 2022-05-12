@@ -12,8 +12,8 @@
     </div>
     <div class="profile-info">
         <ul class="info-list">
-            <li><p class="info-header"><span>Name:</span><span class="info-value">&emsp;{{ user_info.first_name }} {{ user_info.last_name }}</span></p>
-            <li><p class="info-header"><span>Member Since:</span><span class="info-value">&emsp;{{ user_profile.date }}</span></p>
+            <li><p class="info-header"><span>Name:</span><span class="info-value">&emsp;{{ user.first_name }} {{ user.last_name }}</span></p>
+            <li><p class="info-header"><span>Member Since:</span><span class="info-value">&emsp;{{ joined }}</span></p>
             {% if user.id == user_profile.id %}
             <li><p class="info-header"><span>Birthday:</span><span class="info-value">&emsp;{{ user_info.birthday }}</span></p>
             {% else %}

@@ -48,12 +48,14 @@ def sign_in(request):
 def profilepage(request, username):
     user = User.objects.get(username=username)
     user_info = User_info.objects.get(pk=user.id)
+    joined = user.date_joined.strftime("%x")
+    print("test")
+    print(joined)
     return render(request, 'users/userpage.html', context={
         'user_profile': user,
-        'user_info': user_info
+        'user_info': user_info,
+        'joined': joined
     })
-
-
 @login_required
 def inbox(request, username):
     if username != request.user.username:
@@ -115,7 +117,7 @@ def edit_address(request, username):
             user_id = form.save(commit=False)
             user_id.id_id = tmp_user.id
             user_id.save()
-        return redirect('profile')
+        return redirect('profile/'+username)
     else:
         form = AddressInsert()
     return render(request, 'users/address.html', {
