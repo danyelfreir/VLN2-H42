@@ -7,15 +7,22 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from items.item_form import CreateItem, PlaceBid
 import datetime
+from enum import Enum
 
+class FilterSort(Enum):
+    PRICE_ASC = 0
+    PRICE_DESC = 1
+    DATE_ASC = 2
+    DATE_DESC = 3
 
 
 def items_index(request):
     name, subcat, cat = check_query(request)
     list_of_items, categories, subcategories = None, None, None
+    title = None
 
     if name is None and subcat is None and cat is None:
-        list_of_items = ItemForSale.objects.all().order_by('time_of_upload')
+        list_of_items = ItemForSale.objects.all().order_by('date_of_upload')
     elif name is not None and subcat is None and cat is None:
         list_of_items = ItemForSale.objects.filter(name__icontains=name)
         subcategories = None
@@ -24,25 +31,25 @@ def items_index(request):
             ''' SELECT * FROM items_itemforsale I WHERE I.sub_cat_id in (
                     SELECT S.id FROM items_subcategory S WHERE S.category_id = (
                         SELECT C.id FROM items_category C WHERE C.name = %s))
-                ORDER BY i.time_of_upload DESC; ''', [cat]
+                ORDER BY i.date_of_upload DESC; ''', [cat]
         )
         tmp_cat = Category.objects.get(name=cat)
         subcategories = SubCategory.objects.filter(category_id=tmp_cat)
+        title = cat
+    elif name is None and subcat is not None and cat is not None:
+        tmp_cat = Category.objects.get(name=cat)
+        tmp_scat = SubCategory.objects.get(name=subcat)
+        subcategories = SubCategory.objects.filter(category=tmp_cat)
+        list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat)
+        title = f'{cat} - {subcat}'
     categories = Category.objects.all().order_by('name')
     return render(request, 'items/itempage.html', context={
         'items': list_of_items,
         'categories': categories,
-        'subcategories': subcategories
+        'subcategories': subcategories,
+        'title': title,
     })
 
-# def exclude_item(items, detailed_item):
-#
-#     for item in items:
-#         if item.id == detailed_item.id:
-#             items = items.exclude(id=item.id)
-#         else:
-#             continue
-#     return items
 
 def item_detail(request, item_id):
     detailed_item = ItemForSale.objects.get(pk=item_id)
@@ -79,7 +86,7 @@ def create_item(request):
             item_obj = form.save(commit=False)
             item_obj.seller_id = tmp_user.id
             item_obj.date_of_upload = date.strftime("%x")
-            item_obj.time_of_upload = date.strftime("%X")
+            # item_obj.time_of_upload = date.strftime("%X")
             item_obj.cur_bid = item_obj.min_bid
             item_obj.save()
             return redirect('items_index')
@@ -144,10 +151,6 @@ def decline_bid(request, offer_id):
     notify(offer_obj, offer_obj.buyer, date_time)
     return redirect('inbox', username=request.user.username)
 
-
-@login_required
-def checkout(request, offer_id):
-    pass
 
 
 # ======= HELPER FUNCTIONS =========

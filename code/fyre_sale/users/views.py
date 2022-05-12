@@ -1,16 +1,18 @@
 from django.contrib.auth import login, authenticate
+from django.core import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from users.models import User_info, Notification
 from items.models import Offer, ItemForSale
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
+from users.models import Notification, User_info, Address_info, Payment_info
+from items.models import Offer
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
-from users.models import Notification, User_info
 
 
 def sign_up(request):
@@ -125,6 +127,70 @@ def edit_address(request, username):
     })
 
 
+def checkout(request, offer_id, step):
+    try:
+        user_address_instance = Address_info.objects.get(pk=request.user.id)
+    except Address_info.DoesNotExist:
+        user_address_instance = None
+    try:
+        user_payment_instance = Payment_info.objects.get(pk=request.user.id)
+    except Payment_info.DoesNotExist:
+        user_payment_instance = None
+    if step == 1:
+        if request.method == 'POST':
+            form = EditAuthUser(data=request.POST, instance=request.user)
+            if form.is_valid():
+                if request.POST.get('save-info') == 'yes':
+                    form.save()
+                else:
+                    request.session['user_info'] = form.cleaned_data
+                return redirect('checkout', offer_id=offer_id, step=step+1)
+        else:
+            if 'user_info' in request.session:
+                form = EditAuthUser(initial=request.session['user_info'])
+            else:
+                form = EditAuthUser(instance=request.user)
+    elif step == 2:
+        if request.method == 'POST':
+            form = AddressInsert(data=request.POST, instance=user_address_instance)
+            if form.is_valid():
+                if request.POST.get('save-info') == 'yes':
+                    form.save()
+                else:
+                    request.session['user_address'] = form.cleaned_data
+                return redirect('checkout', offer_id=offer_id, step=step+1)
+        else:
+            if 'user_address' in request.session:
+                form = AddressInsert(initial=request.session['user_address'])
+            else:
+                form = AddressInsert(instance=user_address_instance)
+    elif step == 3:
+        if request.method == 'POST':
+            form = PaymentInsert(data=request.POST, instance=user_payment_instance)
+            if form.is_valid():
+                if request.POST.get('save-info') == 'yes':
+                    form.save()
+                else:
+                    request.session['user_payment'] = form.cleaned_data
+                    print(request.session.keys())
+            else:
+                print("No validato :(")
+                print(form.errors)
+                return redirect('checkout', offer_id=offer_id, step=step)
+        else:
+            if 'user_payment' in request.session:
+                form = PaymentInsert(initial=request.session['user_payment'])
+            else:
+                form = PaymentInsert(instance=user_payment_instance)
+
+    return render(request, 'users/checkout.html', context={
+        'form': form,
+        'offer': offer_id,
+        'next': step,
+        'prev': step - 1,
+    })
+
+
 @login_required
 def rate_sales(request, username, not_id):
     if username != request.user.username:
@@ -168,3 +234,19 @@ def edit_profile(request, username):
         'form2': form2
     })
 
+
+def clean_checkout_session(request):
+    try:
+        del request.session['user_info']
+    except KeyError:
+        pass
+    try:
+        del request.session['user_address']
+    except KeyError:
+        pass
+    try:
+        del request.session['user_payment']
+    except KeyError:
+        pass
+    print(request.session.keys())
+    return HttpResponse("Clean as fuck boi")
