@@ -10,7 +10,7 @@ from users.forms                    import *
 from users.models                   import User_info, Address_info, Payment_info, Notification, User_rating
 from items.models                   import Offer, ItemForSale, SoldItem
 from datetime                       import datetime
-from django.core.mail               import send_mail
+# from django.core.mail               import send_mail
 
 def sign_up(request):
     if request.method == 'POST':
@@ -286,13 +286,13 @@ def clean_checkout_session(request):
 
 def notify(offer_obj, recipient, content, date_time):
     print(recipient.email)
-    send_mail(
-        subject="New message from Fyresale",
-        message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
-        from_email=None,
-        recipient_list=[recipient.email],
-        fail_silently=False
-    )
+    # send_mail(
+    #     subject="New message from Fyresale",
+    #     message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
+    #     from_email=None,
+    #     recipient_list=[recipient.email],
+    #     fail_silently=False
+    # )
     new_not = Notification.objects.create(
         recipient=recipient,
         offer=offer_obj,

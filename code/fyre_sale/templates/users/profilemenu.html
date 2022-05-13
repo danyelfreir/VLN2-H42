@@ -21,11 +21,10 @@
       .then(response => response.json())
       .then(data => {
         document.getElementById('user-rating-profile-menu')
-          .innerHTML = data.rating;
+          .innerHTML = "Your rating: " + data.rating;
         });
     });
 </script>
-
 <style>
   #profile-menu {
     position: absolute;

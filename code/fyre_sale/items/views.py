@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, Http404
 from items.models import ItemForSale, SoldItem
 from users.models import Notification
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from users.views import notify
 
 from items.item_form import CreateItem, PlaceBid, GetImages, EditAd
 from datetime import datetime
@@ -245,18 +246,3 @@ def check_query(req):
     return name, subcat, cat
 
 
-def notify(offer_obj, recipient, content, date_time):
-    print(recipient.email)
-    send_mail(
-        subject="New message from Fyresale",
-        message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
-        from_email=None,
-        recipient_list=[recipient.email],
-        fail_silently=False
-    )
-    new_not = Notification.objects.create(
-        recipient=recipient,
-        offer=offer_obj,
-        content=content,
-        timestamp=date_time
-    )
