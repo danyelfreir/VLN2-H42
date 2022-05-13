@@ -68,12 +68,11 @@ filterButton.addEventListener('click', (e) => {
 function sellerRating(curr_rating) {
   let profile_rating = parseInt(curr_rating);
   console.log(profile_rating)
-  profile_rating = profile_rating / 2;
   console.log(profile_rating)
   // total number of stars
   const nrOfStars = 5;
   let ratingPercentage = (profile_rating / nrOfStars) * 100;
   let ratingPercentageRound = `${(Math.round(ratingPercentage / 10) * 10)}%`;
-  document.querySelector(`.hotel_a .stars-inner`).style.width = ratingPercentageRound;
+  document.querySelector(`.user_raiting_star .stars-inner`).style.width = ratingPercentageRound;
 }
 sellerRating(currRating.innerHTML);

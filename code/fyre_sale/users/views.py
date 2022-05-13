@@ -297,6 +297,10 @@ def calculate_average(user_obj):
         print(rate)
         sum += int(rate.user_rating)
         count += 1
+<<<<<<< HEAD
+    newsum = sum / 2 #Divide with 2 since the rating is given on a scale form 1-5 whilst user input is 1-10.
+    avg_rating = newsum / count 
+=======
     avg_rating = sum / count
 
     # rating = User_rating.objects.raw("\n"
@@ -304,4 +308,5 @@ def calculate_average(user_obj):
     #                         "from users_user_rating U\n"
     #                         "WHERE U.userid_id = %s\n"
     #                         "GROUP BY U.user_rating;\n", [user_obj.id])
+>>>>>>> 07b0dba510ebee041e55e80b2ca85d24b2979663
     return avg_rating

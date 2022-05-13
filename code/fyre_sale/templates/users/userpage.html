@@ -10,13 +10,14 @@
         <h3 class="profile-name">{{ user_profile.username }}</h3>
         <p id="curr-rating-to-show">{{ rating }}</p>
         <div class="rating">
-            <div id="rating_title">Rating</div>
-            <div class="hotel_a">
+            <div id="rating-title">Average rating:</div>
+            <div class="user_raiting_star">
                 <div class="stars-outer"></i>
-                    <div class="stars-inner">
+                    <div class="stars-inner"></div>
                 </div>
             </div>
         </div>
+    </div>
     <div class="profile-info">
         <ul class="info-list">
             <li><p class="info-header"><span>Name:</span><span class="info-value">&emsp;{{ user.first_name }} {{ user.last_name }}</span></p>
@@ -28,6 +29,7 @@
         </ul>
     </div>
     <div class="line"></div>
+
     <div class="below-line">
         <h3 class="item-header">Bio</h3>
         <ul class="info-list">
@@ -42,9 +44,4 @@
         {% endif %}
     </div>
 </div>
-<style>
-    .below-line { 
-        grid-area: belowleft / below ; 
-    }
-</style>
 {% endblock profile-container %}
