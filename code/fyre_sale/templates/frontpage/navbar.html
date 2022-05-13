@@ -8,7 +8,13 @@
     </a>
     <div class="right-side">
       <div id="search-button"><i class="fas fa-search" id> </i></div>
-      <span id="login"><i class="fa-solid fa-user"></i></span>
+      <span id="login">
+        {% if user.is_authenticated %}
+          <img src="{{MEDIA_URL}}/images/{{user_info.profileimg}}" alt="Profile picture">
+        {% else %}
+          <i class="fa-solid fa-user"></i>
+        {% endif %}
+        </span>
       {% include 'users/profilemenu.html' %}
       <br>
     </div>
