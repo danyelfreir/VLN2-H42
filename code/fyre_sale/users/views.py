@@ -10,9 +10,8 @@ from django.shortcuts               import render, redirect, get_object_or_404
 from users.forms                    import *
 from users.models                   import User_info, Address_info, Payment_info, Notification, User_rating
 from items.models                   import Offer, ItemForSale, SoldItem
-from items.views                    import notify
 from datetime                       import datetime
-
+from django.core.mail               import send_mail
 
 def sign_up(request):
     if request.method == 'POST':
@@ -279,12 +278,21 @@ def clean_checkout_session(request):
     return HttpResponse("Clean as f*ck boi")
 
 def notify(offer_obj, recipient, content, date_time):
+    print(recipient.email)
+    send_mail(
+        subject="New message from Fyresale",
+        message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
+        from_email=None,
+        recipient_list=[recipient.email],
+        fail_silently=False
+    )
     new_not = Notification.objects.create(
         recipient=recipient,
         offer=offer_obj,
         content=content,
         timestamp=date_time
     )
+
 
 def calculate_average(user_obj):
     ratings = User_rating.objects.filter(userid=user_obj)
@@ -297,16 +305,6 @@ def calculate_average(user_obj):
         print(rate)
         sum += int(rate.user_rating)
         count += 1
-<<<<<<< HEAD
     newsum = sum / 2 #Divide with 2 since the rating is given on a scale form 1-5 whilst user input is 1-10.
     avg_rating = newsum / count 
-=======
-    avg_rating = sum / count
-
-    # rating = User_rating.objects.raw("\n"
-    #                         "SELECT avg(user_rating)\n"
-    #                         "from users_user_rating U\n"
-    #                         "WHERE U.userid_id = %s\n"
-    #                         "GROUP BY U.user_rating;\n", [user_obj.id])
->>>>>>> 07b0dba510ebee041e55e80b2ca85d24b2979663
     return avg_rating

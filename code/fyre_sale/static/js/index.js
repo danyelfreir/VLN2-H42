@@ -73,6 +73,6 @@ function sellerRating(curr_rating) {
   const nrOfStars = 5;
   let ratingPercentage = (profile_rating / nrOfStars) * 100;
   let ratingPercentageRound = `${(Math.round(ratingPercentage / 10) * 10)}%`;
-  document.querySelector(`.user_raiting_star .stars-inner`).style.width = ratingPercentageRound;
+  document.querySelector(`.user-rating-star .stars-inner`).style.width = ratingPercentageRound;
 }
 sellerRating(currRating.innerHTML);
