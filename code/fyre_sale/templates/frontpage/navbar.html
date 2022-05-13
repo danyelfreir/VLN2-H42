@@ -25,17 +25,6 @@
   <button id="filtering-button"><i class="fa-solid fa-sliders"></i> filter</button>
   <div id="search-container">
     <form id="search-form" action="{% url 'items_index' %}" method="GET">
-      <select id="cat-btn">
-        <option>All</option>
-        {#        {% for cat in categories %}#}
-        {#          <option>{{ cat.name }}</option>#}
-        {#          {% for subcat in subcategories %}#}
-        {#            {% if subcat.category_id == cat.id %}#}
-        {#              <option>- {{ subcat.name }}</option>#}
-        {#            {% endif %}#}
-        {#          {% endfor %}#}
-        {#        {% endfor %}#}
-      </select>
       <button id="search-form-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
       <input id="search-form-input" name="name" type="search" placeholder="Search" aria-label="Search">
     </form>
@@ -48,7 +37,6 @@
   const searchButton = document.getElementById('search-button');
   const searchForm = document.getElementById('search-dropdown');
   const searchFormInput = document.getElementById('search-form-input');
-  const searchDropdown = document.getElementById('cat-btn');
   const searchResults = document.getElementById('search-results-list');
   const loginButton = document.getElementById('login');
   const loginIcon = document.getElementById('user-profile-icon');

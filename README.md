@@ -30,16 +30,3 @@ Repository for our 3-week practical course in web programming
 | ❌ | 2% | Statistics |
 | ✅ | 2% | Usability Goals |
 | ❌ | 2% | Big Picture Map |
-
-
-CONTENTS OF THIS FILE
----------------------
-
- * Introduction
- * Requirements
- * Extras
-
-We did all of the requirements and a couple of extra things. 
-For starters we created our own logo as can be seen on the frontpage navbar. 
-Alot of thougt went into the design process. Popular categories are images
- 

@@ -14,12 +14,13 @@ from datetime import datetime
 from enum import Enum
 
 def items_index(request):
-    name, subcat, cat, filter = check_query(request)
+    name, subcat, cat = check_query(request)
     list_of_items, categories, subcategories = None, None, None
     title = None
 
     if name is None and subcat is None and cat is None:
-        list_of_items = ItemForSale.objects.filter(sold=False)
+        list_of_items = ItemForSale.objects.filter(
+            sold=False).order_by('date_of_upload')
     elif name is not None and subcat is None and cat is None:
         list_of_items = ItemForSale.objects.filter(name__icontains=name,
                                                    sold=False)
@@ -42,21 +43,14 @@ def items_index(request):
                                                    sold=False)
         title = f'{cat} - {subcat}'
     categories = Category.objects.all().order_by('name')
-    if filter == '1':
-        list_of_items = list_of_items.order_by('cur_bid')
-    elif filter == '2':
-        list_of_items = list_of_items.order_by('-cur_bid')
-    elif filter == '3':
-        list_of_items = list_of_items.order_by('-date_of_upload')
-    else:
-        list_of_items = list_of_items.order_by('date_of_upload')
-    print(filter)
-    return render(request, 'items/itempage.html', context={
-        'items': list_of_items,
-        'categories': categories,
-        'subcategories': subcategories,
-        'title': title,
-    })
+    return render(request,
+                  'items/itempage.html',
+                  context={
+                      'items': list_of_items,
+                      'categories': categories,
+                      'subcategories': subcategories,
+                      'title': title,
+                  })
 
 
 def item_detail(request, item_id):
@@ -92,6 +86,7 @@ def item_search(request):
 def get_images(request, item_id):
     results = ItemImages.objects.filter(item_id=item_id)
     data = list(results.values())
+    print(data)
     return JsonResponse({
         'results': data,
     })
@@ -113,7 +108,7 @@ def create_item(request):
 
             count = 1
             for image in images:
-                if count < 1:
+                if count  1:
                     photo = ItemImages.objects.create(
                         item=item_obj,
                         image=image,
@@ -244,8 +239,4 @@ def check_query(req):
         cat = req.GET['cat']
     except KeyError:
         cat = None
-    try:
-        filter = req.GET['filter']
-    except KeyError:
-        filter = None
-    return name, subcat, cat, filter
+    return name, subcat, cat
