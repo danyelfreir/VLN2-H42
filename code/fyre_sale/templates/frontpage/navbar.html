@@ -10,7 +10,7 @@
       <div id="search-button"><i class="fas fa-search" id> </i></div>
       <span id="login">
         {% if user.is_authenticated %}
-          <img src="{{MEDIA_URL}}/images/{{user_info.profileimg}}" alt="Profile picture">
+          <img id="user-profile-icon" src="{{MEDIA_URL}}/images/" alt="Profile picture">
         {% else %}
           <i class="fa-solid fa-user"></i>
         {% endif %}
@@ -44,10 +44,27 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  window.addEventListener('load', () => {
+    fetch('http://localhost:8000/users/api/get_image/{{ user.id }}')
+      .then(response => response.json())
+      .then(data => {
+        const imageElem = document.getElementById('user-profile-icon');
+        imageElem.src = imageElem.src + data.image;
+        imageElem.style.display = 'block';
+      });
+  });
+</script>
+
 <style>
   #filtering-button {
     display: none;
   }
+
+  #user-profile-icon {
+    display: none;
+  }
+
   .header-container {
     display: flex;
     justify-content: space-between;
@@ -102,8 +119,8 @@
   #cat-btn {
     font-size: 16px;
     width: 15%;
-    height: 45px; 
-    margin: auto 0; 
+    height: 45px;
+    margin: auto 0;
     padding-left: 10px;
     border: none;
     color: rgb(140, 140, 140);
@@ -148,7 +165,7 @@
     z-index: 1000;
     margin-left: 12.7%;
     background-color: #ffffff;
-    border: none; 
+    border: none;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin-top: -1px;
   }
