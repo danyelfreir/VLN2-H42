@@ -56,7 +56,6 @@
             const apiImages = data.results;
             const profileImage = document.getElementById('profile-picture');
             profileImage.src = profileImage.src + apiImages[0].image;
-
             for (let i=1; i<apiImages.length; i++) {
               console.log(apiImages[i]);
               const imageLi = document.createElement('li');

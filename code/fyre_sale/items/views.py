@@ -3,9 +3,11 @@ from django.http import JsonResponse, Http404
 from items.models import ItemForSale, SoldItem
 from users.views import notify
 from users.models import Notification
+# from django.core.mail import send_mail
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from users.views import notify
 
 from items.item_form import CreateItem, PlaceBid, GetImages, EditAd
 from datetime import datetime

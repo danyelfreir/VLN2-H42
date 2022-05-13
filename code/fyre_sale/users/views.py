@@ -10,6 +10,7 @@ from users.forms                    import *
 from users.models                   import User_info, Address_info, Payment_info, Notification, User_rating
 from items.models                   import Offer, ItemForSale, SoldItem
 from datetime                       import datetime
+# from django.core.mail               import send_mail
 
 def sign_up(request):
     if request.method == 'POST':
