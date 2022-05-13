@@ -4,10 +4,10 @@ from items.models import ItemForSale, SoldItem
 from users.models import Notification
 from django.core.mail import send_mail
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
-from items.item_form import CreateItem, PlaceBid, GetImages
+from items.item_form import CreateItem, PlaceBid, GetImages, EditAd
 from datetime import datetime
 from enum import Enum
 
@@ -194,6 +194,31 @@ def decline_bid(request, offer_id):
     notify(offer_obj, offer_obj.buyer, notif_content, date_time)
     return redirect('inbox', username=request.user.username)
 
+@login_required
+def edit_ad(request, item_id):
+    chosen_item = ItemForSale.objects.get(pk=item_id)
+    if chosen_item.seller != request.user:
+        raise Http404()
+    instance = get_object_or_404(ItemForSale, pk=item_id)
+    if request.method == 'POST':
+        date = datetime.now()
+        form = EditAd(chosen_item, request.POST, instance=instance)
+        if form.is_valid():
+            item_obj = form.save(commit=False)
+            item_obj.min_bid = chosen_item.cur_bid
+            item_obj.seller_id = chosen_item.seller_id
+            item_obj.date_of_upload = date
+            item_obj.save()
+            return redirect('items_index')
+        else:
+            print(form.errors)
+    else:
+        form = EditAd(instance=instance)
+    return render(request, 'items/editad.html', {
+        'form': form,
+        'item': chosen_item,
+
+    })
 
 
 # ======= HELPER FUNCTIONS =========

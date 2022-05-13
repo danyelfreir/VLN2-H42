@@ -11,6 +11,8 @@ const filterButton = document.getElementById('filtering-button');
 const filterMenu = document.getElementById('filter-menu');
 const currentWindow = window.location.pathname;
 const imagePopUp = document.getElementById("image-popup");
+const nrOfStars = 5;
+let currRating = document.getElementById("curr-rating-to-show")
 
 searchButton.addEventListener('click', () => {
   searchForm.style.display = "flex";
@@ -56,10 +58,23 @@ filterButton.addEventListener('click', (e) => {
   filterMenu.style.display = 'block';
   console.log(filterMenu);
 })
-
 // ============ SCALE IMAGE ============
-function scaleImage(clickedImageId) {
-  var imageId = clickedImageId.replace('image_',''); //Nota þetta til að fá image id sem er í gagnagrunninum.
-  document.getElementById("image-scaled").src="??"; //setja inní réttan link hér.
-  imagePopUp.style.display = 'block';
+// function scaleImage(clickedImageId) {
+//   var imageId = clickedImageId.replace('image_',''); //Nota þetta til að fá image id sem er í gagnagrunninum.
+//   document.getElementById("image-scaled").src="??"; //setja inní réttan link hér.
+//   imagePopUp.style.display = 'block';
+// }
+
+function sellerRating(curr_rating) {
+  let profile_rating = parseInt(curr_rating);
+  console.log(profile_rating)
+  profile_rating = profile_rating / 2;
+  console.log(profile_rating)
+  // total number of stars
+  const nrOfStars = 5;
+  let ratingPercentage = (profile_rating / nrOfStars) * 100;
+  let ratingPercentageRound = `${(Math.round(ratingPercentage / 10) * 10)}%`;
+  print(profile_rating)
+  document.querySelector(`.hotel_a .stars-inner`).style.width = ratingPercentageRound;
 }
+sellerRating(currRating.innerHTML);

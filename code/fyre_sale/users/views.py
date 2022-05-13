@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
-from users.models import User_info, Notification
+from users.models import User_info, Notification, User_rating
 from items.models import Offer, ItemForSale
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
@@ -52,13 +52,15 @@ def sign_in(request):
 def profilepage(request, username):
     user = User.objects.get(username=username)
     user_info = User_info.objects.get(pk=user.id)
+    print(user_info)
     joined = user.date_joined.strftime("%x")
-    print("test")
+    user_rating = calculate_average(user)
     print(joined)
     return render(request, 'users/userpage.html', context={
         'user_profile': user,
         'user_info': user_info,
-        'joined': joined
+        'joined': joined,
+        'rating': user_rating,
     })
 @login_required
 def inbox(request, username):
@@ -275,4 +277,32 @@ def clean_checkout_session(request):
     except KeyError:
         pass
     print(request.session.keys())
-    return HttpResponse("Clean as fuck boi")
+    return HttpResponse("Clean as f*ck boi")
+
+def notify(offer_obj, recipient, content, date_time):
+    new_not = Notification.objects.create(
+        recipient=recipient,
+        offer=offer_obj,
+        content=content,
+        timestamp=date_time
+    )
+
+def calculate_average(user_obj):
+    ratings = User_rating.objects.filter(userid=user_obj)
+    count = 0
+    sum = 0
+    print(ratings)
+    if len(ratings) < 1:
+        return 0
+    for rate in ratings:
+        print(rate)
+        sum += int(rate.user_rating)
+        count += 1
+    avg_rating = sum / count
+        
+    # rating = User_rating.objects.raw("\n"
+    #                         "SELECT avg(user_rating)\n"
+    #                         "from users_user_rating U\n"
+    #                         "WHERE U.userid_id = %s\n"
+    #                         "GROUP BY U.user_rating;\n", [user_obj.id])
+    return avg_rating

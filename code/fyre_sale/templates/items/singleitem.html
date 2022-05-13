@@ -10,7 +10,7 @@
         </div>
         <div class="profile-info">
             <ul class="info-list">
-                <li><p class="info-header"><span>Posted on:</span><span class="info-value">{{ item.date_of_upload }} / {{ item.date_of_upload }}</span></p>
+                <li><p class="info-header"><span>Posted on:</span><span class="info-value">{{ item.date_of_upload }}</span></p>
                 <li><p class="info-header"><span>Current highest bid:</span><span class="info-value">{{ item.cur_bid }} kr.</span></p>
                 <li><p class="info-header"><span>Description:</span><span class="info-value">{{ item.long_desc }}</span></p>
             </ul>
@@ -39,7 +39,7 @@
             {% if user.id != item.seller.id %}
                 <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
             {% else %}
-                <a href="{% url 'place_bid' item.id %}" class="button-profile">Edit item</a>
+                <a href="{% url 'edit_ad' item.id %}" class="button-profile">Edit item</a>
             {% endif %}
         </div>
         <div id="image-popup">
