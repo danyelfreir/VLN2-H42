@@ -10,7 +10,6 @@ from users.forms                    import *
 from users.models                   import User_info, Address_info, Payment_info, Notification, User_rating
 from items.models                   import Offer, ItemForSale, SoldItem
 from datetime                       import datetime
-from django.core.mail               import send_mail
 
 def sign_up(request):
     if request.method == 'POST':
@@ -47,10 +46,8 @@ def sign_in(request):
 def profilepage(request, username):
     user = User.objects.get(username=username)
     user_info = User_info.objects.get(pk=user.id)
-    print(user_info)
     joined = user.date_joined.strftime("%x")
     user_rating = calculate_average(user)
-    print(joined)
     return render(request, 'users/userpage.html', context={
         'user_profile': user,
         'user_info': user_info,
@@ -61,9 +58,16 @@ def profilepage(request, username):
 def get_rating(request, user_id):
     user = User.objects.get(pk=user_id)
     user_rating = calculate_average(user)
-    print(user_rating)
     return JsonResponse({
-        'rating': user_rating
+        'rating': user_rating,
+    })
+
+
+def get_image(request, user_id):
+    user = User_info.objects.get(pk=user_id)
+    image = str(user.profileimg)
+    return JsonResponse({
+        'image': image
     })
 
 
@@ -247,7 +251,6 @@ def edit_profile(request, username):
     if request.method =='POST':
         form1 = EditUser(data=request.POST, instance=instance1)
         form2 = EditAuthUser(data=request.POST, instance=instance2)
-        print(form2.fields)
         if form1.is_valid() and form2.is_valid():
             form1.save()
             form2.save()
@@ -281,18 +284,16 @@ def clean_checkout_session(request):
         del request.session['user_payment']
     except KeyError:
         pass
-    print(request.session.keys())
     return HttpResponse("Clean as f*ck boi")
 
 def notify(offer_obj, recipient, content, date_time):
-    print(recipient.email)
-    send_mail(
-        subject="New message from Fyresale",
-        message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
-        from_email=None,
-        recipient_list=[recipient.email],
-        fail_silently=False
-    )
+    # send_mail(
+    #     subject="New message from Fyresale",
+    #     message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
+    #     from_email=None,
+    #     recipient_list=[recipient.email],
+    #     fail_silently=False
+    # )
     new_not = Notification.objects.create(
         recipient=recipient,
         offer=offer_obj,
@@ -305,11 +306,9 @@ def calculate_average(user_obj):
     ratings = User_rating.objects.filter(userid=user_obj)
     count = 0
     sum = 0
-    print(ratings)
     if len(ratings) < 1:
         return 0
     for rate in ratings:
-        print(rate)
         sum += int(rate.user_rating)
         count += 1
     newsum = sum / 2 #Divide with 2 since the rating is given on a scale form 1-5 whilst user input is 1-10.

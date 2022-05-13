@@ -18,4 +18,5 @@ urlpatterns = [
     path('checkout/<int:not_id>/confirm', views.checkout_confirm, name="checkout_confirm"),
     path('checkout/clean', views.clean_checkout_session, name="clean"),
     path('api/get_rating/<int:user_id>', views.get_rating, name="get_rating"),
+    path('api/get_image/<int:user_id>', views.get_image, name="get_image"),
 ]

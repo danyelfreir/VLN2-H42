@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, Http404
 from items.models import ItemForSale, SoldItem
+from users.views import notify
 from users.models import Notification
-from django.core.mail import send_mail
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -55,12 +55,11 @@ def items_index(request):
 
 def item_detail(request, item_id):
     detailed_item = get_object_or_404(ItemForSale, pk=item_id)
-    item_images = ItemImages.objects.filter(item=detailed_item)
     seller_user = User.objects.get(pk=detailed_item.seller_id)
     similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
     similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
     return render(request, 'items/singleitem.html', context={
-        'item': (detailed_item, item_images),
+        'item': detailed_item,
         'seller': seller_user,
         'similar_items': similar_items_cleaned
     })
@@ -79,7 +78,7 @@ def item_search(request):
     })
 
 def get_images(request, item_id):
-    results = ItemImages.objects.filter(pk=item_id)
+    results = ItemImages.objects.filter(item_id=item_id)
     data = list(results.values())
     print(data)
     return JsonResponse({
@@ -94,7 +93,6 @@ def create_item(request):
         tmp_user = User.objects.get(username=request.user)
         form = CreateItem(request.POST)
         images = request.FILES.getlist('images')
-        print(images)
         if form.is_valid():
             item_obj = form.save(commit=False)
             item_obj.seller_id = tmp_user.id
@@ -111,13 +109,11 @@ def create_item(request):
                         main_image=True,
                     )
                 else:
-                    print("test2")
                     photo = ItemImages.objects.create(
                         item=item_obj,
                         image=image,
                         main_image=False,
                     )
-            print("test3")
 
             return redirect('items_index')
     form = CreateItem()
@@ -151,8 +147,6 @@ def place_bid(request, item_id):
             notif_content = f'"place_bid"  {request.user.username} placed a bid on {chosen_item.name}'
             notify(offer_obj, chosen_item.seller, notif_content, date)
             return redirect('items_index')
-        else:
-            print(form.errors)
     else:
         form = PlaceBid()
     return render(request, 'items/placebid.html', {
@@ -216,8 +210,6 @@ def edit_ad(request, item_id):
             item_obj.date_of_upload = date
             item_obj.save()
             return redirect('items_index')
-        else:
-            print(form.errors)
     else:
         form = EditAd(instance=instance)
     return render(request, 'items/editad.html', {
@@ -243,20 +235,3 @@ def check_query(req):
     except KeyError:
         cat = None
     return name, subcat, cat
-
-
-def notify(offer_obj, recipient, content, date_time):
-    print(recipient.email)
-    send_mail(
-        subject="New message from Fyresale",
-        message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
-        from_email=None,
-        recipient_list=[recipient.email],
-        fail_silently=False
-    )
-    new_not = Notification.objects.create(
-        recipient=recipient,
-        offer=offer_obj,
-        content=content,
-        timestamp=date_time
-    )
