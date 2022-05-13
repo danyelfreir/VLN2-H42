@@ -4,10 +4,6 @@
 {% block form %}
 <h4 class="form-title">Update ad</h4><br>
 <p class="form-subtitle">Update the information for your ad</p>
-<div class="image-container">
-  <img class="profile-picture" src="{{MEDIA_URL}}/images/{{item.image}}" alt="Item picture"
-    enctype="multipart/form-data">
-</div>
 <form class="loginform" action="{% url 'edit_ad' item.id %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <label class="form-field-label">Name</label><br>

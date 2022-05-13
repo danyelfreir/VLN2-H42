@@ -26,7 +26,7 @@ class ItemForSale(models.Model):
     name = models.CharField(max_length=255)
     condition = models.CharField(max_length=50)
     seller = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    min_bid = models.IntegerField()
+    min_bid = models.IntegerField(default=0, blank=True)
     cur_bid = models.IntegerField(default=0, blank=True)
     sold = models.BooleanField(default=False)
     long_desc = models.TextField(max_length=400)
