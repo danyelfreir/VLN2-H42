@@ -3,7 +3,7 @@
 {% block profile-container %}
     <div class="profile-container">
         <div class="image-container">
-            <img class="profile-picture" src="{{MEDIA_URL}}/images/{{item.image}}" alt="Item picture" enctype="multipart/form-data">
+            <img class="profile-picture" src="{{MEDIA_URL}}/images/{{item.1.0.image}}" alt="Item picture" enctype="multipart/form-data">
         </div>
         <div class="profile-header">
             <h3 class="profile-name">{{ item.name }}</h3>
@@ -19,10 +19,10 @@
         <div class="below-left">
             <ul class="image-ul">
                 Óklárað!!!!!
-                {% for image in images %}
-                    {% if image.id == item.id%}
+                {% for img in item.1 %}
+                    {% if img.main_image == False %}
                         <li class="image-li">
-                            <img class="item-image" id="image_{{image.id}}" src="" alt="Item image" onclick="scaleImage(this.id)">
+                            <img class="item-image" id="image_{{image.id}}" src="{{MEDIA_URL}}/images/{{img.image}}" alt="Item image" onclick="scaleImage(this.id)">
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -37,9 +37,9 @@
         </div>
         <div class="buttons-container">
             {% if user.id != item.seller.id %}
-                <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
+                <a href="{% url 'place_bid' item.0.id %}" class="button-profile">Place Bid</a>
             {% else %}
-                <a href="{% url 'edit_ad' item.id %}" class="button-profile">Edit item</a>
+                <a href="{% url 'edit_ad' item.0.id %}" class="button-profile">Edit item</a>
             {% endif %}
         </div>
         <div id="image-popup">
@@ -48,10 +48,10 @@
     </div>
     <style>
         .below-seller {
-            grid-area: below ; 
+            grid-area: below ;
         }
         .below-left {
-            grid-area: belowleft; 
+            grid-area: belowleft;
             border: solid red 1px;
         }
         .image-ul {

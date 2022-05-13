@@ -55,11 +55,12 @@ def items_index(request):
 
 def item_detail(request, item_id):
     detailed_item = get_object_or_404(ItemForSale, pk=item_id)
+    item_images = ItemImages.objects.filter(item=detailed_item)
     seller_user = User.objects.get(pk=detailed_item.seller_id)
     similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
     similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
     return render(request, 'items/singleitem.html', context={
-        'item': detailed_item,
+        'item': (detailed_item, item_images),
         'seller': seller_user,
         'similar_items': similar_items_cleaned
     })
@@ -72,6 +73,13 @@ def item_search(request):
     # else:
     #     results = ItemForSale.objects.filter(sub_cat_id=subcategory.id, name__icontains=request.GET['name'])
     results = ItemForSale.objects.filter(name__icontains=request.GET['name'])
+    data = list(results.values())
+    return JsonResponse({
+        'results': data,
+    })
+
+def get_images(request, item_id):
+    results = ItemImages.objects.filter(pk=item_id)
     data = list(results.values())
     return JsonResponse({
         'results': data,
