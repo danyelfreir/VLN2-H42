@@ -1,44 +1,51 @@
 {% extends 'popup.html' %}
 {% load static %}
 
+{{ notification.content|make_list|slice:"4"}}
+
 {% block form %}
-{% if notification.offer.item.seller.id == user.id %}
-  <h4 class="form-title">Bid received</h4>
-  <p class="form-subtitle">{{ notification.offer.buyer.username }} wants to bid on this item</p>
-  <div id="bid-item-info">
+  {{ notification.content|slice:"1:11"}}
+
+{#  {% if notification.offer.item.seller.id == user.id %}#}
+  {% if notification.content|slice:"1:10" == "place_bid" %}
+    <h4 class="form-title">Bid received</h4>
+    <p class="form-subtitle">{{ notification.offer.buyer.username }} wants to bid on this item</p>
+    <div id="bid-item-info">
       <img id="bid-item-image" src="{{ notification.offer.item.image }}">
       <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
       <p id="bid-item-bid">{{ notification.offer.buyer.username }}'s bid: {{ notification.offer.price }} kr.</p>
-  </div>
-  <div class="accept-decline-buttons">
-    <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Accept" %}">Accept</a>
-    <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Decline" %}">Decline</a>
-  </div>
-{% else %}
-  {% if notification.offer.approved %}
-  <h4 class="form-title">Bid accepted</h4>
-  <br>
-  <p class="form-subtitle">Congratulations!</p>
-  <div id="bid-item-info">
+    </div>
+    <div class="accept-decline-buttons">
+      <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Accept" %}">Accept</a>
+      <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Decline" %}">Decline</a>
+    </div>
+
+  {% elif notification.content|slice:"1:11" == "accept_bid" %}
+
+    <h4 class="form-title">Bid accepted</h4>
+    <br>
+    <p class="form-subtitle">Congratulations!</p>
+    <div id="bid-item-info">
       <img id="bid-item-image" src="{{ notification.offer.item.image }}">
       <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
       <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
-  </div>
-  <div class="accept-decline-buttons">
-    <a class="accept-decline" href="{% url 'checkout' notification.offer.id 1 %}">Checkout</a>
-  </div>
-  {% else %}
-  <h4 class="form-title">Bid rejected</h4>
-  <p class="form-subtitle">Unfortunately, {{ notification.offer.item.seller }} has rejected your generous offer.</p>
-  <div id="bid-item-info">
+    </div>
+    <div class="accept-decline-buttons">
+      <a class="accept-decline" href="{% url 'checkout' notification.offer.id 1 %}">Checkout</a>
+    </div>
+
+  {% elif notification.content|slice:"1:12" == "decline_bid" %}
+    <h4 class="form-title">Bid rejected</h4>
+    <p class="form-subtitle">Unfortunately, {{ notification.offer.item.seller }} has rejected your generous offer.</p>
+    <div id="bid-item-info">
       <img id="bid-item-image" src="{{ notification.offer.item.image }}">
       <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
       <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
-  </div>
-  <div class="accept-decline-buttons">
-    <a class="accept-decline" href="{% url 'inbox' user.username %}">Inbox</a>
-  </div>
-  {% endif %}
+    </div>
+    <div class="accept-decline-buttons">
+      <a class="accept-decline" href="{% url 'inbox' user.username %}">Inbox</a>
+    </div>
+  {% elif notification.content|slice:"1:12" == "rate_seller" %}
 {% endif %}
 
 <style media="screen">

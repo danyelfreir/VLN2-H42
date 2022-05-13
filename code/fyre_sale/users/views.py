@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect,get_object_or_404
 from users.models import Notification, User_info, Address_info, Payment_info
 from items.models import Offer, SoldItem
+from items.views import notify
 from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
 from datetime import datetime
 
@@ -131,14 +132,10 @@ def edit_address(request, username):
 
 @login_required
 def checkout(request, offer_id, step):
-    try:
-        user_address_instance = Address_info.objects.get(pk=request.user.id)
-    except Address_info.DoesNotExist:
-        user_address_instance = None
-    try:
-        user_payment_instance = Payment_info.objects.get(pk=request.user.id)
-    except Payment_info.DoesNotExist:
-        user_payment_instance = None
+    # if get_object_or_none(SoldItem, )
+    user_address_instance = get_object_or_none(Address_info, request.user.id)
+    user_payment_instance = get_object_or_none(Payment_info, request.user.id)
+
     if step == 1:
         if request.method == 'POST':
             form = EditAuthUser(data=request.POST, instance=request.user)
@@ -152,6 +149,7 @@ def checkout(request, offer_id, step):
                 form = EditAuthUser(initial=request.session['user_info'])
             else:
                 form = EditAuthUser(instance=request.user)
+
     elif step == 2:
         if request.method == 'POST':
             form = AddressInsert(data=request.POST, instance=user_address_instance)
@@ -167,6 +165,7 @@ def checkout(request, offer_id, step):
                 form = AddressInsert(initial=request.session['user_address'])
             else:
                 form = AddressInsert(instance=user_address_instance)
+
     elif step == 3:
         if request.method == 'POST':
             form = PaymentInsert(data=request.POST, instance=user_payment_instance)
@@ -183,11 +182,6 @@ def checkout(request, offer_id, step):
                 form = PaymentInsert(initial=request.session['user_payment'])
             else:
                 form = PaymentInsert(instance=user_payment_instance)
-    elif step == 4:
-        if request.method == 'POST':
-            pass
-        else:
-            form = ConfirmCheckout()
 
     return render(request, 'users/checkout.html', context={
         'form': form,
@@ -201,15 +195,7 @@ def checkout_confirm(request, offer_id):
     offer_obj = Offer.objects.get(pk=offer_id)
     if request.method == 'POST':
         item_obj = ItemForSale.objects.get(pk=offer_obj.item_id)
-        item_obj.sold = True
-        item_obj.save()
-
-        sold_item_obj = SoldItem.objects.create(
-            offer=offer_obj,
-            item=item_obj
-        )
-
-        notif_content = f'Congratulations on your new {item_obj.name}. Please take the time to rate {item_obj.seller} as a seller.'
+        notif_content = f'"rate_seller"Congratulations on your new {item_obj.name}. Please take the time to rate {item_obj.seller} as a seller.'
         notify(offer_obj, request.user, notif_content, datetime.now())
 
         clean_checkout_session(request)
@@ -226,15 +212,17 @@ def checkout_confirm(request, offer_id):
 def rate_sales(request, username, not_id):
     if username != request.user.username:
         raise Http404()
-    print(request.POST)
+
     notification = Notification.objects.get(pk=not_id)
     if username != request.user.username:
         raise Http404()
     if request.method == 'POST':
-        form = RateSeller(request.POST, notification)
+        form = RateSeller(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('user_page')
+            saved_form = form.save(commit=False)
+            saved_form.userid = notification.offer.item.seller
+            saved_form.save()
+            return redirect('inbox', username=username)
     else:
         form = RateSeller(request.POST)
     return render(request, 'users/rateseller.html', {
@@ -265,6 +253,13 @@ def edit_profile(request, username):
         'form2': form2
     })
 
+def get_object_or_none(table, key):
+    try:
+        ret_obj = table.objects.get(pk=key)
+    except table.DoesNotExist:
+        ret_obj = None
+    return ret_obj
+
 
 def clean_checkout_session(request):
     try:
@@ -281,11 +276,3 @@ def clean_checkout_session(request):
         pass
     print(request.session.keys())
     return HttpResponse("Clean as fuck boi")
-
-def notify(offer_obj, recipient, content, date_time):
-    new_not = Notification.objects.create(
-        recipient=recipient,
-        offer=offer_obj,
-        content=content,
-        timestamp=date_time
-    )

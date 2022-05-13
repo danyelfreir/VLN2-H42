@@ -23,7 +23,8 @@ class Payment_info(models.Model):
     cvc = models.CharField(default=None, max_length=4)
 
 class User_rating(models.Model):
-    userid = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    id = models.BigAutoField(primary_key=True)
+    userid = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     user_rating = models.IntegerField(default=None)
 
 class Notification(models.Model):

@@ -17,23 +17,20 @@
                 </tr>
                 {% for notification in notifications %}
                   <tr>
-                      <td>
-                        <a href="{% url 'notification' user.username notification.id %}">
-                          {{ notification.content }}
-                          {# {% if notification.offer.item.seller.id == user.id %}
-                            You have received an offer for {{ notification.offer.item.name }}
-                          {% else %}
-                            {% if notification.offer.approved %}
-                              {{ notification.offer.item.seller.username }} has accepted your bid on {{ notification.offer.item.name }}!
-                            {% else %}
-                              {{ notification.offer.item.seller.username }} has declined your bid on {{ notification.offer.item.name }}
-                            {% endif %}
-                          {% endif %} #}
+                    <td>
+                      {% if notification.content|slice:"1:12" == "rate_seller" %}
+                        <a href="{% url 'rate_sales' user.username notification.id %}">
+                          {{ notification.content|slice:"13:" }}
                         </a>
-                      </td>
-                      <td>
-                        <p>{{ notification.timestamp|date:"G:i:s - D j. M 'y" }}</p>
-                      </td>
+                      {% else %}
+                        <a href="{% url 'notification' user.username notification.id %}">
+                          {{ notification.content|slice:"13:" }}
+                        </a>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <p>{{ notification.timestamp|date:"G:i:s - D j. M 'y" }}</p>
+                    </td>
                 {% endfor %}
               </table>
             {% endif %}
@@ -54,15 +51,15 @@
               </tr>
               {% for offer in offers %}
                 <tr>
-                    <td>
-                      <a href="{% url 'item_detail' offer.item.id %}">
-                        {{ offer.item.name }}
-                      </a>
-                     </td>
-                    <td>{{ offer.price }}</td>
-                    <td>
-                      <p>{{ offer.time_of_offer|date:"G:i:s - D j. M 'y" }}</p>
-                    </td>
+                  <td>
+                    <a href="{% url 'item_detail' offer.item.id %}">
+                      {{ offer.item.name }}
+                    </a>
+                   </td>
+                  <td>{{ offer.price }}</td>
+                  <td>
+                    <p>{{ offer.time_of_offer|date:"G:i:s - D j. M 'y" }}</p>
+                  </td>
                 {% endfor %}
               </table>
             {% endif %}
