@@ -7,7 +7,7 @@ from users.models import Notification
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from users.views import notify
+from users.views import notify, calculate_average
 
 from items.item_form import CreateItem, PlaceBid, GetImages, EditAd
 from datetime import datetime
@@ -64,6 +64,7 @@ def items_index(request):
 def item_detail(request, item_id):
     detailed_item = get_object_or_404(ItemForSale, pk=item_id)
     seller_user = User.objects.get(pk=detailed_item.seller_id)
+    seller_rating = calculate_average(seller_user)
     similar_items = ItemForSale.objects.filter(
         sub_cat=detailed_item.sub_cat_id)
     similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
@@ -72,7 +73,8 @@ def item_detail(request, item_id):
                   context={
                       'item': detailed_item,
                       'seller': seller_user,
-                      'similar_items': similar_items_cleaned
+                      'similar_items': similar_items_cleaned,
+                      'seller_rating': seller_rating
                   })
 
 
@@ -114,7 +116,7 @@ def create_item(request):
 
             count = 1
             for image in images:
-                if count > 1:
+                if count < 1:
                     photo = ItemImages.objects.create(
                         item=item_obj,
                         image=image,
@@ -126,6 +128,7 @@ def create_item(request):
                         image=image,
                         main_image=False,
                     )
+                count += 1
 
             return redirect('items_index')
     form = CreateItem()

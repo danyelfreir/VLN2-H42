@@ -6,7 +6,7 @@
     width: 100%;
     display: grid;
     grid:
-        "image header header"50px "image info info"350px "line line line"0.01fr "below below belowright"1fr / 1fr 1fr 1fr;
+        "image header header"150px "image info info"250px "line line line"0.01fr "below below belowright"1fr / 1fr 1fr 1fr;
     gap: 8px;
 }
 
@@ -54,10 +54,8 @@
 }
 
 .buttons-container {
-    align-items: left;
-    grid-area: belowright;
+    grid-area: below;
     display: flex;
-    width: min-content;
     flex-direction: column;
     margin-left: auto;
     margin-right: 0;
@@ -96,7 +94,7 @@
 }
 
 .below-line {
-    grid-area: belowleft;
+    grid-area: below;
 }
 
 /* ======= ratings ========*/

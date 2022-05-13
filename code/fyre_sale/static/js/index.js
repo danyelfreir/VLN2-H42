@@ -64,14 +64,3 @@ filterButton.addEventListener('click', (e) => {
 //   imagePopUp.style.display = 'block';
 // }
 
-function sellerRating(curr_rating) {
-  let profile_rating = parseInt(curr_rating);
-  console.log(profile_rating)
-  console.log(profile_rating)
-  // total number of stars
-  const nrOfStars = 5;
-  let ratingPercentage = (profile_rating / nrOfStars) * 100;
-  let ratingPercentageRound = `${(Math.round(ratingPercentage / 10) * 10)}%`;
-  document.querySelector(`.user-rating-star .stars-inner`).style.width = ratingPercentageRound;
-}
-sellerRating(currRating.innerHTML);

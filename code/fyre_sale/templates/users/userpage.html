@@ -33,7 +33,6 @@
     </ul>
   </div>
   <div class="line"></div>
-
   <div class="below-line">
     <h3 class="item-header">Bio</h3>
     <ul class="info-list">
@@ -48,4 +47,19 @@
     {% endif %}
   </div>
 </div>
+
+<script>
+  let currRating = document.getElementById("curr-rating-to-show")
+  sellerRating(currRating.innerHTML);
+  
+  function sellerRating(curr_rating) {
+    let profile_rating = parseInt(curr_rating);
+    console.log(profile_rating)
+    const nrOfStars = 5;
+    let ratingPercentage = (profile_rating / nrOfStars) * 100;
+    console.log(profile_rating)
+    let ratingPercentageRound = `${(Math.round(ratingPercentage / 10) * 10)}%`;
+    document.querySelector(`.user-rating-star .stars-inner`).style.width = ratingPercentageRound;
+  }
+</script>
 {% endblock profile-container %}
