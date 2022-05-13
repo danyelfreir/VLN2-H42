@@ -2,7 +2,7 @@
 
 <a href="{% url 'item_detail' item.id %}" class="grid-item-link">
   <div class="grid-item">
-    <img class="grid-item-image" id="grid-item-image-{{ item.id }}" src="{{MEDIA_URL}}/images/">
+    <img class="grid-item-image" id="grid-item-image-{{ item.id }}">
     <div class="name-price-wrapper">
       <p class="grid-item-name">{{ item.name }}</p>
       <p class="grid-item-price">{{ item.cur_bid }} kr.</p>
@@ -16,7 +16,7 @@
       .then(response => response.json())
       .then(data => {
         let imageElem = document.getElementById('grid-item-image-{{ item.id }}');
-        imageElem.src = imageElem.src + data.results[0].image;
+        imageElem.src = '{{MEDIA_URL}}/images/' + data.results[0].image;
       });
   });
 </script>

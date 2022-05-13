@@ -3,7 +3,7 @@
 {% block profile-container %}
     <div class="profile-container">
         <div class="image-container">
-            <img id="profile-picture" class="profile-picture" src="{{MEDIA_URL}}/images/" alt="Item picture" enctype="multipart/form-data">
+            <img id="profile-picture" class="profile-picture" alt="Item picture" enctype="multipart/form-data">
         </div>
         <div class="profile-header">
             <h3 class="profile-name">{{ item.name }}</h3>
@@ -55,15 +55,14 @@
             const imagesElem = document.getElementById('images-ul');
             const apiImages = data.results;
             const profileImage = document.getElementById('profile-picture');
-            profileImage.src = profileImage.src + apiImages[0].image;
+            profileImage.src = '{{MEDIA_URL}}/images/' + apiImages[0].image;
             for (let i=1; i<apiImages.length; i++) {
-              console.log(apiImages[i]);
               const imageLi = document.createElement('li');
               imageLi.className = 'image-li';
               const image = document.createElement('img');
               image.className = 'item-image';
               image.id = `image-${ apiImages[i].id }`;
-              image.src = src=`{{ MEDIA_URL }}/images/${ apiImages[i].image }`
+              image.src = `{{ MEDIA_URL }}/images/${ apiImages[i].image }`
               image.alt = 'Image of {{ item.name }}'
               imageLi.appendChild(image);
               imagesElem.appendChild(imageLi);

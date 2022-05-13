@@ -45,7 +45,23 @@
 </div>
 
 <script type="text/javascript">
-  window.addEventListener('load', () => {
+  const searchButton = document.getElementById('search-button');
+  const searchForm = document.getElementById('search-dropdown');
+  const searchFormInput = document.getElementById('search-form-input');
+  const searchDropdown = document.getElementById('cat-btn');
+  const searchResults = document.getElementById('search-results-list');
+  const loginButton = document.getElementById('login');
+  const loginIcon = document.getElementById('user-profile-icon');
+  const profileMenu = document.getElementById('profile-menu');
+  const filterButton = document.getElementById('filtering-button');
+  const currentWindow = window.location.pathname;
+  let filterMenu;
+
+  window.onload = () => {
+    if (currentWindow === "/items/") {
+      filterMenu = document.getElementById('filter-menu')
+    };
+
     fetch('http://localhost:8000/users/api/get_image/{{ user.id }}')
       .then(response => response.json())
       .then(data => {
@@ -53,7 +69,56 @@
         imageElem.src = imageElem.src + data.image;
         imageElem.style.display = 'block';
       });
+  }
+
+  if (currentWindow === "/items/") {
+    searchButton.click();
+  };
+
+  searchButton.addEventListener('click', () => {
+    searchForm.style.display = "flex";
   });
+
+  document.addEventListener('click', (e) => {
+    if (e.target != searchButton && e.target != searchFormInput && e.target != filterButton
+    && e.target != loginButton && e.target != profileMenu && e.target != loginIcon) {
+      if (currentWindow === "/items/") {
+        if (e.target == filterMenu) return;
+        if (e.target == searchForm) {
+          filterMenu.style.display = 'none';
+        }
+        filterMenu.style.display = 'none';
+      }
+      if (e.target == searchForm) return;
+      searchResults.innerHTML = '';
+      searchForm.style.display = 'none';
+      profileMenu.style.display = 'none';
+    }
+  });
+
+  searchFormInput.addEventListener('keydown', async () => {
+    const res = await fetch(`http://localhost:8000/items/api/search?name=${searchFormInput.value}`);
+    const data = await res.json();
+    searchResults.innerHTML = '';
+    data['results'].forEach(item => {
+      let newLink = document.createElement('a');
+      newLink.href = `http://localhost:8000/items/${item.id}`;
+      newLink.id = 'search-result';
+      newLink.innerHTML = `${item.name}`
+      searchResults.appendChild(newLink);
+    });
+  });
+  // =====================================
+
+  // ============ PROFILE MENU ===========
+  loginButton.addEventListener('click', (e) => {
+    profileMenu.style.display = 'block';
+  });
+
+  loginIcon.addEventListener('click', (e) => {
+    profileMenu.style.display = 'block';
+  });
+
 </script>
 
 <style>
