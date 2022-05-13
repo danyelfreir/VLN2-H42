@@ -72,26 +72,11 @@ class EditAd(ModelForm):
     class Meta:
         model = ItemForSale
         fields = '__all__'
-        exclude = [
-            'date_of_upload',
-            'cur_bid',
-            'sold',
-            'id',
-            'seller',
-            'min_bid',
-        ]
+
         widgets = {
-            'name':
-            widgets.TextInput(attrs={'class': 'form-field'}),
-            'image':
-            widgets.FileInput(attrs={
-                'class': 'form-field',
-                'enctype': 'multipart/form-data'
-            }),
-            'condition':
-            widgets.Select(attrs={'class': 'form-field'}, choices=CONDITIONS),
-            'long_desc':
-            widgets.Textarea(attrs={'class': 'form-field'}),
+            'name': widgets.TextInput(attrs={'class': 'form-field'}),
+            'condition': widgets.Select(attrs={'class': 'form-field'}, choices=CONDITIONS),
+            'long_desc': widgets.Textarea(attrs={'class': 'form-field'}),
         }
 
     def __init__(self, item=None, *args, **kwargs):

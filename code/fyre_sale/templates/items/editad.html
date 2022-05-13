@@ -10,15 +10,15 @@
 </div>
 <form class="loginform" action="{% url 'edit_ad' item.id %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
-  <p>Name</p>
+  <label class="form-field-label">Name</label><br>
   {{form.name}}
-  <p>Image</p>
-  {{form.image}}
-  <p>Condition</p>
+  <label class="form-field-label">Image</label><br>
+  <input required name="images" type="file" multiple class="form-field">
+  <label class="form-field-label">Condition</label><br>
   {{form.condition}}
-  <p>Long Description</p>
+  <label class="form-field-label">Long Description</label><br>
   {{form.long_desc}}
-  <p>Sub category</p>
+  <label class="form-field-label">Sub category</label><br>
   {{form.sub_cat}}
   {{ form.errors }}
   <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
