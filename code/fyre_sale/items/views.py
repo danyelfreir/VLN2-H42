@@ -13,20 +13,13 @@ from items.item_form import CreateItem, PlaceBid, GetImages, EditAd
 from datetime import datetime
 from enum import Enum
 
-class FilterSort(Enum):
-    PRICE_ASC = 0
-    PRICE_DESC = 1
-    DATE_ASC = 2
-    DATE_DESC = 3
-
-
 def items_index(request):
-    name, subcat, cat = check_query(request)
+    name, subcat, cat, filter = check_query(request)
     list_of_items, categories, subcategories = None, None, None
     title = None
 
     if name is None and subcat is None and cat is None:
-        list_of_items = ItemForSale.objects.filter(sold=False).order_by('date_of_upload')
+        list_of_items = ItemForSale.objects.filter(sold=False)
     elif name is not None and subcat is None and cat is None:
         list_of_items = ItemForSale.objects.filter(name__icontains=name, sold=False)
         subcategories = None
@@ -47,6 +40,15 @@ def items_index(request):
         list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat, sold=False)
         title = f'{cat} - {subcat}'
     categories = Category.objects.all().order_by('name')
+    if filter == '1':
+        list_of_items = list_of_items.order_by('cur_bid')
+    elif filter == '2':
+        list_of_items = list_of_items.order_by('-cur_bid')
+    elif filter == '3':
+        list_of_items = list_of_items.order_by('-date_of_upload')
+    else:
+        list_of_items = list_of_items.order_by('date_of_upload')
+    print(filter)
     return render(request, 'items/itempage.html', context={
         'items': list_of_items,
         'categories': categories,
@@ -82,7 +84,6 @@ def item_search(request):
 def get_images(request, item_id):
     results = ItemImages.objects.filter(item_id=item_id)
     data = list(results.values())
-    print(data)
     return JsonResponse({
         'results': data,
     })
@@ -236,4 +237,8 @@ def check_query(req):
         cat = req.GET['cat']
     except KeyError:
         cat = None
-    return name, subcat, cat
+    try:
+        filter = req.GET['filter']
+    except KeyError:
+        filter = None
+    return name, subcat, cat, filter

@@ -43,6 +43,9 @@
         <ul id="images-ul" class="image-ul">
         </ul>
     </div>
+  <h2 class="frontpage-title">Similar items</h2>
+  {% include 'frontpage/scroll_ads.html' with items=similar_items %}
+
 
     <script type="text/javascript">
       window.onload = () => {
@@ -93,6 +96,4 @@
             border: 1px solid rgba(204, 204, 204, 0.8)
         }
     </style>
-{% include 'items/scroll_similar.html' with items=similar_items %}
-
 {% endblock profile-container %}

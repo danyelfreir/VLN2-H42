@@ -15,6 +15,7 @@
     <a id="pop-cat hobbies-cat" href="{% url 'items_index' %}?cat=Hobbies"><img class="cat_img" src="{% static 'img/overlay/hobbies.png' %}" alt="category"></a>
   </div>
   <a id="all-items" href="{% url 'items_index' %}">All items</a>
+  <h2 class="frontpage-title">This just in</h2>
   {% include 'frontpage/scroll_ads.html' %}
 </div>
 <a id="create-item" href="{% url 'create_item' %}">Upload <br> your item!</a>
