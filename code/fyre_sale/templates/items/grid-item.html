@@ -15,9 +15,7 @@
     fetch('http://localhost:8000/items/api/get_images/{{ item.id }}')
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         let imageElem = document.getElementById('grid-item-image-{{ item.id }}');
-        console.log(imageElem.src);
         imageElem.src = imageElem.src + data.results[0].image;
       });
   });

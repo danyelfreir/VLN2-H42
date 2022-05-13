@@ -16,5 +16,6 @@ urlpatterns = [
     path('<str:username>/edit/profile', views.edit_profile, name="edit_profile"),
     path('checkout/<int:not_id>/<int:step>', views.checkout, name="checkout"),
     path('checkout/<int:not_id>/confirm', views.checkout_confirm, name="checkout_confirm"),
-    path('checkout/clean', views.clean_checkout_session, name="clean")
+    path('checkout/clean', views.clean_checkout_session, name="clean"),
+    path('api/get_rating/<int:user_id>', views.get_rating, name="get_rating"),
 ]

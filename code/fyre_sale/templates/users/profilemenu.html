@@ -1,19 +1,31 @@
 {% load static %}
 
 
-<div id="profile-menu" style="display: none;">
+<div id="profile-menu" onload=getRating style="display: none;">
   <ul id="profile-menu-list">
     {% if user.is_authenticated %}
     <p>{{ user.username }}</p>
     <li><a href="{% url 'profile' username=user.username %}">My profile</a></li>
     <li><a href="{% url 'inbox' username=user.username %}">Inbox</a></li>
     <li><a href="{% url 'signout' %}">Sign out</a></li>
-    <li><p id="user-rating-profile-menu"> {{ user_rating }} </p></li>
+    <li><p id="user-rating-profile-menu"></p></li>
     {% else %}
     <li><a href="{% url 'signin' %}">Sign in</a></li>
     {% endif %}
   </ul>
 </div>
+
+<script type="text/javascript">
+  window.addEventListener('load', () => {
+    fetch('http://localhost:8000/users/api/get_rating/{{ user.id }}')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('user-rating-profile-menu')
+          .innerHTML = data.rating;
+        });
+    });
+</script>
+
 <style>
   #profile-menu {
     position: absolute;

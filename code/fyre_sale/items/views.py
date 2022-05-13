@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, Http404
 from items.models import ItemForSale, SoldItem
 from users.models import Notification
+from django.core.mail import send_mail
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User 
-from users.views import calculate_average, notify
+from django.contrib.auth.models import User
+
 from items.item_form import CreateItem, PlaceBid, GetImages, EditAd
 from datetime import datetime
 from enum import Enum
@@ -58,12 +59,10 @@ def item_detail(request, item_id):
     seller_user = User.objects.get(pk=detailed_item.seller_id)
     similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
     similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
-    seller_rating = calculate_average(seller_user)
     return render(request, 'items/singleitem.html', context={
         'item': (detailed_item, item_images),
         'seller': seller_user,
-        'similar_items': similar_items_cleaned,
-        'seller_rating': seller_rating
+        'similar_items': similar_items_cleaned
     })
 
 
@@ -82,6 +81,7 @@ def item_search(request):
 def get_images(request, item_id):
     results = ItemImages.objects.filter(pk=item_id)
     data = list(results.values())
+    print(data)
     return JsonResponse({
         'results': data,
     })
@@ -245,19 +245,18 @@ def check_query(req):
     return name, subcat, cat
 
 
-# def notify(offer_obj, recipient, content, date_time):
-#     print(recipient.email)
-#     send_mail(
-#         subject="New message from Fyresale",
-#         message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
-#         from_email=None,
-#         recipient_list=[recipient.email],
-#         fail_silently=False
-#     )
-#     new_not = Notification.objects.create(
-#         recipient=recipient,
-#         offer=offer_obj,
-#         content=content,
-#         timestamp=date_time
-#     )
-
+def notify(offer_obj, recipient, content, date_time):
+    print(recipient.email)
+    send_mail(
+        subject="New message from Fyresale",
+        message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
+        from_email=None,
+        recipient_list=[recipient.email],
+        fail_silently=False
+    )
+    new_not = Notification.objects.create(
+        recipient=recipient,
+        offer=offer_obj,
+        content=content,
+        timestamp=date_time
+    )

@@ -4,9 +4,8 @@ from django.contrib.auth            import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms      import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models     import User
-from django.http                    import Http404, HttpResponse
+from django.http                    import Http404, HttpResponse, JsonResponse
 from django.shortcuts               import render, redirect, get_object_or_404
-# from users.forms                    import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
 from users.forms                    import *
 from users.models                   import User_info, Address_info, Payment_info, Notification, User_rating
 from items.models                   import Offer, ItemForSale, SoldItem
@@ -57,6 +56,14 @@ def profilepage(request, username):
         'user_info': user_info,
         'joined': joined,
         'rating': user_rating,
+    })
+
+def get_rating(request, user_id):
+    user = User.objects.get(pk=user_id)
+    user_rating = calculate_average(user)
+    print(user_rating)
+    return JsonResponse({
+        'rating': user_rating
     })
 
 
@@ -306,5 +313,5 @@ def calculate_average(user_obj):
         sum += int(rate.user_rating)
         count += 1
     newsum = sum / 2 #Divide with 2 since the rating is given on a scale form 1-5 whilst user input is 1-10.
-    avg_rating = newsum / count 
+    avg_rating = newsum / count
     return avg_rating
