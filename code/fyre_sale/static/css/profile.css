@@ -32,10 +32,12 @@
 
 .info-header {
     color: rgb(106, 106, 106);
-    padding: 0;
+    margin: 5px;
+    font-size: 18px;
 }
 .info-value {
     color: rgb(0, 0, 0);
+    font-size: 18px;
 }
 .line { 
     grid-area: line; 
@@ -111,7 +113,8 @@
 }
 #rating-title {
     color: #414141;
-    font-size: 18px;;
+    font-size: 18px;
+    padding-top: 0px;
 }
 #curr-rating-to-show {
     display: none;

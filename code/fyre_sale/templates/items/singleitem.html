@@ -10,9 +10,9 @@
         </div>
         <div class="profile-info">
             <ul class="info-list">
-                <li><p class="info-header"><span>Posted on:</span><span class="info-value">{{ item.date_of_upload }}</span></p>
-                <li><p class="info-header"><span>Current highest bid:</span><span class="info-value">{{ item.cur_bid }} kr.</span></p>
-                <li><p class="info-header"><span>Description:</span><span class="info-value">{{ item.long_desc }}</span></p>
+                <li><p class="info-header"><span>Posted on:</span><span class="info-value">&emsp;{{ item.date_of_upload }}</span></p>
+                <li><p class="info-header"><span>Current highest bid:</span><span class="info-value">&emsp;{{ item.cur_bid }} kr.</span></p>
+                <li><p class="info-header"><span>Description:</span><span class="info-value">&emsp;{{ item.long_desc }}</span></p>
             </ul>
         </div>
         <div class="line"></div>
@@ -31,8 +31,16 @@
         <div class="below-seller">
             <h3 class="item-header">About seller</h3>
             <ul class="info-list">
-                <li><p class="info-header"><span>Seller:</span><span class="info-value">{{ seller.username }}</span></p>
-                <li><p class="info-header"><span>Rating:</span><span class="info-value rating">Seller rating***</span></p>
+                <li><p class="info-header">Username:<span class="info-value">&emsp;{{ seller.username }}</span></p></li>
+                <li><p id="curr-rating-to-show">{{ seller_rating }}</p>
+                    <div class="info-header">Average rating:<span class="info-value">
+                        <div class="user-rating-star">
+                            <div class="stars-outer"></i>
+                                <div class="stars-inner"></div>
+                            </div>
+                        </div></span>
+                    </div>
+                </li> 
             </ul>
         </div>
         <div class="buttons-container">
