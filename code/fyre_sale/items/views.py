@@ -29,14 +29,14 @@ def items_index(request):
         list_of_items = ItemForSale.objects.filter(name__icontains=name)
         subcategories = None
     elif name is None and subcat is None and cat is not None:
-        list_of_items = ItemForSale.objects.raw(
-            ''' SELECT * FROM items_itemforsale I WHERE I.sub_cat_id IN (
-                    SELECT S.id FROM items_subcategory S WHERE S.category_id = (
-                        SELECT C.id FROM items_category C WHERE C.name = %s))
-                ORDER BY i.date_of_upload DESC; ''', [cat]
-        )
         tmp_cat = Category.objects.get(name=cat)
-        subcategories = SubCategory.objects.filter(category_id=tmp_cat)
+        tmp_subcat = SubCategory.objects.all()
+        subcategories = tmp_subcat.filter(category=tmp_cat)
+        list_of_items = ItemForSale.objects.filter(sold=False)
+        for sc in tmp_subcat:
+            if sc.category == tmp_cat:
+                continue
+            list_of_items = list_of_items.exclude(sub_cat=sc)
         title = cat
     elif name is None and subcat is not None and cat is not None:
         tmp_cat = Category.objects.get(name=cat)
@@ -45,7 +45,8 @@ def items_index(request):
         list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat)
         title = f'{cat} - {subcat}'
     categories = Category.objects.all().order_by('name')
-    list_of_items = list_of_items.exclude(sold=True)
+    if len(list_of_items) > 0:
+        list_of_items = list_of_items.exclude(sold=True)
     return render(request, 'items/itempage.html', context={
         'items': list_of_items,
         'categories': categories,
@@ -56,8 +57,6 @@ def items_index(request):
 
 def item_detail(request, item_id):
     detailed_item = get_object_or_404(ItemForSale, pk=item_id)
-    if request.user.id != detailed_item.seller_id:
-        raise Http404()
     seller_user = User.objects.get(pk=detailed_item.seller_id)
     similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
     similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
