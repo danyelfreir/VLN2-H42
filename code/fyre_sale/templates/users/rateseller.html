@@ -1,21 +1,26 @@
 {% extends 'popup.html' %}
 
 {% block form %}
-    <h4 class="form-title">Rate Seller</h4><br>
-  <p class="form-subtitle">Rate your purchase from {{ notification.offer.item.seller.username }}</p>
-  <form class="loginform" action="{% url 'rate_sales' user.username notification.id %}" method="POST">
-    {% csrf_token %}
-    <label class="form-field-label">Give your seller a rating</label><br>
-    {{form.user_rating}}
-    {{ form.errors.user_rating }}
-    <h3 class="confirm-checkout-title">Item bought</h3>
-    <img class="login-image" src="{{ MEDIA_URL }}/images/{{ offer.item.image }}" alt="Product image">
-    <p class="confirm-content-title">Name: <span class="confirm-content-value">{{ notification.offer.item.name }}</span></p>
-    <p class="confirm-content-title">Condition: <span class="confirm-content-value">{{ notification.offer.item.condition }}</span></p>
-    <p class="confirm-content-title">Description: <span class="confirm-content-value">{{ notification.offer.item.long_desc }}</span></p>
-    <p class="confirm-content-title">Seller: <span class="confirm-content-value">{{ notification.offer.item.seller.username }}</span></p>
-    <p class="confirm-content-title">Price of item: <span class="confirm-content-value">{{ notification.offer.price }}</span></p>
+<h4 class="form-title">Rate Seller</h4><br>
+<p class="form-subtitle">Rate your purchase from {{ notification.offer.item.seller.username }}</p>
+<form class="loginform" action="{% url 'rate_sales' user.username notification.id %}" method="POST">
+  {% csrf_token %}
+  <label class="form-field-label">Give your seller a rating</label><br>
+  {{form.user_rating}}
+  {{ form.errors.user_rating }}
+  <h3 class="confirm-checkout-title">Item bought</h3>
+  <img class="login-image" src="{{ MEDIA_URL }}/images/{{ offer.item.image }}" alt="Product image">
+  <p class="confirm-content-title">Name: <span class="confirm-content-value">{{ notification.offer.item.name }}</span>
+  </p>
+  <p class="confirm-content-title">Condition: <span
+      class="confirm-content-value">{{ notification.offer.item.condition }}</span></p>
+  <p class="confirm-content-title">Description: <span
+      class="confirm-content-value">{{ notification.offer.item.long_desc }}</span></p>
+  <p class="confirm-content-title">Seller: <span
+      class="confirm-content-value">{{ notification.offer.item.seller.username }}</span></p>
+  <p class="confirm-content-title">Price of item: <span
+      class="confirm-content-value">{{ notification.offer.price }}</span></p>
 
-    <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
-  </form>
+  <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
+</form>
 {% endblock form %}

@@ -5,14 +5,22 @@
 <div class="content">
   <h2 class="frontpage-title">Our most loved categories</h2>
   <div class="category_container">
-    <a id="pop-cat pets-cat" href="{% url 'items_index' %}?cat=Pets"><img class="cat_img" src="{% static 'img/overlay/pets.png' %}" alt="category"></a>
-    <a id="pop-cat books-cat " href="{% url 'items_index' %}?cat=Entertainment&subcat=Books"><img class="cat_img" src="{% static 'img/overlay/books.png' %}" alt="category"></a>
-    <a id="pop-cat furniture-cat" href="{% url 'items_index' %}?cat=Furniture"><img class="cat_img" src="{% static 'img/overlay/furniture.png' %}" alt="category"></a>
-    <a id="pop-cat automotive-cat" href="{% url 'items_index' %}?cat=Automotive"><img class="cat_img" src="{% static 'img/overlay/automotive.png' %}" alt="category"></a>
-    <a id="pop-cat electronics-cat" href="{% url 'items_index' %}?cat=Electronics"><img class="cat_img" src="{% static 'img/overlay/electronics.png' %}" alt="category"></a>
-    <a id="pop-cat health-cat" href="{% url 'items_index' %}?cat=Health%20and%20Fitness"><img class="cat_img" src="{% static 'img/overlay/health&fitness.png' %}" alt="category"></a>
-    <a id="pop-cat children-cat" href="{% url 'items_index' %}?cat=Children"><img class="cat_img" src="{% static 'img/overlay/children.png' %}" alt="category"></a>
-    <a id="pop-cat hobbies-cat" href="{% url 'items_index' %}?cat=Hobbies"><img class="cat_img" src="{% static 'img/overlay/hobbies.png' %}" alt="category"></a>
+    <a id="pop-cat pets-cat" href="{% url 'items_index' %}?cat=Pets"><img class="cat_img"
+        src="{% static 'img/overlay/pets.png' %}" alt="category"></a>
+    <a id="pop-cat books-cat " href="{% url 'items_index' %}?cat=Entertainment&subcat=Books"><img class="cat_img"
+        src="{% static 'img/overlay/books.png' %}" alt="category"></a>
+    <a id="pop-cat furniture-cat" href="{% url 'items_index' %}?cat=Furniture"><img class="cat_img"
+        src="{% static 'img/overlay/furniture.png' %}" alt="category"></a>
+    <a id="pop-cat automotive-cat" href="{% url 'items_index' %}?cat=Automotive"><img class="cat_img"
+        src="{% static 'img/overlay/automotive.png' %}" alt="category"></a>
+    <a id="pop-cat electronics-cat" href="{% url 'items_index' %}?cat=Electronics"><img class="cat_img"
+        src="{% static 'img/overlay/electronics.png' %}" alt="category"></a>
+    <a id="pop-cat health-cat" href="{% url 'items_index' %}?cat=Health%20and%20Fitness"><img class="cat_img"
+        src="{% static 'img/overlay/health&fitness.png' %}" alt="category"></a>
+    <a id="pop-cat children-cat" href="{% url 'items_index' %}?cat=Children"><img class="cat_img"
+        src="{% static 'img/overlay/children.png' %}" alt="category"></a>
+    <a id="pop-cat hobbies-cat" href="{% url 'items_index' %}?cat=Hobbies"><img class="cat_img"
+        src="{% static 'img/overlay/hobbies.png' %}" alt="category"></a>
   </div>
   <a id="all-items" href="{% url 'items_index' %}">All items</a>
   <h2 class="frontpage-title">This just in</h2>
@@ -29,53 +37,65 @@
     justify-content: space-evenly;
     color: #444;
   }
+
   .pets-cat {
-      grid-column: 1 / 2;
-      grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
   }
+
   .books-cat {
-      grid-column: 2 / 3;
-      grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
   }
+
   .furniture-cat {
-      grid-column: 3 / 4;
-      grid-row: 1 / 2;
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
   }
+
   .automotive-cat {
-      grid-column: 4 / 5;
-      grid-row: 1 / 2;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
   }
+
   .electronics-cat {
-      grid-column: 1 / 2;
-      grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
   }
+
   .health-cat {
-      grid-column: 2 / 3;
-      grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
   }
+
   .children {
-      grid-column: 3 / 4;
-      grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
   }
+
   .hobbies {
-      grid-column: 4 / 5;
-      grid-row: 2 / 3;
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
   }
+
   .cat_img {
-      width: 100%;
-      transition: all .1s ease-in;
+    width: 100%;
+    transition: all .1s ease-in;
   }
+
   .cat_img:hover {
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-      transform: scale(1.09);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transform: scale(1.09);
   }
+
   #all-items {
-      color: #4a5ee5;
-      font-weight: 900;
-      font-size: 18px;
+    color: #4a5ee5;
+    font-weight: 900;
+    font-size: 18px;
   }
+
   #all-items:hover {
-      color: #a4aef2;
+    color: #a4aef2;
   }
 </style>
 {% endblock content %}

@@ -16,7 +16,8 @@
   position: relative;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;}
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
 .grid-item:hover {
   filter: drop-shadow(0 0 0.75rem #c4c4c4);
@@ -52,5 +53,3 @@
   padding-left: 15px;
   margin: 0;
 }
-
-

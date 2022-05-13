@@ -1,30 +1,35 @@
 {% extends 'popup.html' %}
 
 {% block form  %}
-  <h4 class="form-title">Checkout</h4>
-  <p class="form-subtitle">Confirm that all your information is correct</p>
-  <form class="loginform" action="{% url 'checkout_confirm' not_id %}" method="post">
-    {% csrf_token %}
-    <img class="login-image" src="{{ MEDIA_URL }}/images/{{ offer.item.image }}" alt="">
-    <h3 class="confirm-checkout-title">Product</h3>
-    <p class="confirm-content-title">Name: <span class="confirm-content-value">{{ offer.item.name }}</span></p>
-    <p class="confirm-content-title">Condition: <span class="confirm-content-value">{{ offer.item.condition }}</span></p>
-    <p class="confirm-content-title">Description: <span class="confirm-content-value">{{ offer.item.long_desc }}</span></p>
-    <p class="confirm-content-title">Seller: <span class="confirm-content-value">{{ offer.item.seller.username }}</span></p>
-    <p class="confirm-content-title">Your bid: <span class="confirm-content-value">{{ offer.price }}</span></p>
-    <h3 class="confirm-checkout-title">Ships to</h3>
-    <p class="confirm-content-title">Street: <span class="confirm-content-value">{{ user_address.street_name }}</span></p>
-    <p class="confirm-content-title">City: <span class="confirm-content-value">{{ user_address.city }}, {{ user_address.zip }}</span></p>
-    <p class="confirm-content-title">Country: <span class="confirm-content-value">{{ user_address.country }}</span></p>
-    <h3 class="confirm-checkout-title">Payment method</h3>
-    <p class="confirm-content-title">Credit card number: <span class="confirm-content-value">{{ user_payment.card_nr|slice:4 }}-****-****-****</span></p>
-    <p class="confirm-content-title">Expiry date: <span class="confirm-content-value">{{ user_payment.expires }}</span></p>
-    <button class="form-submit" id="submit" type="submit" value="Submit">Check out</button><br>
-    <button class="form-submit" id="submit" onclick="history.back()">Back</button><br>
-  </form>
-  <style media="screen">
-    #close-form-btn {
-      display: none;
-    }
-  </style>
+<h4 class="form-title">Checkout</h4>
+<p class="form-subtitle">Confirm that all your information is correct</p>
+<form class="loginform" action="{% url 'checkout_confirm' not_id %}" method="post">
+  {% csrf_token %}
+  <img class="login-image" src="{{ MEDIA_URL }}/images/{{ offer.item.image }}" alt="">
+  <h3 class="confirm-checkout-title">Product</h3>
+  <p class="confirm-content-title">Name: <span class="confirm-content-value">{{ offer.item.name }}</span></p>
+  <p class="confirm-content-title">Condition: <span class="confirm-content-value">{{ offer.item.condition }}</span></p>
+  <p class="confirm-content-title">Description: <span class="confirm-content-value">{{ offer.item.long_desc }}</span>
+  </p>
+  <p class="confirm-content-title">Seller: <span class="confirm-content-value">{{ offer.item.seller.username }}</span>
+  </p>
+  <p class="confirm-content-title">Your bid: <span class="confirm-content-value">{{ offer.price }}</span></p>
+  <h3 class="confirm-checkout-title">Ships to</h3>
+  <p class="confirm-content-title">Street: <span class="confirm-content-value">{{ user_address.street_name }}</span></p>
+  <p class="confirm-content-title">City: <span class="confirm-content-value">{{ user_address.city }},
+      {{ user_address.zip }}</span></p>
+  <p class="confirm-content-title">Country: <span class="confirm-content-value">{{ user_address.country }}</span></p>
+  <h3 class="confirm-checkout-title">Payment method</h3>
+  <p class="confirm-content-title">Credit card number: <span
+      class="confirm-content-value">{{ user_payment.card_nr|slice:4 }}-****-****-****</span></p>
+  <p class="confirm-content-title">Expiry date: <span class="confirm-content-value">{{ user_payment.expires }}</span>
+  </p>
+  <button class="form-submit" id="submit" type="submit" value="Submit">Check out</button><br>
+  <button class="form-submit" id="submit" onclick="history.back()">Back</button><br>
+</form>
+<style media="screen">
+  #close-form-btn {
+    display: none;
+  }
+</style>
 {% endblock form  %}

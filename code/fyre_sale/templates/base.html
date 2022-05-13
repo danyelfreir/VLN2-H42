@@ -2,40 +2,43 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FyreSale</title>
-    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
-    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/items.css' %}">
-    <link rel="icon" href="{% static 'favicon-fyresale.svg' %}">
 
-    {% block styles %}
-    {% endblock styles %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FyreSale</title>
+  <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+  <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/items.css' %}">
+  <link rel="icon" href="{% static 'favicon-fyresale.svg' %}">
+
+  {% block styles %}
+  {% endblock styles %}
 
 </head>
+
 <body>
   <div id="wrapper">
     <header>
-        {% include 'frontpage/navbar.html' %}
+      {% include 'frontpage/navbar.html' %}
     </header>
-      <div id="site-content">
-        {% block popup %}
-        {% endblock popup %}
+    <div id="site-content">
+      {% block popup %}
+      {% endblock popup %}
 
-        {% block filter %}
-        {% endblock filter %}
+      {% block filter %}
+      {% endblock filter %}
 
-        {% block content %}
-        {% endblock content %}
-      </div>
+      {% block content %}
+      {% endblock content %}
+    </div>
     <footer>
       {% include 'frontpage/footer.html' %}
     </footer>
   </div>
 </body>
+
 </html>

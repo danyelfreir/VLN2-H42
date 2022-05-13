@@ -21,7 +21,8 @@ def items_index(request):
     if name is None and subcat is None and cat is None:
         list_of_items = ItemForSale.objects.filter(sold=False)
     elif name is not None and subcat is None and cat is None:
-        list_of_items = ItemForSale.objects.filter(name__icontains=name, sold=False)
+        list_of_items = ItemForSale.objects.filter(name__icontains=name,
+                                                   sold=False)
         subcategories = None
     elif name is None and subcat is None and cat is not None:
         tmp_cat = Category.objects.get(name=cat)
@@ -37,7 +38,8 @@ def items_index(request):
         tmp_cat = Category.objects.get(name=cat)
         tmp_scat = SubCategory.objects.get(name=subcat)
         subcategories = SubCategory.objects.filter(category=tmp_cat)
-        list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat, sold=False)
+        list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat,
+                                                   sold=False)
         title = f'{cat} - {subcat}'
     categories = Category.objects.all().order_by('name')
     if filter == '1':
@@ -60,13 +62,16 @@ def items_index(request):
 def item_detail(request, item_id):
     detailed_item = get_object_or_404(ItemForSale, pk=item_id)
     seller_user = User.objects.get(pk=detailed_item.seller_id)
-    similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
+    similar_items = ItemForSale.objects.filter(
+        sub_cat=detailed_item.sub_cat_id)
     similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
-    return render(request, 'items/singleitem.html', context={
-        'item': detailed_item,
-        'seller': seller_user,
-        'similar_items': similar_items_cleaned
-    })
+    return render(request,
+                  'items/singleitem.html',
+                  context={
+                      'item': detailed_item,
+                      'seller': seller_user,
+                      'similar_items': similar_items_cleaned
+                  })
 
 
 def item_search(request):
@@ -80,6 +85,7 @@ def item_search(request):
     return JsonResponse({
         'results': data,
     })
+
 
 def get_images(request, item_id):
     results = ItemImages.objects.filter(item_id=item_id)
@@ -127,8 +133,6 @@ def create_item(request):
     })
 
 
-
-
 @login_required
 def place_bid(request, item_id):
     chosen_item = ItemForSale.objects.get(pk=item_id)
@@ -161,10 +165,12 @@ def place_bid(request, item_id):
 @login_required
 def respond_bid(request, offer_id, response):
     offer = Offer.objects.get(pk=offer_id)
-    return render(request, 'items/respond_bid.html', context={
-        'response': response,
-        'offer': offer,
-    })
+    return render(request,
+                  'items/respond_bid.html',
+                  context={
+                      'response': response,
+                      'offer': offer,
+                  })
 
 
 @login_required
@@ -178,10 +184,7 @@ def accept_bid(request, offer_id):
     item_obj.sold = True
     item_obj.save()
 
-    SoldItem.objects.create(
-        offer=offer_obj,
-        item=item_obj
-    )
+    SoldItem.objects.create(offer=offer_obj, item=item_obj)
 
     notif_content = f'"accept_bid" {request.user.username} has accepted your offer on {offer_obj.item.name}'
     notify(offer_obj, offer_obj.buyer, notif_content, date_time)
@@ -196,6 +199,7 @@ def decline_bid(request, offer_id):
     notif_content = f'"decline_bid"{request.user.username} has rejected your offer on {offer_obj.item.name}'
     notify(offer_obj, offer_obj.buyer, notif_content, date_time)
     return redirect('inbox', username=request.user.username)
+
 
 @login_required
 def edit_ad(request, item_id):
@@ -218,11 +222,11 @@ def edit_ad(request, item_id):
     return render(request, 'items/editad.html', {
         'form': form,
         'item': chosen_item,
-
     })
 
 
 # ======= HELPER FUNCTIONS =========
+
 
 def check_query(req):
     try:

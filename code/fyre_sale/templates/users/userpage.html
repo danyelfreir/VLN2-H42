@@ -3,45 +3,49 @@
 
 {% block profile-container %}
 <div class="profile-container">
-    <div class="image-container">
-        <img class="profile-picture" src="{{MEDIA_URL}}/images/{{user_info.profileimg}}" alt="Profile picture" >
-    </div>
-    <div class="profile-header">
-        <h3 class="profile-name">{{ user_profile.username }}</h3>
-        <p id="curr-rating-to-show">{{ rating }}</p>
-        <div class="rating">
-            <div id="rating-title">Average rating:</div>
-            <div class="user-rating-star">
-                <div class="stars-outer"></i>
-                    <div class="stars-inner"></div>
-                </div>
-            </div>
+  <div class="image-container">
+    <img class="profile-picture" src="{{MEDIA_URL}}/images/{{user_info.profileimg}}" alt="Profile picture">
+  </div>
+  <div class="profile-header">
+    <h3 class="profile-name">{{ user_profile.username }}</h3>
+    <p id="curr-rating-to-show">{{ rating }}</p>
+    <div class="rating">
+      <div id="rating-title">Average rating:</div>
+      <div class="user-rating-star">
+        <div class="stars-outer"></i>
+          <div class="stars-inner"></div>
         </div>
+      </div>
     </div>
-    <div class="profile-info">
-        <ul class="info-list">
-            <li><p class="info-header"><span>Name:</span><span class="info-value">&emsp;{{ user.first_name }} {{ user.last_name }}</span></p>
-            <li><p class="info-header"><span>Member Since:</span><span class="info-value">&emsp;{{ joined }}</span></p>
-            {% if user.id == user_profile.id %}
-            <li><p class="info-header"><span>Birthday:</span><span class="info-value">&emsp;{{ user_info.birthday }}</span></p>
-            {% else %}
-            {% endif %}
-        </ul>
-    </div>
-    <div class="line"></div>
-
-    <div class="below-line">
-        <h3 class="item-header">Bio</h3>
-        <ul class="info-list">
-            <p class="info-value">{{ user_info.bio }}</p>
-    </div>
-    <div class="buttons-container">
+  </div>
+  <div class="profile-info">
+    <ul class="info-list">
+      <li>
+        <p class="info-header"><span>Name:</span><span class="info-value">&emsp;{{ user.first_name }}
+            {{ user.last_name }}</span></p>
+      <li>
+        <p class="info-header"><span>Member Since:</span><span class="info-value">&emsp;{{ joined }}</span></p>
         {% if user.id == user_profile.id %}
-        <a href="{% url 'edit_profile' user.username %}" class="button-profile">Edit User Info</a>
-        <a href="{% url 'edit_payment' user.username %}" class="button-profile">Edit Payment Info</a>
-        <a href="{% url 'edit_address' user.username %}" class="button-profile">Update Address</a>
+      <li>
+        <p class="info-header"><span>Birthday:</span><span class="info-value">&emsp;{{ user_info.birthday }}</span></p>
         {% else %}
         {% endif %}
-    </div>
+    </ul>
+  </div>
+  <div class="line"></div>
+
+  <div class="below-line">
+    <h3 class="item-header">Bio</h3>
+    <ul class="info-list">
+      <p class="info-value">{{ user_info.bio }}</p>
+  </div>
+  <div class="buttons-container">
+    {% if user.id == user_profile.id %}
+    <a href="{% url 'edit_profile' user.username %}" class="button-profile">Edit User Info</a>
+    <a href="{% url 'edit_payment' user.username %}" class="button-profile">Edit Payment Info</a>
+    <a href="{% url 'edit_address' user.username %}" class="button-profile">Update Address</a>
+    {% else %}
+    {% endif %}
+  </div>
 </div>
 {% endblock profile-container %}

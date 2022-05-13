@@ -5,70 +5,72 @@
 
 {% block form %}
 
-  {% if notification.content|slice:"1:10" == "place_bid" %}
-    <h4 class="form-title">Bid received</h4>
-    <p class="form-subtitle">{{ notification.offer.buyer.username }} wants to bid on this item</p>
-    <div id="bid-item-info">
-      <img id="bid-item-image" src="{{ notification.offer.item.image }}">
-      <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
-      <p id="bid-item-bid">{{ notification.offer.buyer.username }}'s bid: {{ notification.offer.price }} kr.</p>
-    </div>
-    <div class="accept-decline-buttons">
-      <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Accept" %}">Accept</a>
-      <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Decline" %}">Decline</a>
-    </div>
+{% if notification.content|slice:"1:10" == "place_bid" %}
+<h4 class="form-title">Bid received</h4>
+<p class="form-subtitle">{{ notification.offer.buyer.username }} wants to bid on this item</p>
+<div id="bid-item-info">
+  <img id="bid-item-image" src="{{ notification.offer.item.image }}">
+  <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
+  <p id="bid-item-bid">{{ notification.offer.buyer.username }}'s bid: {{ notification.offer.price }} kr.</p>
+</div>
+<div class="accept-decline-buttons">
+  <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Accept" %}">Accept</a>
+  <a class="accept-decline" href="{% url 'respond_bid' notification.offer.id "Decline" %}">Decline</a>
+</div>
 
-  {% elif notification.content|slice:"1:11" == "accept_bid" %}
+{% elif notification.content|slice:"1:11" == "accept_bid" %}
 
-    <h4 class="form-title">Bid accepted</h4>
-    <br>
-    <p class="form-subtitle">Congratulations!</p>
-    <div id="bid-item-info">
-      <img id="bid-item-image" src="{{ notification.offer.item.image }}">
-      <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
-      <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
-    </div>
-    <div class="accept-decline-buttons">
-      <a class="accept-decline" href="{% url 'checkout' notification.id 1 %}">Checkout</a>
-    </div>
+<h4 class="form-title">Bid accepted</h4>
+<br>
+<p class="form-subtitle">Congratulations!</p>
+<div id="bid-item-info">
+  <img id="bid-item-image" src="{{ notification.offer.item.image }}">
+  <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
+  <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
+</div>
+<div class="accept-decline-buttons">
+  <a class="accept-decline" href="{% url 'checkout' notification.id 1 %}">Checkout</a>
+</div>
 
-  {% elif notification.content|slice:"1:12" == "decline_bid" %}
-    <h4 class="form-title">Bid rejected</h4>
-    <p class="form-subtitle">Unfortunately, {{ notification.offer.item.seller }} has rejected your generous offer.</p>
-    <div id="bid-item-info">
-      <img id="bid-item-image" src="{{ notification.offer.item.image }}">
-      <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
-      <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
-    </div>
-    <div class="accept-decline-buttons">
-      <a class="accept-decline" href="{% url 'inbox' user.username %}">Inbox</a>
-    </div>
-  {% elif notification.content|slice:"1:12" == "rate_seller" %}
+{% elif notification.content|slice:"1:12" == "decline_bid" %}
+<h4 class="form-title">Bid rejected</h4>
+<p class="form-subtitle">Unfortunately, {{ notification.offer.item.seller }} has rejected your generous offer.</p>
+<div id="bid-item-info">
+  <img id="bid-item-image" src="{{ notification.offer.item.image }}">
+  <h2 id="bid-item-name">{{ notification.offer.item.name }}</h2>
+  <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
+</div>
+<div class="accept-decline-buttons">
+  <a class="accept-decline" href="{% url 'inbox' user.username %}">Inbox</a>
+</div>
+{% elif notification.content|slice:"1:12" == "rate_seller" %}
 {% endif %}
 
 <style media="screen">
   #bid-item-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
   }
 
   #bid-item-name {
-      margin: auto;
+    margin: auto;
   }
 
   #bid-item-image {
-      max-width: 200px;
-      margin: auto;
+    max-width: 200px;
+    margin: auto;
   }
 
   #bid-item-bid {
-      margin: auto;
+    margin: auto;
   }
+
   .accept-decline {
     height: 30px;
   }
+
   .accept-decline-buttons {
     margin-bottom: 20px;
   }

@@ -1,36 +1,36 @@
 {% extends 'popup.html' %}
 
 {% block form %}
-    <h4 class="form-title">Place a bid on this item</h4><br>
-    <div id="bid-item-info">
-        <img id="bid-item-image" src="{{MEDIA_URL}}/images/{{item.image}}">
-        <h2 class="form-subtitle">{{ item.name }}</h2>
-        <p id="bid-item-bid">Currently the highest bid is: {{ item.cur_bid }} kr.</p>
-    </div>
-    <form class="loginform" action="{% url 'place_bid' item.id %}" method="POST">
+<h4 class="form-title">Place a bid on this item</h4><br>
+<div id="bid-item-info">
+  <img id="bid-item-image" src="{{MEDIA_URL}}/images/{{item.image}}">
+  <h2 class="form-subtitle">{{ item.name }}</h2>
+  <p id="bid-item-bid">Currently the highest bid is: {{ item.cur_bid }} kr.</p>
+</div>
+<form class="loginform" action="{% url 'place_bid' item.id %}" method="POST">
 
-        {% csrf_token %}
-        <label class="form-field-label" for="bid">Enter your bid</label><br>
-        {{ form.price }}
-        {{ form.non_field_errors }}
-      <button class="form-submit" id="submit" type="submit" value="Submit">Place bid</button><br>
-    </form>
+  {% csrf_token %}
+  <label class="form-field-label" for="bid">Enter your bid</label><br>
+  {{ form.price }}
+  {{ form.non_field_errors }}
+  <button class="form-submit" id="submit" type="submit" value="Submit">Place bid</button><br>
+</form>
 
 <style>
-#bid-item-info {
+  #bid-item-info {
     display: flex;
     flex-direction: column;
-}
+  }
 
-#bid-item-image {
+  #bid-item-image {
     max-width: 200px;
     margin: auto;
-}
+  }
 
-#bid-item-bid {
+  #bid-item-bid {
     margin: auto;
     font-size: 18px;
     color: #919191;
-}
+  }
 </style>
 {% endblock form %}
