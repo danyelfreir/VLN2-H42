@@ -3,7 +3,7 @@
 {% block form  %}
   <h4 class="form-title">Checkout</h4>
   <p class="form-subtitle">Confirm that all your information is correct</p>
-  <form class="loginform" action="{% url 'checkout_confirm' offer.id %}" method="post">
+  <form class="loginform" action="{% url 'checkout_confirm' not_id %}" method="post">
     {% csrf_token %}
     <img class="login-image" src="{{ MEDIA_URL }}/images/{{ offer.item.image }}" alt="">
     <h3 class="confirm-checkout-title">Product</h3>

@@ -74,7 +74,6 @@ function sellerRating(curr_rating) {
   const nrOfStars = 5;
   let ratingPercentage = (profile_rating / nrOfStars) * 100;
   let ratingPercentageRound = `${(Math.round(ratingPercentage / 10) * 10)}%`;
-  print(profile_rating)
   document.querySelector(`.hotel_a .stars-inner`).style.width = ratingPercentageRound;
 }
 sellerRating(currRating.innerHTML);

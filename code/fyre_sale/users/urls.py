@@ -1,11 +1,6 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import include, path
 from . import views
-#fyrir checkout
-# from . import Checkout
-# from .forms import AddressInsert, PaymentInsert
-
-
 
 urlpatterns = [
     path('signup', views.sign_up, name="signup"),
@@ -19,7 +14,7 @@ urlpatterns = [
     path('<str:username>/edit/payment', views.edit_payment, name="edit_payment"),
     path('<str:username>/edit/address', views.edit_address, name="edit_address"),
     path('<str:username>/edit/profile', views.edit_profile, name="edit_profile"),
-    path('checkout/<int:offer_id>/<int:step>', views.checkout, name="checkout"),
-    path('checkout/<int:offer_id>/confirm', views.checkout_confirm, name="checkout_confirm"),
+    path('checkout/<int:not_id>/<int:step>', views.checkout, name="checkout"),
+    path('checkout/<int:not_id>/confirm', views.checkout_confirm, name="checkout_confirm"),
     path('checkout/clean', views.clean_checkout_session, name="clean")
 ]
