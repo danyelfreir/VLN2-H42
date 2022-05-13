@@ -15,6 +15,7 @@ urlpatterns = [
     path('<int:offer_id>/respond/<str:response>', views.respond_bid, name="respond_bid"),
     path('offer/<int:offer_id>/accept', views.accept_bid, name="accept_bid"),
     path('offer/<int:offer_id>/decline', views.decline_bid, name="decline_bid"),
+    path('<int:item_id>/edit_ad', views.edit_ad, name="edit_ad"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
