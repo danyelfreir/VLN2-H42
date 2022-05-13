@@ -10,7 +10,6 @@ const profileMenu = document.getElementById('profile-menu');
 const filterButton = document.getElementById('filtering-button');
 const filterMenu;
 const currentWindow = window.location.pathname;
-const imagePopUp = document.getElementById("image-popup");
 const nrOfStars = 5;
 let currRating = document.getElementById("curr-rating-to-show")
 
@@ -26,10 +25,10 @@ background.addEventListener('click', (e) => {
   if ( window.location.pathname !== "/items/" ) {
     searchForm.style.display = 'none';
   };
-  profileMenu.style.display = 'none';
-  if ( e.target !== filterButton) {
-    filterMenu.style.display = 'none';
-  };
+  // profileMenu.style.display = 'none';
+  // if ( e.target !== filterButton) {
+  //   filterMenu.style.display = 'none';
+  // };
 });
 
 searchFormInput.addEventListener('keydown', async () => {

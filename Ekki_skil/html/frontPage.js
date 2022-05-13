@@ -35,8 +35,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-<<<<<<< HEAD
-=======
 
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
@@ -53,4 +51,3 @@ window.onclick = function(event) {
     sidenav.style.display = "none";
   }
 }
->>>>>>> 7513d9573a4fbedb4f7931be62bda3babc2d0221

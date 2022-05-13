@@ -37,11 +37,9 @@ CONTENTS OF THIS FILE
 
  * Introduction
  * Requirements
- * Recommended modules
- * Installation
- * Configuration
- * Troubleshooting
- * FAQ
- * Maintainers
+ * Extras
 
+We did all of the requirements and a couple of extra things. 
+For starters we created our own logo as can be seen on the frontpage navbar. 
+Alot of thougt went into the design process. Popular categories are images
  
