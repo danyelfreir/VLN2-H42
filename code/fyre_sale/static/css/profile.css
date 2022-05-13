@@ -5,11 +5,11 @@
     width: 100%;  
     display: grid;
     grid:
-        "image header header" 0.5fr
-        "image info info" 1.3fr
+        "image header header" 50px
+        "image info info" 350px
         "line line line" 0.01fr
-        "belowleft below belowright" 1fr
-        / 1fr 1fr 1fr 1fr;
+        "below below belowright" 1fr
+        / 1fr 1fr 1fr;
     gap: 8px;
 }
 .image-container { 
