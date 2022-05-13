@@ -8,10 +8,9 @@ const searchResults = document.getElementById('search-results-list');
 const loginButton = document.getElementById('login');
 const profileMenu = document.getElementById('profile-menu');
 const filterButton = document.getElementById('filtering-button');
-const filterMenu;
+const filterMenu = documet.getElementById('filter-menu')
 const currentWindow = window.location.pathname;
 const nrOfStars = 5;
-let currRating = document.getElementById("curr-rating-to-show")
 
 searchButton.addEventListener('click', () => {
   searchForm.style.display = "flex";
@@ -25,10 +24,10 @@ background.addEventListener('click', (e) => {
   if ( window.location.pathname !== "/items/" ) {
     searchForm.style.display = 'none';
   };
-  // profileMenu.style.display = 'none';
-  // if ( e.target !== filterButton) {
-  //   filterMenu.style.display = 'none';
-  // };
+  profileMenu.style.display = 'none';
+  if ( e.target !== filterButton) {
+    filterMenu.style.display = 'none';
+  };
 });
 
 searchFormInput.addEventListener('keydown', async () => {
@@ -47,19 +46,14 @@ searchFormInput.addEventListener('keydown', async () => {
 
 // ============ PROFILE MENU ===========
 loginButton.addEventListener('click', (e) => {
-  console.log(e.target);
   profileMenu.style.display = 'block';
 })
 
 
 // ============ FILTER MENU ============
 filterButton.addEventListener('click', (e) => {
+  console.log(e.target);
   filterMenu.style.display = 'block';
 });
-// ============ SCALE IMAGE ============
-// function scaleImage(clickedImageId) {
-//   var imageId = clickedImageId.replace('image_',''); //Nota þetta til að fá image id sem er í gagnagrunninum.
-//   document.getElementById("image-scaled").src="??"; //setja inní réttan link hér.
-//   imagePopUp.style.display = 'block';
-// }
+
 
