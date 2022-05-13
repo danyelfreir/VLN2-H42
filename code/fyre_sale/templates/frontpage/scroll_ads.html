@@ -5,9 +5,9 @@
   <div id="carousel">
     <div id="scroll_content">
       {% if items %}
-        {% for item in items %}
-          {% include 'items/grid-item.html' with item=item %}
-        {% endfor %}
+      {% for item in items %}
+      {% include 'items/grid-item.html' with item=item %}
+      {% endfor %}
       {% endif %}
     </div>
     <button id="prev"><i class="fa-solid fa-circle-chevron-left"></i></button>
@@ -17,65 +17,75 @@
 <script src="{% static 'js/scroll_bar.js' %}" type="text/javascript"></script>
 
 <style>
-    #scroll-bar-wrapper {
-        margin: 20px 0 20px 0;
-        width: 101.7%;
-        position: relative;
-    }
-    #carousel {
-        overflow: auto;
-        scroll-behavior: smooth;
-        scrollbar-width: none;
-    }
-    #carousel::-webkit-scrollbar {
-        height: 0;
-    }
-    #prev,
-    #next {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        border: none;
-        outline: 0;
-        cursor: pointer;
-        position: absolute;
-        background-color: Transparent;
-        font-size: 40px;
-        color: #4a5ee5;
-    }
-    #prev {
-        top: 50%;
-        left: -5px;
-        transform: translate(50%, -50%);
-        display: none;
-    }
-    #next {
-        top: 50%;
-        right: 10px;
-        transform: translate(-50%, -50%);
-    }
-    #prev:hover,
-    #next:hover {
-        color: #f08c34;
-    }
-    #scroll_content {
-        display: grid;
-        grid-gap: 16px;
-        grid-auto-flow: column;
-        margin: auto;
-        box-sizing: border-box;
-    }
-    .item {
-        width: 325px;
-        height: 400px;
-    }
-    .item_img {
-        width: 100%;
-        height: 75%;
-    }
-    .item_name {
-        color:#4a5ee5;
-        font-size: 25px;
-        margin: 0;
-    }
+  #scroll-bar-wrapper {
+    margin: 20px 0 20px 0;
+    width: 101.7%;
+    position: relative;
+  }
+
+  #carousel {
+    overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+
+  #carousel::-webkit-scrollbar {
+    height: 0;
+  }
+
+  #prev,
+  #next {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    position: absolute;
+    background-color: Transparent;
+    font-size: 40px;
+    color: #4a5ee5;
+  }
+
+  #prev {
+    top: 50%;
+    left: -5px;
+    transform: translate(50%, -50%);
+    display: none;
+  }
+
+  #next {
+    top: 50%;
+    right: 10px;
+    transform: translate(-50%, -50%);
+  }
+
+  #prev:hover,
+  #next:hover {
+    color: #f08c34;
+  }
+
+  #scroll_content {
+    display: grid;
+    grid-gap: 16px;
+    grid-auto-flow: column;
+    margin: auto;
+    box-sizing: border-box;
+  }
+
+  .item {
+    width: 325px;
+    height: 400px;
+  }
+
+  .item_img {
+    width: 100%;
+    height: 75%;
+  }
+
+  .item_name {
+    color: #4a5ee5;
+    font-size: 25px;
+    margin: 0;
+  }
 </style>

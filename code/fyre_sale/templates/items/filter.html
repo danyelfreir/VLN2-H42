@@ -1,74 +1,84 @@
 {% load static %}
 
 <div id="filter-container">
-    <p id="filter-title">Categories</p>
-    <ul id="categories">
-        <a href="{% url 'items_index' %}">All items</a>
-        {% for cat in categories %}
-            <li><a href="{% url 'items_index' %}?cat={{ cat.name }}">{{ cat.name }}</a></li>
-            {% if subcategories %}
-                {% for subcat in subcategories %}
-                    <ul id="sub-cat">
-                    {% if subcat.category_id == cat.id %}
-                        <li><a href="{% url 'items_index' %}?cat={{ cat.name }}&subcat={{ subcat.name }}">{{ subcat.name }}</a></li>
-                    {% endif %}
-                    </ul>
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
+  <p id="filter-title">Categories</p>
+  <ul id="categories">
+    <a href="{% url 'items_index' %}">All items</a>
+    {% for cat in categories %}
+    <li><a href="{% url 'items_index' %}?cat={{ cat.name }}">{{ cat.name }}</a></li>
+    {% if subcategories %}
+    {% for subcat in subcategories %}
+    <ul id="sub-cat">
+      {% if subcat.category_id == cat.id %}
+      <li><a href="{% url 'items_index' %}?cat={{ cat.name }}&subcat={{ subcat.name }}">{{ subcat.name }}</a></li>
+      {% endif %}
     </ul>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+  </ul>
 </div>
 <style>
-    #filter-container {
-        width: 20%;
-        margin-left: 0%;
-        position: absolute;
-    }
-    #filter-title {
-        font-size: 25px;
-        margin-left: 20px;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        color: #4a5ee5;
-        font-weight: bold;
-    }
-    #categories {
-        padding-left: 5px;
-        list-style-type: none;
-        margin: 5px;
-        color: #777777;
-    }
-    #categories li {
-        margin-bottom: 3px;
-    }
-    #sub-cat {
-        list-style-type: none;
-        padding-left: 7px;
-        margin: 5px;
-    }
-    #sub-cat li {
-        margin-bottom: 3px;
-    }
-    li:hover {
-        color:#4a5ee5;
-    }
-    #categories a {
-        text-decoration: none;
-        color: #777777;
-    }
-    #categories a:visited {
-        color: #777777;
-    }
-    #categories a:active {
-        color: #4a5ee5;
-    }
-    .category-header {
-        font-size: 25px;
-        margin-left: 20px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        color: #4a5ee5;
-        font-weight: bold;
-        text-align: center;
-    }
+  #filter-container {
+    width: 20%;
+    margin-left: 0%;
+    position: absolute;
+  }
+
+  #filter-title {
+    font-size: 25px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #4a5ee5;
+    font-weight: bold;
+  }
+
+  #categories {
+    padding-left: 5px;
+    list-style-type: none;
+    margin: 5px;
+    color: #777777;
+  }
+
+  #categories li {
+    margin-bottom: 3px;
+  }
+
+  #sub-cat {
+    list-style-type: none;
+    padding-left: 7px;
+    margin: 5px;
+  }
+
+  #sub-cat li {
+    margin-bottom: 3px;
+  }
+
+  li:hover {
+    color: #4a5ee5;
+  }
+
+  #categories a {
+    text-decoration: none;
+    color: #777777;
+  }
+
+  #categories a:visited {
+    color: #777777;
+  }
+
+  #categories a:active {
+    color: #4a5ee5;
+  }
+
+  .category-header {
+    font-size: 25px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #4a5ee5;
+    font-weight: bold;
+    text-align: center;
+  }
 </style>

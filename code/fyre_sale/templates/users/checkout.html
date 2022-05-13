@@ -1,24 +1,25 @@
 {% extends 'popup.html' %}
 
 {% block form  %}
-  <h4 class="form-title">Checkout</h4>
-  <p class="form-subtitle">Set up your delivery addresses and payment methods to receive your product</p>
-  <form class="loginform" action="{% url 'checkout' not_id next %}" method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <label class="form-field-label">{{ field.label }}</label>
-    {{ field }}
-    {% endfor %}
-    <label for="form-field-label">Save this information to your profile?</label>
-    <input type="checkbox" name="save-info" value="yes">
-    <button class="form-submit" id="submit" type="submit" value="Submit">Continue</button><br>
-    <button class="form-submit" id="submit" onclick="history.back()"><i class="fa-solid fa-arrow-left"></i>Back</button><br>
-  </form>
+<h4 class="form-title">Checkout</h4>
+<p class="form-subtitle">Set up your delivery addresses and payment methods to receive your product</p>
+<form class="loginform" action="{% url 'checkout' not_id next %}" method="post">
+  {% csrf_token %}
+  {% for field in form %}
+  <label class="form-field-label">{{ field.label }}</label>
+  {{ field }}
+  {% endfor %}
+  <label for="form-field-label">Save this information to your profile?</label>
+  <input type="checkbox" name="save-info" value="yes">
+  <button class="form-submit" id="submit" type="submit" value="Submit">Continue</button><br>
+  <button class="form-submit" id="submit" onclick="history.back()"><i
+      class="fa-solid fa-arrow-left"></i>Back</button><br>
+</form>
 
-  <style media="screen">
-    #close-form-btn {
-      display: none;
-    }
-  </style>
+<style media="screen">
+  #close-form-btn {
+    display: none;
+  }
+</style>
 
 {% endblock form  %}

@@ -2,27 +2,27 @@
 {% load static %}
 
 {% block form %}
-        <h4 class="form-title">Address</h4><br>
-        <p class="form-subtitle">Save your address <br>for easy checkout</p>
-        <form class="loginform" action="{% url 'edit_address' user.username %}" method="POST">
-            {% csrf_token %}
-            <label class="form-field-label">Street name and number</label><br>
-                {{form.street_name}}
-            <label class="form-field-label">Zip</label><br>
-                {{form.zip}}
-                {% if form.errors %}
-                    <p class="error-msg">{{ form.errors.zip}}</label><br>
-                {% endif %}
-            <label class="form-field-label">City</label><br>
-                {{form.city}}
-                {% if form.errors %}
-                    <p class="error-msg">{{ form.errors.city}}</label><br>
-                {% endif %}
-            <label class="form-field-label">Country</label><br>
-            {{form.country}}
-            {% if form.errors %}
-            {{ form.errors.country}}
-            {% endif %}
-        <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
-        </form>
+<h4 class="form-title">Address</h4><br>
+<p class="form-subtitle">Save your address <br>for easy checkout</p>
+<form class="loginform" action="{% url 'edit_address' user.username %}" method="POST">
+  {% csrf_token %}
+  <label class="form-field-label">Street name and number</label><br>
+  {{form.street_name}}
+  <label class="form-field-label">Zip</label><br>
+  {{form.zip}}
+  {% if form.errors %}
+  <p class="error-msg">{{ form.errors.zip}}</label><br>
+    {% endif %}
+    <label class="form-field-label">City</label><br>
+    {{form.city}}
+    {% if form.errors %}
+    <p class="error-msg">{{ form.errors.city}}</label><br>
+      {% endif %}
+      <label class="form-field-label">Country</label><br>
+      {{form.country}}
+      {% if form.errors %}
+      {{ form.errors.country}}
+      {% endif %}
+      <button class="form-submit" id="submit" type="submit" value="Submit">Submit</button><br>
+</form>
 {% endblock form %}

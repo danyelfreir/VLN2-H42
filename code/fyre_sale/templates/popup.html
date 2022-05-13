@@ -2,15 +2,16 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock styles %}
 {% block popup %}
-  <div class="padding-popup">
-    <div id="popup">
-      <div id="close-form"><button id="close-form-btn" onclick="history.back()"><i class="fa-solid fa-x"></i></button></div>
-      {% block form %}
-      {% endblock form %}
+<div class="padding-popup">
+  <div id="popup">
+    <div id="close-form"><button id="close-form-btn" onclick="history.back()"><i class="fa-solid fa-x"></i></button>
     </div>
+    {% block form %}
+    {% endblock form %}
   </div>
+</div>
 {% endblock popup %}

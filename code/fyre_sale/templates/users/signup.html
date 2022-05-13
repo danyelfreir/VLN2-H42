@@ -1,29 +1,29 @@
 {% extends 'popup.html' %}
 
 {% block form %}
-  <h4 class="form-title">Sign up</h4><br>
-  <p class="form-subtitle">Join our community!</p>
-  <form class="loginform" method="POST" action="">
-    {% csrf_token %}
-    <label class="form-field-label" for="username">Username</label><br>
-    {{ form.username }}
-    <label class="form-field-label" for="email">Email</label><br>
-    {{ form.email }}
-    <label class="form-field-label" for="passw">Password</label><br>
-    {{ form.password1 }}
-    <label class="form-field-label" for="conf_passw">Confirm password</label><br>
-    {{ form.password2 }}
-    {% if form.errors.password2 %}
-      {{ form.errors.password2 }}
-    {% endif %}
-    {% if form.errors.username %}
-      {{ form.errors.username }}
-    {% endif %}
-    <button class="form-submit" id="submit" type="submit" value="Submit">Sign up</button><br>
-    </form>
-    <div id="form-footer">
-    <p class="form-footertext">Have an account?</p>
-    <a href="{% url 'signin' %}" class="form-signup" id="form-signup">LOG IN</a>
-    </div>
+<h4 class="form-title">Sign up</h4><br>
+<p class="form-subtitle">Join our community!</p>
+<form class="loginform" method="POST" action="">
+  {% csrf_token %}
+  <label class="form-field-label" for="username">Username</label><br>
+  {{ form.username }}
+  <label class="form-field-label" for="email">Email</label><br>
+  {{ form.email }}
+  <label class="form-field-label" for="passw">Password</label><br>
+  {{ form.password1 }}
+  <label class="form-field-label" for="conf_passw">Confirm password</label><br>
+  {{ form.password2 }}
+  {% if form.errors.password2 %}
+  {{ form.errors.password2 }}
+  {% endif %}
+  {% if form.errors.username %}
+  {{ form.errors.username }}
+  {% endif %}
+  <button class="form-submit" id="submit" type="submit" value="Submit">Sign up</button><br>
+</form>
+<div id="form-footer">
+  <p class="form-footertext">Have an account?</p>
+  <a href="{% url 'signin' %}" class="form-signup" id="form-signup">LOG IN</a>
+</div>
 
 {% endblock form %}

@@ -1,22 +1,22 @@
 {% extends 'popup.html' %}
 
 {% block form %}
-  <h4 class="form-title">Sign in</h4><br>
-  <p class="form-subtitle">Join our community!</p>
-  <form class="loginform" method="POST" action="">
-      {% csrf_token %}
-      <label class="form-field-label" for="email">Username</label><br>
-      {{ form.username }}
-      <label class="form-field-label" for="passw">Password</label><br>
-      {{ form.password }}
-      {% if form.errors %}
-        <p style="color: red">Invalid username or password</p>
-      {% endif %}
-    <button class="form-submit" id="submit" type="submit" value="Submit">Sign in</button><br>
-  </form>
-  <div id="form-footer">
-    <p class="form-footertext">Don't have an account?</p>
-    <a href="{% url 'signup' %}" class="form-signup" id="form-signup">SIGN UP</a>
-  </div>
+<h4 class="form-title">Sign in</h4><br>
+<p class="form-subtitle">Join our community!</p>
+<form class="loginform" method="POST" action="">
+  {% csrf_token %}
+  <label class="form-field-label" for="email">Username</label><br>
+  {{ form.username }}
+  <label class="form-field-label" for="passw">Password</label><br>
+  {{ form.password }}
+  {% if form.errors %}
+  <p style="color: red">Invalid username or password</p>
+  {% endif %}
+  <button class="form-submit" id="submit" type="submit" value="Submit">Sign in</button><br>
+</form>
+<div id="form-footer">
+  <p class="form-footertext">Don't have an account?</p>
+  <a href="{% url 'signup' %}" class="form-signup" id="form-signup">SIGN UP</a>
+</div>
 
 {% endblock form %}

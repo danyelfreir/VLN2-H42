@@ -20,7 +20,6 @@ class SubCategory(models.Model):
         return str(self.name)
 
 
-
 class ItemForSale(models.Model):
     id = models.BigAutoField(primary_key=True)
     date_of_upload = models.CharField(max_length=255, blank=True)
@@ -39,10 +38,14 @@ class ItemForSale(models.Model):
     def get_absolute_url(self):
         return reverse('item_detail', args=[str(self.id)])
 
+
 class ItemImages(models.Model):
     item = models.ForeignKey(ItemForSale, on_delete=models.CASCADE, blank=True)
-    image = models.ImageField(default="favicon-fyresale.svg", null=True, blank=True)
+    image = models.ImageField(default="favicon-fyresale.svg",
+                              null=True,
+                              blank=True)
     main_image = models.BooleanField(default=False, blank=True)
+
 
 class Offer(models.Model):
     id = models.BigAutoField(primary_key=True)

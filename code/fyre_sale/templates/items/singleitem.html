@@ -1,99 +1,106 @@
 {% extends 'profile.html' %}
 {% load static #}
 {% block profile-container %}
-    <div class="profile-container">
-        <div class="image-container">
-            <img id="profile-picture" class="profile-picture" src="{{MEDIA_URL}}/images/" alt="Item picture" enctype="multipart/form-data">
+<div class="profile-container">
+  <div class="image-container">
+    <img id="profile-picture" class="profile-picture" src="{{MEDIA_URL}}/images/" alt="Item picture"
+      enctype="multipart/form-data">
+  </div>
+  <div class="profile-header">
+    <h3 class="profile-name">{{ item.name }}</h3>
+  </div>
+  <div class="profile-info">
+    <ul class="info-list">
+      <li>
+        <p class="info-header"><span>Posted on:</span><span class="info-value">&emsp;{{ item.date_of_upload }}</span>
+        </p>
+      <li>
+        <p class="info-header"><span>Current highest bid:</span><span class="info-value">&emsp;{{ item.cur_bid }}
+            kr.</span></p>
+      <li>
+        <p class="info-header"><span>Description:</span><span class="info-value">&emsp;{{ item.long_desc }}</span></p>
+    </ul>
+  </div>
+  <div class="line"></div>
+  <div class="below-seller">
+    <h3 class="item-header">About seller</h3>
+    <ul class="info-list">
+      <li>
+        <p class="info-header">Username:<span class="info-value">&emsp;{{ seller.username }}</span></p>
+      </li>
+      <li>
+        <p id="curr-rating-to-show">{{ seller_rating }}</p>
+        <div class="info-header">Average rating:<span class="info-value">
+            <div class="user-rating-star">
+              <div class="stars-outer"></i>
+                <div class="stars-inner"></div>
+              </div>
+            </div>
+          </span>
         </div>
-        <div class="profile-header">
-            <h3 class="profile-name">{{ item.name }}</h3>
-        </div>
-        <div class="profile-info">
-            <ul class="info-list">
-                <li><p class="info-header"><span>Posted on:</span><span class="info-value">&emsp;{{ item.date_of_upload }}</span></p>
-                <li><p class="info-header"><span>Current highest bid:</span><span class="info-value">&emsp;{{ item.cur_bid }} kr.</span></p>
-                <li><p class="info-header"><span>Description:</span><span class="info-value">&emsp;{{ item.long_desc }}</span></p>
-            </ul>
-        </div>
-        <div class="line"></div>
-        <div class="below-seller">
-            <h3 class="item-header">About seller</h3>
-            <ul class="info-list">
-                <li><p class="info-header">Username:<span class="info-value">&emsp;{{ seller.username }}</span></p></li>
-                <li><p id="curr-rating-to-show">{{ seller_rating }}</p>
-                    <div class="info-header">Average rating:<span class="info-value">
-                        <div class="user-rating-star">
-                            <div class="stars-outer"></i>
-                                <div class="stars-inner"></div>
-                            </div>
-                        </div></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="buttons-container">
-            {% if user.id != item.seller.id %}
-                <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
-            {% else %}
-                <a href="{% url 'edit_ad' item.id %}" class="button-profile">Edit item</a>
-            {% endif %}
-        </div>
-    </div>
-    <div id="all-images">
-        <ul id="images-ul" class="image-ul">
-        </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
+  <div class="buttons-container">
+    {% if user.id != item.seller.id %}
+    <a href="{% url 'place_bid' item.id %}" class="button-profile">Place Bid</a>
+    {% else %}
+    <a href="{% url 'edit_ad' item.id %}" class="button-profile">Edit item</a>
+    {% endif %}
+  </div>
+</div>
+<div id="all-images">
+  <ul id="images-ul" class="image-ul">
+  </ul>
+</div>
 
-    <script type="text/javascript">
-      window.onload = () => {
-        fetch('http://localhost:8000/items/api/get_images/{{ item.id }}')
-          .then(response => response.json())
-          .then(data => {
-            const imagesElem = document.getElementById('images-ul');
-            const apiImages = data.results;
-            const profileImage = document.getElementById('profile-picture');
-            profileImage.src = profileImage.src + apiImages[0].image;
-            for (let i=1; i<apiImages.length; i++) {
-              console.log(apiImages[i]);
-              const imageLi = document.createElement('li');
-              imageLi.className = 'image-li';
-              const image = document.createElement('img');
-              image.className = 'item-image';
-              image.id = `image-${ apiImages[i].id }`;
-              image.src = src=`{{ MEDIA_URL }}/images/${ apiImages[i].image }`
-              image.alt = 'Image of {{ item.name }}'
-              imageLi.appendChild(image);
-              imagesElem.appendChild(imageLi);
-            }
-          });
-      }
-    </script>
-
-
-    <!-- <img id="profile-picture" class="profile-picture" src="{{MEDIA_URL}}/images/" alt="Item picture" enctype="multipart/form-data"> -->
-
-
-
-    <style>
-        .below-seller {
-            grid-area: below ;
+<script type="text/javascript">
+  window.onload = () => {
+    fetch('http://localhost:8000/items/api/get_images/{{ item.id }}')
+      .then(response => response.json())
+      .then(data => {
+        const imagesElem = document.getElementById('images-ul');
+        const apiImages = data.results;
+        const profileImage = document.getElementById('profile-picture');
+        profileImage.src = profileImage.src + apiImages[0].image;
+        for (let i = 1; i < apiImages.length; i++) {
+          console.log(apiImages[i]);
+          const imageLi = document.createElement('li');
+          imageLi.className = 'image-li';
+          const image = document.createElement('img');
+          image.className = 'item-image';
+          image.id = `image-${ apiImages[i].id }`;
+          image.src = src = `{{ MEDIA_URL }}/images/${ apiImages[i].image }`
+          image.alt = 'Image of {{ item.name }}'
+          imageLi.appendChild(image);
+          imagesElem.appendChild(imageLi);
         }
-        .image-ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .image-li {
-            margin: 5px auto;
-            align-content: center;
-        }
-        .item-image {
-            max-height: 100%;
-            min-width: 100%;
-            object-fit: cover;
-            border: 1px solid rgba(204, 204, 204, 0.8)
-        }
-    </style>
+      });
+  }
+</script>
+<style>
+  .below-seller {
+    grid-area: below;
+  }
+
+  .image-ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .image-li {
+    margin: 5px auto;
+    align-content: center;
+  }
+
+  .item-image {
+    max-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    border: 1px solid rgba(204, 204, 204, 0.8)
+  }
+</style>
 {% include 'items/scroll_similar.html' with items=similar_items %}
 
 {% endblock profile-container %}

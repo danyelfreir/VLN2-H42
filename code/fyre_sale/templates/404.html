@@ -1,13 +1,13 @@
 {% extends 'popup.html' %}
 
 {% block form %}
-  <h4 class="form-title">404</h4>
-  <p class="form-subtitle">Whoa there! This page does not exist</p>
-  <p class="form-subtitle">Click here to get back</p>
-  <button type="button" class="form-submit" onclick="location.href='{% url 'index' %}'">Home</button>
-  <style>
-    #close-form-btn {
-      display: none;
-    }
-  </style>
+<h4 class="form-title">404</h4>
+<p class="form-subtitle">Whoa there! This page does not exist</p>
+<p class="form-subtitle">Click here to get back</p>
+<button type="button" class="form-submit" onclick="location.href='{% url 'index' %}'">Home</button>
+<style>
+  #close-form-btn {
+    display: none;
+  }
+</style>
 {% endblock form %}
