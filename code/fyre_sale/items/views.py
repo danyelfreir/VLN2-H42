@@ -24,9 +24,9 @@ def items_index(request):
     title = None
 
     if name is None and subcat is None and cat is None:
-        list_of_items = ItemForSale.objects.all().order_by('date_of_upload')
+        list_of_items = ItemForSale.objects.filter(sold=False).order_by('date_of_upload')
     elif name is not None and subcat is None and cat is None:
-        list_of_items = ItemForSale.objects.filter(name__icontains=name)
+        list_of_items = ItemForSale.objects.filter(name__icontains=name, sold=False)
         subcategories = None
     elif name is None and subcat is None and cat is not None:
         tmp_cat = Category.objects.get(name=cat)
@@ -42,11 +42,9 @@ def items_index(request):
         tmp_cat = Category.objects.get(name=cat)
         tmp_scat = SubCategory.objects.get(name=subcat)
         subcategories = SubCategory.objects.filter(category=tmp_cat)
-        list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat)
+        list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat, sold=False)
         title = f'{cat} - {subcat}'
     categories = Category.objects.all().order_by('name')
-    if len(list_of_items) > 0:
-        list_of_items = list_of_items.exclude(sold=True)
     return render(request, 'items/itempage.html', context={
         'items': list_of_items,
         'categories': categories,

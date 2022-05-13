@@ -1,20 +1,17 @@
-from django.contrib.auth import login, authenticate
-from django.core import serializers
-from django.contrib.auth.models import User
+from django.core                    import serializers
+from django.contrib                 import messages
+from django.contrib.auth            import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.http import Http404, HttpResponse
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.shortcuts import render, redirect
-from users.models import User_info, Notification, User_rating
-from items.models import Offer, ItemForSale
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect,get_object_or_404
-from users.models import Notification, User_info, Address_info, Payment_info
-from items.models import Offer, SoldItem
-from items.views import notify
-from users.forms import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
-from datetime import datetime
+from django.contrib.auth.forms      import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models     import User
+from django.http                    import Http404, HttpResponse
+from django.shortcuts               import render, redirect, get_object_or_404
+# from users.forms                    import SignInForm, SignUpForm, PaymentInsert, AddressInsert, EditUser, EditAuthUser,RateSeller
+from users.forms                    import *
+from users.models                   import User_info, Address_info, Payment_info, Notification, User_rating
+from items.models                   import Offer, ItemForSale, SoldItem
+from items.views                    import notify
+from datetime                       import datetime
 
 
 def sign_up(request):
@@ -62,6 +59,8 @@ def profilepage(request, username):
         'joined': joined,
         'rating': user_rating,
     })
+
+
 @login_required
 def inbox(request, username):
     if username != request.user.username:
@@ -133,7 +132,7 @@ def edit_address(request, username):
 
 
 @login_required
-def checkout(request, offer_id, step):
+def checkout(request, not_id, step):
     # if get_object_or_none(SoldItem, )
     user_address_instance = get_object_or_none(Address_info, request.user.id)
     user_payment_instance = get_object_or_none(Payment_info, request.user.id)
@@ -145,7 +144,7 @@ def checkout(request, offer_id, step):
                 if request.POST.get('save-info') == 'yes':
                     form.save()
                 request.session['user_info'] = form.cleaned_data
-                return redirect('checkout', offer_id=offer_id, step=step+1)
+                return redirect('checkout', not_id=not_id, step=step+1)
         else:
             if 'user_info' in request.session:
                 form = EditAuthUser(initial=request.session['user_info'])
@@ -161,7 +160,7 @@ def checkout(request, offer_id, step):
                     tmp_form.id = request.user
                     tmp_form.save()
                 request.session['user_address'] = form.cleaned_data
-                return redirect('checkout', offer_id=offer_id, step=step+1)
+                return redirect('checkout', not_id=not_id, step=step+1)
         else:
             if 'user_address' in request.session:
                 form = AddressInsert(initial=request.session['user_address'])
@@ -173,12 +172,11 @@ def checkout(request, offer_id, step):
             form = PaymentInsert(data=request.POST, instance=user_payment_instance)
             if form.is_valid():
                 if request.POST.get('save-info') == 'yes':
-
                     tmp_form = form.save(commit=False)
                     tmp_form.id = request.user
                     tmp_form.save()
                 request.session['user_payment'] = form.cleaned_data
-            return redirect('checkout_confirm', offer_id=offer_id)
+            return redirect('checkout_confirm', not_id=not_id)
         else:
             if 'user_payment' in request.session:
                 form = PaymentInsert(initial=request.session['user_payment'])
@@ -187,26 +185,28 @@ def checkout(request, offer_id, step):
 
     return render(request, 'users/checkout.html', context={
         'form': form,
-        'offer': offer_id,
+        'not_id': not_id,
         'next': step,
     })
 
 
 @login_required
-def checkout_confirm(request, offer_id):
-    offer_obj = Offer.objects.get(pk=offer_id)
+def checkout_confirm(request, not_id):
+    notif_obj = Notification.objects.get(pk=not_id)
+    offer_obj = Offer.objects.get(pk=notif_obj.offer_id)
     if request.method == 'POST':
         item_obj = ItemForSale.objects.get(pk=offer_obj.item_id)
         notif_content = f'"rate_seller"Congratulations on your new {item_obj.name}. Please take the time to rate {item_obj.seller} as a seller.'
         notify(offer_obj, request.user, notif_content, datetime.now())
-
         clean_checkout_session(request)
+        notif_obj.delete()
+        notif_obj.save()
         return redirect('inbox', username=request.user.username)
     return render(request, 'users/checkout_confirm.html', context={
         'user_info': request.session['user_info'],
         'user_address': request.session['user_address'],
         'user_payment': request.session['user_payment'],
-        'offer': offer_obj,
+        'not_id': not_id,
     })
 
 
@@ -298,6 +298,16 @@ def calculate_average(user_obj):
         print(rate)
         sum += int(rate.user_rating)
         count += 1
+<<<<<<< HEAD
     newsum = sum / 2 #Divide with 2 since the rating is given on a scale form 1-5 whilst user input is 1-10.
     avg_rating = newsum / count 
+=======
+    avg_rating = sum / count
+
+    # rating = User_rating.objects.raw("\n"
+    #                         "SELECT avg(user_rating)\n"
+    #                         "from users_user_rating U\n"
+    #                         "WHERE U.userid_id = %s\n"
+    #                         "GROUP BY U.user_rating;\n", [user_obj.id])
+>>>>>>> 07b0dba510ebee041e55e80b2ca85d24b2979663
     return avg_rating

@@ -4,9 +4,7 @@
 {{ notification.content|make_list|slice:"4"}}
 
 {% block form %}
-  {{ notification.content|slice:"1:11"}}
 
-{#  {% if notification.offer.item.seller.id == user.id %}#}
   {% if notification.content|slice:"1:10" == "place_bid" %}
     <h4 class="form-title">Bid received</h4>
     <p class="form-subtitle">{{ notification.offer.buyer.username }} wants to bid on this item</p>
@@ -31,7 +29,7 @@
       <p id="bid-item-bid">Your bid: {{ notification.offer.price }} kr.</p>
     </div>
     <div class="accept-decline-buttons">
-      <a class="accept-decline" href="{% url 'checkout' notification.offer.id 1 %}">Checkout</a>
+      <a class="accept-decline" href="{% url 'checkout' notification.id 1 %}">Checkout</a>
     </div>
 
   {% elif notification.content|slice:"1:12" == "decline_bid" %}
