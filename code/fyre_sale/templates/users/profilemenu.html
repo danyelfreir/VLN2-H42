@@ -8,6 +8,7 @@
     <li><a href="{% url 'profile' username=user.username %}">My profile</a></li>
     <li><a href="{% url 'inbox' username=user.username %}">Inbox</a></li>
     <li><a href="{% url 'signout' %}">Sign out</a></li>
+    <li><p id="user-rating-profile-menu"> {{ rating }} </p></li>
     {% else %}
     <li><a href="{% url 'signin' %}">Sign in</a></li>
     {% endif %}

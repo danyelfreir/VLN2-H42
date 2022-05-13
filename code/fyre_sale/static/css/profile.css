@@ -5,11 +5,11 @@
     width: 100%;  
     display: grid;
     grid:
-        "image header header" 0.2fr
+        "image header header" 0.5fr
         "image info info" 1.3fr
         "line line line" 0.01fr
         "belowleft below belowright" 1fr
-        / 1fr 1fr 1fr;
+        / 1fr 1fr 1fr 1fr;
     gap: 8px;
 }
 .image-container { 
@@ -50,6 +50,7 @@
     align-items:left;
     grid-area: belowright;
     display: flex;
+    width: min-content;
     flex-direction: column;
     margin-left: auto;
     margin-right: 0;
@@ -67,9 +68,6 @@
     font-size: 30px;
     color: #4a5ee5;
 }
-.rating {
-    margin: auto;
-}
 .button-profile {
     text-align: center;
     line-height: 40px;
@@ -83,4 +81,38 @@
 }
 .button-profile:hover {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.below-line { 
+    grid-area: belowleft; 
+}
+
+/* ======= ratings ========*/
+.stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+  }
+  .stars-outer::before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+  }
+  
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+  }
+  
+.stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #f08c34;
+}
+#rating-title {
+    color: #414141;
+    font-size: 18px;;
+}
+#curr-rating-to-show {
+    display: none;
 }
