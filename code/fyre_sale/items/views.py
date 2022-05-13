@@ -3,10 +3,10 @@ from django.http import JsonResponse, Http404
 from items.models import ItemForSale
 from users.models import Notification
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
-from items.item_form import CreateItem, PlaceBid, GetImages
+from items.item_form import CreateItem, PlaceBid, GetImages, EditAd
 from datetime import datetime
 from enum import Enum
 
@@ -186,11 +186,11 @@ def decline_bid(request, offer_id):
 @login_required
 def edit_ad(request, item_id):
     chosen_item = ItemForSale.objects.get(pk=item_id)
-    if chosen_item.seller == request.user:
+    if chosen_item.seller != request.user:
         raise Http404()
     instance = get_object_or_404(ItemForSale, pk=item_id)
     if request.method == 'POST':
-        date = datetime.datetime.now()
+        date = datetime.now()
         form = EditAd(chosen_item, request.POST, instance=instance)
         if form.is_valid():
             item_obj = form.save(commit=False)
@@ -202,7 +202,7 @@ def edit_ad(request, item_id):
         else:
             print(form.errors)
     else:
-        form = EditAd()
+        form = EditAd(instance=instance)
     return render(request, 'items/editad.html', {
         'form': form,
         'item': chosen_item,
