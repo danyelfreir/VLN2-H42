@@ -33,7 +33,7 @@ background.addEventListener('click', (e) => {
 });
 
 searchFormInput.addEventListener('keydown', async () => {
-  const res = await fetch(`http://localhost:8000/items/search?name=${searchFormInput.value}`);
+  const res = await fetch(`http://localhost:8000/items/api/search?name=${searchFormInput.value}`);
   const data = await res.json();
   searchResults.innerHTML = '';
   data['results'].forEach(item => {

@@ -199,7 +199,6 @@ def checkout_confirm(request, not_id):
         notify(offer_obj, request.user, notif_content, datetime.now())
         clean_checkout_session(request)
         notif_obj.delete()
-        notif_obj.save()
         return redirect('inbox', username=request.user.username)
     return render(request, 'users/checkout_confirm.html', context={
         'user_info': request.session['user_info'],

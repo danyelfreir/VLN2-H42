@@ -2,10 +2,23 @@
 
 <a href="{% url 'item_detail' item.id %}" class="grid-item-link">
   <div class="grid-item">
-    <img class="grid-item-image" src="{{MEDIA_URL}}/images/{{item.image}}">
+    <img class="grid-item-image" id="grid-item-image-{{ item.id }}" src="{{MEDIA_URL}}/images/">
     <div class="name-price-wrapper">
       <p class="grid-item-name">{{ item.name }}</p>
       <p class="grid-item-price">{{ item.cur_bid }} kr.</p>
     </div>
   </div>
 </a>
+
+<script type="text/javascript">
+  window.addEventListener('load', () => {
+    fetch('http://localhost:8000/items/api/get_images/{{ item.id }}')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        let imageElem = document.getElementById('grid-item-image-{{ item.id }}');
+        console.log(imageElem.src);
+        imageElem.src = imageElem.src + data.results[0].image;
+      });
+  });
+</script>
