@@ -14,11 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import include, path
 
 #tilraun fyrir myndauppload
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import RedirectView
+
 from items import views
 
 urlpatterns = [
@@ -26,6 +29,7 @@ urlpatterns = [
     path('items/', include("items.urls")),
     path('admin/', admin.site.urls),
     path('users/', include("users.urls")),
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url("favicon.ico")))
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

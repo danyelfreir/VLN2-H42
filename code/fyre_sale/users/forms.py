@@ -5,16 +5,6 @@ from users.models import Payment_info, Address_info, User_info, User_rating
 from django.forms import ModelForm, widgets
 from django.contrib.auth.models import User
 
-# class DivErrorList(ErrorList):
-#     def __str__(self):
-#         return self.as_divs()
-#
-#     def as_divs(self):
-#         if not self: return ''
-#         return '<div class="errorlist">%s</div>' % ''.join(['<div class="error">%s</div>' % e for e in self])
-#         f = AddressInsert(data, auto_id=False, error_class=DivErrorList)
-#         f.as_p()
-#
 CREDITC_REG = r'^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\d{11})$'
 
 class SignInForm(AuthenticationForm):
@@ -91,16 +81,17 @@ class AddressInsert(ModelForm):
 
 class RateSeller(ModelForm):
     class Meta:
-        def __init__(self, *args, **kwargs):
-            super(RateSeller, self).__init__(*args, **kwargs)
-            for field in self.visible_fields():
-                field.field.widget.attrs['class'] = 'form-field'
         rates = [(i, i) for i in range(11)]
         model = User_rating
-        exclude =['userid']
+        fields =['user_rating']
         widgets = {
             'user_rating': widgets.Select(attrs={'class': 'form-field'}, choices=rates),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(RateSeller, self).__init__(*args, **kwargs)
+        for field in self.visible_fields():
+            field.field.widget.attrs['class'] = 'form-field'
 
 class EditUser(ModelForm):
     # def __init__(self, *args, **kwargs):

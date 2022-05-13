@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, Http404
-from items.models import ItemForSale
+from items.models import ItemForSale, SoldItem
 from users.models import Notification
+from django.core.mail import send_mail
 from items.models import ItemForSale, SubCategory, Category, Offer, ItemImages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -29,10 +30,9 @@ def items_index(request):
         subcategories = None
     elif name is None and subcat is None and cat is not None:
         list_of_items = ItemForSale.objects.raw(
-            ''' SELECT * FROM items_itemforsale I WHERE I.sub_cat_id in (
+            ''' SELECT * FROM items_itemforsale I WHERE I.sub_cat_id IN (
                     SELECT S.id FROM items_subcategory S WHERE S.category_id = (
                         SELECT C.id FROM items_category C WHERE C.name = %s))
-                AND I.sold = 'False'
                 ORDER BY i.date_of_upload DESC; ''', [cat]
         )
         tmp_cat = Category.objects.get(name=cat)
@@ -45,6 +45,7 @@ def items_index(request):
         list_of_items = ItemForSale.objects.filter(sub_cat=tmp_scat)
         title = f'{cat} - {subcat}'
     categories = Category.objects.all().order_by('name')
+    list_of_items = list_of_items.exclude(sold=True)
     return render(request, 'items/itempage.html', context={
         'items': list_of_items,
         'categories': categories,
@@ -54,8 +55,9 @@ def items_index(request):
 
 
 def item_detail(request, item_id):
-    # detailed_item = ItemForSale.objects.get(pk=item_id)
     detailed_item = get_object_or_404(ItemForSale, pk=item_id)
+    if request.user.id != detailed_item.seller_id:
+        raise Http404()
     seller_user = User.objects.get(pk=detailed_item.seller_id)
     similar_items = ItemForSale.objects.filter(sub_cat=detailed_item.sub_cat_id)
     similar_items_cleaned = similar_items.exclude(id=detailed_item.id)
@@ -140,7 +142,7 @@ def place_bid(request, item_id):
             chosen_item.cur_bid = offer_obj.price
             chosen_item.save()
 
-            notif_content = f'{request.user.username} placed a bid on {chosen_item.name}'
+            notif_content = f'"place_bid"  {request.user.username} placed a bid on {chosen_item.name}'
             notify(offer_obj, chosen_item.seller, notif_content, date)
             return redirect('items_index')
         else:
@@ -169,7 +171,16 @@ def accept_bid(request, offer_id):
     offer_obj.save()
     date_time = datetime.now()
 
-    notif_content = f'{request.user.username} has accepted your offer on {offer_obj.item.name}'
+    item_obj = ItemForSale.objects.get(pk=offer_obj.item_id)
+    item_obj.sold = True
+    item_obj.save()
+
+    SoldItem.objects.create(
+        offer=offer_obj,
+        item=item_obj
+    )
+
+    notif_content = f'"accept_bid" {request.user.username} has accepted your offer on {offer_obj.item.name}'
     notify(offer_obj, offer_obj.buyer, notif_content, date_time)
     return redirect('inbox', username=request.user.username)
 
@@ -179,7 +190,7 @@ def decline_bid(request, offer_id):
     offer_obj = Offer.objects.get(pk=offer_id)
     date_time = datetime.now()
 
-    notif_content = f'{request.user.username} has rejected your offer on {offer_obj.item.name}'
+    notif_content = f'"decline_bid"{request.user.username} has rejected your offer on {offer_obj.item.name}'
     notify(offer_obj, offer_obj.buyer, notif_content, date_time)
     return redirect('inbox', username=request.user.username)
 
@@ -229,6 +240,14 @@ def check_query(req):
 
 
 def notify(offer_obj, recipient, content, date_time):
+    print(recipient.email)
+    send_mail(
+        subject="New message from Fyresale",
+        message=content[12:] + '\nhttp://localhost:8000/users/' + str(recipient.username) + '/inbox',
+        from_email=None,
+        recipient_list=[recipient.email],
+        fail_silently=False
+    )
     new_not = Notification.objects.create(
         recipient=recipient,
         offer=offer_obj,

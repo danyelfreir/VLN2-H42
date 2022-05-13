@@ -12,6 +12,7 @@ urlpatterns = [
     path('signin', views.sign_in, name="signin"),
     path('signout', LogoutView.as_view(next_page="signin"), name="signout"),
     path('<str:username>', views.profilepage, name="profile"),
+    path('<str:username>/rate/<int:not_id>', views.rate_sales, name="rate_sales"),
     path('<str:username>/inbox/', views.inbox, name="inbox"),
     path('<str:username>/inbox/notification/<int:not_id>', views.notification, name="notification"),
     path('<str:username>/inbox/notification/<int:not_id>/rate_sales', views.rate_sales, name="rate_sales"),
